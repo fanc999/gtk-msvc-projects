@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="zlibinstallprops"
+	InheritedPropertySheets=".\zlib-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="ZlibDoInstall"
+		Value="
+mkdir $(CopyDir)&#x0D;&#x0A;
+mkdir $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\zlib1.dll $(CopyDir)\bin&#x0D;&#x0A;
+
+mkdir $(CopyDir)\lib&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\zlib1.lib $(CopyDir)\lib&#x0D;&#x0A;
+
+mkdir $(CopyDir)\include&#x0D;&#x0A;
+copy ..\..\..\zlib.h $(CopyDir)\include&#x0D;&#x0A;
+copy ..\..\..\zconf.h $(CopyDir)\include&#x0D;&#x0A;
+"
+	/>
+</VisualStudioPropertySheet>
