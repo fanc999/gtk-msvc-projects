@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="atkinstallprops"
+	InheritedPropertySheets=".\png-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="PngDoInstall"
+		Value="
+mkdir $(CopyDir)&#x0D;&#x0A;
+mkdir $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\libpng$(PngReleaseSeries).dll $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\pngfix.exe $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\png-fix-itxt.exe $(CopyDir)\bin&#x0D;&#x0A;
+
+mkdir $(CopyDir)\lib&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\libpng$(PngReleaseSeries).lib $(CopyDir)\lib&#x0D;&#x0A;
+
+mkdir $(CopyDir)\include&#x0D;&#x0A;
+copy ..\..\..\png.h $(CopyDir)\include&#x0D;&#x0A;
+copy ..\..\..\pngconf.h $(CopyDir)\include&#x0D;&#x0A;
+copy ..\..\..\pnglibconf.h $(CopyDir)\include&#x0D;&#x0A;
+"
+	/>
+</VisualStudioPropertySheet>

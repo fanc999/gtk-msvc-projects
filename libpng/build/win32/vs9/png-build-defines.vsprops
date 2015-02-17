@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="pngbuilddefinesprops"
+	OutputDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin"
+	IntermediateDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)\obj\$(ProjectName)\"
+	InheritedPropertySheets=".\png-version-paths.vsprops"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalIncludeDirectories="..\..\..;$(GLibEtcInstallRoot)\include"
+		PreprocessorDefinitions="_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+		DisabledSpecificWarnings="4127"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		AdditionalDependencies="zlib1.lib"
+		AdditionalLibraryDirectories="$(GLibEtcInstallRoot)\lib"
+	/>
+</VisualStudioPropertySheet>

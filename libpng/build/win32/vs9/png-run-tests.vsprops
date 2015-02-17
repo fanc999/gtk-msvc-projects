@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="pnggensrcprops"
+	InheritedPropertySheets=".\png-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="PngsTestArgs"
+		Value="--strict --log --touch pngstest.out $(RootSrcDir)\contrib\pngsuite\basn0g01.png $(RootSrcDir)\contrib\pngsuite\basn0g02.png $(RootSrcDir)\contrib\pngsuite\basn0g04.png $(RootSrcDir)\contrib\pngsuite\basn0g08.png $(RootSrcDir)\contrib\pngsuite\basn0g16.png $(RootSrcDir)\contrib\pngsuite\basn2c08.png $(RootSrcDir)\contrib\pngsuite\basn2c16.png $(RootSrcDir)\contrib\pngsuite\basn3p01.png $(RootSrcDir)\contrib\pngsuite\basn3p02.png $(RootSrcDir)\contrib\pngsuite\basn3p04.png $(RootSrcDir)\contrib\pngsuite\basn3p08.png $(RootSrcDir)\contrib\pngsuite\basn4a08.png $(RootSrcDir)\contrib\pngsuite\basn4a16.png $(RootSrcDir)\contrib\pngsuite\basn6a08.png $(RootSrcDir)\contrib\pngsuite\basn6a16.png $(RootSrcDir)\contrib\pngsuite\ftbbn0g01.png $(RootSrcDir)\contrib\pngsuite\ftbbn0g02.png $(RootSrcDir)\contrib\pngsuite\ftbbn0g04.png $(RootSrcDir)\contrib\pngsuite\ftbbn2c16.png $(RootSrcDir)\contrib\pngsuite\ftbbn3p08.png $(RootSrcDir)\contrib\pngsuite\ftbgn2c16.png $(RootSrcDir)\contrib\pngsuite\ftbgn3p08.png $(RootSrcDir)\contrib\pngsuite\ftbrn2c08.png $(RootSrcDir)\contrib\pngsuite\ftbwn0g16.png $(RootSrcDir)\contrib\pngsuite\ftbwn3p08.png $(RootSrcDir)\contrib\pngsuite\ftbyn3p08.png $(RootSrcDir)\contrib\pngsuite\ftp0n0g08.png $(RootSrcDir)\contrib\pngsuite\ftp0n2c08.png $(RootSrcDir)\contrib\pngsuite\ftp0n3p08.png $(RootSrcDir)\contrib\pngsuite\ftp1n3p08.png"
+	/>
+	<UserMacro
+		Name="PngTestArgs"
+		Value="$(RootSrcDir)\pngtest.png pngout.png"
+	/>
+	<UserMacro
+		Name="PngUnknownArgs"
+		Value="--strict --default --touch pngunknown.out $(RootSrcDir)\pngtest.png"
+	/>
+	<UserMacro
+		Name="PngValidArgs"
+		Value="--touch pngvalid.out"
+	/>
+</VisualStudioPropertySheet>
