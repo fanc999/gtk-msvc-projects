@@ -195,7 +195,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Copying pnglibconf.h from pnglibconf.h.prebuilt..."
-						CommandLine="$(CopyPngConfigH)&#x0D;&#x0A;"
+						CommandLine="$(CopyPngConfigH)"
 						Outputs="..\..\..\pnglibconf.h"
 					/>
 				</FileConfiguration>
@@ -203,7 +203,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Copying pnglibconf.h from pnglibconf.h.prebuilt..."
-						CommandLine="$(CopyPngConfigH)&#x0D;&#x0A;"
+						CommandLine="$(CopyPngConfigH)"
 						Outputs="..\..\..\pnglibconf.h"
 					/>
 				</FileConfiguration>
@@ -211,7 +211,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Copying pnglibconf.h from pnglibconf.h.prebuilt..."
-						CommandLine="$(CopyPngConfigH)&#x0D;&#x0A;"
+						CommandLine="$(CopyPngConfigH)"
 						Outputs="..\..\..\pnglibconf.h"
 					/>
 				</FileConfiguration>
@@ -219,7 +219,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Copying pnglibconf.h from pnglibconf.h.prebuilt..."
-						CommandLine="$(CopyPngConfigH)&#x0D;&#x0A;"
+						CommandLine="$(CopyPngConfigH)"
 						Outputs="..\..\..\pnglibconf.h"
 					/>
 				</FileConfiguration>
