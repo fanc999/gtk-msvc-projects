@@ -89,6 +89,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(TargetDir)$(ProjectName)$(PngReleaseSeries).lib</ImportLibrary>
+      <ProgramDatabaseFile>$(TargetDir)$(ProjectName)$(PngReleaseSeries).pdb</ProgramDatabaseFile>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -111,6 +112,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <ImportLibrary>$(TargetDir)$(ProjectName)$(PngReleaseSeries).lib</ImportLibrary>
+      <ProgramDatabaseFile>$(TargetDir)$(ProjectName)$(PngReleaseSeries).pdb</ProgramDatabaseFile>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -134,6 +136,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(TargetDir)$(ProjectName)$(PngReleaseSeries).lib</ImportLibrary>
+      <ProgramDatabaseFile>$(TargetDir)$(ProjectName)$(PngReleaseSeries).pdb</ProgramDatabaseFile>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -159,6 +162,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <ImportLibrary>$(TargetDir)$(ProjectName)$(PngReleaseSeries).lib</ImportLibrary>
+      <ProgramDatabaseFile>$(TargetDir)$(ProjectName)$(PngReleaseSeries).pdb</ProgramDatabaseFile>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -197,6 +201,12 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\scripts\pngwin.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\zlib\build\win32\vs10\zlib-install.vcxproj">
+      <Project>{71f0994a-a49d-4797-a432-52734249a013}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
