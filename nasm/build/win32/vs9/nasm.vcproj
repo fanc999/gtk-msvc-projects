@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="big5"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="nasm"
+	ProjectGUID="{EDEA5D5B-32E1-4D5F-8249-3580AA26D8D4}"
+	RootNamespace="nasm"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="1"
+			InheritedPropertySheets=".\nasm-build-defines.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="2"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="1"
+			InheritedPropertySheets=".\nasm-build-defines.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions=""
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="2"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			ConfigurationType="1"
+			InheritedPropertySheets=".\nasm-build-defines.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="2"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				TargetMachine="17"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			ConfigurationType="1"
+			InheritedPropertySheets=".\nasm-build-defines.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions=""
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="2"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Sources"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File RelativePath="..\..\..\assemble.c" />
+			<File RelativePath="..\..\..\crc64.c" />
+			<File RelativePath="..\..\..\directiv.c" />
+			<File RelativePath="..\..\..\disp8.c" />
+			<File RelativePath="..\..\..\eval.c" />
+			<File RelativePath="..\..\..\exprlib.c" />
+			<File RelativePath="..\..\..\float.c" />
+			<File RelativePath="..\..\..\hashtbl.c" />
+			<File RelativePath="..\..\..\iflag.c" />
+			<File RelativePath="..\..\..\ilog2.c" />
+			<File RelativePath="..\..\..\insnsa.c" />
+			<File RelativePath="..\..\..\insnsb.c" />
+			<File RelativePath="..\..\..\labels.c" />
+			<File RelativePath="..\..\..\listing.c" />
+			<File RelativePath="..\..\..\macros.c" />
+			<File RelativePath="..\..\..\nasm.c" />
+			<File RelativePath="..\..\..\nasmlib.c" />
+			<File RelativePath="..\..\..\output\nulldbg.c" />
+			<File RelativePath="..\..\..\output\nullout.c" />
+			<File RelativePath="..\..\..\output\outaout.c" />
+			<File RelativePath="..\..\..\output\outas86.c" />
+			<File RelativePath="..\..\..\output\outbin.c" />
+			<File RelativePath="..\..\..\output\outcoff.c" />
+			<File RelativePath="..\..\..\output\outdbg.c" />
+			<File RelativePath="..\..\..\output\outelf.c" />
+			<File RelativePath="..\..\..\output\outelf32.c" />
+			<File RelativePath="..\..\..\output\outelf64.c" />
+			<File RelativePath="..\..\..\output\outelfx32.c" />
+			<File RelativePath="..\..\..\output\outform.c" />
+			<File RelativePath="..\..\..\output\outieee.c" />
+			<File RelativePath="..\..\..\output\outlib.c" />
+			<File RelativePath="..\..\..\output\outmac32.c" />
+			<File RelativePath="..\..\..\output\outmac64.c" />
+			<File RelativePath="..\..\..\output\outobj.c" />
+			<File RelativePath="..\..\..\output\outrdf2.c" />
+			<File RelativePath="..\..\..\parser.c" />
+			<File RelativePath="..\..\..\pptok.c" />
+			<File RelativePath="..\..\..\preproc-nop.c" />
+			<File RelativePath="..\..\..\preproc.c" />
+			<File RelativePath="..\..\..\quote.c" />
+			<File RelativePath="..\..\..\raa.c" />
+			<File RelativePath="..\..\..\rbtree.c" />
+			<File RelativePath="..\..\..\regflags.c" />
+			<File RelativePath="..\..\..\regvals.c" />
+			<File RelativePath="..\..\..\saa.c" />
+			<File RelativePath="..\..\..\stdscan.c" />
+			<File RelativePath="..\..\..\strfunc.c" />
+			<File RelativePath="..\..\..\lib\strlcpy.c" />
+			<File RelativePath="..\..\..\tokhash.c" />
+			<File RelativePath="..\..\..\ver.c" />
+		</Filter>
+		<Filter
+			Name="Headers"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
