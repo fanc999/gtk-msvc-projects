@@ -11,8 +11,11 @@
 mkdir $(CopyDir)
 mkdir $(CopyDir)\bin
 copy $(BinDir)\libpng$(PngReleaseSeries).dll $(CopyDir)\bin
+copy $(BinDir)\libpng$(PngReleaseSeries).pdb $(CopyDir)\bin
 copy $(BinDir)\pngfix.exe $(CopyDir)\bin
+copy $(BinDir)\pngfix.pdb $(CopyDir)\bin
 copy $(BinDir)\png-fix-itxt.exe $(CopyDir)\bin
+copy $(BinDir)\png-fix-itxt.pdb $(CopyDir)\bin
 
 mkdir $(CopyDir)\lib
 copy $(BinDir)\libpng$(PngReleaseSeries).lib $(CopyDir)\lib
