@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="jpegt-version-paths.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <BaseCFLAGS>BMP_SUPPORTED;PPM_SUPPORTED</BaseCFLAGS>
+    <SetmodeCFLAGS>USE_SETMODE</SetmodeCFLAGS>
+    <CDJPEGCFLAGS>$(BaseCFLAGS);GIF_SUPPORTED;TARGA_SUPPORTED;$(SetmodeCFLAGS)</CDJPEGCFLAGS>
+    <JPEGTurboDefs>DLLDEFINE</JPEGTurboDefs>
+    <SIMDCFLAGS>WITH_SIMD</SIMDCFLAGS>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>jpegbuilddefinesprops</_PropertySheetDisplayName>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformName)\bin\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(PlatformName)\obj\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="BaseCFLAGS">
+      <Value>$(BaseCFLAGS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="SetmodeCFLAGS">
+      <Value>$(SetmodeCFLAGS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CDJPEGCFLAGS">
+      <Value>$(CDJPEGCFLAGS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="JPEGTurboDefs">
+      <Value>$(JPEGTurboDefs)</Value>
+    </BuildMacro>
+    <BuildMacro Include="SIMDCFLAGS">
+      <Value>$(SIMDCFLAGS)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="jpegt-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <JPEGTurboTests>
+$(OutDir)$(TargetName).exe
+$(OutDir)$(TargetName).exe -alloc
+$(OutDir)$(TargetName).exe -yuv
+$(OutDir)$(TargetName).exe -yuv -alloc
+$(OutDir)$(TargetName).exe -yuv -noyuvpad
+
+@del /f *.jpg
+        </JPEGTurboTests>
+    <CJPEGTests>
+set CJPEG=$(OutDir)cjpeg.exe
+set DJPEG=$(OutDir)djpeg.exe
+set JPEGTRAN=$(OutDir)jpegtran.exe
+
+..\testjpeg.bat
+        </CJPEGTests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>jpegruntestsprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemGroup>
+    <BuildMacro Include="JPEGTurboTests">
+      <Value>$(JPEGTurboTests)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CJPEGTests">
+      <Value>$(CJPEGTests)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
