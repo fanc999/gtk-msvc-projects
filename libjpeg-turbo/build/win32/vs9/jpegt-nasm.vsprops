@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="jpegnasmprops"
+	InheritedPropertySheets=".\jpegt-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="NASMBaseFlags"
+		Value="-I..\..\..\win\ -I..\..\..\simd\"
+	/>
+	<UserMacro
+		Name="NASM32Flags"
+		Value="$(NASMBaseFlags) -fwin32 -DWIN32"
+	/>
+	<UserMacro
+		Name="NASM64Flags"
+		Value="$(NASMBaseFlags) -fwin64 -DWIN64 -D__x86_64__"
+	/>
+	<UserMacro
+		Name="NASMBaseDeps"
+		Value="..\..\..\simd\jsimdext.inc"
+	/>
+	<UserMacro
+		Name="NASMColSampleDeps"
+		Value="..\..\..\simd\jcolsamp.inc"
+	/>
+	<UserMacro
+		Name="NASMJDCTDeps"
+		Value="..\..\..\simd\jdct.inc"
+	/>
+</VisualStudioPropertySheet>

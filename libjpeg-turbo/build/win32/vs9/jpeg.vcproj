@@ -1,0 +1,1261 @@
+<?xml version="1.0" encoding="big5"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="jpeg"
+	ProjectGUID="{3045E461-D66B-4E69-821D-FCE1C68C6144}"
+	RootNamespace="jpeg"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\jpegt-gen-src.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG;$(BaseCFLAGS);$(SIMDCFLAGS)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="$(OutDir)\$(ProjectName)$(JpegReleaseSeries).dll"
+				LinkIncremental="2"
+				ModuleDefinitionFile="..\..\..\win\jpeg8.def"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile="$(TargetDir)$(ProjectName)$(JpegReleaseSeries).pdb"
+				SubSystem="2"
+				ImportLibrary="$(TargetDir)$(ProjectName).lib"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\jpegt-gen-src.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="$(BaseCFLAGS);$(SIMDCFLAGS)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="$(OutDir)\$(ProjectName)$(JpegReleaseSeries).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="..\..\..\win\jpeg8.def"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile="$(TargetDir)$(ProjectName)$(JpegReleaseSeries).pdb"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="$(TargetDir)$(ProjectName).lib"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\jpegt-gen-src.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG;$(BaseCFLAGS);$(SIMDCFLAGS)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="$(OutDir)\$(ProjectName)$(JpegReleaseSeries).dll"
+				LinkIncremental="2"
+				ModuleDefinitionFile="..\..\..\win\jpeg8.def"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile="$(TargetDir)$(ProjectName)$(JpegReleaseSeries).pdb"
+				SubSystem="2"
+				ImportLibrary="$(TargetDir)$(ProjectName).lib"
+				TargetMachine="17"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\jpegt-gen-src.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="$(BaseCFLAGS);$(SIMDCFLAGS)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="$(OutDir)\$(ProjectName)$(JpegReleaseSeries).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="..\..\..\win\jpeg8.def"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile="$(TargetDir)$(ProjectName)$(JpegReleaseSeries).pdb"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="$(TargetDir)$(ProjectName).lib"
+				TargetMachine="17"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Sources"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File RelativePath="..\..\..\jaricom.c" />
+			<File RelativePath="..\..\..\jcapimin.c" />
+			<File RelativePath="..\..\..\jcapistd.c" />
+			<File RelativePath="..\..\..\jcarith.c" />
+			<File RelativePath="..\..\..\jccoefct.c" />
+			<File RelativePath="..\..\..\simd\jccolor-mmx.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMColSampleDeps);..\..\..\simd\jccolext-mmx.asm"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMColSampleDeps);..\..\..\simd\jccolext-mmx.asm"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jccolor-sse2-64.asm">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jccolor-sse2.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMColSampleDeps);..\..\..\simd\jccolext-sse2.asm"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMColSampleDeps);..\..\..\simd\jccolext-sse2.asm"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\jccolor.c" />
+			<File RelativePath="..\..\..\jcdctmgr.c" />
+			<File RelativePath="..\..\..\simd\jcgray-mmx.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMColSampleDeps);..\..\..\simd\jcgryext-mmx.asm"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMColSampleDeps);..\..\..\simd\jcgryext-mmx.asm"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jcgray-sse2-64.asm">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jcgray-sse2.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMColSampleDeps);..\..\..\simd\jcgryext-sse2.asm"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMColSampleDeps);..\..\..\simd\jcgryext-sse2.asm"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\jchuff.c" />
+			<File RelativePath="..\..\..\jcinit.c" />
+			<File RelativePath="..\..\..\jcmainct.c" />
+			<File RelativePath="..\..\..\jcmarker.c" />
+			<File RelativePath="..\..\..\jcmaster.c" />
+			<File RelativePath="..\..\..\jcomapi.c" />
+			<File RelativePath="..\..\..\jcparam.c" />
+			<File RelativePath="..\..\..\jcphuff.c" />
+			<File RelativePath="..\..\..\jcprepct.c" />
+			<File RelativePath="..\..\..\simd\jcsample-mmx.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jcsample-sse2-64.asm">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jcsample-sse2.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\jcsample.c" />
+			<File RelativePath="..\..\..\jctrans.c" />
+			<File RelativePath="..\..\..\jdapimin.c" />
+			<File RelativePath="..\..\..\jdapistd.c" />
+			<File RelativePath="..\..\..\jdarith.c" />
+			<File RelativePath="..\..\..\jdatadst.c" />
+			<File RelativePath="..\..\..\jdatasrc.c" />
+			<File RelativePath="..\..\..\jdcoefct.c" />
+			<File RelativePath="..\..\..\simd\jdcolor-mmx.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMColSampleDeps);..\..\..\simd\jdcolext-mmx.asm"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMColSampleDeps);..\..\..\simd\jdcolext-mmx.asm"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jdcolor-sse2-64.asm">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jdcolor-sse2.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMColSampleDeps);..\..\..\simd\jdcolext-sse2.asm"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMColSampleDeps);..\..\..\simd\jdcolext-sse2.asm"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\jdcolor.c" />
+			<File RelativePath="..\..\..\jddctmgr.c" />
+			<File RelativePath="..\..\..\jdhuff.c" />
+			<File RelativePath="..\..\..\jdinput.c" />
+			<File RelativePath="..\..\..\jdmainct.c" />
+			<File RelativePath="..\..\..\jdmarker.c" />
+			<File RelativePath="..\..\..\jdmaster.c" />
+			<File RelativePath="..\..\..\simd\jdmerge-mmx.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMColSampleDeps);..\..\..\simd\jdmrgext-mmx.asm"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMColSampleDeps);..\..\..\simd\jdmrgext-mmx.asm"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jdmerge-sse2-64.asm">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jdmerge-sse2.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMColSampleDeps);..\..\..\simd\jdmrgext-sse2.asm"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMColSampleDeps);..\..\..\simd\jdmrgext-sse2.asm"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\jdmerge.c" />
+			<File RelativePath="..\..\..\jdphuff.c" />
+			<File RelativePath="..\..\..\jdpostct.c" />
+			<File RelativePath="..\..\..\simd\jdsample-mmx.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jdsample-sse2-64.asm">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jdsample-sse2.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\jdsample.c" />
+			<File RelativePath="..\..\..\jdtrans.c" />
+			<File RelativePath="..\..\..\jerror.c" />
+			<File RelativePath="..\..\..\simd\jfdctflt-3dn.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jfdctflt-sse-64.asm">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jfdctflt-sse.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\jfdctflt.c" />
+			<File RelativePath="..\..\..\simd\jfdctfst-mmx.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jfdctfst-sse2-64.asm">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jfdctfst-sse2.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\jfdctfst.c" />
+			<File RelativePath="..\..\..\simd\jfdctint-mmx.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jfdctint-sse2-64.asm">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jfdctint-sse2.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\jfdctint.c" />
+			<File RelativePath="..\..\..\simd\jidctflt-3dn.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jidctflt-sse.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jidctflt-sse2-64.asm">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jidctflt-sse2.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\jidctflt.c" />
+			<File RelativePath="..\..\..\simd\jidctfst-mmx.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jidctfst-sse2-64.asm">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jidctfst-sse2.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\jidctfst.c" />
+			<File RelativePath="..\..\..\simd\jidctint-mmx.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jidctint-sse2-64.asm">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jidctint-sse2.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\jidctint.c" />
+			<File RelativePath="..\..\..\simd\jidctred-mmx.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jidctred-sse2-64.asm">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jidctred-sse2.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\jidctred.c" />
+			<File RelativePath="..\..\..\jmemmgr.c" />
+			<File RelativePath="..\..\..\jmemnobs.c" />
+			<File RelativePath="..\..\..\simd\jquant-3dn.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jquant-mmx.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jquant-sse.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\jquant1.c" />
+			<File RelativePath="..\..\..\jquant2.c" />
+			<File RelativePath="..\..\..\simd\jquantf-sse2-64.asm">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jquantf-sse2.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jquanti-sse2-64.asm">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM64Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jquanti-sse2.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps);$(NASMJDCTDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jsimd_i386.c">
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jsimd_x86_64.c">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\simd\jsimdcpu.asm">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						AdditionalDependencies="$(NASMBaseDeps)"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Assembling $(InputName).asm..."
+						CommandLine="$(GLibEtcInstallRoot)\bin\nasm.exe $(NASM32Flags) ..\..\..\simd\$(InputName).asm -o$(IntDir)\$(InputName).obj"
+						Outputs="$(IntDir)\$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\jutils.c" />
+		</Filter>
+		<Filter
+			Name="Headers"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+			<File RelativePath="..\..\..\win\jconfig.h.msvc"
+				>
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Copying jconfig.h from jconfig.h.msvc..."
+						CommandLine="$(CopyJpegConfigH)"
+						Outputs="..\..\..\jconfig.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Copying jconfig.h from jconfig.h.msvc..."
+						CommandLine="$(CopyJpegConfigH)"
+						Outputs="..\..\..\jconfig.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Copying jconfig.h from jconfig.h.msvc..."
+						CommandLine="$(CopyJpegConfigH)"
+						Outputs="..\..\..\jconfig.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Copying jconfig.h from jconfig.h.msvc..."
+						CommandLine="$(CopyJpegConfigH)"
+						Outputs="..\..\..\jconfig.h"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\win\jconfigint.h.msvc"
+				>
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Copying jconfigint.h from jconfigint.h.msvc..."
+						CommandLine="$(CopyJpegConfigIntH)"
+						Outputs="..\..\..\jconfigint.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Copying jconfigint.h from jconfigint.h.msvc..."
+						CommandLine="$(CopyJpegConfigIntH)"
+						Outputs="..\..\..\jconfigint.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Copying jconfigint.h from jconfigint.h.msvc..."
+						CommandLine="$(CopyJpegConfigIntH)"
+						Outputs="..\..\..\jconfigint.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Copying jconfigint.h from jconfigint.h.msvc..."
+						CommandLine="$(CopyJpegConfigIntH)"
+						Outputs="..\..\..\jconfigint.h"
+					/>
+				</FileConfiguration>
+			</File>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
