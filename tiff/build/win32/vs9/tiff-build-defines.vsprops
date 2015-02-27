@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="tiffbuilddefinesprops"
+	OutputDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin"
+	IntermediateDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)\obj\$(ProjectName)\"
+	InheritedPropertySheets=".\tiff-version-paths.vsprops"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalIncludeDirectories="..\..\..\libtiff;..\..\.."
+		PreprocessorDefinitions="_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;CCITT_SUPPORT;JPEG_SUPPORT;OJPEG_SUPPORT;ZIP_SUPPORT;USE_WIN32_FILEIO"
+		DisableSpecificWarnings="4244"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		AdditionalDependencies="jpeg.lib zlib1.lib"
+		AdditionalLibraryDirectories="$(GLibEtcInstallRoot)\lib"
+	/>
+	<UserMacro
+		Name="LibTIFFDefs"
+		Value="TIF_PLATFORM_CONSOLE;PACKBITS_SUPPORT;LZW_SUPPORT;NEXT_SUPPORT;LOGLUV_SUPPORT;PIXARLOG_SUPPORT;STRIPCHOP_DEFAULT=TIFF_STRIPCHOP;STRIP_SIZE_DEFAULT=8192;DEFAULT_EXTRASAMPLE_AS_ALPHA;CHECK_JPEG_YCBCR_SUBSAMPLING"
+	/>
+	<UserMacro
+		Name="ToolsDefs"
+		Value="NEED_LIBPORT"
+	/>
+	<UserMacro
+		Name="LibportIncl"
+		Value="..\..\..\port"
+	/>
+</VisualStudioPropertySheet>

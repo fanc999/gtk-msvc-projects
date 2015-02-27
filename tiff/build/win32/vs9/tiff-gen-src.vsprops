@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="tiffgensrcprops"
+	InheritedPropertySheets=".\tiff-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="CopyTifConfigH"
+		Value="copy ..\..\..\libtiff\tif_config.vc.h ..\..\..\libtiff\tif_config.h"
+	/>
+	<UserMacro
+		Name="CopyTiffConfH"
+		Value="copy ..\..\..\libtiff\tiffconf.vc.h ..\..\..\libtiff\tiffconf.h"
+	/>
+</VisualStudioPropertySheet>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="big5"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="tiff-install"
+	ProjectGUID="{AC664D77-FEB6-47D7-A8C3-99DF700DF359}"
+	RootNamespace="tiffinstall"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="$(GlibEtcInstallRoot)"
+			ConfigurationType="10"
+			InheritedPropertySheets=".\tiff-install.vsprops"
+			CharacterSet="2"
+			DeleteExtensionsOnClean=""
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine="$(TIFFDoInstall)"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="$(GlibEtcInstallRoot)"
+			ConfigurationType="10"
+			InheritedPropertySheets=".\tiff-install.vsprops"
+			CharacterSet="2"
+			DeleteExtensionsOnClean=""
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine="$(TIFFDoInstall)"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			
+			ConfigurationType="10"
+			InheritedPropertySheets=".\tiff-install.vsprops"
+			CharacterSet="2"
+			DeleteExtensionsOnClean=""
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine="$(TIFFDoInstall)"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			
+			ConfigurationType="10"
+			InheritedPropertySheets=".\tiff-install.vsprops"
+			CharacterSet="2"
+			DeleteExtensionsOnClean=""
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine="$(TIFFDoInstall)"
+			/>
+		</Configuration>
+	</Configurations>
+</VisualStudioProject>
