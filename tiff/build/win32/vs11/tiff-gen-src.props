@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="tiff-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <CopyTifConfigH>copy ..\..\..\libtiff\tif_config.vc.h ..\..\..\libtiff\tif_config.h</CopyTifConfigH>
+    <CopyTiffConfH>copy ..\..\..\libtiff\tiffconf.vc.h ..\..\..\libtiff\tiffconf.h</CopyTiffConfH>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <_PropertySheetDisplayName>tiffgensrcprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemGroup>
+    <BuildMacro Include="CopyTifConfigH">
+      <Value>$(CopyTifConfigH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CopyTiffConfH">
+      <Value>$(CopyTiffConfH)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
