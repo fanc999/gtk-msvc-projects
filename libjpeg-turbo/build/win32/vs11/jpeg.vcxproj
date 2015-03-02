@@ -835,7 +835,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\nasm\build\win32\vs10\nasm-install.vcxproj">
+    <ProjectReference Include="..\..\..\..\nasm\build\win32\vs11\nasm-install.vcxproj">
       <Project>{a8787fc8-45be-4c0b-ac31-c9a56b195f9d}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>

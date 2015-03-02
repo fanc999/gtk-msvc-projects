@@ -27,7 +27,7 @@ copy ..\..\..\pnglibconf.h $(CopyDir)\include
 </PngDoInstall>
   </PropertyGroup>
   <PropertyGroup>
-    <_PropertySheetDisplayName>atkinstallprops</_PropertySheetDisplayName>
+    <_PropertySheetDisplayName>pnginstallprops</_PropertySheetDisplayName>
   </PropertyGroup>
   <ItemGroup>
     <BuildMacro Include="BinDir">

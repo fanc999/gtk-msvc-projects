@@ -7,10 +7,10 @@
 	>
 	<UserMacro
 		Name="CopyJpegConfigH"
-		Value="copy ..\..\..\win\jconfig.h.msvc ..\..\..\jconfig.h"
+		Value="copy ..\jconfig.h.msvc ..\..\..\jconfig.h"
 	/>
 	<UserMacro
 		Name="CopyJpegConfigIntH"
-		Value="copy ..\..\..\win\jconfigint.h.msvc ..\..\..\jconfigint.h"
+		Value="copy ..\jconfigint.h.msvc ..\..\..\jconfigint.h"
 	/>
 </VisualStudioPropertySheet>

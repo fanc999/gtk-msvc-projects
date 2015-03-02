@@ -203,7 +203,7 @@
     <ResourceCompile Include="..\..\..\scripts\pngwin.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\zlib\build\win32\vs10\zlib-install.vcxproj">
+    <ProjectReference Include="..\..\..\..\zlib\build\win32\vs11\zlib-install.vcxproj">
       <Project>{71f0994a-a49d-4797-a432-52734249a013}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
