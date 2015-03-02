@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{64F86487-09E2-44D6-8158-B6FDCC5A2175}</ProjectGuid>
+    <RootNamespace>libjasper</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="jasper-build-defines.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="jasper-build-defines.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="jasper-build-defines.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="jasper-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;$(LibjasperCFlags);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>jpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>$(LibjasperCFlags);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>jpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;$(LibjasperCFlags);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>jpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>$(LibjasperCFlags);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>jpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\libjasper\bmp\bmp_cod.c" />
+    <ClCompile Include="..\..\..\src\libjasper\bmp\bmp_dec.c" />
+    <ClCompile Include="..\..\..\src\libjasper\bmp\bmp_enc.c" />
+    <ClCompile Include="..\..\..\src\libjasper\base\jas_cm.c" />
+    <ClCompile Include="..\..\..\src\libjasper\base\jas_debug.c" />
+    <ClCompile Include="..\..\..\src\libjasper\base\jas_getopt.c" />
+    <ClCompile Include="..\..\..\src\libjasper\base\jas_icc.c" />
+    <ClCompile Include="..\..\..\src\libjasper\base\jas_iccdata.c" />
+    <ClCompile Include="..\..\..\src\libjasper\base\jas_image.c" />
+    <ClCompile Include="..\..\..\src\libjasper\base\jas_init.c" />
+    <ClCompile Include="..\..\..\src\libjasper\base\jas_malloc.c" />
+    <ClCompile Include="..\..\..\src\libjasper\base\jas_seq.c" />
+    <ClCompile Include="..\..\..\src\libjasper\base\jas_stream.c" />
+    <ClCompile Include="..\..\..\src\libjasper\base\jas_string.c" />
+    <ClCompile Include="..\..\..\src\libjasper\base\jas_tmr.c" />
+    <ClCompile Include="..\..\..\src\libjasper\base\jas_tvp.c" />
+    <ClCompile Include="..\..\..\src\libjasper\base\jas_version.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jp2\jp2_cod.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jp2\jp2_dec.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jp2\jp2_enc.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_bs.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_cs.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_dec.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_enc.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_math.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_mct.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_mqcod.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_mqdec.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_mqenc.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_qmfb.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_t1cod.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_t1dec.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_t1enc.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_t2cod.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_t2dec.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_t2enc.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_tagtree.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_tsfb.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpc\jpc_util.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpg\jpg_dec.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpg\jpg_enc.c" />
+    <ClCompile Include="..\..\..\src\libjasper\jpg\jpg_val.c" />
+    <ClCompile Include="..\..\..\src\libjasper\mif\mif_cod.c" />
+    <ClCompile Include="..\..\..\src\libjasper\pgx\pgx_cod.c" />
+    <ClCompile Include="..\..\..\src\libjasper\pgx\pgx_dec.c" />
+    <ClCompile Include="..\..\..\src\libjasper\pgx\pgx_enc.c" />
+    <ClCompile Include="..\..\..\src\libjasper\pnm\pnm_cod.c" />
+    <ClCompile Include="..\..\..\src\libjasper\pnm\pnm_dec.c" />
+    <ClCompile Include="..\..\..\src\libjasper\pnm\pnm_enc.c" />
+    <ClCompile Include="..\..\..\src\libjasper\ras\ras_cod.c" />
+    <ClCompile Include="..\..\..\src\libjasper\ras\ras_dec.c" />
+    <ClCompile Include="..\..\..\src\libjasper\ras\ras_enc.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\libjpeg-turbo\build\win32\vs11\jpeg-install.vcxproj">
+      <Project>{ec4dd307-822f-4fb3-8ac5-847a49ef1e9e}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
