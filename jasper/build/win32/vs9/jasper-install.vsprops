@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="jasperinstallprops"
+	InheritedPropertySheets=".\jasper-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="JasperDoInstall"
+		Value="
+mkdir $(CopyDir)&#x0D;&#x0A;
+mkdir $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\libjasper.dll $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\*.exe $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\*.pdb $(CopyDir)\bin&#x0D;&#x0A;
+
+mkdir $(CopyDir)\lib&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\libjasper.lib $(CopyDir)\lib&#x0D;&#x0A;
+
+mkdir $(CopyDir)\include\jasper&#x0D;&#x0A;
+copy ..\include\jasper\*.h $(CopyDir)\include\jasper&#x0D;&#x0A;
+"
+	/>
+</VisualStudioPropertySheet>
