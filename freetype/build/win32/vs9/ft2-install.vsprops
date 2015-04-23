@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="ft2installprops"
+	InheritedPropertySheets=".\ft2-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="FT2DoInstall"
+		Value="
+mkdir $(CopyDir)&#x0D;&#x0A;
+mkdir $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\freetype.dll $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\freetype.pdb $(CopyDir)\bin&#x0D;&#x0A;
+
+mkdir $(CopyDir)\lib&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\freetype.lib $(CopyDir)\lib&#x0D;&#x0A;
+
+mkdir $(CopyDir)\include&#x0D;&#x0A;
+copy ..\..\..\include\*.h $(CopyDir)\include&#x0D;&#x0A;
+
+mkdir $(CopyDir)\include\config&#x0D;&#x0A;
+copy ..\ftoption.h $(CopyDir)\include\config&#x0D;&#x0A;
+copy ..\..\..\include\config\ftconfig.h $(CopyDir)\include\config&#x0D;&#x0A;
+copy ..\..\..\include\config\ftheader.h $(CopyDir)\include\config&#x0D;&#x0A;
+copy ..\..\..\include\config\ftmodule.h $(CopyDir)\include\config&#x0D;&#x0A;
+copy ..\..\..\include\config\ftstdlib.h $(CopyDir)\include\config&#x0D;&#x0A;
+
+mkdir $(CopyDir)\include\internal\services&#x0D;&#x0A;
+copy ..\..\..\include\internal\*.h $(CopyDir)\include\internal&#x0D;&#x0A;
+copy ..\..\..\include\internal\services\*.h $(CopyDir)\include\internal\services&#x0D;&#x0A;
+"
+	/>
+</VisualStudioPropertySheet>

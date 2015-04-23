@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="freetype"
+	ProjectGUID="{7DEC3E1F-54F0-45C4-B31F-21FA458B8DAF}"
+	RootNamespace="freetype"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\ft2-build-defines.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="$(DebugCFlags)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\ft2-build-defines.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions=""
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\ft2-build-defines.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="$(DebugCFlags)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\ft2-build-defines.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions=""
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Sources"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File RelativePath="..\..\..\builds\windows\ftdebug.c" />
+			<File RelativePath="..\..\..\src\autofit\autofit.c" />
+			<File RelativePath="..\..\..\src\base\ftadvanc.c" />
+			<File RelativePath="..\..\..\src\base\ftbbox.c" />
+			<File RelativePath="..\..\..\src\base\ftbdf.c" />
+			<File RelativePath="..\..\..\src\base\ftbitmap.c" />
+			<File RelativePath="..\..\..\src\base\ftcalc.c" />
+			<File RelativePath="..\..\..\src\base\ftcid.c" />
+			<File RelativePath="..\..\..\src\base\ftdbgmem.c" />
+			<File RelativePath="..\..\..\src\base\ftdebug.c" />
+			<File RelativePath="..\..\..\src\base\ftfstype.c" />
+			<File RelativePath="..\..\..\src\base\ftgasp.c" />
+			<File RelativePath="..\..\..\src\base\ftgloadr.c" />
+			<File RelativePath="..\..\..\src\base\ftglyph.c" />
+			<File RelativePath="..\..\..\src\base\ftgxval.c" />
+			<File RelativePath="..\..\..\src\base\ftinit.c" />
+			<File RelativePath="..\..\..\src\base\ftlcdfil.c" />
+			<File RelativePath="..\..\..\src\base\ftmm.c" />
+			<File RelativePath="..\..\..\src\base\ftobjs.c" />
+			<File RelativePath="..\..\..\src\base\ftotval.c" />
+			<File RelativePath="..\..\..\src\base\ftoutln.c" />
+			<File RelativePath="..\..\..\src\base\ftpatent.c" />
+			<File RelativePath="..\..\..\src\base\ftpfr.c" />
+			<File RelativePath="..\..\..\src\base\ftrfork.c" />
+			<File RelativePath="..\..\..\src\base\ftsnames.c" />
+			<File RelativePath="..\..\..\src\base\ftstream.c" />
+			<File RelativePath="..\..\..\src\base\ftstroke.c" />
+			<File RelativePath="..\..\..\src\base\ftsynth.c" />
+			<File RelativePath="..\..\..\src\base\ftsystem.c" />
+			<File RelativePath="..\..\..\src\base\fttrigon.c" />
+			<File RelativePath="..\..\..\src\base\fttype1.c" />
+			<File RelativePath="..\..\..\src\base\ftutil.c" />
+			<File RelativePath="..\..\..\src\base\ftwinfnt.c" />
+			<File RelativePath="..\..\..\src\base\ftxf86.c" />
+			<File RelativePath="..\..\..\src\bdf\bdf.c" />
+			<File RelativePath="..\..\..\src\bzip2\ftbzip2.c" />
+			<File RelativePath="..\..\..\src\cache\ftcache.c" />
+			<File RelativePath="..\..\..\src\cff\cff.c" />
+			<File RelativePath="..\..\..\src\cid\type1cid.c" />
+			<File RelativePath="..\..\..\src\gzip\ftgzip.c" />
+			<File RelativePath="..\..\..\src\lzw\ftlzw.c" />
+			<File RelativePath="..\..\..\src\pcf\pcf.c" />
+			<File RelativePath="..\..\..\src\pfr\pfr.c" />
+			<File RelativePath="..\..\..\src\psaux\psaux.c" />
+			<File RelativePath="..\..\..\src\pshinter\pshinter.c" />
+			<File RelativePath="..\..\..\src\psnames\psmodule.c" />
+			<File RelativePath="..\..\..\src\raster\raster.c" />
+			<File RelativePath="..\..\..\src\sfnt\sfnt.c" />
+			<File RelativePath="..\..\..\src\smooth\smooth.c" />
+			<File RelativePath="..\..\..\src\truetype\truetype.c" />
+			<File RelativePath="..\..\..\src\type1\type1.c" />
+			<File RelativePath="..\..\..\src\type42\type42.c" />
+			<File RelativePath="..\..\..\src\winfonts\winfnt.c" />
+		</Filter>
+		<Filter
+			Name="Headers"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
