@@ -151,7 +151,6 @@
 			<File RelativePath="..\..\..\src\base\ftcalc.c" />
 			<File RelativePath="..\..\..\src\base\ftcid.c" />
 			<File RelativePath="..\..\..\src\base\ftdbgmem.c" />
-			<File RelativePath="..\..\..\src\base\ftdebug.c" />
 			<File RelativePath="..\..\..\src\base\ftfstype.c" />
 			<File RelativePath="..\..\..\src\base\ftgasp.c" />
 			<File RelativePath="..\..\..\src\base\ftgloadr.c" />
