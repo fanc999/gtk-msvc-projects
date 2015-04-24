@@ -234,6 +234,16 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\libtiff\tiffconf.h;%(Outputs)</Outputs>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\libjpeg-turbo\build\win32\vs12\jpeg-install.vcxproj">
+      <Project>{ec4dd307-822f-4fb3-8ac5-847a49ef1e9e}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\zlib\build\win32\vs12\zlib-install.vcxproj">
+      <Project>{71f0994a-a49d-4797-a432-52734249a013}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
