@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="iconv-version-paths.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <BaseDefines>ENABLE_RELOCATABLE=1</BaseDefines>
+    <BaseDLLDefines>$(BaseDefines);BUILDING_DLL;IN_LIBRARY;NO_XMALLOC</BaseDLLDefines>
+    <BasePathDefines>INSTALLDIR=\"\";LIBDIR=\"\";LOCALEDIR=\"\"</BasePathDefines>
+    <LibcharsetDefines>$(BaseDLLDefines);$(BasePathDefines);BUILDING_LIBCHARSET;set_relocation_prefix=libcharset_set_relocation_prefix;relocate=libcharset_relocate</LibcharsetDefines>
+    <LibIconvDefines>$(BaseDLLDefines);$(BasePathDefines);BUILDING_LIBICONV;DEPENDS_ON_LIBCHARSET;set_relocation_prefix=libiconv_set_relocation_prefix;relocate=libiconv_relocate</LibIconvDefines>
+    <CharsetIncludeDirs>..\..\..\libcharset</CharsetIncludeDirs>
+    <IconvBaseIncludeDirs>..\..\..</IconvBaseIncludeDirs>
+    <LibIconvIncludeDirs>..\..\..\include\msvc;$(IconvBaseIncludeDirs)</LibIconvIncludeDirs>
+    <IconvIncludeDirs>..\..\..\srclib\msvc;..\..\..\srclib;..\..\..\build-aux\snippet;$(LibIconvIncludeDirs)</IconvIncludeDirs>
+    <IconvDefines>$(BaseDefines);$(BasePathDefines);EXEEXT=".exe"</IconvDefines>
+    <IconvForcedIncludes>arg-nonnull.h;c++defs.h;warn-on-use.h;_Noreturn.h</IconvForcedIncludes>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>iconvbuilddefinesprops</_PropertySheetDisplayName>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformName)\bin\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(PlatformName)\obj\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\..\libcharset\include\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4273;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(GlibEtcInstallRoot)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="BaseDefines">
+      <Value>$(BaseDefines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BaseDLLDefines">
+      <Value>$(BaseDLLDefines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BasePathDefines">
+      <Value>$(BasePathDefines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LibcharsetDefines">
+      <Value>$(LibcharsetDefines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LibIconvDefines">
+      <Value>$(LibIconvDefines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CharsetIncludeDirs">
+      <Value>$(CharsetIncludeDirs)</Value>
+    </BuildMacro>
+    <BuildMacro Include="IconvBaseIncludeDirs">
+      <Value>$(IconvBaseIncludeDirs)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LibIconvIncludeDirs">
+      <Value>$(LibIconvIncludeDirs)</Value>
+    </BuildMacro>
+    <BuildMacro Include="IconvIncludeDirs">
+      <Value>$(IconvIncludeDirs)</Value>
+    </BuildMacro>
+    <BuildMacro Include="IconvDefines">
+      <Value>$(IconvDefines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="IconvForcedIncludes">
+      <Value>$(IconvForcedIncludes)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="iconvversionpathsprops"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		PreprocessorDefinitions="HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+		DisableSpecificWarnings="4244;4307;4308"
+	/>
+	<UserMacro
+		Name="VSVer"
+		Value="9"
+	/>
+	<UserMacro
+		Name="GlibEtcInstallRoot"
+		Value="$(SolutionDir)\..\..\vs$(VSVer)\$(ConfigurationName)\$(PlatformName)"
+	/>
+	<UserMacro
+		Name="CopyDir"
+		Value="$(GlibEtcInstallRoot)"
+	/>
+	<UserMacro
+		Name="PackageVersionString"
+		Value="1.14"
+	/>
+	<UserMacro
+		Name="PackageVersionMajor"
+		Value="1"
+	/>
+	<UserMacro
+		Name="PackageVersionMinor"
+		Value="14"
+	/>
+	<UserMacro
+		Name="PackageVersionMicro"
+		Value="0"
+	/>
+	<UserMacro
+		Name="CopyCharsetConfigH"
+		Value="copy ..\..\..\libcharset\config.h.win32 ..\..\..\libcharset\config.h"
+	/>
+	<UserMacro
+		Name="CopyIconvConfigH"
+		Value="copy ..\..\..\config.h.win32 ..\..\..\config.h"
+	/>
+</VisualStudioPropertySheet>
