@@ -10,11 +10,11 @@
 mkdir $(CopyDir)
 
 mkdir $(CopyDir)\bin
-copy $(InstalledDlls)\freetype.dll $(CopyDir)\bin
-copy $(InstalledDlls)\freetype.pdb $(CopyDir)\bin
+copy $(BinDir)\freetype.dll $(CopyDir)\bin
+copy $(BinDir)\freetype.pdb $(CopyDir)\bin
 
 mkdir $(CopyDir)\lib
-copy $(InstalledDlls)\freetype.lib $(CopyDir)\lib
+copy $(BinDir)\freetype.lib $(CopyDir)\lib
 
 mkdir $(CopyDir)\include
 copy ..\..\..\include\*.h $(CopyDir)\include
