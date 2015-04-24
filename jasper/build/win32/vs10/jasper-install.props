@@ -25,6 +25,7 @@ copy $(BinDir)\libjasper.lib $(CopyDir)\lib
 
 mkdir $(CopyDir)\include\jasper
 copy ..\include\jasper\*.h $(CopyDir)\include\jasper
+copy ..\..\..\src\libjasper\include\jasper\jasper.h $(CopyDir)\include\jasper
 </JasperDoInstall>
   </PropertyGroup>
   <PropertyGroup>
