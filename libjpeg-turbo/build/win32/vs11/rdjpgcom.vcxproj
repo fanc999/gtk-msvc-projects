@@ -157,6 +157,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\rdjpgcom.c" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="jpeg.vcxproj">
+      <Project>{3045e461-d66b-4e69-821d-fce1c68c6144}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
