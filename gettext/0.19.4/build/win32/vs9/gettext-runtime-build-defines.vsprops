@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="gettextbuilddefinesprops"
+	OutputDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin"
+	IntermediateDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)\obj\$(ProjectName)\"
+	InheritedPropertySheets=".\gettext-version-paths.vsprops"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalIncludeDirectories="..\..\..\gettext-runtime\intl;..\..\..\gettext-runtime\libasprintf;..\..\..\gettext-runtime;$(GlibEtcInstallRoot)\include"
+		PreprocessorDefinitions=""
+		DisableSpecificWarnings="4273"
+		AdditionalOptions="/MP"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		AdditionalDependencies="iconv.lib"
+		AdditionalLibraryDirectories="$(GlibEtcInstallRoot)\lib"
+	/>
+	<UserMacro
+		Name="BaseDefines"
+		Value="INSTALLDIR=\&quot;$(InstallRoot)\&quot;;LOCALEDIR=\&quot;$(DataDir)/locale\&quot;;LIBDIR=\&quot;$(LibDir)\&quot;;ENABLE_RELOCATABLE=1;ICONV_CONST=const;DEPENDS_ON_LIBICONV=1"
+	/>
+	<UserMacro
+		Name="GettextIntlDefines"
+		Value="$(BaseDefines);LOCALE_ALIAS_PATH=\&quot;\&quot;;BUILDING_LIBINTL;BUILDING_DLL;IN_LIBINTL;IN_LIBRARY;NO_XMALLOC;set_relocation_prefix=libintl_set_relocation_prefix;relocate=libintl_relocate"
+	/>
+	<UserMacro
+		Name="GettextIntlIncludeDirs"
+		Value="..\..\..\gettext-runtime\intl"
+	/>
+</VisualStudioPropertySheet>

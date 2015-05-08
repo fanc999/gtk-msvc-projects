@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="gettextversionpathsprops"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		PreprocessorDefinitions="HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+		DisableSpecificWarnings="4244;4307;4308"
+	/>
+	<UserMacro
+		Name="VSVer"
+		Value="9"
+	/>
+	<UserMacro
+		Name="GlibEtcInstallRoot"
+		Value="..\..\..\..\vs$(VSVer)\$(PlatformName)"
+	/>
+	<UserMacro
+		Name="CopyDir"
+		Value="$(GlibEtcInstallRoot)"
+	/>
+	<UserMacro
+		Name="PackageVersionString"
+		Value="0.19.4"
+	/>
+	<UserMacro
+		Name="PackageVersionMajor"
+		Value="0"
+	/>
+	<UserMacro
+		Name="PackageVersionMinor"
+		Value="19"
+	/>
+	<UserMacro
+		Name="PackageVersionMicro"
+		Value="4"
+	/>
+	<UserMacro
+		Name="CopyRuntimeConfigH"
+		Value="copy ..\..\..\gettext-runtime\config.h.win32 ..\..\..\gettext-runtime\config.h"
+	/>
+	<UserMacro
+		Name="CopyToolsConfigH"
+		Value="if not exist ..\..\..\gettext-tools\config.h copy ..\..\..\gettext-tools\config.h.win32 ..\..\..\gettext-tools\config.h"
+	/>
+	<UserMacro
+		Name="CopyPuralxC"
+		Value="copy ..\..\..\gettext-tools\pluralx.c.win32 ..\..\..\gettext-runtime\intl\pluralx.c"
+	/>
+	<UserMacro
+		Name="CopyPuralxCTools"
+		Value="copy ..\..\..\gettext-tools\pluralx.c.win32 ..\..\..\gettext-tools\src\pluralx.c"
+	/>
+	<UserMacro
+		Name="InstallRoot"
+		Value="c:/win32_bin"
+	/>
+	<UserMacro
+		Name="DataDir"
+		Value="$(InstallRoot)/share"
+	/>
+	<UserMacro
+		Name="LibDir"
+		Value="$(InstallRoot)/share"
+	/>
+</VisualStudioPropertySheet>
