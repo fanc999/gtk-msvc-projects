@@ -1,0 +1,264 @@
+From ec8fbff9dd44c8d1b9f9c70cc5e2d75f3523d940 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Fri, 8 May 2015 15:08:52 +0800
+Subject: [PATCH] gettext-tools\gettextsrc: Add missing headers
+
+Somehow these headers are either extracted from the tar file in
+gettext-tools\misc\archive.dir.tar, or are generated during the build.
+Adapt these headers for symbol export, which are extracted from
+gettext-tools\misc\archive.dir.tar.
+---
+ gettext-tools/src/eval-plural.h | 106 +++++++++++++++++++++++++++++++++
+ gettext-tools/src/plural-exp.h  | 127 ++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 233 insertions(+)
+ create mode 100644 gettext-tools/src/eval-plural.h
+ create mode 100644 gettext-tools/src/plural-exp.h
+
+diff --git a/gettext-tools/src/eval-plural.h b/gettext-tools/src/eval-plural.h
+new file mode 100644
+index 0000000..924c8c3
+--- /dev/null
++++ b/gettext-tools/src/eval-plural.h
+@@ -0,0 +1,106 @@
++/* Plural expression evaluation.
++   Copyright (C) 2000-2003, 2007 Free Software Foundation, Inc.
++
++   This program is free software: you can redistribute it and/or modify
++   it under the terms of the GNU Lesser General Public License as published by
++   the Free Software Foundation; either version 2.1 of the License, or
++   (at your option) any later version.
++
++   This program is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++   GNU Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public License
++   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
++
++#ifndef STATIC
++#define STATIC static
++#endif
++
++/* Evaluate the plural expression and return an index value.  */
++STATIC
++unsigned long int
++internal_function
++plural_eval (const struct expression *pexp, unsigned long int n)
++{
++  switch (pexp->nargs)
++    {
++    case 0:
++      switch (pexp->operation)
++	{
++	case var:
++	  return n;
++	case num:
++	  return pexp->val.num;
++	default:
++	  break;
++	}
++      /* NOTREACHED */
++      break;
++    case 1:
++      {
++	/* pexp->operation must be lnot.  */
++	unsigned long int arg = plural_eval (pexp->val.args[0], n);
++	return ! arg;
++      }
++    case 2:
++      {
++	unsigned long int leftarg = plural_eval (pexp->val.args[0], n);
++	if (pexp->operation == lor)
++	  return leftarg || plural_eval (pexp->val.args[1], n);
++	else if (pexp->operation == land)
++	  return leftarg && plural_eval (pexp->val.args[1], n);
++	else
++	  {
++	    unsigned long int rightarg = plural_eval (pexp->val.args[1], n);
++
++	    switch (pexp->operation)
++	      {
++	      case mult:
++		return leftarg * rightarg;
++	      case divide:
++#if !INTDIV0_RAISES_SIGFPE
++		if (rightarg == 0)
++		  raise (SIGFPE);
++#endif
++		return leftarg / rightarg;
++	      case module:
++#if !INTDIV0_RAISES_SIGFPE
++		if (rightarg == 0)
++		  raise (SIGFPE);
++#endif
++		return leftarg % rightarg;
++	      case plus:
++		return leftarg + rightarg;
++	      case minus:
++		return leftarg - rightarg;
++	      case less_than:
++		return leftarg < rightarg;
++	      case greater_than:
++		return leftarg > rightarg;
++	      case less_or_equal:
++		return leftarg <= rightarg;
++	      case greater_or_equal:
++		return leftarg >= rightarg;
++	      case equal:
++		return leftarg == rightarg;
++	      case not_equal:
++		return leftarg != rightarg;
++	      default:
++		break;
++	      }
++	  }
++	/* NOTREACHED */
++	break;
++      }
++    case 3:
++      {
++	/* pexp->operation must be qmop.  */
++	unsigned long int boolarg = plural_eval (pexp->val.args[0], n);
++	return plural_eval (pexp->val.args[boolarg ? 1 : 2], n);
++      }
++    }
++  /* NOTREACHED */
++  return 0;
++}
+diff --git a/gettext-tools/src/plural-exp.h b/gettext-tools/src/plural-exp.h
+new file mode 100644
+index 0000000..b291584
+--- /dev/null
++++ b/gettext-tools/src/plural-exp.h
+@@ -0,0 +1,127 @@
++/* Expression parsing and evaluation for plural form selection.
++   Copyright (C) 2000-2003, 2005-2007 Free Software Foundation, Inc.
++   Written by Ulrich Drepper <drepper@cygnus.com>, 2000.
++
++   This program is free software: you can redistribute it and/or modify
++   it under the terms of the GNU Lesser General Public License as published by
++   the Free Software Foundation; either version 2.1 of the License, or
++   (at your option) any later version.
++
++   This program is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++   GNU Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public License
++   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
++
++#ifndef _PLURAL_EXP_H
++#define _PLURAL_EXP_H
++
++#ifndef internal_function
++# define internal_function
++#endif
++
++#ifndef attribute_hidden
++# define attribute_hidden
++#endif
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++
++enum expression_operator
++{
++  /* Without arguments:  */
++  var,				/* The variable "n".  */
++  num,				/* Decimal number.  */
++  /* Unary operators:  */
++  lnot,				/* Logical NOT.  */
++  /* Binary operators:  */
++  mult,				/* Multiplication.  */
++  divide,			/* Division.  */
++  module,			/* Modulo operation.  */
++  plus,				/* Addition.  */
++  minus,			/* Subtraction.  */
++  less_than,			/* Comparison.  */
++  greater_than,			/* Comparison.  */
++  less_or_equal,		/* Comparison.  */
++  greater_or_equal,		/* Comparison.  */
++  equal,			/* Comparison for equality.  */
++  not_equal,			/* Comparison for inequality.  */
++  land,				/* Logical AND.  */
++  lor,				/* Logical OR.  */
++  /* Ternary operators:  */
++  qmop				/* Question mark operator.  */
++};
++
++/* This is the representation of the expressions to determine the
++   plural form.  */
++struct expression
++{
++  int nargs;			/* Number of arguments.  */
++  enum expression_operator operation;
++  union
++  {
++    unsigned long int num;	/* Number value for `num'.  */
++    struct expression *args[3];	/* Up to three arguments.  */
++  } val;
++};
++
++/* This is the data structure to pass information to the parser and get
++   the result in a thread-safe way.  */
++struct parse_args
++{
++  const char *cp;
++  struct expression *res;
++};
++
++
++/* Names for the libintl functions are a problem.  This source code is used
++   1. in the GNU C Library library,
++   2. in the GNU libintl library,
++   3. in the GNU gettext tools.
++   The function names in each situation must be different, to allow for
++   binary incompatible changes in 'struct expression'.  Furthermore,
++   1. in the GNU C Library library, the names have a __ prefix,
++   2.+3. in the GNU libintl library and in the GNU gettext tools, the names
++         must follow ANSI C and not start with __.
++   So we have to distinguish the three cases.  */
++#ifdef _LIBC
++# define FREE_EXPRESSION __gettext_free_exp
++# define PLURAL_PARSE __gettextparse
++# define GERMANIC_PLURAL __gettext_germanic_plural
++# define EXTRACT_PLURAL_EXPRESSION __gettext_extract_plural
++#elif defined (IN_LIBINTL)
++# define FREE_EXPRESSION libintl_gettext_free_exp
++# define PLURAL_PARSE libintl_gettextparse
++# define GERMANIC_PLURAL libintl_gettext_germanic_plural
++# define EXTRACT_PLURAL_EXPRESSION libintl_gettext_extract_plural
++#else
++# define FREE_EXPRESSION free_plural_expression
++# define PLURAL_PARSE parse_plural_expression
++# define GERMANIC_PLURAL germanic_plural
++# define EXTRACT_PLURAL_EXPRESSION extract_plural_expression
++#endif
++
++extern GETTEXTSRC_DLL_EXPORTED void FREE_EXPRESSION (struct expression *exp)
++     internal_function;
++extern GETTEXTSRC_DLL_EXPORTED int PLURAL_PARSE (struct parse_args *arg);
++extern GETTEXTSRC_DLL_EXPORTED struct expression GERMANIC_PLURAL attribute_hidden;
++extern GETTEXTSRC_DLL_EXPORTED void EXTRACT_PLURAL_EXPRESSION (const char *nullentry,
++				       const struct expression **pluralp,
++				       unsigned long int *npluralsp)
++     internal_function;
++
++#if !defined (_LIBC) && !defined (IN_LIBINTL) && !defined (IN_LIBGLOCALE)
++extern GETTEXTSRC_DLL_EXPORTED unsigned long int plural_eval (const struct expression *pexp,
++				      unsigned long int n);
++#endif
++
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif /* _PLURAL_EXP_H */
+-- 
+2.3.5.windows.8
+

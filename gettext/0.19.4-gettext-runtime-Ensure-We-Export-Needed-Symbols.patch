@@ -1,0 +1,96 @@
+From bfe320d8c23af88fa2765e96aadc12b8935b3ad2 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Fri, 8 May 2015 12:17:03 +0800
+Subject: [PATCH] gettext-runtime: Ensure We Export Needed Symbols
+
+Some of the existing headers need to be updated with export annotations so
+that we can ensure all the needed symbols are exported.  Also update
+intl-exports to define the VARIABLE macro so that the public variables can
+be exported properly as well for Visual Studio builds.
+---
+ gettext-runtime/intl/intl-exports.c      | 6 +++++-
+ gettext-runtime/intl/relocatable.h       | 4 ++--
+ gettext-runtime/libasprintf/vasnprintf.h | 3 +++
+ gettext-runtime/libasprintf/vasprintf.h  | 3 +++
+ 4 files changed, 13 insertions(+), 3 deletions(-)
+
+diff --git a/gettext-runtime/intl/intl-exports.c b/gettext-runtime/intl/intl-exports.c
+index 891c25e..264ef4e 100644
+--- a/gettext-runtime/intl/intl-exports.c
++++ b/gettext-runtime/intl/intl-exports.c
+@@ -15,7 +15,8 @@
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+ 
+- /* IMP(x) is a symbol that contains the address of x.  */
++#ifdef __GNUC__
++/* IMP(x) is a symbol that contains the address of x.  */
+ #if USER_LABEL_PREFIX_UNDERSCORE
+ # define IMP(x) _imp__##x
+ #else
+@@ -34,5 +35,8 @@
+  /* Allocate a pseudo-variable IMP(x).  */                              \
+  extern int x;                                                          \
+  void * IMP(x) = &x;
++#elif defined (_MSC_VER)
++#define VARIABLE(x) extern __declspec (dllexport) int x;
++#endif
+ 
+ VARIABLE(libintl_version)
+diff --git a/gettext-runtime/intl/relocatable.h b/gettext-runtime/intl/relocatable.h
+index 3058fdb..adb33d3 100644
+--- a/gettext-runtime/intl/relocatable.h
++++ b/gettext-runtime/intl/relocatable.h
+@@ -50,7 +50,7 @@ extern RELOCATABLE_DLL_EXPORTED void
+    directory.
+    The returned string is either PATHNAME unmodified or a freshly allocated
+    string that you can free with free() after casting it to 'char *'.  */
+-extern const char * relocate (const char *pathname);
++extern RELOCATABLE_DLL_EXPORTED const char * relocate (const char *pathname);
+ 
+ /* Memory management: relocate() potentially allocates memory, because it has
+    to construct a fresh pathname.  If this is a problem because your program
+@@ -62,7 +62,7 @@ extern const char * relocate (const char *pathname);
+    installation prefix, the original installation directory of a particular
+    file, and the current pathname of this file.
+    Returns it, freshly allocated.  Returns NULL upon failure.  */
+-extern char * compute_curr_prefix (const char *orig_installprefix,
++extern RELOCATABLE_DLL_EXPORTED char * compute_curr_prefix (const char *orig_installprefix,
+                                    const char *orig_installdir,
+                                    const char *curr_pathname);
+ 
+diff --git a/gettext-runtime/libasprintf/vasnprintf.h b/gettext-runtime/libasprintf/vasnprintf.h
+index 9e6c362..3c6bb99 100644
+--- a/gettext-runtime/libasprintf/vasnprintf.h
++++ b/gettext-runtime/libasprintf/vasnprintf.h
+@@ -64,8 +64,11 @@ extern "C" {
+                 free (output);
+             }
+   */
++LIBASPRINTF_DLL_EXPORTED
+ extern char * asnprintf (char *resultbuf, size_t *lengthp, const char *format, ...)
+        __attribute__ ((__format__ (__printf__, 3, 4)));
++
++LIBASPRINTF_DLL_EXPORTED
+ extern char * vasnprintf (char *resultbuf, size_t *lengthp, const char *format, va_list args)
+        __attribute__ ((__format__ (__printf__, 3, 0)));
+ 
+diff --git a/gettext-runtime/libasprintf/vasprintf.h b/gettext-runtime/libasprintf/vasprintf.h
+index 0ed89f2..255c95c 100644
+--- a/gettext-runtime/libasprintf/vasprintf.h
++++ b/gettext-runtime/libasprintf/vasprintf.h
+@@ -41,8 +41,11 @@ extern "C" {
+    If the memory allocation succeeds, store the address of the string in
+    *RESULT and return the number of resulting bytes, excluding the trailing
+    NUL.  Upon memory allocation error, or some other error, return -1.  */
++LIBASPRINTF_DLL_EXPORTED
+ extern int asprintf (char **result, const char *format, ...)
+        __attribute__ ((__format__ (__printf__, 2, 3)));
++
++LIBASPRINTF_DLL_EXPORTED
+ extern int vasprintf (char **result, const char *format, va_list args)
+        __attribute__ ((__format__ (__printf__, 2, 0)));
+ 
+-- 
+2.3.5.windows.8
+

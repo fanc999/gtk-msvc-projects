@@ -1,0 +1,46 @@
+From 6e1a6b3299c76e21162e38625c3d19ba92502909 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Fri, 8 May 2015 15:17:54 +0800
+Subject: [PATCH] gettext-tools/gettextlib: Fix build
+
+Leave out the define of fcntl to rpl_fcntl, and don't unconditionally
+include configmake.h, as those break the build on Visual Studio.
+---
+ gettext-tools/gnulib-lib/fcntl.c       | 3 ++-
+ gettext-tools/gnulib-lib/javaversion.c | 2 ++
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/gettext-tools/gnulib-lib/fcntl.c b/gettext-tools/gnulib-lib/fcntl.c
+index 1e35dd1..9be3182 100644
+--- a/gettext-tools/gnulib-lib/fcntl.c
++++ b/gettext-tools/gnulib-lib/fcntl.c
+@@ -27,10 +27,11 @@
+ #include <stdarg.h>
+ #include <unistd.h>
+ 
++/*
+ #if !HAVE_FCNTL
+ # define rpl_fcntl fcntl
+ #endif
+-#undef fcntl
++#undef fcntl*/
+ 
+ #if (defined _WIN32 || defined __WIN32__) && ! defined __CYGWIN__
+ /* Get declarations of the native Windows API functions.  */
+diff --git a/gettext-tools/gnulib-lib/javaversion.c b/gettext-tools/gnulib-lib/javaversion.c
+index 9cf06c3..8b6e944 100644
+--- a/gettext-tools/gnulib-lib/javaversion.c
++++ b/gettext-tools/gnulib-lib/javaversion.c
+@@ -39,7 +39,9 @@
+ #define _(str) gettext (str)
+ 
+ /* Get PKGDATADIR.  */
++#ifndef PKGDATADIR
+ #include "configmake.h"
++#endif
+ 
+ 
+ struct locals
+-- 
+2.3.5.windows.8
+

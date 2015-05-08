@@ -1,0 +1,3135 @@
+From 2dfae2e3872764404d58ffbc35eca90cb30654f2 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Fri, 8 May 2015 15:16:15 +0800
+Subject: [PATCH] gettext-tools: Ensure Export of All Needed Symbols
+
+Add or update decorations for symbol and variable import/export so that we
+can ensure that the needed symbols for gettextlib and gettextsrc are
+exported (and thus can be imported properly when we build the various
+tools).  This is probably not an exhausive update to the headers, but is
+enough to get the tools build and link correctly.
+---
+ gettext-tools/gnulib-lib/acl.h                 | 14 ++---
+ gettext-tools/gnulib-lib/argmatch.h            | 12 ++--
+ gettext-tools/gnulib-lib/backupfile.h          | 10 +--
+ gettext-tools/gnulib-lib/basename.h            |  2 +-
+ gettext-tools/gnulib-lib/c-ctype.h             | 34 +++++-----
+ gettext-tools/gnulib-lib/c-strcase.h           |  4 +-
+ gettext-tools/gnulib-lib/c-strstr.h            |  2 +-
+ gettext-tools/gnulib-lib/classpath.h           |  6 +-
+ gettext-tools/gnulib-lib/clean-temp.h          | 30 ++++-----
+ gettext-tools/gnulib-lib/cloexec.h             |  4 +-
+ gettext-tools/gnulib-lib/closeout.h            |  2 +-
+ gettext-tools/gnulib-lib/concat-filename.h     |  4 +-
+ gettext-tools/gnulib-lib/copy-file.h           |  4 +-
+ gettext-tools/gnulib-lib/csharpcomp.h          |  2 +-
+ gettext-tools/gnulib-lib/csharpexec.h          |  2 +-
+ gettext-tools/gnulib-lib/error-progname.h      |  4 +-
+ gettext-tools/gnulib-lib/error.h               | 10 +--
+ gettext-tools/gnulib-lib/execute.h             |  2 +-
+ gettext-tools/gnulib-lib/fatal-signal.h        |  6 +-
+ gettext-tools/gnulib-lib/fd-ostream.h          | 12 ++--
+ gettext-tools/gnulib-lib/file-ostream.h        | 12 ++--
+ gettext-tools/gnulib-lib/file-ostream.oo.h     |  2 +-
+ gettext-tools/gnulib-lib/findprog.h            |  2 +-
+ gettext-tools/gnulib-lib/fstrcmp.h             |  4 +-
+ gettext-tools/gnulib-lib/full-write.h          |  2 +-
+ gettext-tools/gnulib-lib/fwriteerror.h         |  4 +-
+ gettext-tools/gnulib-lib/gcd.h                 |  2 +-
+ gettext-tools/gnulib-lib/glthread/lock.h       | 86 +++++++++++++-------------
+ gettext-tools/gnulib-lib/glthread/tls.h        |  4 +-
+ gettext-tools/gnulib-lib/hash.h                | 16 ++---
+ gettext-tools/gnulib-lib/html-ostream.h        | 16 ++---
+ gettext-tools/gnulib-lib/html-styled-ostream.h | 16 ++---
+ gettext-tools/gnulib-lib/javacomp.h            |  2 +-
+ gettext-tools/gnulib-lib/javaexec.h            |  2 +-
+ gettext-tools/gnulib-lib/javaversion.h         |  2 +-
+ gettext-tools/gnulib-lib/localcharset.h        |  2 +-
+ gettext-tools/gnulib-lib/localename.h          | 10 +--
+ gettext-tools/gnulib-lib/malloca.h             |  6 +-
+ gettext-tools/gnulib-lib/mbswidth.h            |  4 +-
+ gettext-tools/gnulib-lib/msvc-inval.h          |  8 +--
+ gettext-tools/gnulib-lib/msvc-nothrow.h        |  2 +-
+ gettext-tools/gnulib-lib/obstack.h             | 14 ++---
+ gettext-tools/gnulib-lib/ostream.h             |  8 +--
+ gettext-tools/gnulib-lib/pipe-filter.h         |  8 +--
+ gettext-tools/gnulib-lib/printf-args.h         |  2 +-
+ gettext-tools/gnulib-lib/printf-parse.h        | 10 +--
+ gettext-tools/gnulib-lib/progname.h            |  6 +-
+ gettext-tools/gnulib-lib/propername.h          |  4 +-
+ gettext-tools/gnulib-lib/quotearg.h            |  4 +-
+ gettext-tools/gnulib-lib/relocatable.h         |  4 +-
+ gettext-tools/gnulib-lib/safe-read.h           |  2 +-
+ gettext-tools/gnulib-lib/safe-write.h          |  2 +-
+ gettext-tools/gnulib-lib/sh-quote.h            |  8 +--
+ gettext-tools/gnulib-lib/spawn-pipe.h          |  6 +-
+ gettext-tools/gnulib-lib/strerror-override.h   |  2 +-
+ gettext-tools/gnulib-lib/striconv.h            |  6 +-
+ gettext-tools/gnulib-lib/striconveh.h          | 12 ++--
+ gettext-tools/gnulib-lib/striconveha.h         |  6 +-
+ gettext-tools/gnulib-lib/strnlen1.h            |  2 +-
+ gettext-tools/gnulib-lib/styled-ostream.h      | 14 ++---
+ gettext-tools/gnulib-lib/tempname.h            |  2 +-
+ gettext-tools/gnulib-lib/term-ostream.h        | 34 +++++-----
+ gettext-tools/gnulib-lib/term-styled-ostream.h | 16 ++---
+ gettext-tools/gnulib-lib/terminfo.h            |  4 +-
+ gettext-tools/gnulib-lib/tmpdir.h              |  2 +-
+ gettext-tools/gnulib-lib/trim.h                |  2 +-
+ gettext-tools/gnulib-lib/unistd-safer.h        | 12 ++--
+ gettext-tools/gnulib-lib/wait-process.h        |  4 +-
+ gettext-tools/gnulib-lib/xalloc.h              | 16 ++---
+ gettext-tools/gnulib-lib/xerror.h              |  4 +-
+ gettext-tools/gnulib-lib/xmalloca.h            |  2 +-
+ gettext-tools/gnulib-lib/xsetenv.h             |  2 +-
+ gettext-tools/gnulib-lib/xstriconv.h           |  6 +-
+ gettext-tools/gnulib-lib/xstriconveh.h         |  8 +--
+ gettext-tools/gnulib-lib/xvasprintf.h          |  4 +-
+ gettext-tools/src/color.h                      |  8 +--
+ gettext-tools/src/dir-list.h                   |  8 +--
+ gettext-tools/src/file-list.h                  |  2 +-
+ gettext-tools/src/format.h                     |  8 +--
+ gettext-tools/src/message.h                    | 70 ++++++++++-----------
+ gettext-tools/src/msgl-ascii.h                 | 10 +--
+ gettext-tools/src/msgl-cat.h                   |  2 +-
+ gettext-tools/src/msgl-charset.h               |  2 +-
+ gettext-tools/src/msgl-check.h                 |  6 +-
+ gettext-tools/src/msgl-english.h               |  2 +-
+ gettext-tools/src/msgl-equal.h                 |  8 +--
+ gettext-tools/src/msgl-header.h                |  2 +-
+ gettext-tools/src/msgl-iconv.h                 |  8 +--
+ gettext-tools/src/open-catalog.h               |  2 +-
+ gettext-tools/src/po-charset.h                 | 16 ++---
+ gettext-tools/src/po-lex.h                     | 14 ++---
+ gettext-tools/src/po-time.h                    |  2 +-
+ gettext-tools/src/read-catalog-abstract.h      | 22 +++----
+ gettext-tools/src/read-catalog.h               | 30 ++++-----
+ gettext-tools/src/read-desktop.h               | 22 +++----
+ gettext-tools/src/str-list.h                   | 20 +++---
+ gettext-tools/src/write-catalog.h              |  8 +--
+ gettext-tools/src/write-po.h                   | 26 ++++----
+ 98 files changed, 453 insertions(+), 453 deletions(-)
+
+diff --git a/gettext-tools/gnulib-lib/acl.h b/gettext-tools/gnulib-lib/acl.h
+index f67e350..71b6340 100644
+--- a/gettext-tools/gnulib-lib/acl.h
++++ b/gettext-tools/gnulib-lib/acl.h
+@@ -24,12 +24,12 @@
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ 
+-bool acl_errno_valid (int) _GL_ATTRIBUTE_CONST;
+-int file_has_acl (char const *, struct stat const *);
+-int qset_acl (char const *, int, mode_t);
+-int set_acl (char const *, int, mode_t);
+-int qcopy_acl (char const *, int, char const *, int, mode_t);
+-int copy_acl (char const *, int, char const *, int, mode_t);
+-int chmod_or_fchmod (char const *, int, mode_t);
++GETTEXTLIB_DLL_EXPORTED bool acl_errno_valid (int) _GL_ATTRIBUTE_CONST;
++GETTEXTLIB_DLL_EXPORTED int file_has_acl (char const *, struct stat const *);
++GETTEXTLIB_DLL_EXPORTED int qset_acl (char const *, int, mode_t);
++GETTEXTLIB_DLL_EXPORTED int set_acl (char const *, int, mode_t);
++GETTEXTLIB_DLL_EXPORTED int qcopy_acl (char const *, int, char const *, int, mode_t);
++GETTEXTLIB_DLL_EXPORTED int copy_acl (char const *, int, char const *, int, mode_t);
++GETTEXTLIB_DLL_EXPORTED int chmod_or_fchmod (char const *, int, mode_t);
+ 
+ #endif
+diff --git a/gettext-tools/gnulib-lib/argmatch.h b/gettext-tools/gnulib-lib/argmatch.h
+index 8296aad..dfd01bf 100644
+--- a/gettext-tools/gnulib-lib/argmatch.h
++++ b/gettext-tools/gnulib-lib/argmatch.h
+@@ -43,7 +43,7 @@ extern "C" {
+    false ambiguities (i.e., different matches of ARG but corresponding
+    to the same values in VALLIST).  */
+ 
+-ptrdiff_t argmatch (char const *arg, char const *const *arglist,
++ptrdiff_t GETTEXTLIB_DLL_EXPORTED argmatch (char const *arg, char const *const *arglist,
+                     char const *vallist, size_t valsize) _GL_ATTRIBUTE_PURE;
+ 
+ # define ARGMATCH(Arg, Arglist, Vallist) \
+@@ -53,11 +53,11 @@ ptrdiff_t argmatch (char const *arg, char const *const *arglist,
+    return.  By default, this is a function that calls ARGMATCH_DIE which
+    in turn defaults to 'exit (exit_failure)'.  */
+ typedef void (*argmatch_exit_fn) (void);
+-extern DLL_VARIABLE argmatch_exit_fn argmatch_die;
++extern GETTEXTLIB_DLL_EXPORTED argmatch_exit_fn argmatch_die;
+ 
+ /* Report on stderr why argmatch failed.  Report correct values. */
+ 
+-void argmatch_invalid (char const *context, char const *value,
++void GETTEXTLIB_DLL_EXPORTEDargmatch_invalid (char const *context, char const *value,
+                        ptrdiff_t problem);
+ 
+ /* Left for compatibility with the old name invalid_arg */
+@@ -69,7 +69,7 @@ void argmatch_invalid (char const *context, char const *value,
+ 
+ /* Report on stderr the list of possible arguments.  */
+ 
+-void argmatch_valid (char const *const *arglist,
++void GETTEXTLIB_DLL_EXPORTED argmatch_valid (char const *const *arglist,
+                      char const *vallist, size_t valsize);
+ 
+ # define ARGMATCH_VALID(Arglist, Vallist) \
+@@ -80,7 +80,7 @@ void argmatch_valid (char const *const *arglist,
+ /* Same as argmatch, but upon failure, report an explanation of the
+    failure, and exit using the function EXIT_FN. */
+ 
+-ptrdiff_t __xargmatch_internal (char const *context,
++ptrdiff_t GETTEXTLIB_DLL_EXPORTED __xargmatch_internal (char const *context,
+                                 char const *arg, char const *const *arglist,
+                                 char const *vallist, size_t valsize,
+                                 argmatch_exit_fn exit_fn);
+@@ -95,7 +95,7 @@ ptrdiff_t __xargmatch_internal (char const *context,
+ 
+ /* Convert a value into a corresponding argument. */
+ 
+-char const *argmatch_to_argument (char const *value,
++GETTEXTLIB_DLL_EXPORTED char const *argmatch_to_argument (char const *value,
+                                   char const *const *arglist,
+                                   char const *vallist, size_t valsize)
+   _GL_ATTRIBUTE_PURE;
+diff --git a/gettext-tools/gnulib-lib/backupfile.h b/gettext-tools/gnulib-lib/backupfile.h
+index e2c8743..4c0532f 100644
+--- a/gettext-tools/gnulib-lib/backupfile.h
++++ b/gettext-tools/gnulib-lib/backupfile.h
+@@ -45,13 +45,13 @@ enum backup_type
+    || (Type) == numbered_existing       \
+    || (Type) == numbered)
+ 
+-extern DLL_VARIABLE char const *simple_backup_suffix;
++extern GETTEXTLIB_DLL_EXPORTED char const *simple_backup_suffix;
+ 
+-extern char *find_backup_file_name (char const *file,
++extern GETTEXTLIB_DLL_EXPORTED char *find_backup_file_name (char const *file,
+                                     enum backup_type backup_type);
+-extern enum backup_type get_version (char const *context, char const *arg);
+-extern enum backup_type xget_version (char const *context, char const *arg);
+-extern void addext (char *filename, char const *ext, char e);
++extern GETTEXTLIB_DLL_EXPORTED enum backup_type get_version (char const *context, char const *arg);
++extern GETTEXTLIB_DLL_EXPORTED enum backup_type xget_version (char const *context, char const *arg);
++extern GETTEXTLIB_DLL_EXPORTED void addext (char *filename, char const *ext, char e);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/basename.h b/gettext-tools/gnulib-lib/basename.h
+index 908cc3e..f0082d5 100644
+--- a/gettext-tools/gnulib-lib/basename.h
++++ b/gettext-tools/gnulib-lib/basename.h
+@@ -30,7 +30,7 @@ extern "C" {
+ #if !(__GLIBC__ >= 2 || defined __UCLIBC__)
+ /* When not using the GNU libc we use the basename implementation we
+    provide here.  */
+-extern char *gnu_basename (const char *);
++extern GETTEXTLIB_DLL_EXPORTED char *gnu_basename (const char *);
+ #define basename(Arg) gnu_basename (Arg)
+ #endif
+ 
+diff --git a/gettext-tools/gnulib-lib/c-ctype.h b/gettext-tools/gnulib-lib/c-ctype.h
+index b465277..82e786e 100644
+--- a/gettext-tools/gnulib-lib/c-ctype.h
++++ b/gettext-tools/gnulib-lib/c-ctype.h
+@@ -117,23 +117,23 @@ extern "C" {
+          if (c_isalpha (*s)) ...
+  */
+ 
+-extern bool c_isascii (int c) _GL_ATTRIBUTE_CONST; /* not locale dependent */
+-
+-extern bool c_isalnum (int c) _GL_ATTRIBUTE_CONST;
+-extern bool c_isalpha (int c) _GL_ATTRIBUTE_CONST;
+-extern bool c_isblank (int c) _GL_ATTRIBUTE_CONST;
+-extern bool c_iscntrl (int c) _GL_ATTRIBUTE_CONST;
+-extern bool c_isdigit (int c) _GL_ATTRIBUTE_CONST;
+-extern bool c_islower (int c) _GL_ATTRIBUTE_CONST;
+-extern bool c_isgraph (int c) _GL_ATTRIBUTE_CONST;
+-extern bool c_isprint (int c) _GL_ATTRIBUTE_CONST;
+-extern bool c_ispunct (int c) _GL_ATTRIBUTE_CONST;
+-extern bool c_isspace (int c) _GL_ATTRIBUTE_CONST;
+-extern bool c_isupper (int c) _GL_ATTRIBUTE_CONST;
+-extern bool c_isxdigit (int c) _GL_ATTRIBUTE_CONST;
+-
+-extern int c_tolower (int c) _GL_ATTRIBUTE_CONST;
+-extern int c_toupper (int c) _GL_ATTRIBUTE_CONST;
++extern GETTEXTLIB_DLL_EXPORTED bool c_isascii (int c) _GL_ATTRIBUTE_CONST; /* not locale dependent */
++
++extern GETTEXTLIB_DLL_EXPORTED bool c_isalnum (int c) _GL_ATTRIBUTE_CONST;
++extern GETTEXTLIB_DLL_EXPORTED bool c_isalpha (int c) _GL_ATTRIBUTE_CONST;
++extern GETTEXTLIB_DLL_EXPORTED bool c_isblank (int c) _GL_ATTRIBUTE_CONST;
++extern GETTEXTLIB_DLL_EXPORTED bool c_iscntrl (int c) _GL_ATTRIBUTE_CONST;
++extern GETTEXTLIB_DLL_EXPORTED bool c_isdigit (int c) _GL_ATTRIBUTE_CONST;
++extern GETTEXTLIB_DLL_EXPORTED bool c_islower (int c) _GL_ATTRIBUTE_CONST;
++extern GETTEXTLIB_DLL_EXPORTED bool c_isgraph (int c) _GL_ATTRIBUTE_CONST;
++extern GETTEXTLIB_DLL_EXPORTED bool c_isprint (int c) _GL_ATTRIBUTE_CONST;
++extern GETTEXTLIB_DLL_EXPORTED bool c_ispunct (int c) _GL_ATTRIBUTE_CONST;
++extern GETTEXTLIB_DLL_EXPORTED bool c_isspace (int c) _GL_ATTRIBUTE_CONST;
++extern GETTEXTLIB_DLL_EXPORTED bool c_isupper (int c) _GL_ATTRIBUTE_CONST;
++extern GETTEXTLIB_DLL_EXPORTED bool c_isxdigit (int c) _GL_ATTRIBUTE_CONST;
++
++extern GETTEXTLIB_DLL_EXPORTED int c_tolower (int c) _GL_ATTRIBUTE_CONST;
++extern GETTEXTLIB_DLL_EXPORTED int c_toupper (int c) _GL_ATTRIBUTE_CONST;
+ 
+ 
+ #if (defined __GNUC__ && !defined __STRICT_ANSI__ && defined __OPTIMIZE__ \
+diff --git a/gettext-tools/gnulib-lib/c-strcase.h b/gettext-tools/gnulib-lib/c-strcase.h
+index 8e66044..1a1628a 100644
+--- a/gettext-tools/gnulib-lib/c-strcase.h
++++ b/gettext-tools/gnulib-lib/c-strcase.h
+@@ -39,12 +39,12 @@ extern "C" {
+ /* Compare strings S1 and S2, ignoring case, returning less than, equal to or
+    greater than zero if S1 is lexicographically less than, equal to or greater
+    than S2.  */
+-extern int c_strcasecmp (const char *s1, const char *s2) _GL_ATTRIBUTE_PURE;
++extern GETTEXTLIB_DLL_EXPORTED int c_strcasecmp (const char *s1, const char *s2) _GL_ATTRIBUTE_PURE;
+ 
+ /* Compare no more than N characters of strings S1 and S2, ignoring case,
+    returning less than, equal to or greater than zero if S1 is
+    lexicographically less than, equal to or greater than S2.  */
+-extern int c_strncasecmp (const char *s1, const char *s2, size_t n)
++extern GETTEXTLIB_DLL_EXPORTED int c_strncasecmp (const char *s1, const char *s2, size_t n)
+   _GL_ATTRIBUTE_PURE;
+ 
+ 
+diff --git a/gettext-tools/gnulib-lib/c-strstr.h b/gettext-tools/gnulib-lib/c-strstr.h
+index bc7378b..97b7547 100644
+--- a/gettext-tools/gnulib-lib/c-strstr.h
++++ b/gettext-tools/gnulib-lib/c-strstr.h
+@@ -37,7 +37,7 @@ extern "C" {
+    This function is also safe to be called, even in a multibyte locale, if
+    HAYSTACK and NEEDLE are known to both consist solely of printable ASCII
+    characters excluding '\\' and '~'.  */
+-extern char *c_strstr (const char *haystack, const char *needle);
++extern GETTEXTLIB_DLL_EXPORTED char *c_strstr (const char *haystack, const char *needle);
+ 
+ #ifdef __cplusplus
+ }
+diff --git a/gettext-tools/gnulib-lib/classpath.h b/gettext-tools/gnulib-lib/classpath.h
+index ae8b0cf..35fafd3 100644
+--- a/gettext-tools/gnulib-lib/classpath.h
++++ b/gettext-tools/gnulib-lib/classpath.h
+@@ -20,14 +20,14 @@
+ /* Return the new CLASSPATH value.  The given classpaths are prepended to
+    the current CLASSPATH value.   If use_minimal_classpath, the current
+    CLASSPATH is ignored.  */
+-extern char * new_classpath (const char * const *classpaths,
++extern GETTEXTLIB_DLL_EXPORTED char * new_classpath (const char * const *classpaths,
+                              unsigned int classpaths_count,
+                              bool use_minimal_classpath);
+ 
+ /* Set CLASSPATH and returns a safe copy of its old value.  */
+-extern char * set_classpath (const char * const *classpaths,
++extern GETTEXTLIB_DLL_EXPORTED char * set_classpath (const char * const *classpaths,
+                              unsigned int classpaths_count,
+                              bool use_minimal_classpath, bool verbose);
+ 
+ /* Restore CLASSPATH to its previous value.  */
+-extern void reset_classpath (char *old_classpath);
++extern GETTEXTLIB_DLL_EXPORTED void reset_classpath (char *old_classpath);
+diff --git a/gettext-tools/gnulib-lib/clean-temp.h b/gettext-tools/gnulib-lib/clean-temp.h
+index 2e01dd7..f1676ba 100644
+--- a/gettext-tools/gnulib-lib/clean-temp.h
++++ b/gettext-tools/gnulib-lib/clean-temp.h
+@@ -68,71 +68,71 @@ struct temp_dir
+    reported to standard error.
+    Return a fresh 'struct temp_dir' on success.  Upon error, an error message
+    is shown and NULL is returned.  */
+-extern struct temp_dir * create_temp_dir (const char *prefix,
++extern GETTEXTLIB_DLL_EXPORTED struct temp_dir * create_temp_dir (const char *prefix,
+                                           const char *parentdir,
+                                           bool cleanup_verbose);
+ 
+ /* Register the given ABSOLUTE_FILE_NAME as being a file inside DIR, that
+    needs to be removed before DIR can be removed.
+    Should be called before the file ABSOLUTE_FILE_NAME is created.  */
+-extern void register_temp_file (struct temp_dir *dir,
++extern GETTEXTLIB_DLL_EXPORTED void register_temp_file (struct temp_dir *dir,
+                                 const char *absolute_file_name);
+ 
+ /* Unregister the given ABSOLUTE_FILE_NAME as being a file inside DIR, that
+    needs to be removed before DIR can be removed.
+    Should be called when the file ABSOLUTE_FILE_NAME could not be created.  */
+-extern void unregister_temp_file (struct temp_dir *dir,
++extern GETTEXTLIB_DLL_EXPORTED void unregister_temp_file (struct temp_dir *dir,
+                                   const char *absolute_file_name);
+ 
+ /* Register the given ABSOLUTE_DIR_NAME as being a subdirectory inside DIR,
+    that needs to be removed before DIR can be removed.
+    Should be called before the subdirectory ABSOLUTE_DIR_NAME is created.  */
+-extern void register_temp_subdir (struct temp_dir *dir,
++extern GETTEXTLIB_DLL_EXPORTED void register_temp_subdir (struct temp_dir *dir,
+                                   const char *absolute_dir_name);
+ 
+ /* Unregister the given ABSOLUTE_DIR_NAME as being a subdirectory inside DIR,
+    that needs to be removed before DIR can be removed.
+    Should be called when the subdirectory ABSOLUTE_DIR_NAME could not be
+    created.  */
+-extern void unregister_temp_subdir (struct temp_dir *dir,
++extern GETTEXTLIB_DLL_EXPORTED void unregister_temp_subdir (struct temp_dir *dir,
+                                     const char *absolute_dir_name);
+ 
+ /* Remove the given ABSOLUTE_FILE_NAME and unregister it.
+    Return 0 upon success, or -1 if there was some problem.  */
+-extern int cleanup_temp_file (struct temp_dir *dir,
++extern GETTEXTLIB_DLL_EXPORTED int cleanup_temp_file (struct temp_dir *dir,
+                               const char *absolute_file_name);
+ 
+ /* Remove the given ABSOLUTE_DIR_NAME and unregister it.
+    Return 0 upon success, or -1 if there was some problem.  */
+-extern int cleanup_temp_subdir (struct temp_dir *dir,
++extern GETTEXTLIB_DLL_EXPORTED int cleanup_temp_subdir (struct temp_dir *dir,
+                                 const char *absolute_dir_name);
+ 
+ /* Remove all registered files and subdirectories inside DIR.
+    Return 0 upon success, or -1 if there was some problem.  */
+-extern int cleanup_temp_dir_contents (struct temp_dir *dir);
++extern GETTEXTLIB_DLL_EXPORTED int cleanup_temp_dir_contents (struct temp_dir *dir);
+ 
+ /* Remove all registered files and subdirectories inside DIR and DIR itself.
+    DIR cannot be used any more after this call.
+    Return 0 upon success, or -1 if there was some problem.  */
+-extern int cleanup_temp_dir (struct temp_dir *dir);
++extern GETTEXTLIB_DLL_EXPORTED int cleanup_temp_dir (struct temp_dir *dir);
+ 
+ /* Open a temporary file in a temporary directory.
+    Registers the resulting file descriptor to be closed.  */
+-extern int open_temp (const char *file_name, int flags, mode_t mode);
+-extern FILE * fopen_temp (const char *file_name, const char *mode);
++extern GETTEXTLIB_DLL_EXPORTED int open_temp (const char *file_name, int flags, mode_t mode);
++extern GETTEXTLIB_DLL_EXPORTED FILE * fopen_temp (const char *file_name, const char *mode);
+ 
+ /* Close a temporary file in a temporary directory.
+    Unregisters the previously registered file descriptor.  */
+-extern int close_temp (int fd);
+-extern int fclose_temp (FILE *fp);
++extern GETTEXTLIB_DLL_EXPORTED int close_temp (int fd);
++extern GETTEXTLIB_DLL_EXPORTED int fclose_temp (FILE *fp);
+ 
+ /* Like fwriteerror.
+    Unregisters the previously registered file descriptor.  */
+-extern int fwriteerror_temp (FILE *fp);
++extern GETTEXTLIB_DLL_EXPORTED int fwriteerror_temp (FILE *fp);
+ 
+ /* Like close_stream.
+    Unregisters the previously registered file descriptor.  */
+-extern int close_stream_temp (FILE *fp);
++extern GETTEXTLIB_DLL_EXPORTED int close_stream_temp (FILE *fp);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/cloexec.h b/gettext-tools/gnulib-lib/cloexec.h
+index 6c442dc..fb679a4 100644
+--- a/gettext-tools/gnulib-lib/cloexec.h
++++ b/gettext-tools/gnulib-lib/cloexec.h
+@@ -29,10 +29,10 @@
+    open or pipe2 that accept flags like O_CLOEXEC to create DESC
+    non-inheritable in the first place.  */
+ 
+-int set_cloexec_flag (int desc, bool value);
++int GETTEXTLIB_DLL_EXPORTED set_cloexec_flag (int desc, bool value);
+ 
+ /* Duplicates a file handle FD, while marking the copy to be closed
+    prior to exec or spawn.  Returns -1 and sets errno if FD could not
+    be duplicated.  */
+ 
+-int dup_cloexec (int fd);
++int GETTEXTLIB_DLL_EXPORTED dup_cloexec (int fd);
+diff --git a/gettext-tools/gnulib-lib/closeout.h b/gettext-tools/gnulib-lib/closeout.h
+index 33e309e..05576c9 100644
+--- a/gettext-tools/gnulib-lib/closeout.h
++++ b/gettext-tools/gnulib-lib/closeout.h
+@@ -21,7 +21,7 @@
+ extern "C" {
+ #endif
+ 
+-extern void close_stdout (void);
++extern GETTEXTLIB_DLL_EXPORTED void close_stdout (void);
+ 
+ #ifdef __cplusplus
+ }
+diff --git a/gettext-tools/gnulib-lib/concat-filename.h b/gettext-tools/gnulib-lib/concat-filename.h
+index 88f1cf7..1a4fb4b 100644
+--- a/gettext-tools/gnulib-lib/concat-filename.h
++++ b/gettext-tools/gnulib-lib/concat-filename.h
+@@ -25,12 +25,12 @@ extern "C" {
+ /* Concatenate a directory filename, a relative filename and an optional
+    suffix.  Return a freshly allocated filename.  Return NULL and set errno
+    upon memory allocation failure.  */
+-extern char *concatenated_filename (const char *directory,
++extern GETTEXTLIB_DLL_EXPORTED char *concatenated_filename (const char *directory,
+                                     const char *filename, const char *suffix);
+ 
+ /* Concatenate a directory filename, a relative filename and an optional
+    suffix.  Return a freshly allocated filename.  */
+-extern char *xconcatenated_filename (const char *directory,
++extern GETTEXTLIB_DLL_EXPORTED char *xconcatenated_filename (const char *directory,
+                                      const char *filename, const char *suffix);
+ 
+ 
+diff --git a/gettext-tools/gnulib-lib/copy-file.h b/gettext-tools/gnulib-lib/copy-file.h
+index 0fa24be..d8eba3d 100644
+--- a/gettext-tools/gnulib-lib/copy-file.h
++++ b/gettext-tools/gnulib-lib/copy-file.h
+@@ -39,14 +39,14 @@ enum
+    far as possible.
+    Return 0 if successful, otherwise set errno and return one of the error
+    codes above.  */
+-extern int qcopy_file_preserving (const char *src_filename, const char *dest_filename);
++extern GETTEXTLIB_DLL_EXPORTED int qcopy_file_preserving (const char *src_filename, const char *dest_filename);
+ 
+ /* Copy a regular file: from src_filename to dest_filename.
+    The destination file is assumed to be a backup file.
+    Modification times, owner, group and access permissions are preserved as
+    far as possible.
+    Exit upon failure.  */
+-extern void copy_file_preserving (const char *src_filename, const char *dest_filename);
++extern GETTEXTLIB_DLL_EXPORTED void copy_file_preserving (const char *src_filename, const char *dest_filename);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/csharpcomp.h b/gettext-tools/gnulib-lib/csharpcomp.h
+index ae31bfe..587b7f2 100644
+--- a/gettext-tools/gnulib-lib/csharpcomp.h
++++ b/gettext-tools/gnulib-lib/csharpcomp.h
+@@ -27,7 +27,7 @@
+    output_file is the name of the output file; it should end in .exe or .dll.
+    If verbose, the command to be executed will be printed.
+    Return false if OK, true on error.  */
+-extern bool compile_csharp_class (const char * const *sources,
++extern GETTEXTLIB_DLL_EXPORTED bool compile_csharp_class (const char * const *sources,
+                                   unsigned int sources_count,
+                                   const char * const *libdirs,
+                                   unsigned int libdirs_count,
+diff --git a/gettext-tools/gnulib-lib/csharpexec.h b/gettext-tools/gnulib-lib/csharpexec.h
+index bfc66fa..7264ebd 100644
+--- a/gettext-tools/gnulib-lib/csharpexec.h
++++ b/gettext-tools/gnulib-lib/csharpexec.h
+@@ -33,7 +33,7 @@ typedef bool execute_fn (const char *progname,
+    private_data argument.  This function returns false if OK, true on error.
+    Return false if OK, true on error.
+    If quiet, error messages will not be printed.  */
+-extern bool execute_csharp_program (const char *assembly_path,
++extern GETTEXTLIB_DLL_EXPORTED bool execute_csharp_program (const char *assembly_path,
+                                     const char * const *libdirs,
+                                     unsigned int libdirs_count,
+                                     const char * const *args,
+diff --git a/gettext-tools/gnulib-lib/error-progname.h b/gettext-tools/gnulib-lib/error-progname.h
+index 77ae822..d86bcf0 100644
+--- a/gettext-tools/gnulib-lib/error-progname.h
++++ b/gettext-tools/gnulib-lib/error-progname.h
+@@ -37,11 +37,11 @@ extern "C" {
+    Default is true.
+    A reason to omit the prefix is for better interoperability with Emacs'
+    compile.el.  */
+-extern DLL_VARIABLE bool error_with_progname;
++extern GETTEXTLIB_DLL_EXPORTED  bool error_with_progname;
+ 
+ /* Print program_name prefix on stderr if and only if error_with_progname
+    is true.  */
+-extern void maybe_print_progname (void);
++extern GETTEXTLIB_DLL_EXPORTED void maybe_print_progname (void);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/error.h b/gettext-tools/gnulib-lib/error.h
+index 873d9aa..ac07273 100644
+--- a/gettext-tools/gnulib-lib/error.h
++++ b/gettext-tools/gnulib-lib/error.h
+@@ -48,24 +48,24 @@ extern "C" {
+    if ERRNUM is nonzero, follow it with ": " and strerror (ERRNUM).
+    If STATUS is nonzero, terminate the program with 'exit (STATUS)'.  */
+ 
+-extern void error (int __status, int __errnum, const char *__format, ...)
++extern GETTEXTLIB_DLL_EXPORTED void error (int __status, int __errnum, const char *__format, ...)
+      _GL_ATTRIBUTE_FORMAT ((__printf__, 3, 4));
+ 
+-extern void error_at_line (int __status, int __errnum, const char *__fname,
++extern GETTEXTLIB_DLL_EXPORTED void error_at_line (int __status, int __errnum, const char *__fname,
+                            unsigned int __lineno, const char *__format, ...)
+      _GL_ATTRIBUTE_FORMAT ((__printf__, 5, 6));
+ 
+ /* If NULL, error will flush stdout, then print on stderr the program
+    name, a colon and a space.  Otherwise, error will call this
+    function without parameters instead.  */
+-extern DLL_VARIABLE void (*error_print_progname) (void);
++extern GETTEXTLIB_DLL_EXPORTED  void (*error_print_progname) (void);
+ 
+ /* This variable is incremented each time 'error' is called.  */
+-extern DLL_VARIABLE unsigned int error_message_count;
++extern GETTEXTLIB_DLL_EXPORTED  unsigned int error_message_count;
+ 
+ /* Sometimes we want to have at most one error per line.  This
+    variable controls whether this mode is selected or not.  */
+-extern DLL_VARIABLE int error_one_per_line;
++extern GETTEXTLIB_DLL_EXPORTED  int error_one_per_line;
+ 
+ #ifdef __cplusplus
+ }
+diff --git a/gettext-tools/gnulib-lib/execute.h b/gettext-tools/gnulib-lib/execute.h
+index 8bc0285..0a0541f 100644
+--- a/gettext-tools/gnulib-lib/execute.h
++++ b/gettext-tools/gnulib-lib/execute.h
+@@ -34,7 +34,7 @@
+    platforms), otherwise 0.
+    It is recommended that no signal is blocked or ignored while execute()
+    is called.  See pipe.h for the reason.  */
+-extern int execute (const char *progname,
++extern GETTEXTLIB_DLL_EXPORTED int execute (const char *progname,
+                     const char *prog_path, char **prog_argv,
+                     bool ignore_sigpipe,
+                     bool null_stdin, bool null_stdout, bool null_stderr,
+diff --git a/gettext-tools/gnulib-lib/fatal-signal.h b/gettext-tools/gnulib-lib/fatal-signal.h
+index de98317..29d8d4a 100644
+--- a/gettext-tools/gnulib-lib/fatal-signal.h
++++ b/gettext-tools/gnulib-lib/fatal-signal.h
+@@ -51,7 +51,7 @@ extern "C" {
+    The cleanup function is executed asynchronously.  It is unspecified
+    whether during its execution the catchable fatal signals are blocked
+    or not.  */
+-extern void at_fatal_signal (void (*function) (void));
++extern GETTEXTLIB_DLL_EXPORTED void at_fatal_signal (void (*function) (void));
+ 
+ 
+ /* Sometimes it is necessary to block the usually fatal signals while the
+@@ -65,10 +65,10 @@ extern void at_fatal_signal (void (*function) (void));
+    The signals will be blocked (= delayed) until the next call to
+    unblock_fatal_signals().  If the signals are already blocked, a further
+    call to block_fatal_signals() has no effect.  */
+-extern void block_fatal_signals (void);
++extern GETTEXTLIB_DLL_EXPORTED void block_fatal_signals (void);
+ 
+ /* Stop delaying the catchable fatal signals.  */
+-extern void unblock_fatal_signals (void);
++extern GETTEXTLIB_DLL_EXPORTED void unblock_fatal_signals (void);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/fd-ostream.h b/gettext-tools/gnulib-lib/fd-ostream.h
+index c33f6fb..a34dceb 100644
+--- a/gettext-tools/gnulib-lib/fd-ostream.h
++++ b/gettext-tools/gnulib-lib/fd-ostream.h
+@@ -53,9 +53,9 @@ typedef ostream_t fd_ostream_t;
+ #endif
+ 
+ /* Functions that invoke the methods.  */
+-extern        void fd_ostream_write_mem (fd_ostream_t first_arg, const void *data, size_t len);
+-extern         void fd_ostream_flush (fd_ostream_t first_arg);
+-extern         void fd_ostream_free (fd_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void fd_ostream_write_mem (fd_ostream_t first_arg, const void *data, size_t len);
++extern GETTEXTLIB_DLL_EXPORTED void fd_ostream_flush (fd_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void fd_ostream_free (fd_ostream_t first_arg);
+ 
+ /* Type representing an implementation of fd_ostream_t.  */
+ struct fd_ostream_implementation
+@@ -109,11 +109,11 @@ fd_ostream_free (fd_ostream_t first_arg)
+ 
+ #endif
+ 
+-extern const typeinfo_t fd_ostream_typeinfo;
++extern GETTEXTLIB_DLL_EXPORTED const typeinfo_t fd_ostream_typeinfo;
+ #define fd_ostream_SUPERCLASSES &fd_ostream_typeinfo, ostream_SUPERCLASSES
+ #define fd_ostream_SUPERCLASSES_LENGTH (1 + ostream_SUPERCLASSES_LENGTH)
+ 
+-extern const struct fd_ostream_implementation fd_ostream_vtable;
++extern GETTEXTLIB_DLL_EXPORTED const struct fd_ostream_implementation fd_ostream_vtable;
+ 
+ #line 30 "fd-ostream.oo.h"
+ 
+@@ -126,7 +126,7 @@ extern "C" {
+ /* Create an output stream referring to the file descriptor FD.
+    FILENAME is used only for error messages.
+    Note that the resulting stream must be closed before FD can be closed.  */
+-extern fd_ostream_t fd_ostream_create (int fd, const char *filename,
++extern GETTEXTLIB_DLL_EXPORTED fd_ostream_t fd_ostream_create (int fd, const char *filename,
+                                        bool buffered);
+ 
+ 
+diff --git a/gettext-tools/gnulib-lib/file-ostream.h b/gettext-tools/gnulib-lib/file-ostream.h
+index 44e794c..5c8ddaf 100644
+--- a/gettext-tools/gnulib-lib/file-ostream.h
++++ b/gettext-tools/gnulib-lib/file-ostream.h
+@@ -53,9 +53,9 @@ typedef ostream_t file_ostream_t;
+ #endif
+ 
+ /* Functions that invoke the methods.  */
+-extern        void file_ostream_write_mem (file_ostream_t first_arg, const void *data, size_t len);
+-extern         void file_ostream_flush (file_ostream_t first_arg);
+-extern         void file_ostream_free (file_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void file_ostream_write_mem (file_ostream_t first_arg, const void *data, size_t len);
++extern GETTEXTLIB_DLL_EXPORTED void file_ostream_flush (file_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void file_ostream_free (file_ostream_t first_arg);
+ 
+ /* Type representing an implementation of file_ostream_t.  */
+ struct file_ostream_implementation
+@@ -109,11 +109,11 @@ file_ostream_free (file_ostream_t first_arg)
+ 
+ #endif
+ 
+-extern const typeinfo_t file_ostream_typeinfo;
++extern GETTEXTLIB_DLL_EXPORTED const typeinfo_t file_ostream_typeinfo;
+ #define file_ostream_SUPERCLASSES &file_ostream_typeinfo, ostream_SUPERCLASSES
+ #define file_ostream_SUPERCLASSES_LENGTH (1 + ostream_SUPERCLASSES_LENGTH)
+ 
+-extern const struct file_ostream_implementation file_ostream_vtable;
++extern GETTEXTLIB_DLL_EXPORTED const struct file_ostream_implementation file_ostream_vtable;
+ 
+ #line 30 "file-ostream.oo.h"
+ 
+@@ -125,7 +125,7 @@ extern "C" {
+ 
+ /* Create an output stream referring to FP.
+    Note that the resulting stream must be closed before FP can be closed.  */
+-extern file_ostream_t file_ostream_create (FILE *fp);
++extern GETTEXTLIB_DLL_EXPORTED file_ostream_t file_ostream_create (FILE *fp);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/file-ostream.oo.h b/gettext-tools/gnulib-lib/file-ostream.oo.h
+index 6da1dbd..e8ed319 100644
+--- a/gettext-tools/gnulib-lib/file-ostream.oo.h
++++ b/gettext-tools/gnulib-lib/file-ostream.oo.h
+@@ -36,7 +36,7 @@ extern "C" {
+ 
+ /* Create an output stream referring to FP.
+    Note that the resulting stream must be closed before FP can be closed.  */
+-extern file_ostream_t file_ostream_create (FILE *fp);
++extern GETTEXTLIB_DLL_EXPORTED file_ostream_t file_ostream_create (FILE *fp);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/findprog.h b/gettext-tools/gnulib-lib/findprog.h
+index 90362b6..06e81c9 100644
+--- a/gettext-tools/gnulib-lib/findprog.h
++++ b/gettext-tools/gnulib-lib/findprog.h
+@@ -29,7 +29,7 @@ extern "C" {
+    Because of the latter case, callers should use execlp/execvp, not
+    execl/execv on the returned pathname.
+    The returned string is freshly malloc()ed if it is != PROGNAME.  */
+-extern const char *find_in_path (const char *progname);
++extern GETTEXTLIB_DLL_EXPORTED const char *find_in_path (const char *progname);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/fstrcmp.h b/gettext-tools/gnulib-lib/fstrcmp.h
+index e3d24fe..31ce331 100644
+--- a/gettext-tools/gnulib-lib/fstrcmp.h
++++ b/gettext-tools/gnulib-lib/fstrcmp.h
+@@ -28,11 +28,11 @@ extern "C" {
+    and S1.  The higher the result, the more similar the strings are.
+    The result is bounded between 0 (meaning very dissimilar strings) and
+    1 (meaning identical strings).  */
+-extern double fstrcmp (const char *s1, const char *s2);
++extern GETTEXTLIB_DLL_EXPORTED double fstrcmp (const char *s1, const char *s2);
+ 
+ /* Like fstrcmp (S1, S2), except that if the result is < LOWER_BOUND, an
+    arbitrary other value < LOWER_BOUND can be returned.  */
+-extern double fstrcmp_bounded (const char *s1, const char *s2,
++extern GETTEXTLIB_DLL_EXPORTED double fstrcmp_bounded (const char *s1, const char *s2,
+                                double lower_bound);
+ 
+ /* A shortcut for fstrcmp.  Avoids a function call.  */
+diff --git a/gettext-tools/gnulib-lib/full-write.h b/gettext-tools/gnulib-lib/full-write.h
+index 589f6e1..ecd6c85 100644
+--- a/gettext-tools/gnulib-lib/full-write.h
++++ b/gettext-tools/gnulib-lib/full-write.h
+@@ -26,7 +26,7 @@ extern "C" {
+ /* Write COUNT bytes at BUF to descriptor FD, retrying if interrupted
+    or if partial writes occur.  Return the number of bytes successfully
+    written, setting errno if that is less than COUNT.  */
+-extern size_t full_write (int fd, const void *buf, size_t count);
++extern GETTEXTLIB_DLL_EXPORTED size_t full_write (int fd, const void *buf, size_t count);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/fwriteerror.h b/gettext-tools/gnulib-lib/fwriteerror.h
+index 6f7fedc..9680dc2 100644
+--- a/gettext-tools/gnulib-lib/fwriteerror.h
++++ b/gettext-tools/gnulib-lib/fwriteerror.h
+@@ -51,11 +51,11 @@ extern "C" {
+    if the cause of the error cannot be determined.
+    For any given stream FP other than stdout, fwriteerror (FP) may only be
+    called once.  */
+-extern int fwriteerror (FILE *fp);
++extern GETTEXTLIB_DLL_EXPORTED int fwriteerror (FILE *fp);
+ 
+ /* Likewise, but don't consider it an error if FP has an invalid file
+    descriptor and no output was done to FP.  */
+-extern int fwriteerror_no_ebadf (FILE *fp);
++extern GETTEXTLIB_DLL_EXPORTED int fwriteerror_no_ebadf (FILE *fp);
+ 
+ #ifdef __cplusplus
+ }
+diff --git a/gettext-tools/gnulib-lib/gcd.h b/gettext-tools/gnulib-lib/gcd.h
+index c356a66..305c4de 100644
+--- a/gettext-tools/gnulib-lib/gcd.h
++++ b/gettext-tools/gnulib-lib/gcd.h
+@@ -24,7 +24,7 @@ extern "C" {
+ 
+ 
+ /* Return the greatest common divisor of a > 0 and b > 0.  */
+-extern unsigned long gcd (unsigned long a, unsigned long b);
++extern GETTEXTLIB_DLL_EXPORTED unsigned long gcd (unsigned long a, unsigned long b);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/glthread/lock.h b/gettext-tools/gnulib-lib/glthread/lock.h
+index 36096c4..0117e06 100644
+--- a/gettext-tools/gnulib-lib/glthread/lock.h
++++ b/gettext-tools/gnulib-lib/glthread/lock.h
+@@ -98,7 +98,7 @@ extern "C" {
+ /* The pthread_in_use() detection needs to be done at runtime.  */
+ #  define pthread_in_use() \
+      glthread_in_use ()
+-extern int glthread_in_use (void);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_in_use (void);
+ 
+ # endif
+ 
+@@ -223,11 +223,11 @@ typedef struct
+       (pthread_in_use () ? glthread_rwlock_unlock_multithreaded (LOCK) : 0)
+ #   define glthread_rwlock_destroy(LOCK) \
+       (pthread_in_use () ? glthread_rwlock_destroy_multithreaded (LOCK) : 0)
+-extern int glthread_rwlock_init_multithreaded (gl_rwlock_t *lock);
+-extern int glthread_rwlock_rdlock_multithreaded (gl_rwlock_t *lock);
+-extern int glthread_rwlock_wrlock_multithreaded (gl_rwlock_t *lock);
+-extern int glthread_rwlock_unlock_multithreaded (gl_rwlock_t *lock);
+-extern int glthread_rwlock_destroy_multithreaded (gl_rwlock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_rwlock_init_multithreaded (gl_rwlock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_rwlock_rdlock_multithreaded (gl_rwlock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_rwlock_wrlock_multithreaded (gl_rwlock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_rwlock_unlock_multithreaded (gl_rwlock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_rwlock_destroy_multithreaded (gl_rwlock_t *lock);
+ 
+ #  endif
+ 
+@@ -258,11 +258,11 @@ typedef struct
+     (pthread_in_use () ? glthread_rwlock_unlock_multithreaded (LOCK) : 0)
+ # define glthread_rwlock_destroy(LOCK) \
+     (pthread_in_use () ? glthread_rwlock_destroy_multithreaded (LOCK) : 0)
+-extern int glthread_rwlock_init_multithreaded (gl_rwlock_t *lock);
+-extern int glthread_rwlock_rdlock_multithreaded (gl_rwlock_t *lock);
+-extern int glthread_rwlock_wrlock_multithreaded (gl_rwlock_t *lock);
+-extern int glthread_rwlock_unlock_multithreaded (gl_rwlock_t *lock);
+-extern int glthread_rwlock_destroy_multithreaded (gl_rwlock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_rwlock_init_multithreaded (gl_rwlock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_rwlock_rdlock_multithreaded (gl_rwlock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_rwlock_wrlock_multithreaded (gl_rwlock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_rwlock_unlock_multithreaded (gl_rwlock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_rwlock_destroy_multithreaded (gl_rwlock_t *lock);
+ 
+ # endif
+ 
+@@ -292,7 +292,7 @@ typedef pthread_mutex_t gl_recursive_lock_t;
+       (pthread_in_use () ? pthread_mutex_unlock (LOCK) : 0)
+ #   define glthread_recursive_lock_destroy(LOCK) \
+       (pthread_in_use () ? pthread_mutex_destroy (LOCK) : 0)
+-extern int glthread_recursive_lock_init_multithreaded (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_recursive_lock_init_multithreaded (gl_recursive_lock_t *lock);
+ 
+ #  else
+ 
+@@ -317,10 +317,10 @@ typedef struct
+       (pthread_in_use () ? glthread_recursive_lock_unlock_multithreaded (LOCK) : 0)
+ #   define glthread_recursive_lock_destroy(LOCK) \
+       (pthread_in_use () ? glthread_recursive_lock_destroy_multithreaded (LOCK) : 0)
+-extern int glthread_recursive_lock_init_multithreaded (gl_recursive_lock_t *lock);
+-extern int glthread_recursive_lock_lock_multithreaded (gl_recursive_lock_t *lock);
+-extern int glthread_recursive_lock_unlock_multithreaded (gl_recursive_lock_t *lock);
+-extern int glthread_recursive_lock_destroy_multithreaded (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_recursive_lock_init_multithreaded (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_recursive_lock_lock_multithreaded (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_recursive_lock_unlock_multithreaded (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_recursive_lock_destroy_multithreaded (gl_recursive_lock_t *lock);
+ 
+ #  endif
+ 
+@@ -350,10 +350,10 @@ typedef struct
+      (pthread_in_use () ? glthread_recursive_lock_unlock_multithreaded (LOCK) : 0)
+ #  define glthread_recursive_lock_destroy(LOCK) \
+      (pthread_in_use () ? glthread_recursive_lock_destroy_multithreaded (LOCK) : 0)
+-extern int glthread_recursive_lock_init_multithreaded (gl_recursive_lock_t *lock);
+-extern int glthread_recursive_lock_lock_multithreaded (gl_recursive_lock_t *lock);
+-extern int glthread_recursive_lock_unlock_multithreaded (gl_recursive_lock_t *lock);
+-extern int glthread_recursive_lock_destroy_multithreaded (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_recursive_lock_init_multithreaded (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_recursive_lock_lock_multithreaded (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_recursive_lock_unlock_multithreaded (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_recursive_lock_destroy_multithreaded (gl_recursive_lock_t *lock);
+ 
+ # endif
+ 
+@@ -366,7 +366,7 @@ typedef pthread_once_t gl_once_t;
+     (pthread_in_use ()                                                         \
+      ? pthread_once (ONCE_CONTROL, INITFUNCTION)                               \
+      : (glthread_once_singlethreaded (ONCE_CONTROL) ? (INITFUNCTION (), 0) : 0))
+-extern int glthread_once_singlethreaded (pthread_once_t *once_control);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_once_singlethreaded (pthread_once_t *once_control);
+ 
+ # ifdef __cplusplus
+ }
+@@ -473,8 +473,8 @@ typedef pth_once_t gl_once_t;
+     (pth_in_use ()                                                             \
+      ? glthread_once_multithreaded (ONCE_CONTROL, INITFUNCTION)                \
+      : (glthread_once_singlethreaded (ONCE_CONTROL) ? (INITFUNCTION (), 0) : 0))
+-extern int glthread_once_multithreaded (pth_once_t *once_control, void (*initfunction) (void));
+-extern int glthread_once_singlethreaded (pth_once_t *once_control);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_once_multithreaded (pth_once_t *once_control, void (*initfunction) (void));
++extern GETTEXTLIB_DLL_EXPORTED int glthread_once_singlethreaded (pth_once_t *once_control);
+ 
+ # ifdef __cplusplus
+ }
+@@ -583,10 +583,10 @@ typedef struct
+     (thread_in_use () ? glthread_recursive_lock_unlock_multithreaded (LOCK) : 0)
+ # define glthread_recursive_lock_destroy(LOCK) \
+     (thread_in_use () ? glthread_recursive_lock_destroy_multithreaded (LOCK) : 0)
+-extern int glthread_recursive_lock_init_multithreaded (gl_recursive_lock_t *lock);
+-extern int glthread_recursive_lock_lock_multithreaded (gl_recursive_lock_t *lock);
+-extern int glthread_recursive_lock_unlock_multithreaded (gl_recursive_lock_t *lock);
+-extern int glthread_recursive_lock_destroy_multithreaded (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_recursive_lock_init_multithreaded (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_recursive_lock_lock_multithreaded (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_recursive_lock_unlock_multithreaded (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_recursive_lock_destroy_multithreaded (gl_recursive_lock_t *lock);
+ 
+ /* -------------------------- gl_once_t datatype -------------------------- */
+ 
+@@ -602,8 +602,8 @@ typedef struct
+     (thread_in_use ()                                                          \
+      ? glthread_once_multithreaded (ONCE_CONTROL, INITFUNCTION)                \
+      : (glthread_once_singlethreaded (ONCE_CONTROL) ? (INITFUNCTION (), 0) : 0))
+-extern int glthread_once_multithreaded (gl_once_t *once_control, void (*initfunction) (void));
+-extern int glthread_once_singlethreaded (gl_once_t *once_control);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_once_multithreaded (gl_once_t *once_control, void (*initfunction) (void));
++extern GETTEXTLIB_DLL_EXPORTED int glthread_once_singlethreaded (gl_once_t *once_control);
+ 
+ # ifdef __cplusplus
+ }
+@@ -657,10 +657,10 @@ typedef struct
+     glthread_lock_unlock_func (LOCK)
+ # define glthread_lock_destroy(LOCK) \
+     glthread_lock_destroy_func (LOCK)
+-extern void glthread_lock_init_func (gl_lock_t *lock);
+-extern int glthread_lock_lock_func (gl_lock_t *lock);
+-extern int glthread_lock_unlock_func (gl_lock_t *lock);
+-extern int glthread_lock_destroy_func (gl_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED void glthread_lock_init_func (gl_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_lock_lock_func (gl_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_lock_unlock_func (gl_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_lock_destroy_func (gl_lock_t *lock);
+ 
+ /* ------------------------- gl_rwlock_t datatype ------------------------- */
+ 
+@@ -701,11 +701,11 @@ typedef struct
+     glthread_rwlock_unlock_func (LOCK)
+ # define glthread_rwlock_destroy(LOCK) \
+     glthread_rwlock_destroy_func (LOCK)
+-extern void glthread_rwlock_init_func (gl_rwlock_t *lock);
+-extern int glthread_rwlock_rdlock_func (gl_rwlock_t *lock);
+-extern int glthread_rwlock_wrlock_func (gl_rwlock_t *lock);
+-extern int glthread_rwlock_unlock_func (gl_rwlock_t *lock);
+-extern int glthread_rwlock_destroy_func (gl_rwlock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED void glthread_rwlock_init_func (gl_rwlock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_rwlock_rdlock_func (gl_rwlock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_rwlock_wrlock_func (gl_rwlock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_rwlock_unlock_func (gl_rwlock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_rwlock_destroy_func (gl_rwlock_t *lock);
+ 
+ /* --------------------- gl_recursive_lock_t datatype --------------------- */
+ 
+@@ -735,10 +735,10 @@ typedef struct
+     glthread_recursive_lock_unlock_func (LOCK)
+ # define glthread_recursive_lock_destroy(LOCK) \
+     glthread_recursive_lock_destroy_func (LOCK)
+-extern void glthread_recursive_lock_init_func (gl_recursive_lock_t *lock);
+-extern int glthread_recursive_lock_lock_func (gl_recursive_lock_t *lock);
+-extern int glthread_recursive_lock_unlock_func (gl_recursive_lock_t *lock);
+-extern int glthread_recursive_lock_destroy_func (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED void glthread_recursive_lock_init_func (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_recursive_lock_lock_func (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_recursive_lock_unlock_func (gl_recursive_lock_t *lock);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_recursive_lock_destroy_func (gl_recursive_lock_t *lock);
+ 
+ /* -------------------------- gl_once_t datatype -------------------------- */
+ 
+@@ -753,7 +753,7 @@ typedef struct
+     STORAGECLASS gl_once_t NAME = { -1, -1 };
+ # define glthread_once(ONCE_CONTROL, INITFUNCTION) \
+     (glthread_once_func (ONCE_CONTROL, INITFUNCTION), 0)
+-extern void glthread_once_func (gl_once_t *once_control, void (*initfunction) (void));
++extern GETTEXTLIB_DLL_EXPORTED void glthread_once_func (gl_once_t *once_control, void (*initfunction) (void));
+ 
+ # ifdef __cplusplus
+ }
+diff --git a/gettext-tools/gnulib-lib/glthread/tls.h b/gettext-tools/gnulib-lib/glthread/tls.h
+index c0a56e4..5e67093 100644
+--- a/gettext-tools/gnulib-lib/glthread/tls.h
++++ b/gettext-tools/gnulib-lib/glthread/tls.h
+@@ -59,7 +59,7 @@
+ /* The pthread_in_use() detection needs to be done at runtime.  */
+ #  define pthread_in_use() \
+      glthread_in_use ()
+-extern int glthread_in_use (void);
++extern GETTEXTLIB_DLL_EXPORTED int glthread_in_use (void);
+ 
+ # endif
+ 
+@@ -207,7 +207,7 @@ typedef union
+     (thread_in_use ()                \
+      ? glthread_tls_get_multithreaded ((NAME).key) \
+      : (NAME).singlethread_value)
+-extern void *glthread_tls_get_multithreaded (thread_key_t key);
++extern GETTEXTLIB_DLL_EXPORTED void *glthread_tls_get_multithreaded (thread_key_t key);
+ # define glthread_tls_set(KEY, POINTER) \
+     (thread_in_use ()                              \
+      ? thr_setspecific ((KEY)->key, (POINTER))     \
+diff --git a/gettext-tools/gnulib-lib/hash.h b/gettext-tools/gnulib-lib/hash.h
+index a56ad77..a333425 100644
+--- a/gettext-tools/gnulib-lib/hash.h
++++ b/gettext-tools/gnulib-lib/hash.h
+@@ -37,15 +37,15 @@ hash_table;
+ /* Initialize a hash table.  INIT_SIZE > 1 is the initial number of available
+    entries.
+    Return 0 upon successful completion, -1 upon memory allocation error.  */
+-extern int hash_init (hash_table *htab, unsigned long int init_size);
++extern GETTEXTLIB_DLL_EXPORTED int hash_init (hash_table *htab, unsigned long int init_size);
+ 
+ /* Delete a hash table's contents.
+    Return 0 always.  */
+-extern int hash_destroy (hash_table *htab);
++extern GETTEXTLIB_DLL_EXPORTED int hash_destroy (hash_table *htab);
+ 
+ /* Look up the value of a key in the given table.
+    If found, return 0 and set *RESULT to it.  Otherwise return -1.  */
+-extern int hash_find_entry (hash_table *htab,
++extern GETTEXTLIB_DLL_EXPORTED int hash_find_entry (hash_table *htab,
+                             const void *key, size_t keylen,
+                             void **result);
+ 
+@@ -53,13 +53,13 @@ extern int hash_find_entry (hash_table *htab,
+    Return non-NULL (more precisely, the address of the KEY inside the table's
+    memory pool) if successful, or NULL if there is already an entry with the
+    given key.  */
+-extern const void * hash_insert_entry (hash_table *htab,
++extern GETTEXTLIB_DLL_EXPORTED const void * hash_insert_entry (hash_table *htab,
+                                        const void *key, size_t keylen,
+                                        void *data);
+ 
+ /* Insert the pair (KEY[0..KEYLEN-1], DATA) in the hash table.
+    Return 0.  */
+-extern int hash_set_value (hash_table *htab,
++extern GETTEXTLIB_DLL_EXPORTED int hash_set_value (hash_table *htab,
+                            const void *key, size_t keylen,
+                            void *data);
+ 
+@@ -67,7 +67,7 @@ extern int hash_set_value (hash_table *htab,
+    should be initially set to NULL.  Store information about the next entry
+    in *KEY, *KEYLEN, *DATA.
+    Return 0 normally, -1 when the whole hash table has been traversed.  */
+-extern int hash_iterate (hash_table *htab, void **ptr,
++extern GETTEXTLIB_DLL_EXPORTED int hash_iterate (hash_table *htab, void **ptr,
+                          const void **key, size_t *keylen,
+                          void **data);
+ 
+@@ -76,12 +76,12 @@ extern int hash_iterate (hash_table *htab, void **ptr,
+    in *KEY, *KEYLEN, *DATAP.  *DATAP is set to point to the storage of the
+    value; modifying **DATAP will modify the value of the entry.
+    Return 0 normally, -1 when the whole hash table has been traversed.  */
+-extern int hash_iterate_modify (hash_table *htab, void **ptr,
++extern GETTEXTLIB_DLL_EXPORTED int hash_iterate_modify (hash_table *htab, void **ptr,
+                                 const void **key, size_t *keylen,
+                                 void ***datap);
+ 
+ /* Given SEED > 1, return the smallest odd prime number >= SEED.  */
+-extern unsigned long int next_prime (unsigned long int seed);
++extern GETTEXTLIB_DLL_EXPORTED unsigned long int next_prime (unsigned long int seed);
+ 
+ #ifdef __cplusplus
+ }
+diff --git a/gettext-tools/gnulib-lib/html-ostream.h b/gettext-tools/gnulib-lib/html-ostream.h
+index 9871dd3..2a90632 100644
+--- a/gettext-tools/gnulib-lib/html-ostream.h
++++ b/gettext-tools/gnulib-lib/html-ostream.h
+@@ -51,11 +51,11 @@ typedef ostream_t html_ostream_t;
+ #endif
+ 
+ /* Functions that invoke the methods.  */
+-extern        void html_ostream_write_mem (html_ostream_t first_arg, const void *data, size_t len);
+-extern         void html_ostream_flush (html_ostream_t first_arg);
+-extern         void html_ostream_free (html_ostream_t first_arg);
+-extern          void html_ostream_begin_span (html_ostream_t first_arg, const char *classname);
+-extern          void html_ostream_end_span (html_ostream_t first_arg, const char *classname);
++extern GETTEXTLIB_DLL_EXPORTED void html_ostream_write_mem (html_ostream_t first_arg, const void *data, size_t len);
++extern GETTEXTLIB_DLL_EXPORTED void html_ostream_flush (html_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void html_ostream_free (html_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void html_ostream_begin_span (html_ostream_t first_arg, const char *classname);
++extern GETTEXTLIB_DLL_EXPORTED void html_ostream_end_span (html_ostream_t first_arg, const char *classname);
+ 
+ /* Type representing an implementation of html_ostream_t.  */
+ struct html_ostream_implementation
+@@ -127,11 +127,11 @@ html_ostream_end_span (html_ostream_t first_arg, const char *classname)
+ 
+ #endif
+ 
+-extern const typeinfo_t html_ostream_typeinfo;
++extern GETTEXTLIB_DLL_EXPORTED const typeinfo_t html_ostream_typeinfo;
+ #define html_ostream_SUPERCLASSES &html_ostream_typeinfo, ostream_SUPERCLASSES
+ #define html_ostream_SUPERCLASSES_LENGTH (1 + ostream_SUPERCLASSES_LENGTH)
+ 
+-extern const struct html_ostream_implementation html_ostream_vtable;
++extern GETTEXTLIB_DLL_EXPORTED const struct html_ostream_implementation html_ostream_vtable;
+ 
+ #line 37 "html-ostream.oo.h"
+ 
+@@ -148,7 +148,7 @@ extern "C" {
+    the use of this stream.
+    Note that the resulting stream must be closed before DESTINATION can be
+    closed.  */
+-extern html_ostream_t html_ostream_create (ostream_t destination);
++extern GETTEXTLIB_DLL_EXPORTED html_ostream_t html_ostream_create (ostream_t destination);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/html-styled-ostream.h b/gettext-tools/gnulib-lib/html-styled-ostream.h
+index fe87d32..79c1571 100644
+--- a/gettext-tools/gnulib-lib/html-styled-ostream.h
++++ b/gettext-tools/gnulib-lib/html-styled-ostream.h
+@@ -54,11 +54,11 @@ typedef styled_ostream_t html_styled_ostream_t;
+ #endif
+ 
+ /* Functions that invoke the methods.  */
+-extern        void html_styled_ostream_write_mem (html_styled_ostream_t first_arg, const void *data, size_t len);
+-extern         void html_styled_ostream_flush (html_styled_ostream_t first_arg);
+-extern         void html_styled_ostream_free (html_styled_ostream_t first_arg);
+-extern          void html_styled_ostream_begin_use_class (html_styled_ostream_t first_arg, const char *classname);
+-extern          void html_styled_ostream_end_use_class (html_styled_ostream_t first_arg, const char *classname);
++extern GETTEXTLIB_DLL_EXPORTED void html_styled_ostream_write_mem (html_styled_ostream_t first_arg, const void *data, size_t len);
++extern GETTEXTLIB_DLL_EXPORTED void html_styled_ostream_flush (html_styled_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void html_styled_ostream_free (html_styled_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void html_styled_ostream_begin_use_class (html_styled_ostream_t first_arg, const char *classname);
++extern GETTEXTLIB_DLL_EXPORTED void html_styled_ostream_end_use_class (html_styled_ostream_t first_arg, const char *classname);
+ 
+ /* Type representing an implementation of html_styled_ostream_t.  */
+ struct html_styled_ostream_implementation
+@@ -130,11 +130,11 @@ html_styled_ostream_end_use_class (html_styled_ostream_t first_arg, const char *
+ 
+ #endif
+ 
+-extern const typeinfo_t html_styled_ostream_typeinfo;
++extern GETTEXTLIB_DLL_EXPORTED const typeinfo_t html_styled_ostream_typeinfo;
+ #define html_styled_ostream_SUPERCLASSES &html_styled_ostream_typeinfo, styled_ostream_SUPERCLASSES
+ #define html_styled_ostream_SUPERCLASSES_LENGTH (1 + styled_ostream_SUPERCLASSES_LENGTH)
+ 
+-extern const struct html_styled_ostream_implementation html_styled_ostream_vtable;
++extern GETTEXTLIB_DLL_EXPORTED const struct html_styled_ostream_implementation html_styled_ostream_vtable;
+ 
+ #line 28 "html-styled-ostream.oo.h"
+ 
+@@ -148,7 +148,7 @@ extern "C" {
+    writes it in HTML form on DESTINATION, styled with the file CSS_FILENAME.
+    Note that the resulting stream must be closed before DESTINATION can be
+    closed.  */
+-extern html_styled_ostream_t
++extern GETTEXTLIB_DLL_EXPORTED html_styled_ostream_t
+        html_styled_ostream_create (ostream_t destination,
+                                    const char *css_filename);
+ 
+diff --git a/gettext-tools/gnulib-lib/javacomp.h b/gettext-tools/gnulib-lib/javacomp.h
+index 757e82e..7ba8850 100644
+--- a/gettext-tools/gnulib-lib/javacomp.h
++++ b/gettext-tools/gnulib-lib/javacomp.h
+@@ -61,7 +61,7 @@
+    Java version.
+    If verbose, the command to be executed will be printed.
+    Return false if OK, true on error.  */
+-extern bool compile_java_class (const char * const *java_sources,
++extern GETTEXTLIB_DLL_EXPORTED bool compile_java_class (const char * const *java_sources,
+                                 unsigned int java_sources_count,
+                                 const char * const *classpaths,
+                                 unsigned int classpaths_count,
+diff --git a/gettext-tools/gnulib-lib/javaexec.h b/gettext-tools/gnulib-lib/javaexec.h
+index ca9bbd0..66fe1ec 100644
+--- a/gettext-tools/gnulib-lib/javaexec.h
++++ b/gettext-tools/gnulib-lib/javaexec.h
+@@ -38,7 +38,7 @@ typedef bool execute_fn (const char *progname,
+    private_data argument.  This function returns false if OK, true on error.
+    Return false if OK, true on error.
+    If quiet, error messages will not be printed.  */
+-extern bool execute_java_class (const char *class_name,
++extern GETTEXTLIB_DLL_EXPORTED bool execute_java_class (const char *class_name,
+                                 const char * const *classpaths,
+                                 unsigned int classpaths_count,
+                                 bool use_minimal_classpath,
+diff --git a/gettext-tools/gnulib-lib/javaversion.h b/gettext-tools/gnulib-lib/javaversion.h
+index dc750fe..a840e42 100644
+--- a/gettext-tools/gnulib-lib/javaversion.h
++++ b/gettext-tools/gnulib-lib/javaversion.h
+@@ -28,7 +28,7 @@ extern "C" {
+    This is the value of System.getProperty("java.specification.version").
+    Some possible values are: 1.1, 1.2, 1.3, 1.4, 1.5, 1.6.  Return NULL if
+    the Java version cannot be determined.  */
+-extern char * javaexec_version (void);
++extern GETTEXTLIB_DLL_EXPORTED char * javaexec_version (void);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/localcharset.h b/gettext-tools/gnulib-lib/localcharset.h
+index 9011d58..c558fe3 100644
+--- a/gettext-tools/gnulib-lib/localcharset.h
++++ b/gettext-tools/gnulib-lib/localcharset.h
+@@ -29,7 +29,7 @@ extern "C" {
+    The result must not be freed; it is statically allocated.
+    If the canonical name cannot be determined, the result is a non-canonical
+    name.  */
+-extern const char * locale_charset (void);
++extern GETTEXTLIB_DLL_EXPORTED const char * locale_charset (void);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/localename.h b/gettext-tools/gnulib-lib/localename.h
+index 861e6e9..10d8c51 100644
+--- a/gettext-tools/gnulib-lib/localename.h
++++ b/gettext-tools/gnulib-lib/localename.h
+@@ -34,7 +34,7 @@ extern "C" {
+    The codeset part in the result is not reliable; the locale_charset()
+    should be used for codeset information instead.
+    The result must not be freed; it is statically allocated.  */
+-extern const char * gl_locale_name (int category, const char *categoryname);
++extern GETTEXTLIB_DLL_EXPORTED const char * gl_locale_name (int category, const char *categoryname);
+ 
+ /* Determine the current per-thread locale's name, as specified by uselocale()
+    calls.
+@@ -47,7 +47,7 @@ extern const char * gl_locale_name (int category, const char *categoryname);
+    The codeset part in the result is not reliable; the locale_charset()
+    should be used for codeset information instead.
+    The result must not be freed; it is statically allocated.  */
+-extern const char * gl_locale_name_thread (int category, const char *categoryname);
++extern GETTEXTLIB_DLL_EXPORTED const char * gl_locale_name_thread (int category, const char *categoryname);
+ 
+ /* Determine the thread-independent current locale's name, as specified by
+    setlocale() calls or by environment variables.
+@@ -61,14 +61,14 @@ extern const char * gl_locale_name_thread (int category, const char *categorynam
+    The codeset part in the result is not reliable; the locale_charset()
+    should be used for codeset information instead.
+    The result must not be freed; it is statically allocated.  */
+-extern const char * gl_locale_name_posix (int category, const char *categoryname);
++extern GETTEXTLIB_DLL_EXPORTED const char * gl_locale_name_posix (int category, const char *categoryname);
+ 
+ /* Determine the default locale's name, as specified by environment
+    variables.
+    Return the locale category's name, or NULL if no locale has been specified
+    by environment variables.
+    The result must not be freed; it is statically allocated.  */
+-extern const char * gl_locale_name_environ (int category, const char *categoryname);
++extern GETTEXTLIB_DLL_EXPORTED const char * gl_locale_name_environ (int category, const char *categoryname);
+ 
+ /* Determine the default locale's name.  This is the current locale's name,
+    if not specified by uselocale() calls, by setlocale() calls, or by
+@@ -85,7 +85,7 @@ extern const char * gl_locale_name_environ (int category, const char *categoryna
+       not require such a facility."
+ 
+    The result must not be freed; it is statically allocated.  */
+-extern const char * gl_locale_name_default (void)
++extern GETTEXTLIB_DLL_EXPORTED const char * gl_locale_name_default (void)
+ #if !(HAVE_CFLOCALECOPYCURRENT || HAVE_CFPREFERENCESCOPYAPPVALUE \
+       || defined _WIN32 || defined __WIN32__ || defined __CYGWIN__)
+   _GL_ATTRIBUTE_CONST
+diff --git a/gettext-tools/gnulib-lib/malloca.h b/gettext-tools/gnulib-lib/malloca.h
+index 5071e46..3e7a8ba 100644
+--- a/gettext-tools/gnulib-lib/malloca.h
++++ b/gettext-tools/gnulib-lib/malloca.h
+@@ -60,11 +60,11 @@ extern "C" {
+ # define malloca(N) \
+   mmalloca (N)
+ #endif
+-extern void * mmalloca (size_t n);
++extern GETTEXTLIB_DLL_EXPORTED void * mmalloca (size_t n);
+ 
+ /* Free a block of memory allocated through malloca().  */
+ #if HAVE_ALLOCA
+-extern void freea (void *p);
++extern GETTEXTLIB_DLL_EXPORTED void freea (void *p);
+ #else
+ # define freea free
+ #endif
+@@ -80,7 +80,7 @@ extern void freea (void *p);
+      ? NULL \
+      : malloca ((n) * (s)))
+ #else
+-extern void * nmalloca (size_t n, size_t s);
++extern GETTEXTLIB_DLL_EXPORTED void * nmalloca (size_t n, size_t s);
+ #endif
+ 
+ 
+diff --git a/gettext-tools/gnulib-lib/mbswidth.h b/gettext-tools/gnulib-lib/mbswidth.h
+index ab7c150..8a2873c 100644
+--- a/gettext-tools/gnulib-lib/mbswidth.h
++++ b/gettext-tools/gnulib-lib/mbswidth.h
+@@ -48,11 +48,11 @@ extern "C" {
+ 
+ /* Returns the number of screen columns needed for STRING.  */
+ #define mbswidth gnu_mbswidth  /* avoid clash with UnixWare 7.1.1 function */
+-extern int mbswidth (const char *string, int flags);
++extern GETTEXTLIB_DLL_EXPORTED int mbswidth (const char *string, int flags);
+ 
+ /* Returns the number of screen columns needed for the NBYTES bytes
+    starting at BUF.  */
+-extern int mbsnwidth (const char *buf, size_t nbytes, int flags);
++extern GETTEXTLIB_DLL_EXPORTED int mbsnwidth (const char *buf, size_t nbytes, int flags);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/msvc-inval.h b/gettext-tools/gnulib-lib/msvc-inval.h
+index a0ef540..508c5ae 100644
+--- a/gettext-tools/gnulib-lib/msvc-inval.h
++++ b/gettext-tools/gnulib-lib/msvc-inval.h
+@@ -71,7 +71,7 @@ extern "C" {
+ /* Ensure that the invalid parameter handler in installed that just returns.
+    Because we assume no other part of the program installs a different
+    invalid parameter handler, this solution is multithread-safe.  */
+-extern void gl_msvc_inval_ensure_handler (void);
++extern GETTEXTLIB_DLL_EXPORTED void gl_msvc_inval_ensure_handler (void);
+ 
+ #  ifdef __cplusplus
+ }
+@@ -117,7 +117,7 @@ extern "C" {
+    software exception with code STATUS_GNULIB_INVALID_PARAMETER.
+    Because we assume no other part of the program installs a different
+    invalid parameter handler, this solution is multithread-safe.  */
+-extern void gl_msvc_inval_ensure_handler (void);
++extern GETTEXTLIB_DLL_EXPORTED void gl_msvc_inval_ensure_handler (void);
+ 
+ #   ifdef __cplusplus
+ }
+@@ -162,10 +162,10 @@ struct gl_msvc_inval_per_thread
+    software exception with code STATUS_GNULIB_INVALID_PARAMETER otherwise.
+    Because we assume no other part of the program installs a different
+    invalid parameter handler, this solution is multithread-safe.  */
+-extern void gl_msvc_inval_ensure_handler (void);
++extern GETTEXTLIB_DLL_EXPORTED void gl_msvc_inval_ensure_handler (void);
+ 
+ /* Return a pointer to the per-thread data for the current thread.  */
+-extern struct gl_msvc_inval_per_thread *gl_msvc_inval_current (void);
++extern GETTEXTLIB_DLL_EXPORTED struct gl_msvc_inval_per_thread *gl_msvc_inval_current (void);
+ 
+ #   ifdef __cplusplus
+ }
+diff --git a/gettext-tools/gnulib-lib/msvc-nothrow.h b/gettext-tools/gnulib-lib/msvc-nothrow.h
+index 0d4dea5..3f57f97 100644
+--- a/gettext-tools/gnulib-lib/msvc-nothrow.h
++++ b/gettext-tools/gnulib-lib/msvc-nothrow.h
+@@ -33,7 +33,7 @@
+ # if HAVE_MSVC_INVALID_PARAMETER_HANDLER
+ 
+ /* Override _get_osfhandle.  */
+-extern intptr_t _gl_nothrow_get_osfhandle (int fd);
++extern GETTEXTLIB_DLL_EXPORTED  intptr_t _gl_nothrow_get_osfhandle (int fd);
+ #  define _get_osfhandle _gl_nothrow_get_osfhandle
+ 
+ # endif
+diff --git a/gettext-tools/gnulib-lib/obstack.h b/gettext-tools/gnulib-lib/obstack.h
+index cc44c06..caabd52 100644
+--- a/gettext-tools/gnulib-lib/obstack.h
++++ b/gettext-tools/gnulib-lib/obstack.h
+@@ -195,16 +195,16 @@ struct obstack          /* control current object in current chunk */
+ 
+ /* Declare the external functions we use; they are in obstack.c.  */
+ 
+-extern void _obstack_newchunk (struct obstack *, _OBSTACK_SIZE_T);
+-extern void _obstack_free (struct obstack *, void *);
+-extern int _obstack_begin (struct obstack *,
++extern GETTEXTLIB_DLL_EXPORTED void _obstack_newchunk (struct obstack *, _OBSTACK_SIZE_T);
++extern GETTEXTLIB_DLL_EXPORTED void _obstack_free (struct obstack *, void *);
++extern GETTEXTLIB_DLL_EXPORTED int _obstack_begin (struct obstack *,
+                            _OBSTACK_SIZE_T, _OBSTACK_SIZE_T,
+                            void *(*) (size_t), void (*) (void *));
+-extern int _obstack_begin_1 (struct obstack *,
++extern GETTEXTLIB_DLL_EXPORTED int _obstack_begin_1 (struct obstack *,
+                              _OBSTACK_SIZE_T, _OBSTACK_SIZE_T,
+                              void *(*) (void *, size_t),
+                              void (*) (void *, void *), void *);
+-extern _OBSTACK_SIZE_T _obstack_memory_used (struct obstack *)
++extern GETTEXTLIB_DLL_EXPORTED _OBSTACK_SIZE_T _obstack_memory_used (struct obstack *)
+   __attribute_pure__;
+ 
+ 
+@@ -212,10 +212,10 @@ extern _OBSTACK_SIZE_T _obstack_memory_used (struct obstack *)
+    more memory.  This can be set to a user defined function which
+    should either abort gracefully or use longjump - but shouldn't
+    return.  The default action is to print a message and abort.  */
+-extern DLL_VARIABLE void (*obstack_alloc_failed_handler) (void);
++extern GETTEXTLIB_DLL_EXPORTED  void (*obstack_alloc_failed_handler) (void);
+ 
+ /* Exit value used when 'print_and_abort' is used.  */
+-extern DLL_VARIABLE int obstack_exit_failure;
++extern GETTEXTLIB_DLL_EXPORTED  int obstack_exit_failure;
+ 
+ /* Pointer to beginning of object being allocated or to be allocated next.
+    Note that this might not be the final address of the object
+diff --git a/gettext-tools/gnulib-lib/ostream.h b/gettext-tools/gnulib-lib/ostream.h
+index 96cb623..9e76385 100644
+--- a/gettext-tools/gnulib-lib/ostream.h
++++ b/gettext-tools/gnulib-lib/ostream.h
+@@ -52,9 +52,9 @@ typedef struct any_ostream_representation * ostream_t;
+ #endif
+ 
+ /* Functions that invoke the methods.  */
+-extern        void ostream_write_mem (ostream_t first_arg, const void *data, size_t len);
+-extern         void ostream_flush (ostream_t first_arg);
+-extern         void ostream_free (ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void ostream_write_mem (ostream_t first_arg, const void *data, size_t len);
++extern GETTEXTLIB_DLL_EXPORTED void ostream_flush (ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void ostream_free (ostream_t first_arg);
+ 
+ /* Type representing an implementation of ostream_t.  */
+ struct ostream_implementation
+@@ -121,7 +121,7 @@ extern "C" {
+ #endif
+ 
+ /* Write a string's contents to a stream.  */
+-extern void ostream_write_str (ostream_t stream, const char *string);
++extern GETTEXTLIB_DLL_EXPORTED void ostream_write_str (ostream_t stream, const char *string);
+ 
+ #if HAVE_INLINE
+ 
+diff --git a/gettext-tools/gnulib-lib/pipe-filter.h b/gettext-tools/gnulib-lib/pipe-filter.h
+index 4c15677..e8310bd 100644
+--- a/gettext-tools/gnulib-lib/pipe-filter.h
++++ b/gettext-tools/gnulib-lib/pipe-filter.h
+@@ -131,7 +131,7 @@ typedef void (*done_read_fn) (void *data_read, size_t num_bytes_read,
+    Return 0 upon success, or (only if exit_on_error is false):
+    - -1 with errno set upon failure,
+    - the positive exit code of the subprocess if that failed.  */
+-extern int
++extern GETTEXTLIB_DLL_EXPORTED int
+        pipe_filter_ii_execute (const char *progname,
+                                const char *prog_path, const char **prog_argv,
+                                bool null_stderr, bool exit_on_error,
+@@ -177,7 +177,7 @@ struct pipe_filter_gi;
+    returned.
+ 
+    Return the freshly created 'struct pipe_filter_gi'.  */
+-extern struct pipe_filter_gi *
++extern GETTEXTLIB_DLL_EXPORTED struct pipe_filter_gi *
+        pipe_filter_gi_create (const char *progname,
+                               const char *prog_path, const char **prog_argv,
+                               bool null_stderr, bool exit_on_error,
+@@ -201,7 +201,7 @@ extern struct pipe_filter_gi *
+    Return 0 upon success, or (only if exit_on_error is false):
+    - -1 with errno set upon failure,
+    - the positive exit code of the subprocess if that failed.  */
+-extern int
++extern GETTEXTLIB_DLL_EXPORTED int
+        pipe_filter_gi_write (struct pipe_filter_gi *filter,
+                              const void *buf, size_t size);
+ 
+@@ -219,7 +219,7 @@ extern int
+    Return 0 upon success, or (only if exit_on_error is false):
+    - -1 with errno set upon failure,
+    - the positive exit code of the subprocess if that failed.  */
+-extern int
++extern GETTEXTLIB_DLL_EXPORTED int
+        pipe_filter_gi_close (struct pipe_filter_gi *filter);
+ 
+ 
+diff --git a/gettext-tools/gnulib-lib/printf-args.h b/gettext-tools/gnulib-lib/printf-args.h
+index 9364eed..bebe14f 100644
+--- a/gettext-tools/gnulib-lib/printf-args.h
++++ b/gettext-tools/gnulib-lib/printf-args.h
+@@ -153,6 +153,6 @@ STATIC
+ #else
+ extern
+ #endif
+-int PRINTF_FETCHARGS (va_list args, arguments *a);
++int GETTEXTLIB_DLL_EXPORTED PRINTF_FETCHARGS (va_list args, arguments *a);
+ 
+ #endif /* _PRINTF_ARGS_H */
+diff --git a/gettext-tools/gnulib-lib/printf-parse.h b/gettext-tools/gnulib-lib/printf-parse.h
+index 2651195..bc36acc 100644
+--- a/gettext-tools/gnulib-lib/printf-parse.h
++++ b/gettext-tools/gnulib-lib/printf-parse.h
+@@ -171,14 +171,14 @@ u32_directives;
+    to the end of the format string.  Also fills in the arg_type fields of the
+    arguments and the needed count of arguments.  */
+ #if ENABLE_UNISTDIO
+-extern int
++extern GETTEXTLIB_DLL_EXPORTED int
+        ulc_printf_parse (const char *format, char_directives *d, arguments *a);
+-extern int
++extern GETTEXTLIB_DLL_EXPORTED int
+        u8_printf_parse (const uint8_t *format, u8_directives *d, arguments *a);
+-extern int
++extern GETTEXTLIB_DLL_EXPORTED int
+        u16_printf_parse (const uint16_t *format, u16_directives *d,
+                          arguments *a);
+-extern int
++extern GETTEXTLIB_DLL_EXPORTED int
+        u32_printf_parse (const uint32_t *format, u32_directives *d,
+                          arguments *a);
+ #else
+@@ -187,7 +187,7 @@ STATIC
+ # else
+ extern
+ # endif
+-int printf_parse (const char *format, char_directives *d, arguments *a);
++int GETTEXTLIB_DLL_EXPORTED printf_parse (const char *format, char_directives *d, arguments *a);
+ #endif
+ 
+ #endif /* _PRINTF_PARSE_H */
+diff --git a/gettext-tools/gnulib-lib/progname.h b/gettext-tools/gnulib-lib/progname.h
+index f620027..0506ffd 100644
+--- a/gettext-tools/gnulib-lib/progname.h
++++ b/gettext-tools/gnulib-lib/progname.h
+@@ -29,7 +29,7 @@ extern "C" {
+ 
+ 
+ /* String containing name the program is called with.  */
+-extern DLL_VARIABLE const char *program_name;
++extern GETTEXTLIB_DLL_EXPORTED  const char *program_name;
+ 
+ /* Set program_name, based on argv[0].
+    argv0 must be a string allocated with indefinite extent, and must not be
+@@ -40,7 +40,7 @@ extern void set_program_name (const char *argv0);
+ 
+ /* Set program_name, based on argv[0], and original installation prefix and
+    directory, for relocatability.  */
+-extern void set_program_name_and_installdir (const char *argv0,
++extern GETTEXTLIB_DLL_EXPORTED void set_program_name_and_installdir (const char *argv0,
+                                              const char *orig_installprefix,
+                                              const char *orig_installdir);
+ #undef set_program_name
+@@ -49,7 +49,7 @@ extern void set_program_name_and_installdir (const char *argv0,
+ 
+ /* Return the full pathname of the current executable, based on the earlier
+    call to set_program_name_and_installdir.  Return NULL if unknown.  */
+-extern char *get_full_program_name (void);
++extern GETTEXTLIB_DLL_EXPORTED char *get_full_program_name (void);
+ 
+ #endif
+ 
+diff --git a/gettext-tools/gnulib-lib/propername.h b/gettext-tools/gnulib-lib/propername.h
+index 7e3de0f..71add1d 100644
+--- a/gettext-tools/gnulib-lib/propername.h
++++ b/gettext-tools/gnulib-lib/propername.h
+@@ -89,13 +89,13 @@ extern "C" {
+ #endif
+ 
+ /* Return the localization of NAME.  NAME is written in ASCII.  */
+-extern const char * proper_name (const char *name) /* NOT attribute const */;
++extern GETTEXTLIB_DLL_EXPORTED const char * proper_name (const char *name) /* NOT attribute const */;
+ 
+ /* Return the localization of a name whose original writing is not ASCII.
+    NAME_UTF8 is the real name, written in UTF-8 with octal or hexadecimal
+    escape sequences.  NAME_ASCII is a fallback written only with ASCII
+    characters.  */
+-extern const char * proper_name_utf8 (const char *name_ascii,
++extern GETTEXTLIB_DLL_EXPORTED const char * proper_name_utf8 (const char *name_ascii,
+                                       const char *name_utf8);
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/quotearg.h b/gettext-tools/gnulib-lib/quotearg.h
+index da29d7b..1b57147 100644
+--- a/gettext-tools/gnulib-lib/quotearg.h
++++ b/gettext-tools/gnulib-lib/quotearg.h
+@@ -233,8 +233,8 @@ enum quoting_flags
+ # endif
+ 
+ /* Names of quoting styles and their corresponding values.  */
+-extern char const *const quoting_style_args[];
+-extern enum quoting_style const quoting_style_vals[];
++extern GETTEXTLIB_DLL_EXPORTED char const *const quoting_style_args[];
++extern GETTEXTLIB_DLL_EXPORTED enum quoting_style const quoting_style_vals[];
+ 
+ struct quoting_options;
+ 
+diff --git a/gettext-tools/gnulib-lib/relocatable.h b/gettext-tools/gnulib-lib/relocatable.h
+index 2b0fab7..bff25a7 100644
+--- a/gettext-tools/gnulib-lib/relocatable.h
++++ b/gettext-tools/gnulib-lib/relocatable.h
+@@ -50,7 +50,7 @@ extern RELOCATABLE_DLL_EXPORTED void
+    directory.
+    The returned string is either PATHNAME unmodified or a freshly allocated
+    string that you can free with free() after casting it to 'char *'.  */
+-extern const char * relocate (const char *pathname);
++extern RELOCATABLE_DLL_EXPORTED const char * relocate (const char *pathname);
+ 
+ /* Memory management: relocate() potentially allocates memory, because it has
+    to construct a fresh pathname.  If this is a problem because your program
+@@ -62,7 +62,7 @@ extern const char * relocate (const char *pathname);
+    installation prefix, the original installation directory of a particular
+    file, and the current pathname of this file.
+    Returns it, freshly allocated.  Returns NULL upon failure.  */
+-extern char * compute_curr_prefix (const char *orig_installprefix,
++extern RELOCATABLE_DLL_EXPORTED char * compute_curr_prefix (const char *orig_installprefix,
+                                    const char *orig_installdir,
+                                    const char *curr_pathname);
+ 
+diff --git a/gettext-tools/gnulib-lib/safe-read.h b/gettext-tools/gnulib-lib/safe-read.h
+index aba8bdb..a0374a7 100644
+--- a/gettext-tools/gnulib-lib/safe-read.h
++++ b/gettext-tools/gnulib-lib/safe-read.h
+@@ -39,7 +39,7 @@ extern "C" {
+ /* Read up to COUNT bytes at BUF from descriptor FD, retrying if interrupted.
+    Return the actual number of bytes read, zero for EOF, or SAFE_READ_ERROR
+    upon error.  */
+-extern size_t safe_read (int fd, void *buf, size_t count);
++extern GETTEXTLIB_DLL_EXPORTED size_t safe_read (int fd, void *buf, size_t count);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/safe-write.h b/gettext-tools/gnulib-lib/safe-write.h
+index ae18657..86b53a6 100644
+--- a/gettext-tools/gnulib-lib/safe-write.h
++++ b/gettext-tools/gnulib-lib/safe-write.h
+@@ -34,4 +34,4 @@
+ /* Write up to COUNT bytes at BUF to descriptor FD, retrying if interrupted.
+    Return the actual number of bytes written, zero for EOF, or SAFE_WRITE_ERROR
+    upon error.  */
+-extern size_t safe_write (int fd, const void *buf, size_t count);
++extern GETTEXTLIB_DLL_EXPORTED size_t safe_write (int fd, const void *buf, size_t count);
+diff --git a/gettext-tools/gnulib-lib/sh-quote.h b/gettext-tools/gnulib-lib/sh-quote.h
+index 8615275..b75aa40 100644
+--- a/gettext-tools/gnulib-lib/sh-quote.h
++++ b/gettext-tools/gnulib-lib/sh-quote.h
+@@ -29,18 +29,18 @@ extern "C" {
+ #endif
+ 
+ /* Returns the number of bytes needed for the quoted string.  */
+-extern size_t shell_quote_length (const char *string);
++extern GETTEXTLIB_DLL_EXPORTED size_t shell_quote_length (const char *string);
+ 
+ /* Copies the quoted string to p and returns the incremented p.
+    There must be room for shell_quote_length (string) + 1 bytes at p.  */
+-extern char * shell_quote_copy (char *p, const char *string);
++extern GETTEXTLIB_DLL_EXPORTED char * shell_quote_copy (char *p, const char *string);
+ 
+ /* Returns the freshly allocated quoted string.  */
+-extern char * shell_quote (const char *string);
++extern GETTEXTLIB_DLL_EXPORTED char * shell_quote (const char *string);
+ 
+ /* Returns a freshly allocated string containing all argument strings, quoted,
+    separated through spaces.  */
+-extern char * shell_quote_argv (char * const *argv);
++extern GETTEXTLIB_DLL_EXPORTED char * shell_quote_argv (char * const *argv);
+ 
+ #ifdef __cplusplus
+ }
+diff --git a/gettext-tools/gnulib-lib/spawn-pipe.h b/gettext-tools/gnulib-lib/spawn-pipe.h
+index 4e25752..1ca76ab 100644
+--- a/gettext-tools/gnulib-lib/spawn-pipe.h
++++ b/gettext-tools/gnulib-lib/spawn-pipe.h
+@@ -82,7 +82,7 @@ extern "C" {
+  * Note: When writing to a child process, it is useful to ignore the SIGPIPE
+  * signal and the EPIPE error code.
+  */
+-extern pid_t create_pipe_out (const char *progname,
++extern GETTEXTLIB_DLL_EXPORTED pid_t create_pipe_out (const char *progname,
+                               const char *prog_path, char **prog_argv,
+                               const char *prog_stdout, bool null_stderr,
+                               bool slave_process, bool exit_on_error,
+@@ -95,7 +95,7 @@ extern pid_t create_pipe_out (const char *progname,
+  *    parent  <-   fd[0]   <-   STDOUT_FILENO   <-   child
+  *
+  */
+-extern pid_t create_pipe_in (const char *progname,
++extern GETTEXTLIB_DLL_EXPORTED pid_t create_pipe_in (const char *progname,
+                              const char *prog_path, char **prog_argv,
+                              const char *prog_stdin, bool null_stderr,
+                              bool slave_process, bool exit_on_error,
+@@ -123,7 +123,7 @@ extern pid_t create_pipe_in (const char *progname,
+  *    But the subprocess cannot produce more data until you gave it more
+  *    input.  But you are currently busy reading from it.
+  */
+-extern pid_t create_pipe_bidi (const char *progname,
++extern GETTEXTLIB_DLL_EXPORTED pid_t create_pipe_bidi (const char *progname,
+                                const char *prog_path, char **prog_argv,
+                                bool null_stderr,
+                                bool slave_process, bool exit_on_error,
+diff --git a/gettext-tools/gnulib-lib/strerror-override.h b/gettext-tools/gnulib-lib/strerror-override.h
+index e98c1c1..805c3c2 100644
+--- a/gettext-tools/gnulib-lib/strerror-override.h
++++ b/gettext-tools/gnulib-lib/strerror-override.h
+@@ -48,7 +48,7 @@
+      || GNULIB_defined_EOWNERDEAD \
+      || GNULIB_defined_ENOTRECOVERABLE \
+      || GNULIB_defined_EILSEQ
+-extern const char *strerror_override (int errnum) _GL_ATTRIBUTE_CONST;
++extern GETTEXTLIB_DLL_EXPORTED const char *strerror_override (int errnum) _GL_ATTRIBUTE_CONST;
+ # else
+ #  define strerror_override(ignored) NULL
+ # endif
+diff --git a/gettext-tools/gnulib-lib/striconv.h b/gettext-tools/gnulib-lib/striconv.h
+index 5747731..7b0fb19 100644
+--- a/gettext-tools/gnulib-lib/striconv.h
++++ b/gettext-tools/gnulib-lib/striconv.h
+@@ -41,7 +41,7 @@ extern "C" {
+    If successful: The resulting string is stored in *RESULTP and its length
+    in *LENGTHP.  *RESULTP is set to a freshly allocated memory block, or is
+    unchanged if no dynamic memory allocation was necessary.  */
+-extern int mem_cd_iconv (const char *src, size_t srclen, iconv_t cd,
++extern GETTEXTLIB_DLL_EXPORTED int mem_cd_iconv (const char *src, size_t srclen, iconv_t cd,
+                          char **resultp, size_t *lengthp);
+ 
+ /* Convert an entire string from one encoding to another, using iconv.
+@@ -52,7 +52,7 @@ extern int mem_cd_iconv (const char *src, size_t srclen, iconv_t cd,
+    Allocate a malloced memory block for the result.
+    Return value: the freshly allocated resulting NUL-terminated string if
+    successful, otherwise NULL and errno set.  */
+-extern char * str_cd_iconv (const char *src, iconv_t cd);
++extern GETTEXTLIB_DLL_EXPORTED char * str_cd_iconv (const char *src, iconv_t cd);
+ 
+ #endif
+ 
+@@ -63,7 +63,7 @@ extern char * str_cd_iconv (const char *src, iconv_t cd);
+    Allocate a malloced memory block for the result.
+    Return value: the freshly allocated resulting NUL-terminated string if
+    successful, otherwise NULL and errno set.  */
+-extern char * str_iconv (const char *src,
++extern GETTEXTLIB_DLL_EXPORTED char * str_iconv (const char *src,
+                          const char *from_codeset, const char *to_codeset);
+ 
+ 
+diff --git a/gettext-tools/gnulib-lib/striconveh.h b/gettext-tools/gnulib-lib/striconveh.h
+index 4f2416e..4849767 100644
+--- a/gettext-tools/gnulib-lib/striconveh.h
++++ b/gettext-tools/gnulib-lib/striconveh.h
+@@ -52,13 +52,13 @@ typedef struct
+ /* Open a conversion descriptor for use by the iconveh functions.
+    If successful, fills *CDP and returns 0.  Upon failure, return -1 with errno
+    set.  */
+-extern int
++extern GETTEXTLIB_DLL_EXPORTED int
+        iconveh_open (const char *to_codeset, const char *from_codeset,
+                      iconveh_t *cdp);
+ 
+ /* Close a conversion descriptor created by iconveh_open().
+    Return value: 0 if successful, otherwise -1 and errno set.  */
+-extern int
++extern GETTEXTLIB_DLL_EXPORTED int
+        iconveh_close (const iconveh_t *cd);
+ 
+ /* Convert an entire string from one encoding to another, using iconv.
+@@ -76,7 +76,7 @@ extern int
+    If successful: The resulting string is stored in *RESULTP and its length
+    in *LENGTHP.  *RESULTP is set to a freshly allocated memory block, or is
+    unchanged if no dynamic memory allocation was necessary.  */
+-extern int
++extern GETTEXTLIB_DLL_EXPORTED int
+        mem_cd_iconveh (const char *src, size_t srclen,
+                        const iconveh_t *cd,
+                        enum iconv_ilseq_handler handler,
+@@ -92,7 +92,7 @@ extern int
+    Allocate a malloced memory block for the result.
+    Return value: the freshly allocated resulting NUL-terminated string if
+    successful, otherwise NULL and errno set.  */
+-extern char *
++extern GETTEXTLIB_DLL_EXPORTED char *
+        str_cd_iconveh (const char *src,
+                        const iconveh_t *cd,
+                        enum iconv_ilseq_handler handler);
+@@ -112,7 +112,7 @@ extern char *
+    If successful: The resulting string is stored in *RESULTP and its length
+    in *LENGTHP.  *RESULTP is set to a freshly allocated memory block, or is
+    unchanged if no dynamic memory allocation was necessary.  */
+-extern int
++extern GETTEXTLIB_DLL_EXPORTED int
+        mem_iconveh (const char *src, size_t srclen,
+                     const char *from_codeset, const char *to_codeset,
+                     enum iconv_ilseq_handler handler,
+@@ -126,7 +126,7 @@ extern int
+    Allocate a malloced memory block for the result.
+    Return value: the freshly allocated resulting NUL-terminated string if
+    successful, otherwise NULL and errno set.  */
+-extern char *
++extern GETTEXTLIB_DLL_EXPORTED char *
+        str_iconveh (const char *src,
+                     const char *from_codeset, const char *to_codeset,
+                     enum iconv_ilseq_handler handler);
+diff --git a/gettext-tools/gnulib-lib/striconveha.h b/gettext-tools/gnulib-lib/striconveha.h
+index e739585..79017e5 100644
+--- a/gettext-tools/gnulib-lib/striconveha.h
++++ b/gettext-tools/gnulib-lib/striconveha.h
+@@ -46,7 +46,7 @@ extern "C" {
+    If successful: The resulting string is stored in *RESULTP and its length
+    in *LENGTHP.  *RESULTP is set to a freshly allocated memory block, or is
+    unchanged if no dynamic memory allocation was necessary.  */
+-extern int
++extern GETTEXTLIB_DLL_EXPORTED int
+        mem_iconveha (const char *src, size_t srclen,
+                      const char *from_codeset, const char *to_codeset,
+                      bool transliterate,
+@@ -65,7 +65,7 @@ extern int
+    Allocate a malloced memory block for the result.
+    Return value: the freshly allocated resulting NUL-terminated string if
+    successful, otherwise NULL and errno set.  */
+-extern char *
++extern GETTEXTLIB_DLL_EXPORTED char *
+        str_iconveha (const char *src,
+                      const char *from_codeset, const char *to_codeset,
+                      bool transliterate,
+@@ -82,7 +82,7 @@ extern char *
+    TRY_IN_ORDER is a NULL terminated list of encodings to be tried.
+    Returns 0 upon success, or -1 (with errno set) in case of error.
+    Particular errno values: ENOMEM.  */
+-extern int
++extern GETTEXTLIB_DLL_EXPORTED int
+        uniconv_register_autodetect (const char *name,
+                                     const char * const *try_in_order);
+ 
+diff --git a/gettext-tools/gnulib-lib/strnlen1.h b/gettext-tools/gnulib-lib/strnlen1.h
+index b2f956f..c56c042 100644
+--- a/gettext-tools/gnulib-lib/strnlen1.h
++++ b/gettext-tools/gnulib-lib/strnlen1.h
+@@ -28,7 +28,7 @@ extern "C" {
+ /* Find the length of STRING + 1, but scan at most MAXLEN bytes.
+    If no '\0' terminator is found in that many characters, return MAXLEN.  */
+ /* This is the same as strnlen (string, maxlen - 1) + 1.  */
+-extern size_t strnlen1 (const char *string, size_t maxlen)
++extern GETTEXTLIB_DLL_EXPORTED size_t strnlen1 (const char *string, size_t maxlen)
+   _GL_ATTRIBUTE_PURE;
+ 
+ 
+diff --git a/gettext-tools/gnulib-lib/styled-ostream.h b/gettext-tools/gnulib-lib/styled-ostream.h
+index 9079bf8..39c8d4e 100644
+--- a/gettext-tools/gnulib-lib/styled-ostream.h
++++ b/gettext-tools/gnulib-lib/styled-ostream.h
+@@ -56,11 +56,11 @@ typedef ostream_t styled_ostream_t;
+ #endif
+ 
+ /* Functions that invoke the methods.  */
+-extern        void styled_ostream_write_mem (styled_ostream_t first_arg, const void *data, size_t len);
+-extern         void styled_ostream_flush (styled_ostream_t first_arg);
+-extern         void styled_ostream_free (styled_ostream_t first_arg);
+-extern          void styled_ostream_begin_use_class (styled_ostream_t first_arg, const char *classname);
+-extern          void styled_ostream_end_use_class (styled_ostream_t first_arg, const char *classname);
++extern GETTEXTLIB_DLL_EXPORTED void styled_ostream_write_mem (styled_ostream_t first_arg, const void *data, size_t len);
++extern GETTEXTLIB_DLL_EXPORTED void styled_ostream_flush (styled_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void styled_ostream_free (styled_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void styled_ostream_begin_use_class (styled_ostream_t first_arg, const char *classname);
++extern GETTEXTLIB_DLL_EXPORTED void styled_ostream_end_use_class (styled_ostream_t first_arg, const char *classname);
+ 
+ /* Type representing an implementation of styled_ostream_t.  */
+ struct styled_ostream_implementation
+@@ -132,11 +132,11 @@ styled_ostream_end_use_class (styled_ostream_t first_arg, const char *classname)
+ 
+ #endif
+ 
+-extern DLL_VARIABLE const typeinfo_t styled_ostream_typeinfo;
++extern GETTEXTLIB_DLL_EXPORTED  const typeinfo_t styled_ostream_typeinfo;
+ #define styled_ostream_SUPERCLASSES &styled_ostream_typeinfo, ostream_SUPERCLASSES
+ #define styled_ostream_SUPERCLASSES_LENGTH (1 + ostream_SUPERCLASSES_LENGTH)
+ 
+-extern DLL_VARIABLE const struct styled_ostream_implementation styled_ostream_vtable;
++extern GETTEXTLIB_DLL_EXPORTED  const struct styled_ostream_implementation styled_ostream_vtable;
+ 
+ #line 42 "styled-ostream.oo.h"
+ 
+diff --git a/gettext-tools/gnulib-lib/tempname.h b/gettext-tools/gnulib-lib/tempname.h
+index 44d5f04..265af0d 100644
+--- a/gettext-tools/gnulib-lib/tempname.h
++++ b/gettext-tools/gnulib-lib/tempname.h
+@@ -45,6 +45,6 @@
+    GT_DIR:              create a directory, which will be mode 0700.
+ 
+    We use a clever algorithm to get hard-to-predict names. */
+-extern int gen_tempname (char *tmpl, int suffixlen, int flags, int kind);
++extern GETTEXTLIB_DLL_EXPORTED int gen_tempname (char *tmpl, int suffixlen, int flags, int kind);
+ 
+ #endif /* GL_TEMPNAME_H */
+diff --git a/gettext-tools/gnulib-lib/term-ostream.h b/gettext-tools/gnulib-lib/term-ostream.h
+index 8ede7e3..19e54f8 100644
+--- a/gettext-tools/gnulib-lib/term-ostream.h
++++ b/gettext-tools/gnulib-lib/term-ostream.h
+@@ -88,20 +88,20 @@ typedef ostream_t term_ostream_t;
+ #endif
+ 
+ /* Functions that invoke the methods.  */
+-extern        void term_ostream_write_mem (term_ostream_t first_arg, const void *data, size_t len);
+-extern         void term_ostream_flush (term_ostream_t first_arg);
+-extern         void term_ostream_free (term_ostream_t first_arg);
+-extern         term_color_t term_ostream_rgb_to_color (term_ostream_t first_arg,                              int red, int green, int blue);
+-extern         term_color_t term_ostream_get_color (term_ostream_t first_arg);
+-extern    void         term_ostream_set_color (term_ostream_t first_arg, term_color_t color);
+-extern         term_color_t term_ostream_get_bgcolor (term_ostream_t first_arg);
+-extern    void         term_ostream_set_bgcolor (term_ostream_t first_arg, term_color_t color);
+-extern         term_weight_t term_ostream_get_weight (term_ostream_t first_arg);
+-extern    void          term_ostream_set_weight (term_ostream_t first_arg, term_weight_t weight);
+-extern         term_posture_t term_ostream_get_posture (term_ostream_t first_arg);
+-extern    void           term_ostream_set_posture (term_ostream_t first_arg, term_posture_t posture);
+-extern         term_underline_t term_ostream_get_underline (term_ostream_t first_arg);
+-extern    void             term_ostream_set_underline (term_ostream_t first_arg,                                   term_underline_t underline);
++extern GETTEXTLIB_DLL_EXPORTED void term_ostream_write_mem (term_ostream_t first_arg, const void *data, size_t len);
++extern GETTEXTLIB_DLL_EXPORTED void term_ostream_flush (term_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void term_ostream_free (term_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED term_color_t term_ostream_rgb_to_color (term_ostream_t first_arg,                              int red, int green, int blue);
++extern GETTEXTLIB_DLL_EXPORTED term_color_t term_ostream_get_color (term_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void         term_ostream_set_color (term_ostream_t first_arg, term_color_t color);
++extern GETTEXTLIB_DLL_EXPORTED term_color_t term_ostream_get_bgcolor (term_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void         term_ostream_set_bgcolor (term_ostream_t first_arg, term_color_t color);
++extern GETTEXTLIB_DLL_EXPORTED term_weight_t term_ostream_get_weight (term_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void          term_ostream_set_weight (term_ostream_t first_arg, term_weight_t weight);
++extern GETTEXTLIB_DLL_EXPORTED term_posture_t term_ostream_get_posture (term_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void           term_ostream_set_posture (term_ostream_t first_arg, term_posture_t posture);
++extern GETTEXTLIB_DLL_EXPORTED term_underline_t term_ostream_get_underline (term_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void             term_ostream_set_underline (term_ostream_t first_arg,                                   term_underline_t underline);
+ 
+ /* Type representing an implementation of term_ostream_t.  */
+ struct term_ostream_implementation
+@@ -254,11 +254,11 @@ term_ostream_set_underline (term_ostream_t first_arg,
+ 
+ #endif
+ 
+-extern const typeinfo_t term_ostream_typeinfo;
++extern GETTEXTLIB_DLL_EXPORTED const typeinfo_t term_ostream_typeinfo;
+ #define term_ostream_SUPERCLASSES &term_ostream_typeinfo, ostream_SUPERCLASSES
+ #define term_ostream_SUPERCLASSES_LENGTH (1 + ostream_SUPERCLASSES_LENGTH)
+ 
+-extern const struct term_ostream_implementation term_ostream_vtable;
++extern GETTEXTLIB_DLL_EXPORTED const struct term_ostream_implementation term_ostream_vtable;
+ 
+ #line 91 "term-ostream.oo.h"
+ 
+@@ -272,7 +272,7 @@ extern "C" {
+    FILENAME is used only for error messages.
+    The resulting stream will be line-buffered.
+    Note that the resulting stream must be closed before FD can be closed.  */
+-extern term_ostream_t term_ostream_create (int fd, const char *filename);
++extern GETTEXTLIB_DLL_EXPORTED term_ostream_t term_ostream_create (int fd, const char *filename);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/term-styled-ostream.h b/gettext-tools/gnulib-lib/term-styled-ostream.h
+index 51b79ee..8cc184d 100644
+--- a/gettext-tools/gnulib-lib/term-styled-ostream.h
++++ b/gettext-tools/gnulib-lib/term-styled-ostream.h
+@@ -54,11 +54,11 @@ typedef styled_ostream_t term_styled_ostream_t;
+ #endif
+ 
+ /* Functions that invoke the methods.  */
+-extern        void term_styled_ostream_write_mem (term_styled_ostream_t first_arg, const void *data, size_t len);
+-extern         void term_styled_ostream_flush (term_styled_ostream_t first_arg);
+-extern         void term_styled_ostream_free (term_styled_ostream_t first_arg);
+-extern          void term_styled_ostream_begin_use_class (term_styled_ostream_t first_arg, const char *classname);
+-extern          void term_styled_ostream_end_use_class (term_styled_ostream_t first_arg, const char *classname);
++extern GETTEXTLIB_DLL_EXPORTED void term_styled_ostream_write_mem (term_styled_ostream_t first_arg, const void *data, size_t len);
++extern GETTEXTLIB_DLL_EXPORTED void term_styled_ostream_flush (term_styled_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void term_styled_ostream_free (term_styled_ostream_t first_arg);
++extern GETTEXTLIB_DLL_EXPORTED void term_styled_ostream_begin_use_class (term_styled_ostream_t first_arg, const char *classname);
++extern GETTEXTLIB_DLL_EXPORTED void term_styled_ostream_end_use_class (term_styled_ostream_t first_arg, const char *classname);
+ 
+ /* Type representing an implementation of term_styled_ostream_t.  */
+ struct term_styled_ostream_implementation
+@@ -130,11 +130,11 @@ term_styled_ostream_end_use_class (term_styled_ostream_t first_arg, const char *
+ 
+ #endif
+ 
+-extern const typeinfo_t term_styled_ostream_typeinfo;
++extern GETTEXTLIB_DLL_EXPORTED const typeinfo_t term_styled_ostream_typeinfo;
+ #define term_styled_ostream_SUPERCLASSES &term_styled_ostream_typeinfo, styled_ostream_SUPERCLASSES
+ #define term_styled_ostream_SUPERCLASSES_LENGTH (1 + styled_ostream_SUPERCLASSES_LENGTH)
+ 
+-extern const struct term_styled_ostream_implementation term_styled_ostream_vtable;
++extern GETTEXTLIB_DLL_EXPORTED const struct term_styled_ostream_implementation term_styled_ostream_vtable;
+ 
+ #line 28 "term-styled-ostream.oo.h"
+ 
+@@ -149,7 +149,7 @@ extern "C" {
+    FILENAME is used only for error messages.
+    Note that the resulting stream must be closed before FD can be closed.
+    Return NULL upon failure.  */
+-extern term_styled_ostream_t
++extern GETTEXTLIB_DLL_EXPORTED term_styled_ostream_t
+        term_styled_ostream_create (int fd, const char *filename,
+                                    const char *css_filename);
+ 
+diff --git a/gettext-tools/gnulib-lib/terminfo.h b/gettext-tools/gnulib-lib/terminfo.h
+index 320aede..15494ae 100644
+--- a/gettext-tools/gnulib-lib/terminfo.h
++++ b/gettext-tools/gnulib-lib/terminfo.h
+@@ -84,7 +84,7 @@ extern char * tparam (const char *str, void *buf, int bufsize, ...);
+ 
+ /* Instantiates a string capability with format strings.
+    The return value is statically allocated and must not be freed.  */
+-extern char * tparm (const char *str, ...);
++extern GETTEXTLIB_DLL_EXPORTED char * tparm (const char *str, ...);
+ 
+ #endif
+ 
+@@ -101,7 +101,7 @@ extern const char * tgoto (const char *cm, int column, int row);
+    OUTCHARFUN is called in turn for each 'char' of the result.
+    This function is necessary because string capabilities can contain
+    padding commands.  */
+-extern void tputs (const char *cp, int affcnt, int (*outcharfun) (int));
++extern GETTEXTLIB_DLL_EXPORTED void tputs (const char *cp, int affcnt, int (*outcharfun) (int));
+ 
+ /* The ncurses functions for color handling (see ncurses/base/lib_color.c)
+    are overkill: Most terminal emulators support only a fixed, small number
+diff --git a/gettext-tools/gnulib-lib/tmpdir.h b/gettext-tools/gnulib-lib/tmpdir.h
+index b7a644a..bf093f7 100644
+--- a/gettext-tools/gnulib-lib/tmpdir.h
++++ b/gettext-tools/gnulib-lib/tmpdir.h
+@@ -23,4 +23,4 @@
+    for use with mk[s]temp.  Will fail (-1) if DIR is non-null and
+    doesn't exist, none of the searched dirs exists, or there's not
+    enough space in TMPL. */
+-extern int path_search (char *tmpl, size_t tmpl_len, const char *dir, const char *pfx, bool try_tmpdir);
++extern GETTEXTLIB_DLL_EXPORTED int path_search (char *tmpl, size_t tmpl_len, const char *dir, const char *pfx, bool try_tmpdir);
+diff --git a/gettext-tools/gnulib-lib/trim.h b/gettext-tools/gnulib-lib/trim.h
+index e4dc938..9f420b5 100644
+--- a/gettext-tools/gnulib-lib/trim.h
++++ b/gettext-tools/gnulib-lib/trim.h
+@@ -30,4 +30,4 @@
+ /* Removes leading whitespaces. */
+ #define trim_leading(s) trim2(s, TRIM_LEADING)
+ 
+-char *trim2 (const char *, int);
++GETTEXTLIB_DLL_EXPORTED char *trim2 (const char *, int);
+diff --git a/gettext-tools/gnulib-lib/unistd-safer.h b/gettext-tools/gnulib-lib/unistd-safer.h
+index 4b0ca6a..fd935b8 100644
+--- a/gettext-tools/gnulib-lib/unistd-safer.h
++++ b/gettext-tools/gnulib-lib/unistd-safer.h
+@@ -17,15 +17,15 @@
+ 
+ /* Written by Paul Eggert and Eric Blake.  */
+ 
+-int dup_safer (int);
+-int fd_safer (int);
+-int pipe_safer (int[2]);
++int GETTEXTLIB_DLL_EXPORTED dup_safer (int);
++int GETTEXTLIB_DLL_EXPORTED fd_safer (int);
++int GETTEXTLIB_DLL_EXPORTED pipe_safer (int[2]);
+ 
+ #if GNULIB_FD_SAFER_FLAG
+-int dup_safer_flag (int, int);
+-int fd_safer_flag (int, int);
++int GETTEXTLIB_DLL_EXPORTED dup_safer_flag (int, int);
++int GETTEXTLIB_DLL_EXPORTED fd_safer_flag (int, int);
+ #endif
+ 
+ #if GNULIB_PIPE2_SAFER
+-int pipe2_safer (int[2], int);
++int GETTEXTLIB_DLL_EXPORTED pipe2_safer (int[2], int);
+ #endif
+diff --git a/gettext-tools/gnulib-lib/wait-process.h b/gettext-tools/gnulib-lib/wait-process.h
+index 3cb48d0..6fe532b 100644
+--- a/gettext-tools/gnulib-lib/wait-process.h
++++ b/gettext-tools/gnulib-lib/wait-process.h
+@@ -54,7 +54,7 @@ extern "C" {
+      that terminated the subprocess will be omitted.
+    Prerequisites: The signal handler for SIGCHLD should not be set to SIG_IGN,
+    otherwise this function will not work.  */
+-extern int wait_subprocess (pid_t child, const char *progname,
++extern GETTEXTLIB_DLL_EXPORTED int wait_subprocess (pid_t child, const char *progname,
+                             bool ignore_sigpipe, bool null_stderr,
+                             bool slave_process, bool exit_on_error,
+                             int *termsigp);
+@@ -63,7 +63,7 @@ extern int wait_subprocess (pid_t child, const char *progname,
+    subprocess will be terminated when its creator receives a catchable fatal
+    signal or exits normally.  Registration ends when wait_subprocess()
+    notices that the subprocess has exited.  */
+-extern void register_slave_subprocess (pid_t child);
++extern GETTEXTLIB_DLL_EXPORTED void register_slave_subprocess (pid_t child);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/xalloc.h b/gettext-tools/gnulib-lib/xalloc.h
+index 1ad1009..b3cc7cc 100644
+--- a/gettext-tools/gnulib-lib/xalloc.h
++++ b/gettext-tools/gnulib-lib/xalloc.h
+@@ -29,23 +29,23 @@ extern "C" {
+ /* Defined in xmalloc.c.  */
+ 
+ /* Allocate SIZE bytes of memory dynamically, with error checking.  */
+-extern void *xmalloc (size_t size);
++extern GETTEXTLIB_DLL_EXPORTED void *xmalloc (size_t size);
+ 
+ /* Allocate memory for NMEMB elements of SIZE bytes, with error checking.
+    SIZE must be > 0.  */
+-extern void *xnmalloc (size_t nmemb, size_t size);
++extern GETTEXTLIB_DLL_EXPORTED void *xnmalloc (size_t nmemb, size_t size);
+ 
+ /* Allocate SIZE bytes of memory dynamically, with error checking,
+    and zero it.  */
+-extern void *xzalloc (size_t size);
++extern GETTEXTLIB_DLL_EXPORTED void *xzalloc (size_t size);
+ 
+ /* Allocate memory for NMEMB elements of SIZE bytes, with error checking,
+    and zero it.  */
+-extern void *xcalloc (size_t nmemb, size_t size);
++extern GETTEXTLIB_DLL_EXPORTED void *xcalloc (size_t nmemb, size_t size);
+ 
+ /* Change the size of an allocated block of memory PTR to SIZE bytes,
+    with error checking.  If PTR is NULL, run xmalloc.  */
+-extern void *xrealloc (void *ptr, size_t size);
++extern GETTEXTLIB_DLL_EXPORTED void *xrealloc (void *ptr, size_t size);
+ #ifdef __cplusplus
+ }
+ template <typename T>
+@@ -60,7 +60,7 @@ extern "C" {
+    in charge of honoring the three previous items.  This is the
+    function to call when one wants the program to die because of a
+    memory allocation failure.  */
+-extern void xalloc_die (void)
++extern GETTEXTLIB_DLL_EXPORTED void xalloc_die (void)
+ #if (__GNUC__ > 2 || (__GNUC__ == 2 && __GNUC_MINOR__ >= 5)) && !__STRICT_ANSI__
+      __attribute__ ((__noreturn__))
+ #endif
+@@ -119,7 +119,7 @@ xnboundedmalloc (size_t n, size_t bound, size_t s)
+ /* Defined in xstrdup.c.  */
+ 
+ /* Return a newly allocated copy of the N bytes of memory starting at P.  */
+-extern void *xmemdup (const void *p, size_t n);
++extern GETTEXTLIB_DLL_EXPORTED void *xmemdup (const void *p, size_t n);
+ #ifdef __cplusplus
+ }
+ template <typename T>
+@@ -131,7 +131,7 @@ extern "C" {
+ #endif
+ 
+ /* Return a newly allocated copy of STRING.  */
+-extern char *xstrdup (const char *string);
++extern GETTEXTLIB_DLL_EXPORTED char *xstrdup (const char *string);
+ 
+ 
+ /* Return 1 if an array of N objects, each of size S, cannot exist due
+diff --git a/gettext-tools/gnulib-lib/xerror.h b/gettext-tools/gnulib-lib/xerror.h
+index 28b39c1..ab70fb0 100644
+--- a/gettext-tools/gnulib-lib/xerror.h
++++ b/gettext-tools/gnulib-lib/xerror.h
+@@ -28,13 +28,13 @@ extern "C" {
+    first line prefixed with PREFIX and the remaining lines prefixed with
+    the same amount of spaces.  Reuse the spaces of the previous call if
+    PREFIX is NULL.  Free the PREFIX and MESSAGE when done.  */
+-extern void multiline_warning (char *prefix, char *message);
++extern GETTEXTLIB_DLL_EXPORTED void multiline_warning (char *prefix, char *message);
+ 
+ /* Emit a multiline error to stderr, consisting of MESSAGE, with the
+    first line prefixed with PREFIX and the remaining lines prefixed with
+    the same amount of spaces.  Reuse the spaces of the previous call if
+    PREFIX is NULL.  Free the PREFIX and MESSAGE when done.  */
+-extern void multiline_error (char *prefix, char *message);
++extern GETTEXTLIB_DLL_EXPORTED void multiline_error (char *prefix, char *message);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/gnulib-lib/xmalloca.h b/gettext-tools/gnulib-lib/xmalloca.h
+index a6b98cf..2131476 100644
+--- a/gettext-tools/gnulib-lib/xmalloca.h
++++ b/gettext-tools/gnulib-lib/xmalloca.h
+@@ -35,7 +35,7 @@ extern "C" {
+   ((N) < 4032 - sa_increment                                        \
+    ? (void *) ((char *) alloca ((N) + sa_increment) + sa_increment) \
+    : xmmalloca (N))
+-extern void * xmmalloca (size_t n);
++extern GETTEXTLIB_DLL_EXPORTED void * xmmalloca (size_t n);
+ #else
+ # define xmalloca(N) \
+   xmalloc (N)
+diff --git a/gettext-tools/gnulib-lib/xsetenv.h b/gettext-tools/gnulib-lib/xsetenv.h
+index b0bf932..0c336e5 100644
+--- a/gettext-tools/gnulib-lib/xsetenv.h
++++ b/gettext-tools/gnulib-lib/xsetenv.h
+@@ -24,7 +24,7 @@ extern "C" {
+ /* Set NAME to VALUE in the environment.
+    If REPLACE is nonzero, overwrite an existing value.
+    With error checking.  */
+-extern void xsetenv (const char *name, const char *value, int replace);
++extern GETTEXTLIB_DLL_EXPORTED void xsetenv (const char *name, const char *value, int replace);
+ 
+ #ifdef __cplusplus
+ }
+diff --git a/gettext-tools/gnulib-lib/xstriconv.h b/gettext-tools/gnulib-lib/xstriconv.h
+index 75f8f83..61e8d26 100644
+--- a/gettext-tools/gnulib-lib/xstriconv.h
++++ b/gettext-tools/gnulib-lib/xstriconv.h
+@@ -42,7 +42,7 @@ extern "C" {
+    If successful: The resulting string is stored in *RESULTP and its length
+    in *LENGTHP.  *RESULTP is set to a freshly allocated memory block, or is
+    unchanged if no dynamic memory allocation was necessary.  */
+-extern int xmem_cd_iconv (const char *src, size_t srclen, iconv_t cd,
++extern GETTEXTLIB_DLL_EXPORTED int xmem_cd_iconv (const char *src, size_t srclen, iconv_t cd,
+                           char **resultp, size_t *lengthp);
+ 
+ /* Convert an entire string from one encoding to another, using iconv.
+@@ -54,7 +54,7 @@ extern int xmem_cd_iconv (const char *src, size_t srclen, iconv_t cd,
+    Upon memory allocation failure, report the error and exit.
+    Return value: the freshly allocated resulting NUL-terminated string if
+    successful, otherwise NULL and errno set.  */
+-extern char * xstr_cd_iconv (const char *src, iconv_t cd);
++extern GETTEXTLIB_DLL_EXPORTED char * xstr_cd_iconv (const char *src, iconv_t cd);
+ 
+ #endif
+ 
+@@ -66,7 +66,7 @@ extern char * xstr_cd_iconv (const char *src, iconv_t cd);
+    Upon memory allocation failure, report the error and exit.
+    Return value: the freshly allocated resulting NUL-terminated string if
+    successful, otherwise NULL and errno set.  */
+-extern char * xstr_iconv (const char *src,
++extern GETTEXTLIB_DLL_EXPORTED char * xstr_iconv (const char *src,
+                           const char *from_codeset, const char *to_codeset);
+ 
+ 
+diff --git a/gettext-tools/gnulib-lib/xstriconveh.h b/gettext-tools/gnulib-lib/xstriconveh.h
+index 761f84a..d218b1b 100644
+--- a/gettext-tools/gnulib-lib/xstriconveh.h
++++ b/gettext-tools/gnulib-lib/xstriconveh.h
+@@ -48,7 +48,7 @@ extern "C" {
+    If successful: The resulting string is stored in *RESULTP and its length
+    in *LENGTHP.  *RESULTP is set to a freshly allocated memory block, or is
+    unchanged if no dynamic memory allocation was necessary.  */
+-extern int
++extern GETTEXTLIB_DLL_EXPORTED int
+        xmem_cd_iconveh (const char *src, size_t srclen,
+                         const iconveh_t *cd,
+                         enum iconv_ilseq_handler handler,
+@@ -65,7 +65,7 @@ extern int
+    Upon memory allocation failure, report the error and exit.
+    Return value: the freshly allocated resulting NUL-terminated string if
+    successful, otherwise NULL and errno set.  */
+-extern char *
++extern GETTEXTLIB_DLL_EXPORTED char *
+        xstr_cd_iconveh (const char *src,
+                         const iconveh_t *cd,
+                         enum iconv_ilseq_handler handler);
+@@ -86,7 +86,7 @@ extern char *
+    If successful: The resulting string is stored in *RESULTP and its length
+    in *LENGTHP.  *RESULTP is set to a freshly allocated memory block, or is
+    unchanged if no dynamic memory allocation was necessary.  */
+-extern int
++extern GETTEXTLIB_DLL_EXPORTED int
+        xmem_iconveh (const char *src, size_t srclen,
+                      const char *from_codeset, const char *to_codeset,
+                      enum iconv_ilseq_handler handler,
+@@ -101,7 +101,7 @@ extern int
+    Upon memory allocation failure, report the error and exit.
+    Return value: the freshly allocated resulting NUL-terminated string if
+    successful, otherwise NULL and errno set.  */
+-extern char *
++extern GETTEXTLIB_DLL_EXPORTED char *
+        xstr_iconveh (const char *src,
+                      const char *from_codeset, const char *to_codeset,
+                      enum iconv_ilseq_handler handler);
+diff --git a/gettext-tools/gnulib-lib/xvasprintf.h b/gettext-tools/gnulib-lib/xvasprintf.h
+index 407a5e0..e5ce1bd 100644
+--- a/gettext-tools/gnulib-lib/xvasprintf.h
++++ b/gettext-tools/gnulib-lib/xvasprintf.h
+@@ -43,9 +43,9 @@ extern "C" {
+      - [EINVAL] invalid format string,
+      - [EILSEQ] error during conversion between wide and multibyte characters,
+    return NULL.  */
+-extern char *xasprintf (const char *format, ...)
++extern GETTEXTLIB_DLL_EXPORTED char *xasprintf (const char *format, ...)
+        _GL_ATTRIBUTE_FORMAT ((__printf__, 1, 2));
+-extern char *xvasprintf (const char *format, va_list args)
++extern GETTEXTLIB_DLL_EXPORTED char *xvasprintf (const char *format, va_list args)
+        _GL_ATTRIBUTE_FORMAT ((__printf__, 1, 0));
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/src/color.h b/gettext-tools/src/color.h
+index f47f40f..7aae4be 100644
+--- a/gettext-tools/src/color.h
++++ b/gettext-tools/src/color.h
+@@ -37,16 +37,16 @@ extern DLL_VARIABLE enum color_option color_mode;
+ extern DLL_VARIABLE const char *style_file_name;
+ 
+ /* --color argument handling.  Return an error indicator.  */
+-extern bool handle_color_option (const char *option);
++extern GETTEXTSRC_DLL_EXPORTED bool handle_color_option (const char *option);
+ 
+ /* --style argument handling.  */
+-extern void handle_style_option (const char *option);
++extern GETTEXTSRC_DLL_EXPORTED void handle_style_option (const char *option);
+ 
+ /* Print a color test page.  */
+-extern void print_color_test (void);
++extern GETTEXTSRC_DLL_EXPORTED void print_color_test (void);
+ 
+ /* Assign a default value to style_file_name if necessary.  */
+-extern void style_file_prepare (void);
++extern GETTEXTSRC_DLL_EXPORTED void style_file_prepare (void);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/src/dir-list.h b/gettext-tools/src/dir-list.h
+index 6ce32bb..7ca7d48 100644
+--- a/gettext-tools/src/dir-list.h
++++ b/gettext-tools/src/dir-list.h
+@@ -30,17 +30,17 @@ extern "C" {
+ 
+ 
+ /* Append a directory to the end of the list of directories.  */
+-extern void dir_list_append (const char *directory);
++extern GETTEXTSRC_DLL_EXPORTED void dir_list_append (const char *directory);
+ 
+ /* Return the nth directory, or NULL of n is out of range.  */
+-extern const char *dir_list_nth (int n);
++extern GETTEXTSRC_DLL_EXPORTED const char *dir_list_nth (int n);
+ 
+ /* Return the current list of directories, for later use with dir_list_restore.
+    Reset the list to empty.  */
+-extern void *dir_list_save_reset (void);
++extern GETTEXTSRC_DLL_EXPORTED void *dir_list_save_reset (void);
+ 
+ /* Restore a previously saved list of directories.  */
+-extern void dir_list_restore (void *saved_value);
++extern GETTEXTSRC_DLL_EXPORTED void dir_list_restore (void *saved_value);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/src/file-list.h b/gettext-tools/src/file-list.h
+index 9665fbe..b6305fa 100644
+--- a/gettext-tools/src/file-list.h
++++ b/gettext-tools/src/file-list.h
+@@ -29,7 +29,7 @@ extern "C" {
+ /* Read list of filenames from a file.
+    One filename per line.  Lines starting with # and whitespace lines are
+    ignored.  Trailing whitespace is removed.  */
+-extern string_list_ty *read_names_from_file (const char *file_name);
++extern GETTEXTSRC_DLL_EXPORTED string_list_ty *read_names_from_file (const char *file_name);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/src/format.h b/gettext-tools/src/format.h
+index d92532d..ba62f74 100644
+--- a/gettext-tools/src/format.h
++++ b/gettext-tools/src/format.h
+@@ -136,18 +136,18 @@ struct interval
+   size_t startpos;
+   size_t endpos;
+ };
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        get_sysdep_c_format_directives (const char *string, bool translated,
+                                  struct interval **intervalsp, size_t *lengthp);
+ 
+ /* Returns the number of unnamed arguments consumed by a Python format
+    string.  */
+-extern unsigned int get_python_format_unnamed_arg_count (const char *string);
++extern GETTEXTSRC_DLL_EXPORTED unsigned int get_python_format_unnamed_arg_count (const char *string);
+ 
+ /* Check whether both formats strings contain compatible format
+    specifications for format type i (0 <= i < NFORMATS).
+    Return the number of errors that were seen.  */
+-extern int
++extern GETTEXTSRC_DLL_EXPORTED int
+        check_msgid_msgstr_format_i (const char *msgid, const char *msgid_plural,
+                                     const char *msgstr, size_t msgstr_len,
+                                     size_t i,
+@@ -158,7 +158,7 @@ extern int
+ /* Check whether both formats strings contain compatible format
+    specifications.
+    Return the number of errors that were seen.  */
+-extern int
++extern GETTEXTSRC_DLL_EXPORTED int
+        check_msgid_msgstr_format (const char *msgid, const char *msgid_plural,
+                                   const char *msgstr, size_t msgstr_len,
+                                   const enum is_format is_format[NFORMATS],
+diff --git a/gettext-tools/src/message.h b/gettext-tools/src/message.h
+index bf2215a..e96f2a5 100644
+--- a/gettext-tools/src/message.h
++++ b/gettext-tools/src/message.h
+@@ -86,7 +86,7 @@ enum is_format
+   impossible
+ };
+ 
+-extern bool
++extern GETTEXTSRC_DLL_EXPORTED bool
+        possible_format_p (enum is_format);
+ 
+ 
+@@ -197,21 +197,21 @@ struct message_ty
+   struct altstr *alternative;
+ };
+ 
+-extern message_ty *
++extern GETTEXTSRC_DLL_EXPORTED message_ty *
+        message_alloc (const char *msgctxt,
+                       const char *msgid, const char *msgid_plural,
+                       const char *msgstr, size_t msgstr_len,
+                       const lex_pos_ty *pp);
+ #define is_header(mp) ((mp)->msgctxt == NULL && (mp)->msgid[0] == '\0')
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_free (message_ty *mp);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_comment_append (message_ty *mp, const char *comment);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_comment_dot_append (message_ty *mp, const char *comment);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_comment_filepos (message_ty *mp, const char *name, size_t line);
+-extern message_ty *
++extern GETTEXTSRC_DLL_EXPORTED message_ty *
+        message_copy (message_ty *mp);
+ 
+ 
+@@ -229,42 +229,42 @@ struct message_list_ty
+    If USE_HASHTABLE is true, a hash table will be used to speed up
+    message_list_search().  USE_HASHTABLE can only be set to true if it is
+    known that the message list will not contain duplicate msgids.  */
+-extern message_list_ty *
++extern GETTEXTSRC_DLL_EXPORTED message_list_ty *
+        message_list_alloc (bool use_hashtable);
+ /* Free a message list.
+    If keep_messages = 0, also free the messages.  If keep_messages = 1, don't
+    free the messages.  */
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_list_free (message_list_ty *mlp, int keep_messages);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_list_append (message_list_ty *mlp, message_ty *mp);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_list_prepend (message_list_ty *mlp, message_ty *mp);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_list_insert_at (message_list_ty *mlp, size_t n, message_ty *mp);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_list_delete_nth (message_list_ty *mlp, size_t n);
+ typedef bool message_predicate_ty (const message_ty *mp);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_list_remove_if_not (message_list_ty *mlp,
+                                    message_predicate_ty *predicate);
+ /* Recompute the hash table of a message list after the msgids or msgctxts
+    changed.  */
+-extern bool
++extern GETTEXTSRC_DLL_EXPORTED bool
+        message_list_msgids_changed (message_list_ty *mlp);
+ /* Copy a message list.
+    If copy_level = 0, also copy the messages.  If copy_level = 1, share the
+    messages.  */
+-extern message_list_ty *
++extern GETTEXTSRC_DLL_EXPORTED message_list_ty *
+        message_list_copy (message_list_ty *mlp, int copy_level);
+-extern message_ty *
++extern GETTEXTSRC_DLL_EXPORTED message_ty *
+        message_list_search (message_list_ty *mlp,
+                             const char *msgctxt, const char *msgid);
+ /* Return the message in MLP which maximizes the fuzzy_search_goal_function.
+    Only messages with a fuzzy_search_goal_function > FUZZY_THRESHOLD are
+    considered.  In case of several messages with the same goal function value,
+    the one with the smaller index is returned.  */
+-extern message_ty *
++extern GETTEXTSRC_DLL_EXPORTED message_ty *
+        message_list_search_fuzzy (message_list_ty *mlp,
+                                   const char *msgctxt, const char *msgid);
+ 
+@@ -277,24 +277,24 @@ struct message_list_list_ty
+   size_t nitems_max;
+ };
+ 
+-extern message_list_list_ty *
++extern GETTEXTSRC_DLL_EXPORTED message_list_list_ty *
+        message_list_list_alloc (void);
+ /* Free a list of message lists.
+    If keep_level = 0, also free the messages.  If keep_level = 1, don't free
+    the messages but free the lists.  If keep_level = 2, don't free the
+    the messages and the lists.  */
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_list_list_free (message_list_list_ty *mllp, int keep_level);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_list_list_append (message_list_list_ty *mllp,
+                                  message_list_ty *mlp);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_list_list_append_list (message_list_list_ty *mllp,
+                                       message_list_list_ty *mllp2);
+-extern message_ty *
++extern GETTEXTSRC_DLL_EXPORTED message_ty *
+        message_list_list_search (message_list_list_ty *mllp,
+                                  const char *msgctxt, const char *msgid);
+-extern message_ty *
++extern GETTEXTSRC_DLL_EXPORTED message_ty *
+        message_list_list_search_fuzzy (message_list_list_ty *mllp,
+                                        const char *msgctxt, const char *msgid);
+ 
+@@ -306,9 +306,9 @@ struct msgdomain_ty
+   message_list_ty *messages;
+ };
+ 
+-extern msgdomain_ty *
++extern GETTEXTSRC_DLL_EXPORTED msgdomain_ty *
+        msgdomain_alloc (const char *domain, bool use_hashtable);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        msgdomain_free (msgdomain_ty *mdp);
+ 
+ 
+@@ -322,27 +322,27 @@ struct msgdomain_list_ty
+   const char *encoding;         /* canonicalized encoding or NULL if unknown */
+ };
+ 
+-extern msgdomain_list_ty *
++extern GETTEXTSRC_DLL_EXPORTED msgdomain_list_ty *
+        msgdomain_list_alloc (bool use_hashtable);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        msgdomain_list_free (msgdomain_list_ty *mdlp);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        msgdomain_list_append (msgdomain_list_ty *mdlp, msgdomain_ty *mdp);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        msgdomain_list_append_list (msgdomain_list_ty *mdlp,
+                                    msgdomain_list_ty *mdlp2);
+-extern message_list_ty *
++extern GETTEXTSRC_DLL_EXPORTED message_list_ty *
+        msgdomain_list_sublist (msgdomain_list_ty *mdlp, const char *domain,
+                                bool create);
+ /* Copy a message domain list.
+    If copy_level = 0, also copy the messages.  If copy_level = 1, share the
+    messages but copy the domains.  If copy_level = 2, share the domains.  */
+-extern msgdomain_list_ty *
++extern GETTEXTSRC_DLL_EXPORTED msgdomain_list_ty *
+        msgdomain_list_copy (msgdomain_list_ty *mdlp, int copy_level);
+-extern message_ty *
++extern GETTEXTSRC_DLL_EXPORTED message_ty *
+        msgdomain_list_search (msgdomain_list_ty *mdlp,
+                               const char *msgctxt, const char *msgid);
+-extern message_ty *
++extern GETTEXTSRC_DLL_EXPORTED message_ty *
+        msgdomain_list_search_fuzzy (msgdomain_list_ty *mdlp,
+                                     const char *msgctxt, const char *msgid);
+ 
+@@ -351,7 +351,7 @@ extern message_ty *
+    Higher values indicate a closer match.
+    If the result is < LOWER_BOUND, an arbitrary other value < LOWER_BOUND can
+    be returned.  */
+-extern double
++extern GETTEXTSRC_DLL_EXPORTED double
+        fuzzy_search_goal_function (const message_ty *mp,
+                                    const char *msgctxt, const char *msgid,
+                                    double lower_bound);
+diff --git a/gettext-tools/src/msgl-ascii.h b/gettext-tools/src/msgl-ascii.h
+index fee41a9..1490e21 100644
+--- a/gettext-tools/src/msgl-ascii.h
++++ b/gettext-tools/src/msgl-ascii.h
+@@ -28,15 +28,15 @@ extern "C" {
+ #endif
+ 
+ 
+-extern bool
++extern GETTEXTSRC_DLL_EXPORTED bool
+        is_ascii_string (const char *string);
+-extern bool
++extern GETTEXTSRC_DLL_EXPORTED bool
+        is_ascii_string_list (string_list_ty *slp);
+-extern bool
++extern GETTEXTSRC_DLL_EXPORTED bool
+        is_ascii_message (message_ty *mp);
+-extern bool
++extern GETTEXTSRC_DLL_EXPORTED bool
+        is_ascii_message_list (message_list_ty *mlp);
+-extern bool
++extern GETTEXTSRC_DLL_EXPORTED bool
+        is_ascii_msgdomain_list (msgdomain_list_ty *mdlp);
+ 
+ 
+diff --git a/gettext-tools/src/msgl-cat.h b/gettext-tools/src/msgl-cat.h
+index 4de35d5..5c11ce8 100644
+--- a/gettext-tools/src/msgl-cat.h
++++ b/gettext-tools/src/msgl-cat.h
+@@ -46,7 +46,7 @@ extern DLL_VARIABLE bool msgcomm_mode;
+    If false, keep the header entry present in the input.  */
+ extern DLL_VARIABLE bool omit_header;
+ 
+-extern msgdomain_list_ty *
++extern GETTEXTSRC_DLL_EXPORTED msgdomain_list_ty *
+        catenate_msgdomain_list (string_list_ty *file_list,
+                                 catalog_input_format_ty input_syntax,
+                                 const char *to_code);
+diff --git a/gettext-tools/src/msgl-charset.h b/gettext-tools/src/msgl-charset.h
+index 647a394..b2a682c 100644
+--- a/gettext-tools/src/msgl-charset.h
++++ b/gettext-tools/src/msgl-charset.h
+@@ -26,7 +26,7 @@ extern "C" {
+ #endif
+ 
+ 
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        compare_po_locale_charsets (const msgdomain_list_ty *mdlp);
+ 
+ 
+diff --git a/gettext-tools/src/msgl-check.h b/gettext-tools/src/msgl-check.h
+index f03300c..4362918 100644
+--- a/gettext-tools/src/msgl-check.h
++++ b/gettext-tools/src/msgl-check.h
+@@ -34,13 +34,13 @@ extern "C" {
+    Return the number of errors that were seen.
+    If no errors, returns in *DISTRIBUTION information about the plural_eval
+    values distribution.  */
+-extern int check_plural_eval (const struct expression *plural_expr,
++extern GETTEXTSRC_DLL_EXPORTED int check_plural_eval (const struct expression *plural_expr,
+                               unsigned long nplurals_value,
+                               const message_ty *header,
+                               struct plural_distribution *distribution);
+ 
+ /* Perform all checks on a non-obsolete message.  */
+-extern int check_message (const message_ty *mp,
++extern GETTEXTSRC_DLL_EXPORTED int check_message (const message_ty *mp,
+                           const lex_pos_ty *msgid_pos,
+                           int check_newlines,
+                           int check_format_strings,
+@@ -51,7 +51,7 @@ extern int check_message (const message_ty *mp,
+ 
+ /* Perform all checks on a message list.
+    Return the number of errors that were seen.  */
+-extern int check_message_list (message_list_ty *mlp,
++extern GETTEXTSRC_DLL_EXPORTED int check_message_list (message_list_ty *mlp,
+                                int ignore_untranslated_messages,
+                                int ignore_fuzzy_messages,
+                                int check_newlines,
+diff --git a/gettext-tools/src/msgl-english.h b/gettext-tools/src/msgl-english.h
+index ec77d2a..15ebc88 100644
+--- a/gettext-tools/src/msgl-english.h
++++ b/gettext-tools/src/msgl-english.h
+@@ -26,7 +26,7 @@ extern "C" {
+ #endif
+ 
+ 
+-extern msgdomain_list_ty *
++extern GETTEXTSRC_DLL_EXPORTED msgdomain_list_ty *
+        msgdomain_list_english (msgdomain_list_ty *mdlp);
+ 
+ 
+diff --git a/gettext-tools/src/msgl-equal.h b/gettext-tools/src/msgl-equal.h
+index 6497a7f..1e70b14 100644
+--- a/gettext-tools/src/msgl-equal.h
++++ b/gettext-tools/src/msgl-equal.h
+@@ -28,21 +28,21 @@ extern "C" {
+ #endif
+ 
+ 
+-extern bool
++extern GETTEXTSRC_DLL_EXPORTED bool
+        string_list_equal (const string_list_ty *slp1,
+                           const string_list_ty *slp2);
+ 
+ /* Test whether the written representation of two messages / message lists
+    would be the same.  */
+ 
+-extern bool
++extern GETTEXTSRC_DLL_EXPORTED bool
+        message_equal (const message_ty *mp1, const message_ty *mp2,
+                       bool ignore_potcdate);
+-extern bool
++extern GETTEXTSRC_DLL_EXPORTED bool
+        message_list_equal (const message_list_ty *mlp1,
+                            const message_list_ty *mlp2,
+                            bool ignore_potcdate);
+-extern bool
++extern GETTEXTSRC_DLL_EXPORTED bool
+        msgdomain_list_equal (const msgdomain_list_ty *mdlp1,
+                              const msgdomain_list_ty *mdlp2,
+                              bool ignore_potcdate);
+diff --git a/gettext-tools/src/msgl-header.h b/gettext-tools/src/msgl-header.h
+index f26b1a8..b019a84 100644
+--- a/gettext-tools/src/msgl-header.h
++++ b/gettext-tools/src/msgl-header.h
+@@ -30,7 +30,7 @@ extern "C" {
+    The FIELD name ends in a colon.
+    The VALUE will have a space prepended and a newline appended by this
+    function.  */
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        msgdomain_list_set_header_field (msgdomain_list_ty *mdlp,
+                                         const char *field, const char *value);
+ 
+diff --git a/gettext-tools/src/msgl-iconv.h b/gettext-tools/src/msgl-iconv.h
+index 5a7fc00..bdf19f9 100644
+--- a/gettext-tools/src/msgl-iconv.h
++++ b/gettext-tools/src/msgl-iconv.h
+@@ -44,7 +44,7 @@ struct conversion_context
+ 
+ /* Converts the STRING through the conversion descriptor CD.
+    Assumes that either FROM_CODE or TO_CODE is UTF-8.  */
+-extern char *convert_string_directly (iconv_t cd, const char *string,
++extern GETTEXTSRC_DLL_EXPORTED char *convert_string_directly (iconv_t cd, const char *string,
+                                       const struct conversion_context* context);
+ 
+ #endif
+@@ -54,7 +54,7 @@ extern char *convert_string_directly (iconv_t cd, const char *string,
+    can be passed as CANON_FROM_CODE; if NULL is passed instead, the
+    encoding is looked up in the header entry.  Returns true if and only if
+    some msgctxt or msgid changed due to the conversion.  */
+-extern bool
++extern GETTEXTSRC_DLL_EXPORTED bool
+        iconv_message_list (message_list_ty *mlp,
+                            const char *canon_from_code,
+                            const char *canon_to_code,
+@@ -63,7 +63,7 @@ extern bool
+ /* Converts all the message lists in MDLP to the encoding TO_CODE.
+    UPDATE_HEADER specifies whether to update the "charset=..." specification
+    in the header; it should normally be true.  */
+-extern msgdomain_list_ty *
++extern GETTEXTSRC_DLL_EXPORTED msgdomain_list_ty *
+        iconv_msgdomain_list (msgdomain_list_ty *mdlp,
+                              const char *to_code,
+                              bool update_header,
+@@ -73,7 +73,7 @@ extern msgdomain_list_ty *
+    The (already canonicalized) encoding before conversion can be passed as
+    CANON_FROM_CODE; if NULL is passed instead, the encoding is looked up
+    in the header entry.  */
+-extern bool
++extern GETTEXTSRC_DLL_EXPORTED bool
+        is_message_list_iconvable (message_list_ty *mlp,
+                                   const char *canon_from_code,
+                                   const char *canon_to_code);
+diff --git a/gettext-tools/src/open-catalog.h b/gettext-tools/src/open-catalog.h
+index 503371d..2c4f598 100644
+--- a/gettext-tools/src/open-catalog.h
++++ b/gettext-tools/src/open-catalog.h
+@@ -31,7 +31,7 @@ extern "C" {
+    not found, the list of directories in "dir-list.h" is searched.  The
+    file's pathname is returned in *REAL_FILE_NAME_P, for error message
+    purposes.  */
+-extern FILE *open_catalog_file (const char *input_name,
++extern GETTEXTSRC_DLL_EXPORTED FILE *open_catalog_file (const char *input_name,
+                                 char **real_file_name_p, bool exit_on_error);
+ 
+ 
+diff --git a/gettext-tools/src/po-charset.h b/gettext-tools/src/po-charset.h
+index 65798e7..e72d051 100644
+--- a/gettext-tools/src/po-charset.h
++++ b/gettext-tools/src/po-charset.h
+@@ -34,7 +34,7 @@ extern "C" {
+ /* Canonicalize an encoding name.
+    The results of this function are statically allocated and can be
+    compared using ==.  */
+-extern const char *po_charset_canonicalize (const char *charset);
++extern GETTEXTSRC_DLL_EXPORTED const char *po_charset_canonicalize (const char *charset);
+ 
+ /* The canonicalized encoding name for ASCII.  */
+ extern DLL_VARIABLE const char *po_charset_ascii;
+@@ -43,24 +43,24 @@ extern DLL_VARIABLE const char *po_charset_ascii;
+ extern DLL_VARIABLE const char *po_charset_utf8;
+ 
+ /* Test for ASCII compatibility.  */
+-extern bool po_charset_ascii_compatible (const char *canon_charset);
++extern GETTEXTSRC_DLL_EXPORTED bool po_charset_ascii_compatible (const char *canon_charset);
+ 
+ /* Test for a weird encoding, i.e. an encoding which has double-byte
+    characters ending in 0x5C.  */
+-extern bool po_is_charset_weird (const char *canon_charset);
++extern GETTEXTSRC_DLL_EXPORTED bool po_is_charset_weird (const char *canon_charset);
+ 
+ /* Test for a weird CJK encoding, i.e. a weird encoding with CJK structure.
+    An encoding has CJK structure if every valid character stream is composed
+    of single bytes in the range 0x{00..7F} and of byte pairs in the range
+    0x{80..FF}{30..FF}.  */
+-extern bool po_is_charset_weird_cjk (const char *canon_charset);
++extern GETTEXTSRC_DLL_EXPORTED bool po_is_charset_weird_cjk (const char *canon_charset);
+ 
+ /* Returns a character iterator for a given encoding.
+    Given a pointer into a string, it returns the number occupied by the next
+    single character.  If the piece of string is not valid or if the *s == '\0',
+    it returns 1.  */
+ typedef size_t (*character_iterator_t) (const char *s);
+-extern character_iterator_t po_charset_character_iterator (const char *canon_charset);
++extern GETTEXTSRC_DLL_EXPORTED character_iterator_t po_charset_character_iterator (const char *canon_charset);
+ 
+ 
+ /* The PO file's encoding, as specified in the header entry.  */
+@@ -75,14 +75,14 @@ extern DLL_VARIABLE iconv_t po_lex_iconv;
+ extern DLL_VARIABLE bool po_lex_weird_cjk;
+ 
+ /* Initialize the PO file's encoding.  */
+-extern void po_lex_charset_init (void);
++extern GETTEXTSRC_DLL_EXPORTED void po_lex_charset_init (void);
+ 
+ /* Set the PO file's encoding from the header entry.  */
+-extern void po_lex_charset_set (const char *header_entry,
++extern GETTEXTSRC_DLL_EXPORTED void po_lex_charset_set (const char *header_entry,
+                                 const char *filename);
+ 
+ /* Finish up with the PO file's encoding.  */
+-extern void po_lex_charset_close (void);
++extern GETTEXTSRC_DLL_EXPORTED void po_lex_charset_close (void);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/src/po-lex.h b/gettext-tools/src/po-lex.h
+index da05f38..5acefc6 100644
+--- a/gettext-tools/src/po-lex.h
++++ b/gettext-tools/src/po-lex.h
+@@ -64,26 +64,26 @@ extern DLL_VARIABLE bool pass_obsolete_entries;
+ 
+ 
+ /* Prepare lexical analysis.  */
+-extern void lex_start (FILE *fp, const char *real_filename,
++extern GETTEXTSRC_DLL_EXPORTED void lex_start (FILE *fp, const char *real_filename,
+                        const char *logical_filename);
+ 
+ /* Terminate lexical analysis.  */
+-extern void lex_end (void);
++extern GETTEXTSRC_DLL_EXPORTED void lex_end (void);
+ 
+ /* Return the next token in the PO file.  The return codes are defined
+    in "po-gram-gen2.h".  Associated data is put in 'po_gram_lval.  */
+-extern int po_gram_lex (void);
++extern GETTEXTSRC_DLL_EXPORTED int po_gram_lex (void);
+ 
+ /* po_gram_lex() can return comments as COMMENT.  Switch this on or off.  */
+-extern void po_lex_pass_comments (bool flag);
++extern GETTEXTSRC_DLL_EXPORTED void po_lex_pass_comments (bool flag);
+ 
+ /* po_gram_lex() can return obsolete entries as if they were normal entries.
+    Switch this on or off.  */
+-extern void po_lex_pass_obsolete_entries (bool flag);
++extern GETTEXTSRC_DLL_EXPORTED void po_lex_pass_obsolete_entries (bool flag);
+ 
+-extern void po_gram_error (const char *fmt, ...)
++extern GETTEXTSRC_DLL_EXPORTED void po_gram_error (const char *fmt, ...)
+        __attribute__ ((__format__ (__printf__, 1, 2)));
+-extern void po_gram_error_at_line (const lex_pos_ty *pos, const char *fmt, ...)
++extern GETTEXTSRC_DLL_EXPORTED void po_gram_error_at_line (const lex_pos_ty *pos, const char *fmt, ...)
+        __attribute__ ((__format__ (__printf__, 2, 3)));
+ 
+ 
+diff --git a/gettext-tools/src/po-time.h b/gettext-tools/src/po-time.h
+index 846dea0..6d1a5e8 100644
+--- a/gettext-tools/src/po-time.h
++++ b/gettext-tools/src/po-time.h
+@@ -28,7 +28,7 @@ extern "C" {
+ 
+ /* Return a freshly allocated string containing the given time in the
+    format YYYY-MM-DD HH:MM+TZOFF.  */
+-extern char *po_strftime (const time_t *tp);
++extern GETTEXTSRC_DLL_EXPORTED char *po_strftime (const time_t *tp);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/src/read-catalog-abstract.h b/gettext-tools/src/read-catalog-abstract.h
+index c3fc84f..fbce53e 100644
+--- a/gettext-tools/src/read-catalog-abstract.h
++++ b/gettext-tools/src/read-catalog-abstract.h
+@@ -145,12 +145,12 @@ typedef const struct catalog_input_format * catalog_input_format_ty;
+ 
+ /* Allocate a fresh abstract_catalog_reader_ty (or derived class) instance and
+    call its constructor.  */
+-extern abstract_catalog_reader_ty *
++extern GETTEXTSRC_DLL_EXPORTED abstract_catalog_reader_ty *
+        catalog_reader_alloc (abstract_catalog_reader_class_ty *method_table);
+ 
+ /* Read a PO file from a stream, and dispatch to the various
+    abstract_catalog_reader_class_ty methods.  */
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        catalog_reader_parse (abstract_catalog_reader_ty *pop, FILE *fp,
+                              const char *real_filename,
+                              const char *logical_filename,
+@@ -158,14 +158,14 @@ extern void
+ 
+ /* Call the destructor and deallocate a abstract_catalog_reader_ty (or derived
+    class) instance.  */
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        catalog_reader_free (abstract_catalog_reader_ty *pop);
+ 
+ 
+ /* Callbacks used by po-gram.y or po-lex.c, indirectly from
+    catalog_reader_parse.  */
+-extern void po_callback_domain (char *name);
+-extern void po_callback_message (char *msgctxt,
++extern GETTEXTSRC_DLL_EXPORTED void po_callback_domain (char *name);
++extern GETTEXTSRC_DLL_EXPORTED void po_callback_message (char *msgctxt,
+                                  char *msgid, lex_pos_ty *msgid_pos,
+                                  char *msgid_plural,
+                                  char *msgstr, size_t msgstr_len,
+@@ -173,15 +173,15 @@ extern void po_callback_message (char *msgctxt,
+                                  char *prev_msgctxt,
+                                  char *prev_msgid, char *prev_msgid_plural,
+                                  bool force_fuzzy, bool obsolete);
+-extern void po_callback_comment (const char *s);
+-extern void po_callback_comment_dot (const char *s);
+-extern void po_callback_comment_filepos (const char *s, size_t line);
+-extern void po_callback_comment_special (const char *s);
+-extern void po_callback_comment_dispatcher (const char *s);
++extern GETTEXTSRC_DLL_EXPORTED void po_callback_comment (const char *s);
++extern GETTEXTSRC_DLL_EXPORTED void po_callback_comment_dot (const char *s);
++extern GETTEXTSRC_DLL_EXPORTED void po_callback_comment_filepos (const char *s, size_t line);
++extern GETTEXTSRC_DLL_EXPORTED void po_callback_comment_special (const char *s);
++extern GETTEXTSRC_DLL_EXPORTED void po_callback_comment_dispatcher (const char *s);
+ 
+ /* Parse a special comment and put the result in *fuzzyp, formatp, *rangep,
+    *wrapp.  */
+-extern void po_parse_comment_special (const char *s, bool *fuzzyp,
++extern GETTEXTSRC_DLL_EXPORTED void po_parse_comment_special (const char *s, bool *fuzzyp,
+                                       enum is_format formatp[NFORMATS],
+                                       struct argument_range *rangep,
+                                       enum is_wrap *wrapp);
+diff --git a/gettext-tools/src/read-catalog.h b/gettext-tools/src/read-catalog.h
+index f567d78..9615012 100644
+--- a/gettext-tools/src/read-catalog.h
++++ b/gettext-tools/src/read-catalog.h
+@@ -120,13 +120,13 @@ struct default_catalog_reader_ty
+   DEFAULT_CATALOG_READER_TY
+ };
+ 
+-extern void default_constructor (abstract_catalog_reader_ty *that);
+-extern void default_destructor (abstract_catalog_reader_ty *that);
+-extern void default_parse_brief (abstract_catalog_reader_ty *that);
+-extern void default_parse_debrief (abstract_catalog_reader_ty *that);
+-extern void default_directive_domain (abstract_catalog_reader_ty *that,
++extern GETTEXTSRC_DLL_EXPORTED void default_constructor (abstract_catalog_reader_ty *that);
++extern GETTEXTSRC_DLL_EXPORTED void default_destructor (abstract_catalog_reader_ty *that);
++extern GETTEXTSRC_DLL_EXPORTED void default_parse_brief (abstract_catalog_reader_ty *that);
++extern GETTEXTSRC_DLL_EXPORTED void default_parse_debrief (abstract_catalog_reader_ty *that);
++extern GETTEXTSRC_DLL_EXPORTED void default_directive_domain (abstract_catalog_reader_ty *that,
+                                       char *name);
+-extern void default_directive_message (abstract_catalog_reader_ty *that,
++extern GETTEXTSRC_DLL_EXPORTED void default_directive_message (abstract_catalog_reader_ty *that,
+                                        char *msgctxt,
+                                        char *msgid,
+                                        lex_pos_ty *msgid_pos,
+@@ -137,15 +137,15 @@ extern void default_directive_message (abstract_catalog_reader_ty *that,
+                                        char *prev_msgid,
+                                        char *prev_msgid_plural,
+                                        bool force_fuzzy, bool obsolete);
+-extern void default_comment (abstract_catalog_reader_ty *that, const char *s);
+-extern void default_comment_dot (abstract_catalog_reader_ty *that,
++extern GETTEXTSRC_DLL_EXPORTED void default_comment (abstract_catalog_reader_ty *that, const char *s);
++extern GETTEXTSRC_DLL_EXPORTED void default_comment_dot (abstract_catalog_reader_ty *that,
+                                  const char *s);
+-extern void default_comment_filepos (abstract_catalog_reader_ty *that,
++extern GETTEXTSRC_DLL_EXPORTED void default_comment_filepos (abstract_catalog_reader_ty *that,
+                                      const char *name, size_t line);
+-extern void default_comment_special (abstract_catalog_reader_ty *that,
++extern GETTEXTSRC_DLL_EXPORTED void default_comment_special (abstract_catalog_reader_ty *that,
+                                      const char *s);
+-extern void default_set_domain (default_catalog_reader_ty *this, char *name);
+-extern void default_add_message (default_catalog_reader_ty *this,
++extern GETTEXTSRC_DLL_EXPORTED void default_set_domain (default_catalog_reader_ty *this, char *name);
++extern GETTEXTSRC_DLL_EXPORTED void default_add_message (default_catalog_reader_ty *this,
+                                  char *msgctxt,
+                                  char *msgid,
+                                  lex_pos_ty *msgid_pos,
+@@ -159,7 +159,7 @@ extern void default_add_message (default_catalog_reader_ty *this,
+ 
+ /* Allocate a fresh default_catalog_reader_ty (or derived class) instance and
+    call its constructor.  */
+-extern default_catalog_reader_ty *
++extern GETTEXTSRC_DLL_EXPORTED default_catalog_reader_ty *
+        default_catalog_reader_alloc (default_catalog_reader_class_ty *method_table);
+ 
+ 
+@@ -169,7 +169,7 @@ extern default_catalog_reader_ty *
+ extern DLL_VARIABLE bool allow_duplicates;
+ 
+ /* Read the input file from a stream.  Returns a list of messages.  */
+-extern msgdomain_list_ty *
++extern GETTEXTSRC_DLL_EXPORTED msgdomain_list_ty *
+        read_catalog_stream (FILE *fp,
+                             const char *real_filename,
+                             const char *logical_filename,
+@@ -179,7 +179,7 @@ extern msgdomain_list_ty *
+    if necessary.  If INPUT_NAME is not an absolute file name and the file is
+    not found, the list of directories in "dir-list.h" is searched.  Returns
+    a list of messages.  */
+-extern msgdomain_list_ty *
++extern GETTEXTSRC_DLL_EXPORTED msgdomain_list_ty *
+        read_catalog_file (const char *input_name,
+                           catalog_input_format_ty input_syntax);
+ 
+diff --git a/gettext-tools/src/read-desktop.h b/gettext-tools/src/read-desktop.h
+index 19ad8d8..adc76dd 100644
+--- a/gettext-tools/src/read-desktop.h
++++ b/gettext-tools/src/read-desktop.h
+@@ -84,34 +84,34 @@ struct desktop_reader_ty
+   DESKTOP_READER_TY
+ };
+ 
+-desktop_reader_ty *desktop_reader_alloc (desktop_reader_class_ty *methods);
+-void desktop_reader_free (desktop_reader_ty *reader);
++GETTEXTSRC_DLL_EXPORTED desktop_reader_ty *desktop_reader_alloc (desktop_reader_class_ty *methods);
++GETTEXTSRC_DLL_EXPORTED void desktop_reader_free (desktop_reader_ty *reader);
+ 
+-void desktop_reader_handle_group (desktop_reader_ty *reader,
++GETTEXTSRC_DLL_EXPORTED void desktop_reader_handle_group (desktop_reader_ty *reader,
+                                   const char *group);
+ 
+-void desktop_reader_handle_pair (desktop_reader_ty *reader,
++GETTEXTSRC_DLL_EXPORTED void desktop_reader_handle_pair (desktop_reader_ty *reader,
+                                  lex_pos_ty *key_pos,
+                                  const char *key,
+                                  const char *locale,
+                                  const char *value);
+ 
+-void desktop_reader_handle_comment (desktop_reader_ty *reader,
++GETTEXTSRC_DLL_EXPORTED void desktop_reader_handle_comment (desktop_reader_ty *reader,
+                                     const char *s);
+ 
+-void desktop_reader_handle_blank (desktop_reader_ty *reader,
++GETTEXTSRC_DLL_EXPORTED void desktop_reader_handle_blank (desktop_reader_ty *reader,
+                                   const char *s);
+ 
+ 
+-void desktop_parse (desktop_reader_ty *reader, FILE *file,
++GETTEXTSRC_DLL_EXPORTED void desktop_parse (desktop_reader_ty *reader, FILE *file,
+                     const char *real_filename, const char *logical_filename);
+ 
+ 
+-char *desktop_escape_string (const char *s, bool is_list);
+-char *desktop_unescape_string (const char *s, bool is_list);
++GETTEXTSRC_DLL_EXPORTED char *desktop_escape_string (const char *s, bool is_list);
++GETTEXTSRC_DLL_EXPORTED char *desktop_unescape_string (const char *s, bool is_list);
+ 
+-void desktop_add_keyword (hash_table *keywords, const char *name, bool is_list);
+-void desktop_add_default_keywords (hash_table *keywords);
++GETTEXTSRC_DLL_EXPORTED void desktop_add_keyword (hash_table *keywords, const char *name, bool is_list);
++GETTEXTSRC_DLL_EXPORTED void desktop_add_default_keywords (hash_table *keywords);
+ 
+ #ifdef __cplusplus
+ }
+diff --git a/gettext-tools/src/str-list.h b/gettext-tools/src/str-list.h
+index 5b7b75d..5b26de6 100644
+--- a/gettext-tools/src/str-list.h
++++ b/gettext-tools/src/str-list.h
+@@ -42,42 +42,42 @@ struct string_list_ty
+ };
+ 
+ /* Initialize an empty list of strings.  */
+-extern void string_list_init (string_list_ty *slp);
++extern GETTEXTSRC_DLL_EXPORTED void string_list_init (string_list_ty *slp);
+ 
+ /* Return a fresh, empty list of strings.  */
+-extern string_list_ty *string_list_alloc (void);
++extern GETTEXTSRC_DLL_EXPORTED string_list_ty *string_list_alloc (void);
+ 
+ /* Append a single string to the end of a list of strings.  */
+-extern void string_list_append (string_list_ty *slp, const char *s);
++extern GETTEXTSRC_DLL_EXPORTED void string_list_append (string_list_ty *slp, const char *s);
+ 
+ /* Append a single string to the end of a list of strings, unless it is
+    already contained in the list.  */
+-extern void string_list_append_unique (string_list_ty *slp, const char *s);
++extern GETTEXTSRC_DLL_EXPORTED void string_list_append_unique (string_list_ty *slp, const char *s);
+ 
+ /* Destroy a list of strings.  */
+-extern void string_list_destroy (string_list_ty *slp);
++extern GETTEXTSRC_DLL_EXPORTED void string_list_destroy (string_list_ty *slp);
+ 
+ /* Free a list of strings.  */
+-extern void string_list_free (string_list_ty *slp);
++extern GETTEXTSRC_DLL_EXPORTED void string_list_free (string_list_ty *slp);
+ 
+ /* Return a freshly allocated string obtained by concatenating all the
+    strings in the list.  */
+-extern char *string_list_concat (const string_list_ty *slp);
++extern GETTEXTSRC_DLL_EXPORTED char *string_list_concat (const string_list_ty *slp);
+ 
+ /* Return a freshly allocated string obtained by concatenating all the
+    strings in the list, and destroy the list.  */
+-extern char *string_list_concat_destroy (string_list_ty *slp);
++extern GETTEXTSRC_DLL_EXPORTED char *string_list_concat_destroy (string_list_ty *slp);
+ 
+ /* Return a freshly allocated string obtained by concatenating all the
+    strings in the list, separated by the separator string, terminated
+    by the terminator character.  The terminator character is not added if
+    drop_redundant_terminator is true and the last string already ends with
+    the terminator. */
+-extern char *string_list_join (const string_list_ty *slp, const char *separator,
++extern GETTEXTSRC_DLL_EXPORTED char *string_list_join (const string_list_ty *slp, const char *separator,
+                                char terminator, bool drop_redundant_terminator);
+ 
+ /* Return 1 if s is contained in the list of strings, 0 otherwise.  */
+-extern bool string_list_member (const string_list_ty *slp, const char *s);
++extern GETTEXTSRC_DLL_EXPORTED bool string_list_member (const string_list_ty *slp, const char *s);
+ 
+ 
+ #ifdef __cplusplus
+diff --git a/gettext-tools/src/write-catalog.h b/gettext-tools/src/write-catalog.h
+index 804592c..0860e62 100644
+--- a/gettext-tools/src/write-catalog.h
++++ b/gettext-tools/src/write-catalog.h
+@@ -65,21 +65,21 @@ struct catalog_output_format
+ typedef const struct catalog_output_format * catalog_output_format_ty;
+ 
+ /* These functions set some parameters for use by 'msgdomain_list_print'.  */
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_page_width_set (size_t width);
+ 
+ /* Output MDLP into a PO file with the given FILENAME, according to the
+    parameters set by the functions above.  */
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        msgdomain_list_print (msgdomain_list_ty *mdlp,
+                              const char *filename,
+                              catalog_output_format_ty output_syntax,
+                              bool force, bool debug);
+ 
+ /* Sort MDLP destructively according to the given criterion.  */
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        msgdomain_list_sort_by_msgid (msgdomain_list_ty *mdlp);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        msgdomain_list_sort_by_filepos (msgdomain_list_ty *mdlp);
+ 
+ 
+diff --git a/gettext-tools/src/write-po.h b/gettext-tools/src/write-po.h
+index 9a243bf..db20f23 100644
+--- a/gettext-tools/src/write-po.h
++++ b/gettext-tools/src/write-po.h
+@@ -38,41 +38,41 @@ enum filepos_comment_type
+   };
+ 
+ /* These functions are used to output a #, flags line.  */
+-extern const char *
++extern GETTEXTSRC_DLL_EXPORTED const char *
+        make_format_description_string (enum is_format is_format,
+                                        const char *lang, bool debug);
+-extern bool
++extern GETTEXTSRC_DLL_EXPORTED bool
+        significant_format_p (enum is_format is_format);
+ 
+-extern char *
++extern GETTEXTSRC_DLL_EXPORTED char *
+        make_range_description_string (struct argument_range range);
+ 
+ /* These functions output parts of a message, as comments.  */
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_print_comment (const message_ty *mp, ostream_t stream);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_print_comment_dot (const message_ty *mp, ostream_t stream);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_print_comment_filepos (const message_ty *mp, ostream_t stream,
+                                       bool uniforum, size_t page_width);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_print_comment_flags (const message_ty *mp, ostream_t stream,
+                                     bool debug);
+ 
+ /* These functions set some parameters for use by 'output_format_po.print'.  */
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_page_width_ignore (void);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_print_style_indent (void);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_print_style_uniforum (void);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_print_style_escape (bool flag);
+-extern void
++extern GETTEXTSRC_DLL_EXPORTED void
+        message_print_style_filepos (enum filepos_comment_type type);
+ 
+ /* --add-location argument handling.  Return an error indicator.  */
+-extern bool handle_filepos_comment_option (const char *option);
++extern GETTEXTSRC_DLL_EXPORTED bool handle_filepos_comment_option (const char *option);
+ 
+ 
+ /* Describes a PO file in .po syntax.  */
+-- 
+2.3.5.windows.8
+

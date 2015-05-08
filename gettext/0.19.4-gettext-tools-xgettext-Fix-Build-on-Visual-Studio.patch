@@ -1,0 +1,97 @@
+From 6b0ff17baa9e4955da15df6ca4a162822c65519f Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Fri, 8 May 2015 15:21:15 +0800
+Subject: [PATCH] gettext-tools\xgettext: Fix Build on Visual Studio
+
+Ensure we declare variables at the top of the block.
+
+As we need to build xgettext.c in C++ mode, include read-po.h,
+write-properties.h and write-stringtable.h in C mode so that we won't get
+into trouble when the linker looks for those symbols, as they were linked
+in libgettextsrc in C-mode.
+---
+ gettext-tools/src/x-lua.c    |  6 +++---
+ gettext-tools/src/xgettext.c | 14 ++++++++++++++
+ 2 files changed, 17 insertions(+), 3 deletions(-)
+
+diff --git a/gettext-tools/src/x-lua.c b/gettext-tools/src/x-lua.c
+index 9fcc20d..9276639 100644
+--- a/gettext-tools/src/x-lua.c
++++ b/gettext-tools/src/x-lua.c
+@@ -281,9 +281,9 @@ phase2_getc ()
+ 
+           if (c == '[')
+             {
++              int esigns = 0;
+               c = phase1_getc ();
+ 
+-              int esigns = 0;
+               while (c == '=')
+                 {
+                   esigns++;
+@@ -488,6 +488,7 @@ phase3_get (token_ty *tp)
+ 
+   for (;;)
+     {
++      int esigns = 0;
+       tp->line_number = line_number;
+       c = phase2_getc ();
+ 
+@@ -707,7 +708,6 @@ phase3_get (token_ty *tp)
+           c = phase1_getc ();
+ 
+           /* Count the number of equal signs.  */
+-          int esigns = 0;
+           while (c == '=')
+             {
+               esigns++;
+@@ -739,10 +739,10 @@ phase3_get (token_ty *tp)
+ 
+               if (c == ']')
+                 {
++                  int esigns2 = 0;
+                   c = phase1_getc ();
+ 
+                   /* Count the number of equal signs.  */
+-                  int esigns2 = 0;
+                   while (c == '=')
+                     {
+                       esigns2++;
+diff --git a/gettext-tools/src/xgettext.c b/gettext-tools/src/xgettext.c
+index 28d28a0..cf60f09 100644
+--- a/gettext-tools/src/xgettext.c
++++ b/gettext-tools/src/xgettext.c
+@@ -53,7 +53,14 @@
+ #include "c-strcase.h"
+ #include "open-catalog.h"
+ #include "read-catalog-abstract.h"
++#ifdef __cplusplus
++extern "C"
++{
++#endif
+ #include "read-po.h"
++#ifdef __cplusplus
++}
++#endif
+ #include "message.h"
+ #include "po-charset.h"
+ #include "msgl-iconv.h"
+@@ -61,8 +68,15 @@
+ #include "po-time.h"
+ #include "write-catalog.h"
+ #include "write-po.h"
++#ifdef __cplusplus
++extern "C"
++{
++#endif
+ #include "write-properties.h"
+ #include "write-stringtable.h"
++#ifdef __cplusplus
++}
++#endif
+ #include "color.h"
+ #include "format.h"
+ #include "propername.h"
+-- 
+2.3.5.windows.8
+
