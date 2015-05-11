@@ -16217,7 +16217,7 @@ index 0000000..d6e5767
 +
 +/* Version number: (major<<16) + (minor<<8) + subminor */
 +#define LIBGETTEXTPO_VERSION 0x001304
-+extern int libgettextpo_version;
++extern LIBGETTEXTPO_DLL_EXPORTED int libgettextpo_version;
 +
 +/* ================================= Types ================================= */
 +
