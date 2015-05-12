@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="gettext-tools-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <BinDir>$(SolutionDir)$(Configuration)\$(Platform)\bin</BinDir>
+    <InstalledDlls>$(BinDir)\intl.dll;$(BinDir)\gettextlib.dll;$(BinDir)\gettextsrc.dll;$(BinDir)\gettextpo.dll</InstalledDlls>
+    <InstalledBins>$(BinDir)\msgattrib.exe;$(BinDir)\msgcat.exe;$(BinDir)\msgcmp.exe;$(BinDir)\msgcomm.exe;$(BinDir)\msgconv.exe;$(BinDir)\msgen.exe;$(BinDir)\msgexec.exe;$(BinDir)\msgfilter.exe;$(BinDir)\msgfmt.exe;$(BinDir)\msggrep.exe;$(BinDir)\msginit.exe;$(BinDir)\msgmerge.exe;$(BinDir)\msgunfmt.exe;$(BinDir)\msguniq.exe;$(BinDir)\envsubst.exe;$(BinDir)\gettext.exe;$(BinDir)\ngettext.exe;$(BinDir)\xgettext.exe;$(BinDir)\recode-sr-latin.exe</InstalledBins>
+    <GettextDoInstall>
+mkdir $(CopyDir)
+
+mkdir $(CopyDir)\bin
+copy $(BinDir)\*.dll $(CopyDir)\bin
+copy $(BinDir)\envsubst.exe $(CopyDir)\bin
+copy $(BinDir)\gettext.exe $(CopyDir)\bin
+copy $(BinDir)\ngettext.exe $(CopyDir)\bin
+copy $(BinDir)\msg*.exe $(CopyDir)\bin
+copy $(BinDir)\xgettext.exe $(CopyDir)\bin
+copy $(BinDir)\recode-sr-latin.exe $(CopyDir)\bin
+
+mkdir $(CopyDir)\lib
+copy $(BinDir)\asprintf.lib $(CopyDir)\lib
+copy $(BinDir)\intl.lib $(CopyDir)\lib
+copy $(BinDir)\gettextpo.lib $(CopyDir)\lib
+
+mkdir $(CopyDir)\include
+copy ..\..\..\gettext-runtime\libasprintf\autosprintf.h $(CopyDir)\include
+copy ..\..\..\gettext-runtime\intl\libgnuintl.h $(CopyDir)\include
+copy ..\..\..\gettext-tools\libgettextpo\gettext-po.h $(CopyDir)\include
+</GettextDoInstall>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>gettextinstallprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="BinDir">
+      <Value>$(BinDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="InstalledDlls">
+      <Value>$(InstalledDlls)</Value>
+    </BuildMacro>
+    <BuildMacro Include="InstalledBins">
+      <Value>$(InstalledBins)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GettextDoInstall">
+      <Value>$(GettextDoInstall)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

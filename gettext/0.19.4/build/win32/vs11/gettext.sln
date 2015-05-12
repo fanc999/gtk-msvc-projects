@@ -61,6 +61,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "grep", "grep.vcxproj", "{A6
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "msggrep", "msggrep.vcxproj", "{241BEBF9-7AAE-4BF4-B803-0ABB7633773B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gettext-install", "gettext-install.vcxproj", "{A155CC73-1E70-4CF2-8E42-7053F0753A83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -309,6 +311,14 @@ Global
 		{241BEBF9-7AAE-4BF4-B803-0ABB7633773B}.Release|Win32.Build.0 = Release|Win32
 		{241BEBF9-7AAE-4BF4-B803-0ABB7633773B}.Release|x64.ActiveCfg = Release|x64
 		{241BEBF9-7AAE-4BF4-B803-0ABB7633773B}.Release|x64.Build.0 = Release|x64
+		{A155CC73-1E70-4CF2-8E42-7053F0753A83}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A155CC73-1E70-4CF2-8E42-7053F0753A83}.Debug|Win32.Build.0 = Debug|Win32
+		{A155CC73-1E70-4CF2-8E42-7053F0753A83}.Debug|x64.ActiveCfg = Debug|x64
+		{A155CC73-1E70-4CF2-8E42-7053F0753A83}.Debug|x64.Build.0 = Debug|x64
+		{A155CC73-1E70-4CF2-8E42-7053F0753A83}.Release|Win32.ActiveCfg = Release|Win32
+		{A155CC73-1E70-4CF2-8E42-7053F0753A83}.Release|Win32.Build.0 = Release|Win32
+		{A155CC73-1E70-4CF2-8E42-7053F0753A83}.Release|x64.ActiveCfg = Release|x64
+		{A155CC73-1E70-4CF2-8E42-7053F0753A83}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

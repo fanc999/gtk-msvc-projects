@@ -4,7 +4,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
     <VSVer>12</VSVer>
-    <GlibEtcInstallRoot>..\..\..\..\vs$(VSVer)\$(Platform)</GlibEtcInstallRoot>
+    <GlibEtcInstallRoot>$(SolutionDir)\..\..\vs$(VSVer)\$(Configuration)\$(Platform)</GlibEtcInstallRoot>
     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
     <PackageVersionString>0.19.4</PackageVersionString>
     <PackageVersionMajor>0</PackageVersionMajor>
