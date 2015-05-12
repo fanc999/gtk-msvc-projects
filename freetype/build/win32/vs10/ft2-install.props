@@ -20,11 +20,7 @@ mkdir $(CopyDir)\include
 copy ..\..\..\include\*.h $(CopyDir)\include
 
 mkdir $(CopyDir)\include\config
-copy ..\ftoption.h $(CopyDir)\include\config
-copy ..\..\..\include\config\ftconfig.h $(CopyDir)\include\config
-copy ..\..\..\include\config\ftheader.h $(CopyDir)\include\config
-copy ..\..\..\include\config\ftmodule.h $(CopyDir)\include\config
-copy ..\..\..\include\config\ftstdlib.h $(CopyDir)\include\config
+copy ..\..\..\include\config\*.h $(CopyDir)\include\config
 
 mkdir $(CopyDir)\include\internal\services
 copy ..\..\..\include\internal\*.h $(CopyDir)\include\internal
