@@ -1,0 +1,63 @@
+From 51e46e7e11b8f6e9be9d03ece71eaf06c213dfe1 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Tue, 12 May 2015 13:50:06 +0800
+Subject: [PATCH] freetype: Use Custom ftoption.h
+
+...so that we can build FreeType as a DLL without using .def files, and
+also enable features that require the use of libbz2 and libpng, since we
+are already building them for the GTK+ stack.  Make freetype link to
+zlib1.dll, which we are also building during the process.
+---
+ freetype/include/config/ftoption.h | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
+
+diff --git a/freetype/include/config/ftoption.h b/freetype/include/config/ftoption.h
+index 2b0b67e..c0d3755 100644
+--- a/freetype/include/config/ftoption.h
++++ b/freetype/include/config/ftoption.h
+@@ -184,7 +184,7 @@ FT_BEGIN_HEADER
+   /*   Do not #undef this macro here since the build system might define   */
+   /*   it for certain configurations only.                                 */
+   /*                                                                       */
+-/* #define FT_CONFIG_OPTION_SYSTEM_ZLIB */
++#define FT_CONFIG_OPTION_SYSTEM_ZLIB 1
+ 
+ 
+   /*************************************************************************/
+@@ -200,7 +200,7 @@ FT_BEGIN_HEADER
+   /*                                                                       */
+   /*   Define this macro if you want to enable this `feature'.             */
+   /*                                                                       */
+-/* #define FT_CONFIG_OPTION_USE_BZIP2 */
++#define FT_CONFIG_OPTION_USE_BZIP2 1
+ 
+ 
+   /*************************************************************************/
+@@ -225,7 +225,7 @@ FT_BEGIN_HEADER
+   /*                                                                       */
+   /*   Define this macro if you want to enable this `feature'.             */
+   /*                                                                       */
+-/* #define FT_CONFIG_OPTION_USE_PNG */
++#define FT_CONFIG_OPTION_USE_PNG 1
+ 
+ 
+   /*************************************************************************/
+@@ -281,6 +281,15 @@ FT_BEGIN_HEADER
+   /*                                                                       */
+ /* #define FT_EXPORT(x)      extern x */
+ /* #define FT_EXPORT_DEF(x)  x */
++#ifndef FT2_STATIC
++# ifdef FT2_BUILD_LIBRARY
++#  define FT_EXPORT(x)      extern __declspec (dllexport) x
++#  define FT_EXPORT_DEF(x)  __declspec (dllexport) x
++# else
++#  define FT_EXPORT(x)      extern __declspec (dllimport) x
++#  define FT_EXPORT_DEF(x)  __declspec (dllimport) x
++# endif
++#endif
+ 
+ 
+   /*************************************************************************/
+-- 
+2.3.5.windows.8
+
