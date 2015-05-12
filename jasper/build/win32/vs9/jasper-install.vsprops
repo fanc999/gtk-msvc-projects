@@ -23,8 +23,7 @@ mkdir $(CopyDir)\lib&#x0D;&#x0A;
 copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\libjasper.lib $(CopyDir)\lib&#x0D;&#x0A;
 
 mkdir $(CopyDir)\include\jasper&#x0D;&#x0A;
-copy ..\..\..\src\libjasper\include\jasper\jasper.h $(CopyDir)\include\jasper&#x0D;&#x0A;
-copy ..\include\jasper\*.h $(CopyDir)\include\jasper&#x0D;&#x0A;
+copy ..\..\..\src\libjasper\include\jasper\*.h $(CopyDir)\include\jasper&#x0D;&#x0A;
 "
 	/>
 </VisualStudioPropertySheet>
