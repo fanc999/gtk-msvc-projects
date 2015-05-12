@@ -1,0 +1,847 @@
+From 1062b21d643fcdf108534e0732ea6b6113a1341c Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Tue, 12 May 2015 12:57:56 +0800
+Subject: [PATCH] libjasper: Prepare Headers For DLL Build
+
+Decorate public functions and variables so that we can build libjasper as
+a DLL.
+---
+ src/libjasper/include/jasper/jas_cm.h      | 17 +++++++
+ src/libjasper/include/jasper/jas_config.h  | 12 +++++
+ src/libjasper/include/jasper/jas_debug.h   |  4 ++
+ src/libjasper/include/jasper/jas_getopt.h  |  7 +--
+ src/libjasper/include/jasper/jas_icc.h     | 36 +++++++++++++++
+ src/libjasper/include/jasper/jas_image.h   | 74 ++++++++++++++++++++++++++++++
+ src/libjasper/include/jasper/jas_init.h    |  2 +
+ src/libjasper/include/jasper/jas_malloc.h  |  4 ++
+ src/libjasper/include/jasper/jas_seq.h     | 17 ++++++-
+ src/libjasper/include/jasper/jas_stream.h  | 31 +++++++++++++
+ src/libjasper/include/jasper/jas_string.h  |  1 +
+ src/libjasper/include/jasper/jas_tmr.h     |  5 ++
+ src/libjasper/include/jasper/jas_tvp.h     |  7 +++
+ src/libjasper/include/jasper/jas_version.h |  1 +
+ 14 files changed, 214 insertions(+), 4 deletions(-)
+
+diff --git a/src/libjasper/include/jasper/jas_cm.h b/src/libjasper/include/jasper/jas_cm.h
+index d5cd22e..b5e1b92 100644
+--- a/src/libjasper/include/jasper/jas_cm.h
++++ b/src/libjasper/include/jasper/jas_cm.h
+@@ -224,6 +224,7 @@ typedef struct {
+ /* Create a profile. */
+ 
+ /* Destroy a profile. */
++JAS_EXPORT
+ void jas_cmprof_destroy(jas_cmprof_t *prof);
+ 
+ #if 0
+@@ -231,32 +232,48 @@ typedef int_fast32_t jas_cmattrname_t;
+ typedef int_fast32_t jas_cmattrval_t;
+ typedef int_fast32_t jas_cmattrtype_t;
+ /* Load a profile. */
++JAS_EXPORT
+ int jas_cmprof_load(jas_cmprof_t *prof, jas_stream_t *in, int fmt);
+ /* Save a profile. */
++JAS_EXPORT
+ int jas_cmprof_save(jas_cmprof_t *prof, jas_stream_t *out, int fmt);
+ /* Set an attribute of a profile. */
++JAS_EXPORT
+ int jas_cm_prof_setattr(jas_cm_prof_t *prof, jas_cm_attrname_t name, void *val);
+ /* Get an attribute of a profile. */
++JAS_EXPORT
+ void *jas_cm_prof_getattr(jas_cm_prof_t *prof, jas_cm_attrname_t name);
+ #endif
+ 
++JAS_EXPORT
+ jas_cmxform_t *jas_cmxform_create(jas_cmprof_t *inprof, jas_cmprof_t *outprof,
+   jas_cmprof_t *proofprof, int op, int intent, int optimize);
+ 
++JAS_EXPORT
+ void jas_cmxform_destroy(jas_cmxform_t *xform);
+ 
+ /* Apply a transform to data. */
++JAS_EXPORT
+ int jas_cmxform_apply(jas_cmxform_t *xform, jas_cmpixmap_t *in,
+   jas_cmpixmap_t *out);
+ 
++JAS_EXPORT
+ int jas_cxform_optimize(jas_cmxform_t *xform, int optimize);
+ 
++JAS_EXPORT
+ int jas_clrspc_numchans(int clrspc);
++
++JAS_EXPORT
+ jas_cmprof_t *jas_cmprof_createfromiccprof(jas_iccprof_t *iccprof);
++
++JAS_EXPORT
+ jas_cmprof_t *jas_cmprof_createfromclrspc(int clrspc);
++
++JAS_EXPORT
+ jas_iccprof_t *jas_iccprof_createfromcmprof(jas_cmprof_t *prof);
+ 
+ #define	jas_cmprof_clrspc(prof) ((prof)->clrspc)
++JAS_EXPORT
+ jas_cmprof_t *jas_cmprof_copy(jas_cmprof_t *prof);
+ 
+ #ifdef __cplusplus
+diff --git a/src/libjasper/include/jasper/jas_config.h b/src/libjasper/include/jasper/jas_config.h
+index 987fb81..6bc2ac1 100644
+--- a/src/libjasper/include/jasper/jas_config.h
++++ b/src/libjasper/include/jasper/jas_config.h
+@@ -163,10 +163,22 @@
+ /* Define to `unsigned short' if <sys/types.h> does not define. */
+ /* #undef ushort */
+ 
++#define JAS_EXPORT
+ 
+ #else
+ /* A configure-based build is not being used. */
+ #include <jasper/jas_config2.h>
++
++#ifndef JAS_MSVC_STATIC
++# ifdef LIBJASPER_BUILD
++#  define JAS_EXPORT __declspec (dllexport)
++# else
++#  define JAS_EXPORT __declspec (dllimport)
++# endif
++#else
++# define JAS_EXPORT
++#endif
++
+ #endif
+ 
+ #endif
+diff --git a/src/libjasper/include/jasper/jas_debug.h b/src/libjasper/include/jasper/jas_debug.h
+index 014614b..424d49b 100644
+--- a/src/libjasper/include/jasper/jas_debug.h
++++ b/src/libjasper/include/jasper/jas_debug.h
+@@ -96,15 +96,19 @@ extern "C" {
+ #endif
+ 
+ /* Get the library debug level. */
++JAS_EXPORT
+ int jas_getdbglevel(void);
+ 
+ /* Set the library debug level. */
++JAS_EXPORT
+ int jas_setdbglevel(int dbglevel);
+ 
+ /* Perform formatted output to standard error. */
++JAS_EXPORT
+ int jas_eprintf(const char *fmt, ...);
+ 
+ /* Dump memory to a stream. */
++JAS_EXPORT
+ int jas_memdump(FILE *out, void *data, size_t len);
+ 
+ #ifdef __cplusplus
+diff --git a/src/libjasper/include/jasper/jas_getopt.h b/src/libjasper/include/jasper/jas_getopt.h
+index 3c7b205..2ad27b9 100644
+--- a/src/libjasper/include/jasper/jas_getopt.h
++++ b/src/libjasper/include/jasper/jas_getopt.h
+@@ -109,19 +109,20 @@ typedef struct {
+ \******************************************************************************/
+ 
+ /* The current option index. */
+-extern int jas_optind;
++extern JAS_EXPORT int jas_optind;
+ 
+ /* The current option argument. */
+-extern char *jas_optarg;
++extern JAS_EXPORT char *jas_optarg;
+ 
+ /* The debug level. */
+-extern int jas_opterr;
++extern JAS_EXPORT int jas_opterr;
+ 
+ /******************************************************************************\
+ * Prototypes.
+ \******************************************************************************/
+ 
+ /* Get the next option. */
++JAS_EXPORT
+ int jas_getopt(int argc, char **argv, jas_opt_t *opts);
+ 
+ #ifdef __cplusplus
+diff --git a/src/libjasper/include/jasper/jas_icc.h b/src/libjasper/include/jasper/jas_icc.h
+index 616a572..a25ba36 100644
+--- a/src/libjasper/include/jasper/jas_icc.h
++++ b/src/libjasper/include/jasper/jas_icc.h
+@@ -373,31 +373,67 @@ typedef struct {
+ 	jas_iccattrvalops_t ops;
+ } jas_iccattrvalinfo_t;
+ 
++JAS_EXPORT
+ jas_iccprof_t *jas_iccprof_load(jas_stream_t *in);
++
++JAS_EXPORT
+ int jas_iccprof_save(jas_iccprof_t *prof, jas_stream_t *out);
++
++JAS_EXPORT
+ void jas_iccprof_destroy(jas_iccprof_t *prof);
++
++JAS_EXPORT
+ jas_iccattrval_t *jas_iccprof_getattr(jas_iccprof_t *prof,
+   jas_iccattrname_t name);
++
++JAS_EXPORT
+ int jas_iccprof_setattr(jas_iccprof_t *prof, jas_iccattrname_t name,
+   jas_iccattrval_t *val);
++
++JAS_EXPORT
+ void jas_iccprof_dump(jas_iccprof_t *prof, FILE *out);
++
++JAS_EXPORT
+ jas_iccprof_t *jas_iccprof_copy(jas_iccprof_t *prof);
+ int jas_iccprof_gethdr(jas_iccprof_t *prof, jas_icchdr_t *hdr);
++
++JAS_EXPORT
+ int jas_iccprof_sethdr(jas_iccprof_t *prof, jas_icchdr_t *hdr);
+ 
++JAS_EXPORT
+ void jas_iccattrval_destroy(jas_iccattrval_t *attrval);
++
++JAS_EXPORT
+ void jas_iccattrval_dump(jas_iccattrval_t *attrval, FILE *out);
++
++JAS_EXPORT
+ int jas_iccattrval_allowmodify(jas_iccattrval_t **attrval);
++
++JAS_EXPORT
+ jas_iccattrval_t *jas_iccattrval_clone(jas_iccattrval_t *attrval);
++
++JAS_EXPORT
+ jas_iccattrval_t *jas_iccattrval_create(jas_iccuint32_t type);
+ 
++JAS_EXPORT
+ void jas_iccattrtab_dump(jas_iccattrtab_t *attrtab, FILE *out);
+ 
++JAS_EXPORT
+ extern uchar jas_iccprofdata_srgb[];
++
++JAS_EXPORT
+ extern int jas_iccprofdata_srgblen;
++
++JAS_EXPORT
+ extern uchar jas_iccprofdata_sgray[];
++
++JAS_EXPORT
+ extern int jas_iccprofdata_sgraylen;
++
++JAS_EXPORT
+ jas_iccprof_t *jas_iccprof_createfrombuf(uchar *buf, int len);
++
++JAS_EXPORT
+ jas_iccprof_t *jas_iccprof_createfromclrspc(int clrspc);
+ 
+ #ifdef __cplusplus
+diff --git a/src/libjasper/include/jasper/jas_image.h b/src/libjasper/include/jasper/jas_image.h
+index 3ccb749..22630ca 100644
+--- a/src/libjasper/include/jasper/jas_image.h
++++ b/src/libjasper/include/jasper/jas_image.h
+@@ -298,16 +298,20 @@ typedef struct {
+ \******************************************************************************/
+ 
+ /* Create an image. */
++JAS_EXPORT
+ jas_image_t *jas_image_create(int numcmpts,
+   jas_image_cmptparm_t *cmptparms, jas_clrspc_t clrspc);
+ 
+ /* Create an "empty" image. */
++JAS_EXPORT
+ jas_image_t *jas_image_create0(void);
+ 
+ /* Clone an image. */
++JAS_EXPORT
+ jas_image_t *jas_image_copy(jas_image_t *image);
+ 
+ /* Deallocate any resources associated with an image. */
++JAS_EXPORT
+ void jas_image_destroy(jas_image_t *image);
+ 
+ /* Get the width of the image in units of the image reference grid. */
+@@ -401,35 +405,43 @@ void jas_image_destroy(jas_image_t *image);
+ 
+ /* Get the raw size of an image (i.e., the nominal size of the image without
+   any compression. */
++JAS_EXPORT
+ uint_fast32_t jas_image_rawsize(jas_image_t *image);
+ 
+ /* Create an image from a stream in some specified format. */
++JAS_EXPORT
+ jas_image_t *jas_image_decode(jas_stream_t *in, int fmt, char *optstr);
+ 
+ /* Write an image to a stream in a specified format. */
++JAS_EXPORT
+ int jas_image_encode(jas_image_t *image, jas_stream_t *out, int fmt,
+   char *optstr);
+ 
+ /* Read a rectangular region of an image component. */
+ /* The position and size of the rectangular region to be read is specified
+ relative to the component's coordinate system. */
++JAS_EXPORT
+ int jas_image_readcmpt(jas_image_t *image, int cmptno,
+   jas_image_coord_t x, jas_image_coord_t y, jas_image_coord_t width, jas_image_coord_t height,
+   jas_matrix_t *data);
+ 
+ /* Write a rectangular region of an image component. */
++JAS_EXPORT
+ int jas_image_writecmpt(jas_image_t *image, int cmptno,
+   jas_image_coord_t x, jas_image_coord_t y, jas_image_coord_t width, jas_image_coord_t height,
+   jas_matrix_t *data);
+ 
+ /* Delete a component from an image. */
++JAS_EXPORT
+ void jas_image_delcmpt(jas_image_t *image, int cmptno);
+ 
+ /* Add a component to an image. */
++JAS_EXPORT
+ int jas_image_addcmpt(jas_image_t *image, int cmptno,
+   jas_image_cmptparm_t *cmptparm);
+ 
+ /* Copy a component from one image to another. */
++JAS_EXPORT
+ int jas_image_copycmpt(jas_image_t *dstimage, int dstcmptno,
+   jas_image_t *srcimage, int srccmptno);
+ 
+@@ -441,13 +453,18 @@ int jas_image_copycmpt(jas_image_t *dstimage, int dstcmptno,
+ #define	jas_image_cmptdtype(image, cmptno) \
+ 	(JAS_IMAGE_CDT_SETSGND((image)->cmpts_[cmptno]->sgnd_) | JAS_IMAGE_CDT_SETPREC((image)->cmpts_[cmptno]->prec_))
+ 
++JAS_EXPORT
+ int jas_image_depalettize(jas_image_t *image, int cmptno, int numlutents,
+   int_fast32_t *lutents, int dtype, int newcmptno);
+ 
++JAS_EXPORT
+ int jas_image_readcmptsample(jas_image_t *image, int cmptno, int x, int y);
++
++JAS_EXPORT
+ void jas_image_writecmptsample(jas_image_t *image, int cmptno, int x, int y,
+   int_fast32_t v);
+ 
++JAS_EXPORT
+ int jas_image_getcmptbytype(jas_image_t *image, int ctype);
+ 
+ /******************************************************************************\
+@@ -455,46 +472,63 @@ int jas_image_getcmptbytype(jas_image_t *image, int ctype);
+ \******************************************************************************/
+ 
+ /* Clear the table of image formats. */
++JAS_EXPORT
+ void jas_image_clearfmts(void);
+ 
+ /* Add entry to table of image formats. */
++JAS_EXPORT
+ int jas_image_addfmt(int id, char *name, char *ext, char *desc,
+   jas_image_fmtops_t *ops);
+ 
+ /* Get the ID for the image format with the specified name. */
++JAS_EXPORT
+ int jas_image_strtofmt(char *s);
+ 
+ /* Get the name of the image format with the specified ID. */
++JAS_EXPORT
+ char *jas_image_fmttostr(int fmt);
+ 
+ /* Lookup image format information by the format ID. */
++JAS_EXPORT
+ jas_image_fmtinfo_t *jas_image_lookupfmtbyid(int id);
+ 
+ /* Lookup image format information by the format name. */
+ jas_image_fmtinfo_t *jas_image_lookupfmtbyname(const char *name);
+ 
+ /* Guess the format of an image file based on its name. */
++JAS_EXPORT
+ int jas_image_fmtfromname(char *filename);
+ 
+ /* Get the format of image data in a stream. */
++JAS_EXPORT
+ int jas_image_getfmt(jas_stream_t *in);
+ 
+ 
+ #define	jas_image_cmprof(image)	((image)->cmprof_)
++JAS_EXPORT
+ int jas_image_ishomosamp(jas_image_t *image);
++
++JAS_EXPORT
+ int jas_image_sampcmpt(jas_image_t *image, int cmptno, int newcmptno,
+   jas_image_coord_t ho, jas_image_coord_t vo, jas_image_coord_t hs,
+   jas_image_coord_t vs, int sgnd, int prec);
++
++JAS_EXPORT
+ int jas_image_writecmpt2(jas_image_t *image, int cmptno, jas_image_coord_t x,
+   jas_image_coord_t y, jas_image_coord_t width, jas_image_coord_t height,
+   long *buf);
++
++JAS_EXPORT
+ int jas_image_readcmpt2(jas_image_t *image, int cmptno, jas_image_coord_t x,
+   jas_image_coord_t y, jas_image_coord_t width, jas_image_coord_t height,
+   long *buf);
+ 
+ #define	jas_image_setcmprof(image, cmprof) ((image)->cmprof_ = cmprof)
++JAS_EXPORT
+ jas_image_t *jas_image_chclrspc(jas_image_t *image, jas_cmprof_t *outprof,
+   int intent);
++
++JAS_EXPORT
+ void jas_image_dump(jas_image_t *image, FILE *out);
+ 
+ /******************************************************************************\
+@@ -503,57 +537,97 @@ void jas_image_dump(jas_image_t *image, FILE *out);
+ 
+ #if !defined(EXCLUDE_JPG_SUPPORT)
+ /* Format-dependent operations for JPG support. */
++JAS_EXPORT
+ jas_image_t *jpg_decode(jas_stream_t *in, char *optstr);
++
++JAS_EXPORT
+ int jpg_encode(jas_image_t *image, jas_stream_t *out, char *optstr);
++
++JAS_EXPORT
+ int jpg_validate(jas_stream_t *in);
+ #endif
+ 
+ #if !defined(EXCLUDE_MIF_SUPPORT)
+ /* Format-dependent operations for MIF support. */
++JAS_EXPORT
+ jas_image_t *mif_decode(jas_stream_t *in, char *optstr);
++
++JAS_EXPORT
+ int mif_encode(jas_image_t *image, jas_stream_t *out, char *optstr);
++
++JAS_EXPORT
+ int mif_validate(jas_stream_t *in);
+ #endif
+ 
+ #if !defined(EXCLUDE_PNM_SUPPORT)
+ /* Format-dependent operations for PNM support. */
++JAS_EXPORT
+ jas_image_t *pnm_decode(jas_stream_t *in, char *optstr);
++
++JAS_EXPORT
+ int pnm_encode(jas_image_t *image, jas_stream_t *out, char *optstr);
++
++JAS_EXPORT
+ int pnm_validate(jas_stream_t *in);
+ #endif
+ 
+ #if !defined(EXCLUDE_RAS_SUPPORT)
+ /* Format-dependent operations for Sun Rasterfile support. */
++JAS_EXPORT
+ jas_image_t *ras_decode(jas_stream_t *in, char *optstr);
++
++JAS_EXPORT
+ int ras_encode(jas_image_t *image, jas_stream_t *out, char *optstr);
++
++JAS_EXPORT
+ int ras_validate(jas_stream_t *in);
+ #endif
+ 
+ #if !defined(EXCLUDE_BMP_SUPPORT)
+ /* Format-dependent operations for BMP support. */
++JAS_EXPORT
+ jas_image_t *bmp_decode(jas_stream_t *in, char *optstr);
++
++JAS_EXPORT
+ int bmp_encode(jas_image_t *image, jas_stream_t *out, char *optstr);
++
++JAS_EXPORT
+ int bmp_validate(jas_stream_t *in);
+ #endif
+ 
+ #if !defined(EXCLUDE_JP2_SUPPORT)
+ /* Format-dependent operations for JP2 support. */
++JAS_EXPORT
+ jas_image_t *jp2_decode(jas_stream_t *in, char *optstr);
++
++JAS_EXPORT
+ int jp2_encode(jas_image_t *image, jas_stream_t *out, char *optstr);
++
++JAS_EXPORT
+ int jp2_validate(jas_stream_t *in);
+ #endif
+ 
+ #if !defined(EXCLUDE_JPC_SUPPORT)
+ /* Format-dependent operations for JPEG-2000 code stream support. */
++JAS_EXPORT
+ jas_image_t *jpc_decode(jas_stream_t *in, char *optstr);
++
++JAS_EXPORT
+ int jpc_encode(jas_image_t *image, jas_stream_t *out, char *optstr);
++
++JAS_EXPORT
+ int jpc_validate(jas_stream_t *in);
+ #endif
+ 
+ #if !defined(EXCLUDE_PGX_SUPPORT)
+ /* Format-dependent operations for PGX support. */
++JAS_EXPORT
+ jas_image_t *pgx_decode(jas_stream_t *in, char *optstr);
++
++JAS_EXPORT
+ int pgx_encode(jas_image_t *image, jas_stream_t *out, char *optstr);
++
++JAS_EXPORT
+ int pgx_validate(jas_stream_t *in);
+ #endif
+ 
+diff --git a/src/libjasper/include/jasper/jas_init.h b/src/libjasper/include/jasper/jas_init.h
+index 10301e9..3e66e02 100644
+--- a/src/libjasper/include/jasper/jas_init.h
++++ b/src/libjasper/include/jasper/jas_init.h
+@@ -72,8 +72,10 @@ extern "C" {
+ * Functions.
+ \******************************************************************************/
+ 
++JAS_EXPORT
+ int jas_init(void);
+ 
++JAS_EXPORT
+ void jas_cleanup(void);
+ 
+ #ifdef __cplusplus
+diff --git a/src/libjasper/include/jasper/jas_malloc.h b/src/libjasper/include/jasper/jas_malloc.h
+index f2a8f8b..3aeee6b 100644
+--- a/src/libjasper/include/jasper/jas_malloc.h
++++ b/src/libjasper/include/jasper/jas_malloc.h
+@@ -104,15 +104,19 @@ extern "C" {
+ #if !defined(DEBUG_MEMALLOC)
+ 
+ /* Allocate memory. */
++JAS_EXPORT
+ void *jas_malloc(size_t size);
+ 
+ /* Free memory. */
++JAS_EXPORT
+ void jas_free(void *ptr);
+ 
+ /* Resize a block of allocated memory. */
++JAS_EXPORT
+ void *jas_realloc(void *ptr, size_t size);
+ 
+ /* Allocate a block of memory and initialize the contents to zero. */
++JAS_EXPORT
+ void *jas_calloc(size_t nmemb, size_t size);
+ 
+ #endif
+diff --git a/src/libjasper/include/jasper/jas_seq.h b/src/libjasper/include/jasper/jas_seq.h
+index 91fe31e..6afafca 100644
+--- a/src/libjasper/include/jasper/jas_seq.h
++++ b/src/libjasper/include/jasper/jas_seq.h
+@@ -183,17 +183,22 @@ typedef jas_matrix_t jas_seq_t;
+ 	(max((matrix)->numrows_, (matrix)->numcols_))
+ 
+ /* Create a matrix with the specified dimensions. */
++JAS_EXPORT
+ jas_matrix_t *jas_matrix_create(int numrows, int numcols);
+ 
+ /* Destroy a matrix. */
++JAS_EXPORT
+ void jas_matrix_destroy(jas_matrix_t *matrix);
+ 
+ /* Resize a matrix.  The previous contents of the matrix are lost. */
++JAS_EXPORT
+ int jas_matrix_resize(jas_matrix_t *matrix, int numrows, int numcols);
+ 
++JAS_EXPORT
+ int jas_matrix_output(jas_matrix_t *matrix, FILE *out);
+ 
+ /* Create a matrix that references part of another matrix. */
++JAS_EXPORT
+ void jas_matrix_bindsub(jas_matrix_t *mat0, jas_matrix_t *mat1, int r0, int c0,
+   int r1, int c1);
+ 
+@@ -206,19 +211,24 @@ void jas_matrix_bindsub(jas_matrix_t *mat0, jas_matrix_t *mat1, int r0, int c0,
+   (jas_matrix_bindsub((mat0), (mat1), 0, (c), (mat1)->numrows_ - 1, (c)))
+ 
+ /* Clip the values of matrix elements to the specified range. */
++JAS_EXPORT
+ void jas_matrix_clip(jas_matrix_t *matrix, jas_seqent_t minval,
+   jas_seqent_t maxval);
+ 
+ /* Arithmetic shift left of all elements in a matrix. */
++JAS_EXPORT
+ void jas_matrix_asl(jas_matrix_t *matrix, int n);
+ 
+ /* Arithmetic shift right of all elements in a matrix. */
++JAS_EXPORT
+ void jas_matrix_asr(jas_matrix_t *matrix, int n);
+ 
+ /* Almost-but-not-quite arithmetic shift right of all elements in a matrix. */
++JAS_EXPORT
+ void jas_matrix_divpow2(jas_matrix_t *matrix, int n);
+ 
+ /* Set all elements of a matrix to the specified value. */
++JAS_EXPORT
+ void jas_matrix_setall(jas_matrix_t *matrix, jas_seqent_t val);
+ 
+ /* The spacing between rows of a matrix. */
+@@ -230,18 +240,22 @@ void jas_matrix_setall(jas_matrix_t *matrix, jas_seqent_t val);
+ 	(((matrix)->numrows_ > 1) ? (jas_matrix_rowstep(matrix)) : (1))
+ 
+ /* Compare two matrices for equality. */
++JAS_EXPORT
+ int jas_matrix_cmp(jas_matrix_t *mat0, jas_matrix_t *mat1);
+ 
++JAS_EXPORT
+ jas_matrix_t *jas_matrix_copy(jas_matrix_t *x);
+ 
++JAS_EXPORT
+ jas_matrix_t *jas_matrix_input(FILE *);
+ 
+ /******************************************************************************\
+ * Functions/macros for 2-D sequence class.
+ \******************************************************************************/
+-
++JAS_EXPORT
+ jas_seq2d_t *jas_seq2d_copy(jas_seq2d_t *x);
+ 
++JAS_EXPORT
+ jas_matrix_t *jas_seq2d_create(int xstart, int ystart, int xend, int yend);
+ 
+ #define	jas_seq2d_destroy(s) \
+@@ -270,6 +284,7 @@ jas_matrix_t *jas_seq2d_create(int xstart, int ystart, int xend, int yend);
+ 	  (s)->xend_ = (s)->xstart_ + (s)->numcols_, \
+ 	  (s)->yend_ = (s)->ystart_ + (s)->numrows_)
+ 
++JAS_EXPORT
+ void jas_seq2d_bindsub(jas_matrix_t *s, jas_matrix_t *s1, int xstart,
+   int ystart, int xend, int yend);
+ 
+diff --git a/src/libjasper/include/jasper/jas_stream.h b/src/libjasper/include/jasper/jas_stream.h
+index 651bea9..cfad9ca 100644
+--- a/src/libjasper/include/jasper/jas_stream.h
++++ b/src/libjasper/include/jasper/jas_stream.h
+@@ -288,21 +288,27 @@ typedef struct {
+ \******************************************************************************/
+ 
+ /* Open a file as a stream. */
++JAS_EXPORT
+ jas_stream_t *jas_stream_fopen(const char *filename, const char *mode);
+ 
+ /* Open a memory buffer as a stream. */
++JAS_EXPORT
+ jas_stream_t *jas_stream_memopen(char *buf, int bufsize);
+ 
+ /* Open a file descriptor as a stream. */
++JAS_EXPORT
+ jas_stream_t *jas_stream_fdopen(int fd, const char *mode);
+ 
+ /* Open a stdio stream as a stream. */
++JAS_EXPORT
+ jas_stream_t *jas_stream_freopen(const char *path, const char *mode, FILE *fp);
+ 
+ /* Open a temporary file as a stream. */
++JAS_EXPORT
+ jas_stream_t *jas_stream_tmpfile(void);
+ 
+ /* Close a stream. */
++JAS_EXPORT
+ int jas_stream_close(jas_stream_t *stream);
+ 
+ /******************************************************************************\
+@@ -326,6 +332,7 @@ int jas_stream_close(jas_stream_t *stream);
+ 	(((const jas_stream_t *)(stream))->rwlimit_)
+ 
+ /* Set the read/write limit for a stream. */
++JAS_EXPORT
+ int jas_stream_setrwlimit(jas_stream_t *stream, long rwlimit);
+ 
+ /* Get the read/write count for a stream. */
+@@ -333,6 +340,7 @@ int jas_stream_setrwlimit(jas_stream_t *stream, long rwlimit);
+ 	(((const jas_stream_t *)(stream))->rwcnt_)
+ 
+ /* Set the read/write count for a stream. */
++JAS_EXPORT
+ long jas_stream_setrwcount(jas_stream_t *stream, long rwcnt);
+ 
+ /******************************************************************************\
+@@ -354,18 +362,23 @@ long jas_stream_setrwcount(jas_stream_t *stream, long rwcnt);
+ #endif
+ 
+ /* Read characters from a stream into a buffer. */
++JAS_EXPORT
+ int jas_stream_read(jas_stream_t *stream, void *buf, int cnt);
+ 
+ /* Write characters from a buffer to a stream. */
++JAS_EXPORT
+ int jas_stream_write(jas_stream_t *stream, const void *buf, int cnt);
+ 
+ /* Write formatted output to a stream. */
++JAS_EXPORT
+ int jas_stream_printf(jas_stream_t *stream, const char *fmt, ...);
+ 
+ /* Write a string to a stream. */
++JAS_EXPORT
+ int jas_stream_puts(jas_stream_t *stream, const char *s);
+ 
+ /* Read a line of input from a stream. */
++JAS_EXPORT
+ char *jas_stream_gets(jas_stream_t *stream, char *buf, int bufsize);
+ 
+ /* Look at the next character to be read from a stream without actually
+@@ -375,6 +388,7 @@ char *jas_stream_gets(jas_stream_t *stream, char *buf, int bufsize);
+ 	  ((int)(*(stream)->ptr_)))
+ 
+ /* Put a character back on a stream. */
++JAS_EXPORT
+ int jas_stream_ungetc(jas_stream_t *stream, int c);
+ 
+ /******************************************************************************\
+@@ -382,15 +396,19 @@ int jas_stream_ungetc(jas_stream_t *stream, int c);
+ \******************************************************************************/
+ 
+ /* Is it possible to seek on this stream? */
++JAS_EXPORT
+ int jas_stream_isseekable(jas_stream_t *stream);
+ 
+ /* Set the current position within the stream. */
++JAS_EXPORT
+ long jas_stream_seek(jas_stream_t *stream, long offset, int origin);
+ 
+ /* Get the current position within the stream. */
++JAS_EXPORT
+ long jas_stream_tell(jas_stream_t *stream);
+ 
+ /* Seek to the beginning of a stream. */
++JAS_EXPORT
+ int jas_stream_rewind(jas_stream_t *stream);
+ 
+ /******************************************************************************\
+@@ -398,6 +416,7 @@ int jas_stream_rewind(jas_stream_t *stream);
+ \******************************************************************************/
+ 
+ /* Flush any pending output to a stream. */
++JAS_EXPORT
+ int jas_stream_flush(jas_stream_t *stream);
+ 
+ /******************************************************************************\
+@@ -405,19 +424,24 @@ int jas_stream_flush(jas_stream_t *stream);
+ \******************************************************************************/
+ 
+ /* Copy data from one stream to another. */
++JAS_EXPORT
+ int jas_stream_copy(jas_stream_t *dst, jas_stream_t *src, int n);
+ 
+ /* Display stream contents (for debugging purposes). */
++JAS_EXPORT
+ int jas_stream_display(jas_stream_t *stream, FILE *fp, int n);
+ 
+ /* Consume (i.e., discard) characters from stream. */
++JAS_EXPORT
+ int jas_stream_gobble(jas_stream_t *stream, int n);
+ 
+ /* Write a character multiple times to a stream. */
++JAS_EXPORT
+ int jas_stream_pad(jas_stream_t *stream, int n, int c);
+ 
+ /* Get the size of the file associated with the specified stream.
+   The specified stream must be seekable. */
++JAS_EXPORT
+ long jas_stream_length(jas_stream_t *stream);
+ 
+ /******************************************************************************\
+@@ -452,9 +476,16 @@ directly, you will die a horrible, miserable, and painful death! */
+ 
+ /* These prototypes need to be here for the sake of the stream_getc and
+ stream_putc macros. */
++JAS_EXPORT
+ int jas_stream_fillbuf(jas_stream_t *stream, int getflag);
++
++JAS_EXPORT
+ int jas_stream_flushbuf(jas_stream_t *stream, int c);
++
++JAS_EXPORT
+ int jas_stream_getc_func(jas_stream_t *stream);
++
++JAS_EXPORT
+ int jas_stream_putc_func(jas_stream_t *stream, int c);
+ 
+ #ifdef __cplusplus
+diff --git a/src/libjasper/include/jasper/jas_string.h b/src/libjasper/include/jasper/jas_string.h
+index f217da2..406b228 100644
+--- a/src/libjasper/include/jasper/jas_string.h
++++ b/src/libjasper/include/jasper/jas_string.h
+@@ -86,6 +86,7 @@ extern "C" {
+ \******************************************************************************/
+ 
+ /* Copy a string (a la strdup). */
++JAS_EXPORT
+ char *jas_strdup(const char *);
+ 
+ #ifdef __cplusplus
+diff --git a/src/libjasper/include/jasper/jas_tmr.h b/src/libjasper/include/jasper/jas_tmr.h
+index 837f2bf..f764d58 100644
+--- a/src/libjasper/include/jasper/jas_tmr.h
++++ b/src/libjasper/include/jasper/jas_tmr.h
+@@ -92,8 +92,13 @@ typedef int jas_tmr_t;
+ 
+ #endif
+ 
++JAS_EXPORT
+ void jas_tmr_start(jas_tmr_t *tmr);
++
++JAS_EXPORT
+ void jas_tmr_stop(jas_tmr_t *tmr);
++
++JAS_EXPORT
+ double jas_tmr_get(jas_tmr_t *tmr);
+ 
+ #ifdef __cplusplus
+diff --git a/src/libjasper/include/jasper/jas_tvp.h b/src/libjasper/include/jasper/jas_tvp.h
+index ae4f933..8fd8624 100644
+--- a/src/libjasper/include/jasper/jas_tvp.h
++++ b/src/libjasper/include/jasper/jas_tvp.h
+@@ -117,12 +117,14 @@ typedef struct {
+ \******************************************************************************/
+ 
+ /* Lookup a tag by name. */
++JAS_EXPORT
+ jas_taginfo_t *jas_taginfos_lookup(jas_taginfo_t *taginfos, const char *name);
+ 
+ /* This function returns a pointer to the specified taginfo object if it
+   exists (i.e., the pointer is nonnull); otherwise, a pointer to a dummy
+   object is returned.  This is useful in some situations to avoid checking
+   for a null pointer. */
++JAS_EXPORT
+ jas_taginfo_t *jas_taginfo_nonull(jas_taginfo_t *taginfo);
+ 
+ /******************************************************************************\
+@@ -130,18 +132,23 @@ jas_taginfo_t *jas_taginfo_nonull(jas_taginfo_t *taginfo);
+ \******************************************************************************/
+ 
+ /* Create a tag-value parser for the specified string. */
++JAS_EXPORT
+ jas_tvparser_t *jas_tvparser_create(const char *s);
+ 
+ /* Destroy a tag-value parser. */
++JAS_EXPORT
+ void jas_tvparser_destroy(jas_tvparser_t *tvparser);
+ 
+ /* Get the next tag-value pair. */
++JAS_EXPORT
+ int jas_tvparser_next(jas_tvparser_t *tvparser);
+ 
+ /* Get the tag name for the current tag-value pair. */
++JAS_EXPORT
+ char *jas_tvparser_gettag(jas_tvparser_t *tvparser);
+ 
+ /* Get the value for the current tag-value pair. */
++JAS_EXPORT
+ char *jas_tvparser_getval(jas_tvparser_t *tvparser);
+ 
+ #ifdef __cplusplus
+diff --git a/src/libjasper/include/jasper/jas_version.h b/src/libjasper/include/jasper/jas_version.h
+index 14da7a0..500fd4d 100644
+--- a/src/libjasper/include/jasper/jas_version.h
++++ b/src/libjasper/include/jasper/jas_version.h
+@@ -108,6 +108,7 @@ extern "C" {
+ * Functions.
+ \******************************************************************************/
+ 
++JAS_EXPORT
+ const char *jas_getversion(void);
+ /* Get the version information for the JasPer library. */
+ /* Note:  Since libjasper can be built as a shared library, the version
+-- 
+2.3.5.windows.8
+
