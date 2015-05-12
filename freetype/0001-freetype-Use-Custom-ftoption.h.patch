@@ -8,13 +8,13 @@ also enable features that require the use of libbz2 and libpng, since we
 are already building them for the GTK+ stack.  Make freetype link to
 zlib1.dll, which we are also building during the process.
 ---
- freetype/include/config/ftoption.h | 15 ++++++++++++---
+ include/config/ftoption.h | 15 ++++++++++++---
  1 file changed, 12 insertions(+), 3 deletions(-)
 
-diff --git a/freetype/include/config/ftoption.h b/freetype/include/config/ftoption.h
+diff --git a/include/config/ftoption.h b/include/config/ftoption.h
 index 2b0b67e..c0d3755 100644
---- a/freetype/include/config/ftoption.h
-+++ b/freetype/include/config/ftoption.h
+--- a/include/config/ftoption.h
++++ b/include/config/ftoption.h
 @@ -184,7 +184,7 @@ FT_BEGIN_HEADER
    /*   Do not #undef this macro here since the build system might define   */
    /*   it for certain configurations only.                                 */
