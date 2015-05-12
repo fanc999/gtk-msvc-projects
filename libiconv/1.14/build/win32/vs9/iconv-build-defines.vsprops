@@ -9,7 +9,7 @@
 	>
 	<Tool
 		Name="VCCLCompilerTool"
-		AdditionalIncludeDirectories="..\..\..\libcharset\include\msvc"
+		AdditionalIncludeDirectories="..\..\..\libcharset\include"
 		PreprocessorDefinitions=""
 		DisableSpecificWarnings="4273"
 	/>
@@ -42,16 +42,12 @@
 		Value="..\..\..\libcharset"
 	/>
 	<UserMacro
-		Name="IconvBaseIncludeDirs"
-		Value="..\..\.."
-	/>
-	<UserMacro
 		Name="LibIconvIncludeDirs"
-		Value="..\..\..\include\msvc;$(IconvBaseIncludeDirs)"
+		Value="..\..\..\include;..\..\.."
 	/>
 	<UserMacro
 		Name="IconvIncludeDirs"
-		Value="..\..\..\srclib\msvc;..\..\..\srclib;..\..\..\build-aux\snippet;$(LibIconvIncludeDirs)"
+		Value="..\..\..\srclib;..\..\..\build-aux\snippet;$(LibIconvIncludeDirs)"
 	/>
 	<UserMacro
 		Name="IconvDefines"

@@ -15,7 +15,7 @@ copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\*.exe $(CopyDir)\bin
 
 mkdir $(CopyDir)\include&#x0D;&#x0A;
 
-copy ..\..\..\include\msvc\iconv.h $(CopyDir)\include&#x0D;&#x0A;
+copy ..\..\..\include\iconv.h $(CopyDir)\include&#x0D;&#x0A;
 
 mkdir $(CopyDir)\lib&#x0D;&#x0A;
 

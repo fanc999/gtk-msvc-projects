@@ -138,7 +138,7 @@
     <ClCompile Include="..\..\..\srclib\allocator.c" />
     <ClCompile Include="..\..\..\srclib\areadlink.c" />
     <ClCompile Include="..\..\..\srclib\c-ctype.c" />
-    <ClCompile Include="..\..\..\srclib\msvc\canonicalize-lgpl.c" />
+    <ClCompile Include="..\..\..\srclib\canonicalize-lgpl.c" />
     <ClCompile Include="..\..\..\srclib\careadlinkat.c" />
     <ClCompile Include="..\..\..\srclib\error.c" />
     <ClCompile Include="..\..\..\srclib\lstat.c" />
@@ -151,7 +151,7 @@
     <ClCompile Include="..\..\..\srclib\relocatable.c" />
     <ClCompile Include="..\..\..\srclib\safe-read.c" />
     <ClCompile Include="..\..\..\srclib\setenv.c" />
-    <ClCompile Include="..\..\..\srclib\msvc\stat.c" />
+    <ClCompile Include="..\..\..\srclib\stat.c" />
     <ClCompile Include="..\..\..\srclib\stdio-write.c" />
     <ClCompile Include="..\..\..\srclib\strerror-override.c" />
     <ClCompile Include="..\..\..\srclib\strerror.c" />

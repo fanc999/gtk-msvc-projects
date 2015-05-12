@@ -17,7 +17,7 @@ copy $(BinDir)\*.exe $(CopyDir)\bin
 
 mkdir $(CopyDir)\include
 
-copy ..\..\..\include\msvc\iconv.h $(CopyDir)\include
+copy ..\..\..\include\iconv.h $(CopyDir)\include
 
 mkdir $(CopyDir)\lib
 

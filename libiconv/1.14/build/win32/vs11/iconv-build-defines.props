@@ -10,9 +10,8 @@
     <LibcharsetDefines>$(BaseDLLDefines);$(BasePathDefines);BUILDING_LIBCHARSET;set_relocation_prefix=libcharset_set_relocation_prefix;relocate=libcharset_relocate</LibcharsetDefines>
     <LibIconvDefines>$(BaseDLLDefines);$(BasePathDefines);BUILDING_LIBICONV;DEPENDS_ON_LIBCHARSET;set_relocation_prefix=libiconv_set_relocation_prefix;relocate=libiconv_relocate</LibIconvDefines>
     <CharsetIncludeDirs>..\..\..\libcharset</CharsetIncludeDirs>
-    <IconvBaseIncludeDirs>..\..\..</IconvBaseIncludeDirs>
-    <LibIconvIncludeDirs>..\..\..\include\msvc;$(IconvBaseIncludeDirs)</LibIconvIncludeDirs>
-    <IconvIncludeDirs>..\..\..\srclib\msvc;..\..\..\srclib;..\..\..\build-aux\snippet;$(LibIconvIncludeDirs)</IconvIncludeDirs>
+    <LibIconvIncludeDirs>..\..\..\include;..\..\..</LibIconvIncludeDirs>
+    <IconvIncludeDirs>..\..\..\srclib;..\..\..\build-aux\snippet;$(LibIconvIncludeDirs)</IconvIncludeDirs>
     <IconvDefines>$(BaseDefines);$(BasePathDefines);EXEEXT=".exe"</IconvDefines>
     <IconvForcedIncludes>arg-nonnull.h;c++defs.h;warn-on-use.h;_Noreturn.h</IconvForcedIncludes>
   </PropertyGroup>
@@ -23,7 +22,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\..\libcharset\include\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\libcharset\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4273;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
@@ -49,9 +48,6 @@
     </BuildMacro>
     <BuildMacro Include="CharsetIncludeDirs">
       <Value>$(CharsetIncludeDirs)</Value>
-    </BuildMacro>
-    <BuildMacro Include="IconvBaseIncludeDirs">
-      <Value>$(IconvBaseIncludeDirs)</Value>
     </BuildMacro>
     <BuildMacro Include="LibIconvIncludeDirs">
       <Value>$(LibIconvIncludeDirs)</Value>

@@ -18,7 +18,7 @@
     <ClCompile Include="..\..\..\srclib\allocator.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\srclib\areadlink.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\srclib\c-ctype.c"><Filter>Sources</Filter></ClCompile>
-    <ClCompile Include="..\..\..\srclib\msvc\canonicalize-lgpl.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\srclib\canonicalize-lgpl.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\srclib\careadlinkat.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\srclib\error.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\srclib\lstat.c"><Filter>Sources</Filter></ClCompile>
@@ -31,7 +31,7 @@
     <ClCompile Include="..\..\..\srclib\relocatable.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\srclib\safe-read.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\srclib\setenv.c"><Filter>Sources</Filter></ClCompile>
-    <ClCompile Include="..\..\..\srclib\msvc\stat.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\srclib\stat.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\srclib\stdio-write.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\srclib\strerror-override.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\srclib\strerror.c"><Filter>Sources</Filter></ClCompile>
