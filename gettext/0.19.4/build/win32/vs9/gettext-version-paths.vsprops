@@ -15,7 +15,7 @@
 	/>
 	<UserMacro
 		Name="GlibEtcInstallRoot"
-		Value="..\..\..\..\vs$(VSVer)\$(PlatformName)"
+		Value="$(SolutionDir)\..\..\vs$(VSVer)\$(ConfigurationName)\$(PlatformName)"
 	/>
 	<UserMacro
 		Name="CopyDir"
