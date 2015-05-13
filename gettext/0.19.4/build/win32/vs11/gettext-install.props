@@ -12,12 +12,23 @@ mkdir $(CopyDir)
 
 mkdir $(CopyDir)\bin
 copy $(BinDir)\*.dll $(CopyDir)\bin
+copy $(BinDir)\asprintf.pdb $(CopyDir)\bin
+copy $(BinDir)\intl.pdb $(CopyDir)\bin
+copy $(BinDir)\gettextpo.pdb $(CopyDir)\bin
+copy $(BinDir)\gettextlib.pdb $(CopyDir)\bin
+copy $(BinDir)\gettextsrc.pdb $(CopyDir)\bin
 copy $(BinDir)\envsubst.exe $(CopyDir)\bin
+copy $(BinDir)\envsubst.pdb $(CopyDir)\bin
 copy $(BinDir)\gettext.exe $(CopyDir)\bin
+copy $(BinDir)\gettext.pdb $(CopyDir)\bin
 copy $(BinDir)\ngettext.exe $(CopyDir)\bin
+copy $(BinDir)\ngettext.pdb $(CopyDir)\bin
 copy $(BinDir)\msg*.exe $(CopyDir)\bin
+copy $(BinDir)\msg*.pdb $(CopyDir)\bin
 copy $(BinDir)\xgettext.exe $(CopyDir)\bin
+copy $(BinDir)\xgettext.pdb $(CopyDir)\bin
 copy $(BinDir)\recode-sr-latin.exe $(CopyDir)\bin
+copy $(BinDir)\recode-sr-latin.pdb $(CopyDir)\bin
 
 mkdir $(CopyDir)\lib
 copy $(BinDir)\asprintf.lib $(CopyDir)\lib
