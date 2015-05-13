@@ -1,0 +1,89 @@
+From 42fba149b3d900f619a64a453b5b5810c3528c50 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Wed, 13 May 2015 18:06:41 +0800
+Subject: [PATCH 2/4] src/x86/ffi.c: Fix Build on pre-C99 Compilers
+
+Ensure variables are declared at the top of the block.
+---
+ src/x86/ffi.c | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
+
+diff --git a/src/x86/ffi.c b/src/x86/ffi.c
+index 006c95d..0a68df4 100644
+--- a/src/x86/ffi.c
++++ b/src/x86/ffi.c
+@@ -99,11 +99,12 @@ unsigned int ffi_prep_args(char *stack, extended_cif *ecif)
+        i != 0;
+        i--, p_arg += dir, p_argv += dir)
+     {
++      size_t z;
+       /* Align if necessary */
+       if ((sizeof(void*) - 1) & (size_t) argp)
+         argp = (char *) ALIGN(argp, sizeof(void*));
+ 
+-      size_t z = (*p_arg)->size;
++      z = (*p_arg)->size;
+ 
+ #ifdef X86_WIN64
+       if (z > FFI_SIZEOF_ARG
+@@ -202,6 +203,7 @@ unsigned int ffi_prep_args(char *stack, extended_cif *ecif)
+      on top of stack, so that those can be moved to registers by call-handler.  */
+   if (stack_args_count > 0)
+     {
++      int i;
+       if (dir < 0 && stack_args_count > 1)
+         {
+           /* Reverse order if iterating arguments backwards */
+@@ -210,7 +212,6 @@ unsigned int ffi_prep_args(char *stack, extended_cif *ecif)
+           *(ffi_arg*) p_stack_data[stack_args_count - 1] = tmp;
+         }
+       
+-      int i;
+       for (i = 0; i < stack_args_count; i++)
+         {
+           if (p_stack_data[i] != argp2)
+@@ -569,11 +570,12 @@ ffi_prep_incoming_args(char *stack, void **rvalue, void **avalue,
+        i < cif->nargs && passed_regs < max_stack_count;
+        i++, p_arg++)
+     {
++      size_t sz;
+       if ((*p_arg)->type == FFI_TYPE_FLOAT
+          || (*p_arg)->type == FFI_TYPE_STRUCT)
+         continue;
+ 
+-      size_t sz = (*p_arg)->size;
++      sz = (*p_arg)->size;
+       if(sz == 0 || sz > FFI_SIZEOF_ARG)
+         continue;
+ 
+@@ -599,11 +601,12 @@ ffi_prep_incoming_args(char *stack, void **rvalue, void **avalue,
+        i != 0;
+        i--, p_arg += dir, p_argv += dir)
+     {
++      size_t z;
+       /* Align if necessary */
+       if ((sizeof(void*) - 1) & (size_t) argp)
+         argp = (char *) ALIGN(argp, sizeof(void*));
+ 
+-      size_t z = (*p_arg)->size;
++      z = (*p_arg)->size;
+ 
+ #ifdef X86_WIN64
+       if (z > FFI_SIZEOF_ARG
+@@ -855,11 +858,12 @@ ffi_prep_args_raw(char *stack, extended_cif *ecif)
+   
+   for (i = 0; i < cif->nargs && passed_regs <= max_regs; i++)
+     {
++      size_t sz;
+       if (cif->arg_types[i]->type == FFI_TYPE_FLOAT
+          || cif->arg_types[i]->type == FFI_TYPE_STRUCT)
+         continue;
+ 
+-      size_t sz = cif->arg_types[i]->size;
++      sz = cif->arg_types[i]->size;
+       if (sz == 0 || sz > FFI_SIZEOF_ARG)
+         continue;
+ 
+-- 
+2.3.5.windows.8
+

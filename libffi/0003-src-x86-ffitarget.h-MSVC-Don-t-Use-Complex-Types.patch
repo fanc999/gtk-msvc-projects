@@ -1,0 +1,28 @@
+From a0500194de972bce664ad4032cbface292f1306e Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Wed, 13 May 2015 18:10:21 +0800
+Subject: [PATCH 3/4] src/x86/ffitarget.h: MSVC: Don't Use Complex Types
+
+Visual Studio (up to 2013) does not support _Complex, so disable it
+for Visual Studio builds.
+---
+ src/x86/ffitarget.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/x86/ffitarget.h b/src/x86/ffitarget.h
+index a236677..ff0f718 100644
+--- a/src/x86/ffitarget.h
++++ b/src/x86/ffitarget.h
+@@ -50,7 +50,9 @@
+ #endif
+ 
+ #define FFI_TARGET_SPECIFIC_STACK_SPACE_ALLOCATION
++#ifndef _MSC_VER
+ #define FFI_TARGET_HAS_COMPLEX_TYPE
++#endif
+ 
+ /* ---- Generic type definitions ----------------------------------------- */
+ 
+-- 
+2.3.5.windows.8
+
