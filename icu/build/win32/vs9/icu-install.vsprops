@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="gettextinstallprops"
+	InheritedPropertySheets=".\gettext-tools-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="GettextDoInstall"
+		Value="
+mkdir $(CopyDir)&#x0D;&#x0A;
+mkdir $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\*.dll $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\envsubst.exe $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\gettext.exe $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\ngettext.exe $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\msg*.exe $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\xgettext.exe $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\recode-sr-latin.exe $(CopyDir)\bin&#x0D;&#x0A;
+
+mkdir $(CopyDir)\lib&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\asprintf.lib $(CopyDir)\lib&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\intl.lib $(CopyDir)\lib&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\gettextpo.lib $(CopyDir)\lib&#x0D;&#x0A;
+
+mkdir $(CopyDir)\include&#x0D;&#x0A;
+copy ..\..\..\gettext-runtime\libasprintf\autosprintf.h $(CopyDir)\include&#x0D;&#x0A;
+copy ..\..\..\gettext-runtime\intl\libgnuintl.h $(CopyDir)\include&#x0D;&#x0A;
+copy ..\..\..\gettext-tools\libgettextpo\gettext-po.h $(CopyDir)\include&#x0D;&#x0A;
+"
+	/>
+</VisualStudioPropertySheet>

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="icule"
+	ProjectGUID="{0B353739-8EAC-4054-8DC5-C197D7085125}"
+	RootNamespace="icule"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\icu-dll-build-defines.vsprops"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="$(DbgFlag);$(ICULE_Defines)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\icu-dll-build-defines.vsprops"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="$(RelFlag);$(ICULE_Defines)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\icu-dll-build-defines.vsprops"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="$(DbgFlag);$(ICULE_Defines)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\icu-dll-build-defines.vsprops"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="$(RelFlag);$(ICULE_Defines)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Sources"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File RelativePath="..\..\..\source\layout\AlternateSubstSubtables.cpp" />
+			<File RelativePath="..\..\..\source\layout\AnchorTables.cpp" />
+			<File RelativePath="..\..\..\source\layout\ArabicLayoutEngine.cpp" />
+			<File RelativePath="..\..\..\source\layout\ArabicShaping.cpp" />
+			<File RelativePath="..\..\..\source\layout\CanonData.cpp" />
+			<File RelativePath="..\..\..\source\layout\CanonShaping.cpp" />
+			<File RelativePath="..\..\..\source\layout\ClassDefinitionTables.cpp" />
+			<File RelativePath="..\..\..\source\layout\ContextualGlyphInsertionProc2.cpp" />
+			<File RelativePath="..\..\..\source\layout\ContextualGlyphSubstProc.cpp" />
+			<File RelativePath="..\..\..\source\layout\ContextualGlyphSubstProc2.cpp" />
+			<File RelativePath="..\..\..\source\layout\ContextualSubstSubtables.cpp" />
+			<File RelativePath="..\..\..\source\layout\CoverageTables.cpp" />
+			<File RelativePath="..\..\..\source\layout\CursiveAttachmentSubtables.cpp" />
+			<File RelativePath="..\..\..\source\layout\DeviceTables.cpp" />
+			<File RelativePath="..\..\..\source\layout\ExtensionSubtables.cpp" />
+			<File RelativePath="..\..\..\source\layout\Features.cpp" />
+			<File RelativePath="..\..\..\source\layout\GDEFMarkFilter.cpp" />
+			<File RelativePath="..\..\..\source\layout\GlyphDefinitionTables.cpp" />
+			<File RelativePath="..\..\..\source\layout\GlyphIterator.cpp" />
+			<File RelativePath="..\..\..\source\layout\GlyphLookupTables.cpp" />
+			<File RelativePath="..\..\..\source\layout\GlyphPositionAdjustments.cpp" />
+			<File RelativePath="..\..\..\source\layout\GlyphPositioningTables.cpp" />
+			<File RelativePath="..\..\..\source\layout\GlyphPosnLookupProc.cpp" />
+			<File RelativePath="..\..\..\source\layout\GlyphSubstitutionTables.cpp" />
+			<File RelativePath="..\..\..\source\layout\GlyphSubstLookupProc.cpp" />
+			<File RelativePath="..\..\..\source\layout\GXLayoutEngine.cpp" />
+			<File RelativePath="..\..\..\source\layout\GXLayoutEngine2.cpp" />
+			<File RelativePath="..\..\..\source\layout\HangulLayoutEngine.cpp" />
+			<File RelativePath="..\..\..\source\layout\HanLayoutEngine.cpp" />
+			<File RelativePath="..\..\..\source\layout\IndicClassTables.cpp" />
+			<File RelativePath="..\..\..\source\layout\IndicLayoutEngine.cpp" />
+			<File RelativePath="..\..\..\source\layout\IndicRearrangementProcessor.cpp" />
+			<File RelativePath="..\..\..\source\layout\IndicRearrangementProcessor2.cpp" />
+			<File RelativePath="..\..\..\source\layout\IndicReordering.cpp" />
+			<File RelativePath="..\..\..\source\layout\KernTable.cpp" />
+			<File RelativePath="..\..\..\source\layout\KhmerLayoutEngine.cpp" />
+			<File RelativePath="..\..\..\source\layout\KhmerReordering.cpp" />
+			<File RelativePath="..\..\..\source\layout\LayoutEngine.cpp" />
+			<File RelativePath="..\..\..\source\layout\LEFontInstance.cpp" />
+			<File RelativePath="..\..\..\source\layout\LEGlyphStorage.cpp" />
+			<File RelativePath="..\..\..\source\layout\LEInsertionList.cpp" />
+			<File RelativePath="..\..\..\source\layout\LigatureSubstProc.cpp" />
+			<File RelativePath="..\..\..\source\layout\LigatureSubstProc2.cpp" />
+			<File RelativePath="..\..\..\source\layout\LigatureSubstSubtables.cpp" />
+			<File RelativePath="..\..\..\source\layout\loengine.cpp" />
+			<File RelativePath="..\..\..\source\layout\LookupProcessor.cpp" />
+			<File RelativePath="..\..\..\source\layout\Lookups.cpp" />
+			<File RelativePath="..\..\..\source\layout\LookupTables.cpp" />
+			<File RelativePath="..\..\..\source\layout\MarkArrays.cpp" />
+			<File RelativePath="..\..\..\source\layout\MarkToBasePosnSubtables.cpp" />
+			<File RelativePath="..\..\..\source\layout\MarkToLigaturePosnSubtables.cpp" />
+			<File RelativePath="..\..\..\source\layout\MarkToMarkPosnSubtables.cpp" />
+			<File RelativePath="..\..\..\source\layout\MirroredCharData.cpp" />
+			<File RelativePath="..\..\..\source\layout\MorphTables.cpp" />
+			<File RelativePath="..\..\..\source\layout\MorphTables2.cpp" />
+			<File RelativePath="..\..\..\source\layout\MPreFixups.cpp" />
+			<File RelativePath="..\..\..\source\layout\MultipleSubstSubtables.cpp" />
+			<File RelativePath="..\..\..\source\layout\NonContextualGlyphSubstProc.cpp" />
+			<File RelativePath="..\..\..\source\layout\NonContextualGlyphSubstProc2.cpp" />
+			<File RelativePath="..\..\..\source\layout\OpenTypeLayoutEngine.cpp" />
+			<File RelativePath="..\..\..\source\layout\OpenTypeUtilities.cpp" />
+			<File RelativePath="..\..\..\source\layout\PairPositioningSubtables.cpp" />
+			<File RelativePath="..\..\..\source\layout\ScriptAndLanguage.cpp" />
+			<File RelativePath="..\..\..\source\layout\ScriptAndLanguageTags.cpp" />
+			<File RelativePath="..\..\..\source\layout\SegmentArrayProcessor.cpp" />
+			<File RelativePath="..\..\..\source\layout\SegmentArrayProcessor2.cpp" />
+			<File RelativePath="..\..\..\source\layout\SegmentSingleProcessor.cpp" />
+			<File RelativePath="..\..\..\source\layout\SegmentSingleProcessor2.cpp" />
+			<File RelativePath="..\..\..\source\layout\ShapingTypeData.cpp" />
+			<File RelativePath="..\..\..\source\layout\SimpleArrayProcessor.cpp" />
+			<File RelativePath="..\..\..\source\layout\SimpleArrayProcessor2.cpp" />
+			<File RelativePath="..\..\..\source\layout\SinglePositioningSubtables.cpp" />
+			<File RelativePath="..\..\..\source\layout\SingleSubstitutionSubtables.cpp" />
+			<File RelativePath="..\..\..\source\layout\SingleTableProcessor.cpp" />
+			<File RelativePath="..\..\..\source\layout\SingleTableProcessor2.cpp" />
+			<File RelativePath="..\..\..\source\layout\StateTableProcessor.cpp" />
+			<File RelativePath="..\..\..\source\layout\StateTableProcessor2.cpp" />
+			<File RelativePath="..\..\..\source\layout\SubstitutionLookups.cpp" />
+			<File RelativePath="..\..\..\source\layout\SubtableProcessor.cpp" />
+			<File RelativePath="..\..\..\source\layout\SubtableProcessor2.cpp" />
+			<File RelativePath="..\..\..\source\layout\ThaiLayoutEngine.cpp" />
+			<File RelativePath="..\..\..\source\layout\ThaiShaping.cpp" />
+			<File RelativePath="..\..\..\source\layout\ThaiStateTables.cpp" />
+			<File RelativePath="..\..\..\source\layout\TibetanLayoutEngine.cpp" />
+			<File RelativePath="..\..\..\source\layout\TibetanReordering.cpp" />
+			<File RelativePath="..\..\..\source\layout\TrimmedArrayProcessor.cpp" />
+			<File RelativePath="..\..\..\source\layout\TrimmedArrayProcessor2.cpp" />
+			<File RelativePath="..\..\..\source\layout\ValueRecords.cpp" />
+		</Filter>
+		<Filter
+			Name="Headers"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+			<File RelativePath="..\..\..\source\layout\layout.rc" />
+			<File RelativePath="..\..\..\source\layout\LayoutEngine.h">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\source\layout\LEFontInstance.h">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\source\layout\LEGlyphFilter.h">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\source\layout\LEGlyphStorage.h">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\source\layout\LEInsertionList.h">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\source\layout\LELanguages.h">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\source\layout\LEScripts.h">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\source\layout\LESwaps.h">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\source\layout\LETypes.h">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\source\layout\loengine.h">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\layout\$(InputFileName)" Outputs="..\..\..\include\layout\$(InputFileName)" /></FileConfiguration>
+			</File>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

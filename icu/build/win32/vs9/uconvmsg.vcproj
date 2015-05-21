@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="uconvmsg"
+	ProjectGUID="{82359D6B-5AA0-4133-B33C-70B53CB22F69}"
+	RootNamespace="uconvmsg"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="10"
+			InheritedPropertySheets=".\icu-gen-data.vsprops"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="10"
+			InheritedPropertySheets=".\icu-gen-data.vsprops"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			ConfigurationType="10"
+			InheritedPropertySheets=".\icu-gen-data.vsprops"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			ConfigurationType="10"
+			InheritedPropertySheets=".\icu-gen-data.vsprops"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+			<File RelativePath="..\..\..\source\extra\uconv\resources\fr.txt">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Generating $(InputName).res..." CommandLine="$(OutDir)\genrb.exe -s $(InputDir) -d $(InputDir) $(InputFileName)" Outputs="$(ResDir)\$(InputName).res" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Generating $(InputName).res..." CommandLine="$(OutDir)\genrb.exe -s $(InputDir) -d $(InputDir) $(InputFileName)" Outputs="$(ResDir)\$(InputName).res" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Generating $(InputName).res..." CommandLine="$(OutDir)\genrb.exe -s $(InputDir) -d $(InputDir) $(InputFileName)" Outputs="$(ResDir)\$(InputName).res" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Generating $(InputName).res..." CommandLine="$(OutDir)\genrb.exe -s $(InputDir) -d $(InputDir) $(InputFileName)" Outputs="$(ResDir)\$(InputName).res" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\source\extra\uconv\makedata.mak">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Building uconvmsg.lib..." CommandLine="$(GenPkgDataLib)" AdditionalDependencies="$(ResDir)\root.res;$(ResDir)\fr.res" Outputs="$(OutDir)\uconvmsg.lib;$(OutDir)\uconvmsg.dat;$(OutDir)\uconvmsg_dat.obj;$(UconvDir)\pkgdatain.txt" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Building uconvmsg.lib..." CommandLine="$(GenPkgDataLib)" AdditionalDependencies="$(ResDir)\root.res;$(ResDir)\fr.res" Outputs="$(OutDir)\uconvmsg.lib;$(OutDir)\uconvmsg.dat;$(OutDir)\uconvmsg_dat.obj;$(UconvDir)\pkgdatain.txt" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Building uconvmsg.lib..." CommandLine="$(GenPkgDataLib)" AdditionalDependencies="$(ResDir)\root.res;$(ResDir)\fr.res" Outputs="$(OutDir)\uconvmsg.lib;$(OutDir)\uconvmsg.dat;$(OutDir)\uconvmsg_dat.obj;$(UconvDir)\pkgdatain.txt" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Building uconvmsg.lib..." CommandLine="$(GenPkgDataLib)" AdditionalDependencies="$(ResDir)\root.res;$(ResDir)\fr.res" Outputs="$(OutDir)\uconvmsg.lib;$(OutDir)\uconvmsg.dat;$(OutDir)\uconvmsg_dat.obj;$(UconvDir)\pkgdatain.txt" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\source\extra\uconv\resources\root.txt">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Generating $(InputName).res..." CommandLine="$(OutDir)\genrb.exe -s $(InputDir) -d $(InputDir) $(InputFileName)" Outputs="$(ResDir)\$(InputName).res" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Generating $(InputName).res..." CommandLine="$(OutDir)\genrb.exe -s $(InputDir) -d $(InputDir) $(InputFileName)" Outputs="$(ResDir)\$(InputName).res" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Generating $(InputName).res..." CommandLine="$(OutDir)\genrb.exe -s $(InputDir) -d $(InputDir) $(InputFileName)" Outputs="$(ResDir)\$(InputName).res" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Generating $(InputName).res..." CommandLine="$(OutDir)\genrb.exe -s $(InputDir) -d $(InputDir) $(InputFileName)" Outputs="$(ResDir)\$(InputName).res" /></FileConfiguration>
+			</File>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

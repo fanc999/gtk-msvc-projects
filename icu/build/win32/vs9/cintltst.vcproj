@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="cintltst"
+	ProjectGUID="{6D1A33B8-84DD-4C42-B79B-26CA39E3CF82}"
+	RootNamespace="cintltst"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="1"
+			InheritedPropertySheets=".\icu-tools-build-defines.vsprops"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="..\..\..\source\tools\ctestfw;..\..\..\source\i18n"
+				PreprocessorDefinitions="$(DbgFlag);$(ICU_Deprecation_Defines)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="1"
+			InheritedPropertySheets=".\icu-tools-build-defines.vsprops"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="..\..\..\source\tools\ctestfw;..\..\..\source\i18n"
+				PreprocessorDefinitions="$(RelFlag);$(ICU_Deprecation_Defines)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			ConfigurationType="1"
+			InheritedPropertySheets=".\icu-tools-build-defines.vsprops"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="..\..\..\source\tools\ctestfw;..\..\..\source\i18n"
+				PreprocessorDefinitions="$(DbgFlag);$(ICU_Deprecation_Defines)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				TargetMachine="17"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			ConfigurationType="1"
+			InheritedPropertySheets=".\icu-tools-build-defines.vsprops"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="..\..\..\source\tools\ctestfw;..\..\..\source\i18n"
+				PreprocessorDefinitions="$(RelFlag);$(ICU_Deprecation_Defines)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Sources"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File RelativePath="..\..\..\source\test\cintltst\bocu1tst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\callcoll.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\calltest.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\capitst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cbiapts.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cbididat.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cbiditst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cbkittst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\ccaltst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\ccapitst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\ccolltst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cconvtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cctest.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\ccurrtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cdateintervalformattest.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cdattst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cdetst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cdtdptst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cdtrgtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cestst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cfintst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cformtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cfrtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cg7coll.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cgendtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\chashtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cintltst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\citertst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cjaptst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cldrtest.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cloctst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cmsccoll.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cmsgtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cnmdptst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cnormtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cnumtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cpluralrulestest.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cposxtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\crestst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\creststn.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cstrcase.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cstrtest.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cturtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cucdapi.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cucdtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\currtest.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\custrtrn.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\custrtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\cutiltst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\encoll.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\eurocreg.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\hpmufn.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\idnatest.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\nccbtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\ncnvfbts.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\ncnvtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\nfsprep.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\nucnvtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\putiltst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\reapits.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\sorttest.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\spooftest.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\spreptst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\sprpdata.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\stdnmtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\tracetst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\trie2test.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\trietest.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\ucnvseltst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\ucsdetst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\udatatst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\udatpg_test.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\uenumtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\ulistfmttest.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\uregiontest.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\usettest.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\usrchtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\utexttst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\utf16tst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\utf8tst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\utmstest.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\utransts.c" />
+		</Filter>
+		<Filter
+			Name="Headers"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="intltest"
+	ProjectGUID="{18ED4166-2B25-425E-90CA-4A815B8C2319}"
+	RootNamespace="intltest"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="1"
+			InheritedPropertySheets=".\icu-tools-build-defines.vsprops"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="..\..\..\source\tools\ctestfw;..\..\..\source\i18n"
+				PreprocessorDefinitions="$(DbgFlag);$(ICU_Deprecation_Defines)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="1"
+			InheritedPropertySheets=".\icu-tools-build-defines.vsprops"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="..\..\..\source\tools\ctestfw;..\..\..\source\i18n"
+				PreprocessorDefinitions="$(RelFlag);$(ICU_Deprecation_Defines)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			ConfigurationType="1"
+			InheritedPropertySheets=".\icu-tools-build-defines.vsprops"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="..\..\..\source\tools\ctestfw;..\..\..\source\i18n"
+				PreprocessorDefinitions="$(DbgFlag);$(ICU_Deprecation_Defines)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				TargetMachine="17"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			ConfigurationType="1"
+			InheritedPropertySheets=".\icu-tools-build-defines.vsprops"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="..\..\..\source\tools\ctestfw;..\..\..\source\i18n"
+				PreprocessorDefinitions="$(RelFlag);$(ICU_Deprecation_Defines)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Sources"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File RelativePath="..\..\..\source\test\intltest\aliastst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\allcoll.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\alphaindextst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\apicoll.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\astrotst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\bidiconf.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\bytestrietest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\calcasts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\callimts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\calregts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\caltest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\caltztst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\canittst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\citrtest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\collationtest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\colldata.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\compactdecimalformattest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\convtest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\cpdtrtst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\csdetest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\currcoll.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\dadrcal.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\dadrfmt.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\dcfmapts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\dcfmtest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\decoll.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\dtfmapts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\dtfmrgts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\dtfmtrtts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\dtfmttst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\dtifmtts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\dtptngts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\encoll.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\escoll.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\ficoll.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\fldset.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\frcoll.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\g7coll.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\genderinfotest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\icusvtst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\idnaconf.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\idnaref.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\incaltst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\intltest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\itercoll.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\itformat.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\itmajor.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\itrbbi.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\itrbnf.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\itrbnfp.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\itrbnfrt.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\itspoof.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\ittrans.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\itutil.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\jacoll.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\jamotest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\lcukocol.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\listformattertest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\locnmtst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\loctest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\measfmttest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\miscdtfm.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\mnkytst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\msfmrgts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\nmfmapts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\nmfmtrt.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\normconf.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\nptrans.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\numfmtspectest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\numfmtst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\numrgts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\plurfmts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\plurults.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\pptest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\punyref.c" />
+			<File RelativePath="..\..\..\source\test\intltest\quantityformattertest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\rbbiapts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\rbbitst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\regcoll.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\regextst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\regiontst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\reldatefmttest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\reptest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\restest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\restsnew.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\scientificnumberformattertest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\sdtfmtts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\selfmts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\sfwdchit.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\simplepatternformattertest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\simplethread.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\srchtest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\ssearch.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\strcase.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\strtest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\svccoll.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tchcfmt.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\testidn.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\testidna.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\testutil.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\textfile.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tfsmalls.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\thcoll.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tmsgfmt.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tokiter.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\transapi.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\transrt.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\transtst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\trcoll.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\trnserr.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tscoll.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tsdate.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tsdcfmsy.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tsdtfmsy.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tsmthred.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tsnmfmt.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tsputil.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tstnorm.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tstnrapi.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tufmtts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tzbdtest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tzfmttst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tzoffloc.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tzregts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tzrulets.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\tztest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\ucaconf.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\ucdtest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\ucharstrietest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\unifiedcachetest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\uobjtest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\usettest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\ustrtest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\uts46test.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\utxttest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\uvectest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\v32test.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\windttst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\winnmtst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\winutil.cpp" />
+		</Filter>
+		<Filter
+			Name="Headers"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

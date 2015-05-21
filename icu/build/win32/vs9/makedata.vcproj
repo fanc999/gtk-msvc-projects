@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="makedata"
+	ProjectGUID="{2C99ACD9-0BEC-4E69-BCBA-B26709496DAA}"
+	Keyword="MakeFileProj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="0"
+			InheritedPropertySheets=".\icu-dll-build-defines.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName)"
+				ReBuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName) clean all"
+				CleanCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName) clean"
+				Output="icudt$(ICUVer).dll"
+				PreprocessorDefinitions=""
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="0"
+			InheritedPropertySheets=".\icu-dll-build-defines.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName)"
+				ReBuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName) clean all"
+				CleanCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName) clean"
+				Output="icudt$(ICUVer).dll"
+				PreprocessorDefinitions=""
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			ConfigurationType="0"
+			InheritedPropertySheets=".\icu-dll-build-defines.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName)"
+				ReBuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName) clean all"
+				CleanCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName) clean"
+				Output="icudt$(ICUVer).dll"
+				PreprocessorDefinitions=""
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			ConfigurationType="0"
+			InheritedPropertySheets=".\icu-dll-build-defines.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName)"
+				ReBuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName) clean all"
+				CleanCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName) clean"
+				Output="icudt$(ICUVer).dll"
+				PreprocessorDefinitions=""
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
