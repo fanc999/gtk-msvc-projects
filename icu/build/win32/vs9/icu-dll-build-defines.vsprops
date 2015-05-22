@@ -49,6 +49,10 @@
 		Value="U_TOOLUTIL_IMPLEMENTATION"
 	/>
 	<UserMacro
+		Name="CreateStubTxt"
+		Value="echo &quot;File with stubdata build time, used as a dependency to trigger fresh data build, since stubdata dll will overwrite the real one.&quot; &gt; ..\..\..\source\stubdata\stubdatabuilt.txt"
+	/>
+	<UserMacro
 		Name="CreateIncludeDir"
 		Value="
 mkdir ..\..\..\include\unicode&#x0D;&#x0A;

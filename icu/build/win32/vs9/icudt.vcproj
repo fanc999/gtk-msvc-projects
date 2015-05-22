@@ -45,8 +45,12 @@
 				TargetMachine="1"
 			/>
 			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="$(CreateStubTxt)"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				Command="$(CreateIncludeDir)"
+				CommandLine="$(CreateIncludeDir)"
 			/>
 		</Configuration>
 		<Configuration
@@ -78,8 +82,12 @@
 				TargetMachine="1"
 			/>
 			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="$(CreateStubTxt)"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				Command="$(CreateIncludeDir)"
+				CommandLine="$(CreateIncludeDir)"
 			/>
 		</Configuration>
 		<Configuration
@@ -112,8 +120,12 @@
 				TargetMachine="17"
 			/>
 			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="$(CreateStubTxt)"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				Command="$(CreateIncludeDir)"
+				CommandLine="$(CreateIncludeDir)"
 			/>
 		</Configuration>
 		<Configuration
@@ -149,8 +161,12 @@
 				TargetMachine="17"
 			/>
 			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="$(CreateStubTxt)"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				Command="$(CreateIncludeDir)"
+				CommandLine="$(CreateIncludeDir)"
 			/>
 		</Configuration>
 	</Configurations>
