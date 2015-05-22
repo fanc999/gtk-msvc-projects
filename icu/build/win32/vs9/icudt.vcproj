@@ -44,6 +44,10 @@
 				LinkIncremental="2"
 				TargetMachine="1"
 			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				Command="$(CreateIncludeDir)"
+			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
@@ -72,6 +76,10 @@
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				Command="$(CreateIncludeDir)"
 			/>
 		</Configuration>
 		<Configuration
@@ -102,6 +110,10 @@
 				Name="VCLinkerTool"
 				LinkIncremental="2"
 				TargetMachine="17"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				Command="$(CreateIncludeDir)"
 			/>
 		</Configuration>
 		<Configuration
@@ -136,6 +148,10 @@
 				EnableCOMDATFolding="2"
 				TargetMachine="17"
 			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				Command="$(CreateIncludeDir)"
+			/>
 		</Configuration>
 	</Configurations>
 	<References>
@@ -160,12 +176,6 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File RelativePath="..\..\..\source\data\misc\icudata.rc" />
-			<File RelativePath="..\..\..\source\stubdata\stub">
-				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Creating include directories..." CommandLine="$(CreateIncludeDir)" Outputs="..\..\..\include\unicode;..\..\..\include\layout" /></FileConfiguration>
-				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Creating include directories..." CommandLine="$(CreateIncludeDir)" Outputs="..\..\..\include\unicode;..\..\..\include\layout" /></FileConfiguration>
-				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Creating include directories..." CommandLine="$(CreateIncludeDir)" Outputs="..\..\..\include\unicode;..\..\..\include\layout" /></FileConfiguration>
-				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Creating include directories..." CommandLine="$(CreateIncludeDir)" Outputs="..\..\..\include\unicode;..\..\..\include\layout" /></FileConfiguration>
-			</File>
 		</Filter>
 	</Files>
 	<Globals>
