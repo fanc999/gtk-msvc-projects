@@ -55,8 +55,8 @@
 	<UserMacro
 		Name="CreateIncludeDir"
 		Value="
-mkdir ..\..\..\include\unicode&#x0D;&#x0A;
-mkdir ..\..\..\include\layout&#x0D;&#x0A;
+if not exist ..\..\..\include\unicode mkdir ..\..\..\include\unicode&#x0D;&#x0A;
+if not exist ..\..\..\include\layout mkdir ..\..\..\include\layout&#x0D;&#x0A;
 		      "
 	/>
 </VisualStudioPropertySheet>
