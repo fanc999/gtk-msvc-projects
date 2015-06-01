@@ -60,27 +60,27 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <NMakeBuildCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR="$(SolutionDir)\" CFG=$(Platform)\$(Configuration)</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR="$(SolutionDir)\" CFG=$(Platform)\$(Configuration) clean all</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR="$(SolutionDir)\" CFG=$(Platform)\$(Configuration) clean</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(Platform)\$(Configuration)</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(Platform)\$(Configuration) clean all</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(Platform)\$(Configuration) clean</NMakeCleanCommandLine>
     <NMakeOutput>icudt$(ICUVer).dll</NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <NMakeBuildCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR="$(SolutionDir)\" CFG=$(Platform)\$(Configuration)</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR="$(SolutionDir)\" CFG=$(Platform)\$(Configuration) clean all</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR="$(SolutionDir)\" CFG=$(Platform)\$(Configuration) clean</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(Platform)\$(Configuration)</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(Platform)\$(Configuration) clean all</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(Platform)\$(Configuration) clean</NMakeCleanCommandLine>
     <NMakeOutput>icudt$(ICUVer).dll</NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <NMakeBuildCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR="$(SolutionDir)\" CFG=$(Platform)\$(Configuration)</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR="$(SolutionDir)\" CFG=$(Platform)\$(Configuration) clean all</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR="$(SolutionDir)\" CFG=$(Platform)\$(Configuration) clean</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(Platform)\$(Configuration)</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(Platform)\$(Configuration) clean all</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(Platform)\$(Configuration) clean</NMakeCleanCommandLine>
     <NMakeOutput>icudt$(ICUVer).dll</NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <NMakeBuildCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR="$(SolutionDir)\" CFG=$(Platform)\$(Configuration)</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR="$(SolutionDir)\" CFG=$(Platform)\$(Configuration) clean all</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR="$(SolutionDir)\" CFG=$(Platform)\$(Configuration) clean</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(Platform)\$(Configuration)</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(Platform)\$(Configuration) clean all</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(Platform)\$(Configuration) clean</NMakeCleanCommandLine>
     <NMakeOutput>icudt$(ICUVer).dll</NMakeOutput>
   </PropertyGroup>
   <ItemDefinitionGroup>

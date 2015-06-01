@@ -1,6 +1,6 @@
-From 050959391f97378b5c1d55b27fdb7d2ca30f7784 Mon Sep 17 00:00:00 2001
+From 887a4479f9e68ab403f827a9d15b48ac361c974d Mon Sep 17 00:00:00 2001
 From: Chun-wei Fan <fanchunwei@src.gnome.org>
-Date: Fri, 22 May 2015 11:33:00 +0800
+Date: Mon, 1 Jun 2015 13:46:34 +0800
 Subject: [PATCH] Update NMake Makefiles for Building icudtxx.dll
 
 This updates the NMake Makefiles for creating the icudtxx.dll where the ICU
@@ -11,18 +11,22 @@ These will also work with our 2010+ projects, as the ones provided by ICU
 are messy (since it was adapted from the MSVC 2002/2003 days), and does
 not fit well in our projects for building ICU as a part of the GTK+ stack.
 ---
- source/data/makedata.mak          | 131 ++++++++++++++++++++++----------------
- source/test/testdata/testdata.mak |  54 ++++++++--------
- 2 files changed, 103 insertions(+), 82 deletions(-)
+ source/data/makedata.mak          | 135 ++++++++++++++++++++++----------------
+ source/test/testdata/testdata.mak |  54 +++++++--------
+ 2 files changed, 107 insertions(+), 82 deletions(-)
 
 diff --git a/source/data/makedata.mak b/source/data/makedata.mak
-index 8010b83..1eb52a7 100644
+index 8010b83..69511e6 100644
 --- a/source/data/makedata.mak
 +++ b/source/data/makedata.mak
-@@ -22,6 +22,13 @@ ICU_LIB_TARGET=$(DLL_OUTPUT)\$(U_ICUDATA_NAME).dll
+@@ -22,6 +22,17 @@ ICU_LIB_TARGET=$(DLL_OUTPUT)\$(U_ICUDATA_NAME).dll
  #     Is the directory into which most data is built (prior to packaging)
  #     Is icu\source\data\
  #
++!IF "$(MSVCSLNDIR)"==""
++!ERROR Please Specify the Directory Where The MSVC Solution File is found!
++!endif
++
 +!IF "$(MSVCPROJDIR)"==""
 +!ERROR Please Specify the Directory Where The MSVC Projects are found!
 +!endif
@@ -33,7 +37,7 @@ index 8010b83..1eb52a7 100644
  !IF "$(ICUMAKE)"==""
  !ERROR Can't find ICUMAKE (ICU Data Make dir, should point to icu\source\data\ )!
  !ENDIF
-@@ -45,10 +52,11 @@ ICUTMP=$(ICUOUT)\tmp
+@@ -45,10 +56,11 @@ ICUTMP=$(ICUOUT)\tmp
  #  ICUP
  #     The root of the ICU source directory tree
  #
@@ -48,30 +52,30 @@ index 8010b83..1eb52a7 100644
  !MESSAGE ICU root path is $(ICUP)
  
  
-@@ -118,9 +126,20 @@ ICUDATA=$(ICUP)\source\data
+@@ -118,9 +130,20 @@ ICUDATA=$(ICUP)\source\data
  #      The lib file for the data DLL goes in $(DLL_OUTPUT)/../lib/
  #
  !IF "$(CFG)" == "x64\Release" || "$(CFG)" == "x64\Debug"
 -DLL_OUTPUT=$(ICUP)\bin64
 +#DLL_OUTPUT=$(ICUP)\bin64
 +!IF "$(CFG)" == "x64\Release"
-+DLL_OUTPUT=$(MSVCPROJDIR)\Release\x64\bin
++DLL_OUTPUT=$(MSVCSLNDIR)\Release\x64\bin
 +!ELSE
-+DLL_OUTPUT=$(MSVCPROJDIR)\Debug\x64\bin
++DLL_OUTPUT=$(MSVCSLNDIR)\Debug\x64\bin
 +!ENDIF
-+#DLL_OUTPUT=$(MSVCPROJDIR)\bin64
++#DLL_OUTPUT=$(MSVCSLNDIR)\bin64
 +!ELSE
 +#DLL_OUTPUT=$(ICUP)\bin
 +!if "$(CFG)" == "Win32\Release"
-+DLL_OUTPUT=$(MSVCPROJDIR)\Release\Win32\bin
++DLL_OUTPUT=$(MSVCSLNDIR)\Release\Win32\bin
  !ELSE
 -DLL_OUTPUT=$(ICUP)\bin
-+DLL_OUTPUT=$(MSVCPROJDIR)\Debug\Win32\bin
++DLL_OUTPUT=$(MSVCSLNDIR)\Debug\Win32\bin
 +!ENDIF
  !ENDIF
  
  #
-@@ -144,17 +163,19 @@ TESTDATABLD=$(ICUP)\source\test\testdata\out\build
+@@ -144,17 +167,19 @@ TESTDATABLD=$(ICUP)\source\test\testdata\out\build
  #   ICUTOOLS
  #       Directory under which all of the ICU data building tools live.
  #
@@ -100,7 +104,7 @@ index 8010b83..1eb52a7 100644
  
  # This variable can be overridden to "-m static" by the project settings,
  # if you want a static data library.
-@@ -554,9 +575,9 @@ DEBUGUTILITIESDATA_DIR=main\tests\core\src\com\ibm\icu\dev\test\util
+@@ -554,9 +579,9 @@ DEBUGUTILITIESDATA_DIR=main\tests\core\src\com\ibm\icu\dev\test\util
  DEBUGUTILITIESDATA_SRC=DebugUtilitiesData.java
  
  # Build DebugUtilitiesData.java
@@ -112,7 +116,7 @@ index 8010b83..1eb52a7 100644
  
  ICU4J_DATA="$(ICUOUT)\icu4j\icudata.jar" "$(ICUOUT)\icu4j\testdata.jar"  "$(ICUOUT)\icu4j\src\$(DEBUGUTILITIESDATA_DIR)\$(DEBUGUTILITIESDATA_SRC)"
  
-@@ -600,7 +621,7 @@ icu4j-data-install :
+@@ -600,7 +625,7 @@ icu4j-data-install :
  #
  # testdata - nmake will invoke pkgdata, which will create testdata.dat
  #
@@ -121,7 +125,7 @@ index 8010b83..1eb52a7 100644
  	@cd "$(TESTDATA)"
  	@echo building testdata...
  	nmake /nologo /f "$(TESTDATA)\testdata.mak" TESTDATA=. ICUTOOLS="$(ICUTOOLS)" ICUPBIN="$(ICUPBIN)" ICUP="$(ICUP)" CFG=$(CFG) TESTDATAOUT="$(TESTDATAOUT)" TESTDATABLD="$(TESTDATABLD)"
-@@ -755,40 +776,40 @@ CLEAN : GODATA
+@@ -755,40 +780,40 @@ CLEAN : GODATA
  # RBBI .brk file generation.
  {$(ICUSRCDATA_RELATIVE_PATH)\$(ICUBRK)}.txt.brk:
  	@echo Creating $@
@@ -170,7 +174,7 @@ index 8010b83..1eb52a7 100644
  !ENDIF
  
  # Batch inference rule for creating miscellaneous resource files
-@@ -798,12 +819,12 @@ $(CNV_FILES_SPECIAL): $(UCM_SOURCE_SPECIAL)
+@@ -798,12 +823,12 @@ $(CNV_FILES_SPECIAL): $(UCM_SOURCE_SPECIAL)
  #       way, remove the -q.
  {$(ICUSRCDATA_RELATIVE_PATH)\$(ICUMISC2)}.txt.res::
  	@echo Making Miscellaneous Resource Bundle files
@@ -185,7 +189,7 @@ index 8010b83..1eb52a7 100644
  
  # copy the locales/pool.res file from the source folder to the build output folder
  # and swap it to native endianness
-@@ -820,12 +841,12 @@ res_index:table(nofallback) {
+@@ -820,12 +845,12 @@ res_index:table(nofallback) {
      }
  }
  <<KEEP
@@ -200,7 +204,7 @@ index 8010b83..1eb52a7 100644
  
  # copy the curr/pool.res file from the source folder to the build output folder
  # and swap it to native endianness
-@@ -842,12 +863,12 @@ res_index:table(nofallback) {
+@@ -842,12 +867,12 @@ res_index:table(nofallback) {
      }
  }
  <<KEEP
@@ -215,7 +219,7 @@ index 8010b83..1eb52a7 100644
  
  # copy the lang/pool.res file from the source folder to the build output folder
  # and swap it to native endianness
-@@ -864,12 +885,12 @@ res_index:table(nofallback) {
+@@ -864,12 +889,12 @@ res_index:table(nofallback) {
      }
  }
  <<KEEP
@@ -230,7 +234,7 @@ index 8010b83..1eb52a7 100644
  
  # copy the region/pool.res file from the source folder to the build output folder
  # and swap it to native endianness
-@@ -886,12 +907,12 @@ res_index:table(nofallback) {
+@@ -886,12 +911,12 @@ res_index:table(nofallback) {
      }
  }
  <<KEEP
@@ -245,7 +249,7 @@ index 8010b83..1eb52a7 100644
  
  # copy the zone/pool.res file from the source folder to the build output folder
  # and swap it to native endianness
-@@ -908,12 +929,12 @@ res_index:table(nofallback) {
+@@ -908,12 +933,12 @@ res_index:table(nofallback) {
      }
  }
  <<KEEP
@@ -260,7 +264,7 @@ index 8010b83..1eb52a7 100644
  
  # copy the unit/pool.res file from the source folder to the build output folder
  # and swap it to native endianness
-@@ -930,12 +951,12 @@ res_index:table(nofallback) {
+@@ -930,12 +955,12 @@ res_index:table(nofallback) {
      }
  }
  <<KEEP
@@ -275,7 +279,7 @@ index 8010b83..1eb52a7 100644
  
  $(ICUCOL)\res_index.res:
  	@echo Generating <<$(ICUCOL)\res_index.txt
-@@ -947,11 +968,11 @@ res_index:table(nofallback) {
+@@ -947,11 +972,11 @@ res_index:table(nofallback) {
      }
  }
  <<KEEP
@@ -289,7 +293,7 @@ index 8010b83..1eb52a7 100644
  
  $(ICURBNF)\res_index.res:
  	@echo Generating <<$(ICURBNF)\res_index.txt
-@@ -963,7 +984,7 @@ res_index:table(nofallback) {
+@@ -963,7 +988,7 @@ res_index:table(nofallback) {
      }
  }
  <<KEEP
@@ -298,7 +302,7 @@ index 8010b83..1eb52a7 100644
  
  $(ICUBRK)\res_index.res:
  	@echo Generating <<$(ICUBRK)\res_index.txt
-@@ -975,15 +996,15 @@ res_index:table(nofallback) {
+@@ -975,15 +1000,15 @@ res_index:table(nofallback) {
      }
  }
  <<KEEP
@@ -317,7 +321,7 @@ index 8010b83..1eb52a7 100644
  
  
  # DLL version information
-@@ -993,9 +1014,9 @@ res_index:table(nofallback) {
+@@ -993,9 +1018,9 @@ res_index:table(nofallback) {
  	@rc.exe /i "..\..\..\..\common" /r /fo $@ $**
  
  # Targets for converters
@@ -329,7 +333,7 @@ index 8010b83..1eb52a7 100644
  
  # Targets for prebuilt Unicode data
  "$(ICUBLD_PKG)\pnames.icu": $(ICUSRCDATA_RELATIVE_PATH)\in\pnames.icu
-@@ -1031,32 +1052,32 @@ res_index:table(nofallback) {
+@@ -1031,32 +1056,32 @@ res_index:table(nofallback) {
  # Stringprep .spp file generation.
  {$(ICUSRCDATA_RELATIVE_PATH)\$(ICUSPREP)}.txt.spp:
  	@echo Creating $@
@@ -371,7 +375,7 @@ index 8010b83..1eb52a7 100644
  # This used to depend on "$(ICUBLD_PKG)\pnames.icu" "$(ICUBLD_PKG)\uprops.icu" "$(ICUBLD_PKG)\ucase.icu" "$(ICUBLD_PKG)\ubidi.icu"
  # These are now hardcoded in ICU4C and only loaded in ICU4J.
 diff --git a/source/test/testdata/testdata.mak b/source/test/testdata/testdata.mak
-index fc961d4..94c4837 100644
+index fc961d4..fc2f078 100644
 --- a/source/test/testdata/testdata.mak
 +++ b/source/test/testdata/testdata.mak
 @@ -79,87 +79,87 @@ $(TEST_RES_FILES:.res =.res
@@ -426,21 +430,21 @@ index fc961d4..94c4837 100644
 +"$(TESTDATABLD)\nfscis.spp" : {"$(ICUTOOLS)"}gensprep.exe "$(TESTDATA)\nfs4_cis_prep.txt"
  	@echo Building $@
 -	@"$(ICUTOOLS)\gensprep\$(CFG)\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfscis -u 3.2.0 -k -n "$(ICUTOOLS)\..\data\unidata" nfs4_cis_prep.txt
-+	@"$(ICUTOOLS)\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfscis -u 3.2.0 -k -n "$(ICUTOOLS)\..\..\..\..\..\..\source\data\unidata" nfs4_cis_prep.txt
++	@"$(ICUTOOLS)\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfscis -u 3.2.0 -k -n "$(ICUP)\source\data\unidata" nfs4_cis_prep.txt
  
  # Targets for nfsmxs.spp
 -"$(TESTDATABLD)\nfsmxs.spp" : {"$(ICUTOOLS)\gensprep\$(CFG)"}gensprep.exe "$(TESTDATA)\nfs4_mixed_prep_s.txt"
 +"$(TESTDATABLD)\nfsmxs.spp" : {"$(ICUTOOLS)"}gensprep.exe "$(TESTDATA)\nfs4_mixed_prep_s.txt"
  	@echo Building $@
 -	@"$(ICUTOOLS)\gensprep\$(CFG)\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfsmxs -u 3.2.0 -k -n "$(ICUTOOLS)\..\data\unidata" nfs4_mixed_prep_s.txt
-+	@"$(ICUTOOLS)\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfsmxs -u 3.2.0 -k -n "$(ICUTOOLS)\..\..\..\..\..\..\source\data\unidata" nfs4_mixed_prep_s.txt
++	@"$(ICUTOOLS)\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfsmxs -u 3.2.0 -k -n "$(ICUP)\source\data\unidata" nfs4_mixed_prep_s.txt
  
  # Targets for nfsmxp.spp
 -"$(TESTDATABLD)\nfsmxp.spp" : {"$(ICUTOOLS)\gensprep\$(CFG)"}gensprep.exe "$(TESTDATA)\nfs4_mixed_prep_p.txt"
 +"$(TESTDATABLD)\nfsmxp.spp" : {"$(ICUTOOLS)"}gensprep.exe "$(TESTDATA)\nfs4_mixed_prep_p.txt"
  	@echo Building $@
 -	@"$(ICUTOOLS)\gensprep\$(CFG)\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfsmxp -u 3.2.0 -k -n "$(ICUTOOLS)\..\data\unidata" nfs4_mixed_prep_p.txt
-+	@"$(ICUTOOLS)\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfsmxp -u 3.2.0 -k -n "$(ICUTOOLS)\..\..\..\..\..\..\source\data\unidata" nfs4_mixed_prep_p.txt
++	@"$(ICUTOOLS)\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfsmxp -u 3.2.0 -k -n "$(ICUP)\source\data\unidata" nfs4_mixed_prep_p.txt
  
  
  # Targets for test converter data

@@ -25,9 +25,9 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName)"
-				ReBuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName) clean all"
-				CleanCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName) clean"
+				BuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(PlatformName)\$(ConfigurationName)"
+				ReBuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(PlatformName)\$(ConfigurationName) clean all"
+				CleanCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(PlatformName)\$(ConfigurationName) clean"
 				Output="icudt$(ICUVer).dll"
 				PreprocessorDefinitions=""
 				IncludeSearchPath=""
@@ -44,9 +44,9 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName)"
-				ReBuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName) clean all"
-				CleanCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName) clean"
+				BuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(PlatformName)\$(ConfigurationName)"
+				ReBuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(PlatformName)\$(ConfigurationName) clean all"
+				CleanCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(PlatformName)\$(ConfigurationName) clean"
 				Output="icudt$(ICUVer).dll"
 				PreprocessorDefinitions=""
 				IncludeSearchPath=""
@@ -63,9 +63,9 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName)"
-				ReBuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName) clean all"
-				CleanCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName) clean"
+				BuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(PlatformName)\$(ConfigurationName)"
+				ReBuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(PlatformName)\$(ConfigurationName) clean all"
+				CleanCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(PlatformName)\$(ConfigurationName) clean"
 				Output="icudt$(ICUVer).dll"
 				PreprocessorDefinitions=""
 				IncludeSearchPath=""
@@ -82,9 +82,9 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName)"
-				ReBuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName) clean all"
-				CleanCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCPROJDIR=&quot;$(SolutionDir)\&quot; CFG=$(PlatformName)\$(ConfigurationName) clean"
+				BuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(PlatformName)\$(ConfigurationName)"
+				ReBuildCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(PlatformName)\$(ConfigurationName) clean all"
+				CleanCommandLine="NMAKE /f ..\..\..\source\data\makedata.mak MSVCSLNDIR=$(SolutionDir) MSVCPROJDIR=$(ProjectDir) CFG=$(PlatformName)\$(ConfigurationName) clean"
 				Output="icudt$(ICUVer).dll"
 				PreprocessorDefinitions=""
 				IncludeSearchPath=""
