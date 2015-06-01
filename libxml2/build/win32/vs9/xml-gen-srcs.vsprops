@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="xmlversionpathsprops"
+	InheritedPropertySheets=".\xml-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="ConfigureXML"
+		Value="
+if exist ..\..\..\config.h goto :DONE_CONFIG&#x0D;&#x0A;
+cd ..\..\..\win32&#x0D;&#x0A;
+cscript configure.js zlib=yes icu=yes&#x0D;&#x0A;
+cd $(ProjectDir)&#x0D;&#x0A;
+:DONE_CONFIG&#x0D;&#x0A;
+		      "
+	/>
+	<UserMacro
+		Name="GenXMLDef"
+		Value="cl /EP /nologo /I..\..\..\include /DWIN32 /D_REENTRANT /DHAVE_WIN32_THREADS /DHAVE_COMPILER_TLS /DHAVE_ZLIB_H ..\..\..\win32\libxml2.def.src &gt; $(SolutionDir)$(ConfigurationName)\$(PlatformName)\obj\$(ProjectName)\libxml2.def"
+	/>
+</VisualStudioPropertySheet>

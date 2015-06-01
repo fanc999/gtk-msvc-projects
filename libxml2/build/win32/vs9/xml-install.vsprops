@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="xmlinstallprops"
+	InheritedPropertySheets=".\xml-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="XMLDoInstall"
+		Value="
+mkdir $(CopyDir)&#x0D;&#x0A;
+mkdir $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\libxml2.dll $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\libxml2.pdb $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\xmllint.exe $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\xmllint.pdb $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\xmlcatalog.exe $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\xmlcatalog.pdb $(CopyDir)\bin&#x0D;&#x0A;
+
+mkdir $(CopyDir)\lib&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\libxml2.lib $(CopyDir)\lib&#x0D;&#x0A;
+
+mkdir $(CopyDir)\include\libxml2\libxml&#x0D;&#x0A;
+copy ..\..\..\include\libxml\*.h $(CopyDir)\include\libxml2\libxml&#x0D;&#x0A;
+"
+	/>
+</VisualStudioPropertySheet>

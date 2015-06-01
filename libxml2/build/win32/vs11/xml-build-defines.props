@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="xml-version-paths.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <XMLBuildDefines>WIN32;_REENTRANT;HAVE_WIN32_THREADS;HAVE_ZLIB_H;LIBXML_STATIC_FOR_DLL;HAVE_STDINT_H</XMLBuildDefines>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>xmlbuilddefinesprops</_PropertySheetDisplayName>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformName)\bin\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(PlatformName)\obj\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\include;..;$(GlibEtcInstallRoot)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/d2Zi+ %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(GlibEtcInstallRoot)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="XMLBuildDefines">
+      <Value>$(XMLBuildDefines)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

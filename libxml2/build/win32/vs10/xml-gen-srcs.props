@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="xml-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <ConfigureXML>
+if exist ..\..\..\config.h goto :DONE_CONFIG
+
+cd ..\..\..\win32
+cscript configure.js zlib=yes icu=yes
+cd $(ProjectDir)
+
+:DONE_CONFIG
+        </ConfigureXML>
+    <GenXMLDef>cl /EP /nologo /I..\..\..\include /DWIN32 /D_REENTRANT /DHAVE_WIN32_THREADS /DHAVE_COMPILER_TLS /DHAVE_ZLIB_H ..\..\..\win32\libxml2.def.src &gt; $(SolutionDir)$(Configuration)\$(Platform)\obj\$(ProjectName)\libxml2.def</GenXMLDef>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>xmlversionpathsprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="ConfigureXML">
+      <Value>$(ConfigureXML)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GenXMLDef">
+      <Value>$(GenXMLDef)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

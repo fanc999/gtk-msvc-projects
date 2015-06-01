@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="libxml2"
+	ProjectGUID="{47EF9AC2-87E7-496F-B96F-D9473D90EC2E}"
+	RootNamespace="libxml2"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\xml-gen-srcs.vsprops"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG;$(XMLBuildDefines)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="wsock32.lib ws2_32.lib iconv.lib icuuc.lib icuin.lib zlib1.lib"
+				LinkIncremental="2"
+				ModuleDefinitionFile="$(IntDir)\libxml2.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\xml-gen-srcs.vsprops"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="$(XMLBuildDefines)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="wsock32.lib ws2_32.lib iconv.lib icuuc.lib icuin.lib zlib1.lib"
+				LinkIncremental="1"
+				ModuleDefinitionFile="$(IntDir)\libxml2.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\xml-gen-srcs.vsprops"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG;$(XMLBuildDefines)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="wsock32.lib ws2_32.lib iconv.lib icuuc.lib icuin.lib zlib1.lib"
+				LinkIncremental="2"
+				ModuleDefinitionFile="$(IntDir)\libxml2.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\xml-gen-srcs.vsprops"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="$(XMLBuildDefines)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="wsock32.lib ws2_32.lib iconv.lib icuuc.lib icuin.lib zlib1.lib"
+				LinkIncremental="1"
+				ModuleDefinitionFile="$(IntDir)\libxml2.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Sources"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File RelativePath="..\..\..\buf.c" />
+			<File RelativePath="..\..\..\c14n.c" />
+			<File RelativePath="..\..\..\catalog.c" />
+			<File RelativePath="..\..\..\chvalid.c" />
+			<File RelativePath="..\..\..\debugXML.c" />
+			<File RelativePath="..\..\..\dict.c" />
+			<File RelativePath="..\..\..\DOCBparser.c" />
+			<File RelativePath="..\..\..\encoding.c" />
+			<File RelativePath="..\..\..\entities.c" />
+			<File RelativePath="..\..\..\error.c" />
+			<File RelativePath="..\..\..\globals.c" />
+			<File RelativePath="..\..\..\hash.c" />
+			<File RelativePath="..\..\..\HTMLparser.c" />
+			<File RelativePath="..\..\..\HTMLtree.c" />
+			<File RelativePath="..\..\..\legacy.c" />
+			<File RelativePath="..\..\..\list.c" />
+			<File RelativePath="..\..\..\nanoftp.c" />
+			<File RelativePath="..\..\..\nanohttp.c" />
+			<File RelativePath="..\..\..\parser.c" />
+			<File RelativePath="..\..\..\parserInternals.c" />
+			<File RelativePath="..\..\..\pattern.c" />
+			<File RelativePath="..\..\..\relaxng.c" />
+			<File RelativePath="..\..\..\SAX.c" />
+			<File RelativePath="..\..\..\SAX2.c" />
+			<File RelativePath="..\..\..\schematron.c" />
+			<File RelativePath="..\..\..\threads.c" />
+			<File RelativePath="..\..\..\tree.c" />
+			<File RelativePath="..\..\..\uri.c" />
+			<File RelativePath="..\..\..\valid.c" />
+			<File RelativePath="..\..\..\xinclude.c" />
+			<File RelativePath="..\..\..\xlink.c" />
+			<File RelativePath="..\..\..\xmlIO.c" />
+			<File RelativePath="..\..\..\xmlmemory.c" />
+			<File RelativePath="..\..\..\xmlmodule.c" />
+			<File RelativePath="..\..\..\xmlreader.c" />
+			<File RelativePath="..\..\..\xmlregexp.c" />
+			<File RelativePath="..\..\..\xmlsave.c" />
+			<File RelativePath="..\..\..\xmlschemas.c" />
+			<File RelativePath="..\..\..\xmlschemastypes.c" />
+			<File RelativePath="..\..\..\xmlstring.c" />
+			<File RelativePath="..\..\..\xmlunicode.c" />
+			<File RelativePath="..\..\..\xmlwriter.c" />
+			<File RelativePath="..\..\..\xpath.c" />
+			<File RelativePath="..\..\..\xpointer.c" />
+		</Filter>
+		<Filter
+			Name="Headers"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+			<File RelativePath="..\..\..\win32\configure.js">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"><Tool Name="VCCustomBuildTool" Description="Configuring $(ProjectName)..." CommandLine="$(ConfigureXML)" Outputs="..\..\..\config.h;..\..\..\include\libxml\xmlversion.h" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"><Tool Name="VCCustomBuildTool" Description="Configuring $(ProjectName)..." CommandLine="$(ConfigureXML)" Outputs="..\..\..\config.h;..\..\..\include\libxml\xmlversion.h" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"><Tool Name="VCCustomBuildTool" Description="Configuring $(ProjectName)..." CommandLine="$(ConfigureXML)" Outputs="..\..\..\config.h;..\..\..\include\libxml\xmlversion.h" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"><Tool Name="VCCustomBuildTool" Description="Configuring $(ProjectName)..." CommandLine="$(ConfigureXML)" Outputs="..\..\..\config.h;..\..\..\include\libxml\xmlversion.h" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\win32\libxml2.def.src">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Generating $(InputName)..." CommandLine="$(GenXMLDef)" AdditionalDependencies="..\..\..\include\libxml\xmlversion.h" Outputs="$(IntDir)\$(InputName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Generating $(InputName)..." CommandLine="$(GenXMLDef)" AdditionalDependencies="..\..\..\include\libxml\xmlversion.h" Outputs="$(IntDir)\$(InputName)" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Generating $(InputName)..." CommandLine="$(GenXMLDef)" AdditionalDependencies="..\..\..\include\libxml\xmlversion.h" Outputs="$(IntDir)\$(InputName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Generating $(InputName)..." CommandLine="$(GenXMLDef)" AdditionalDependencies="..\..\..\include\libxml\xmlversion.h" Outputs="$(IntDir)\$(InputName)" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\xmlversion.h">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy ..\$(InputFileName) ..\..\..\include\libxml\$(InputFileName)" Outputs="..\..\..\include\libxml\xmlversion.h" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy ..\$(InputFileName) ..\..\..\include\libxml\$(InputFileName)" Outputs="..\..\..\include\libxml\xmlversion.h" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy ..\$(InputFileName) ..\..\..\include\libxml\$(InputFileName)" Outputs="..\..\..\include\libxml\xmlversion.h" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy ..\$(InputFileName) ..\..\..\include\libxml\$(InputFileName)" Outputs="..\..\..\include\libxml\xmlversion.h" /></FileConfiguration>
+			</File>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
