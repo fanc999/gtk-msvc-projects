@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\source\tools\toolutil\collationinfo.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\dbgutil.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\denseranges.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\filestrm.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\filetools.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\flagparser.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\package.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\pkg_genc.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\pkg_gencmn.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\pkg_icu.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\pkgitems.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\ppucd.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\swapimpl.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\toolutil.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\ucbuf.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\ucln_tu.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\ucm.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\ucmstate.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\udbgutil.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\unewdata.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\uoptions.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\uparse.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\writesrc.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\xmlparser.cpp"><Filter>Sources</Filter></ClCompile>
+  </ItemGroup>
+</Project>

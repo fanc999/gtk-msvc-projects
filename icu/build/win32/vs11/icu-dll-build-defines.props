@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="icu-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <ICUDT_Defines>STUBDATA_BUILD</ICUDT_Defines>
+    <ICUUC_Defines>U_COMMON_IMPLEMENTATION</ICUUC_Defines>
+    <ICUIN_Defines>U_I18N_IMPLEMENTATION</ICUIN_Defines>
+    <ICUIO_Defines>U_IO_IMPLEMENTATION</ICUIO_Defines>
+    <ICUUC_Dbg_Defines>$(DbgFlag);$(ICUUC_Defines);RBBI_DEBUG</ICUUC_Dbg_Defines>
+    <ICULE_Defines>U_LAYOUT_IMPLEMENTATION</ICULE_Defines>
+    <ICULX_Defines>U_LAYOUTEX_IMPLEMENTATION</ICULX_Defines>
+    <ICUTU_Defines>U_TOOLUTIL_IMPLEMENTATION</ICUTU_Defines>
+    <CreateStubTxt>echo "File with stubdata build time, used as a dependency to trigger fresh data build, since stubdata dll will overwrite the real one." &gt; ..\..\..\source\stubdata\stubdatabuilt.txt</CreateStubTxt>
+    <CreateIncludeDir>
+if not exist ..\..\..\include\unicode mkdir ..\..\..\include\unicode
+
+if not exist ..\..\..\include\layout mkdir ..\..\..\include\layout
+        </CreateIncludeDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>icudllbuilddefinesprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <OutputFile>$(OutDir)$(ProjectName)$(ICUVer).dll</OutputFile>
+      <ProgramDatabaseFile>$(TargetDir)$(ProjectName)$(ICUVer).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(TargetDir)$(ProjectName).lib</ImportLibrary>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(Common_Inc_Dir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="ICUDT_Defines">
+      <Value>$(ICUDT_Defines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ICUUC_Defines">
+      <Value>$(ICUUC_Defines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ICUIN_Defines">
+      <Value>$(ICUIN_Defines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ICUIO_Defines">
+      <Value>$(ICUIO_Defines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ICUUC_Dbg_Defines">
+      <Value>$(ICUUC_Dbg_Defines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ICULE_Defines">
+      <Value>$(ICULE_Defines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ICULX_Defines">
+      <Value>$(ICULX_Defines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ICUTU_Defines">
+      <Value>$(ICUTU_Defines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CreateStubTxt">
+      <Value>$(CreateStubTxt)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CreateIncludeDir">
+      <Value>$(CreateIncludeDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\source\layout\AlternateSubstSubtables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\AnchorTables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\ArabicLayoutEngine.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\ArabicShaping.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\CanonData.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\CanonShaping.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\ClassDefinitionTables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\ContextualGlyphInsertionProc2.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\ContextualGlyphSubstProc.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\ContextualGlyphSubstProc2.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\ContextualSubstSubtables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\CoverageTables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\CursiveAttachmentSubtables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\DeviceTables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\ExtensionSubtables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\Features.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\GDEFMarkFilter.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\GlyphDefinitionTables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\GlyphIterator.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\GlyphLookupTables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\GlyphPositionAdjustments.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\GlyphPositioningTables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\GlyphPosnLookupProc.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\GlyphSubstitutionTables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\GlyphSubstLookupProc.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\GXLayoutEngine.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\GXLayoutEngine2.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\HangulLayoutEngine.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\HanLayoutEngine.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\IndicClassTables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\IndicLayoutEngine.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\IndicRearrangementProcessor.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\IndicRearrangementProcessor2.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\IndicReordering.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\KernTable.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\KhmerLayoutEngine.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\KhmerReordering.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\LayoutEngine.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\LEFontInstance.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\LEGlyphStorage.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\LEInsertionList.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\LigatureSubstProc.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\LigatureSubstProc2.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\LigatureSubstSubtables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\loengine.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\LookupProcessor.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\Lookups.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\LookupTables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\MarkArrays.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\MarkToBasePosnSubtables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\MarkToLigaturePosnSubtables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\MarkToMarkPosnSubtables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\MirroredCharData.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\MorphTables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\MorphTables2.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\MPreFixups.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\MultipleSubstSubtables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\NonContextualGlyphSubstProc.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\NonContextualGlyphSubstProc2.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\OpenTypeLayoutEngine.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\OpenTypeUtilities.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\PairPositioningSubtables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\ScriptAndLanguage.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\ScriptAndLanguageTags.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\SegmentArrayProcessor.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\SegmentArrayProcessor2.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\SegmentSingleProcessor.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\SegmentSingleProcessor2.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\ShapingTypeData.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\SimpleArrayProcessor.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\SimpleArrayProcessor2.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\SinglePositioningSubtables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\SingleSubstitutionSubtables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\SingleTableProcessor.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\SingleTableProcessor2.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\StateTableProcessor.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\StateTableProcessor2.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\SubstitutionLookups.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\SubtableProcessor.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\SubtableProcessor2.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\ThaiLayoutEngine.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\ThaiShaping.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\ThaiStateTables.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\TibetanLayoutEngine.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\TibetanReordering.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\TrimmedArrayProcessor.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\TrimmedArrayProcessor2.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\layout\ValueRecords.cpp"><Filter>Sources</Filter></ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\..\source\layout\layout.rc"><Filter>Resource Files</Filter></ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\source\layout\LayoutEngine.h"><Filter>Resource Files</Filter></CustomBuild>
+    <CustomBuild Include="..\..\..\source\layout\LEFontInstance.h"><Filter>Resource Files</Filter></CustomBuild>
+    <CustomBuild Include="..\..\..\source\layout\LEGlyphFilter.h"><Filter>Resource Files</Filter></CustomBuild>
+    <CustomBuild Include="..\..\..\source\layout\LEGlyphStorage.h"><Filter>Resource Files</Filter></CustomBuild>
+    <CustomBuild Include="..\..\..\source\layout\LEInsertionList.h"><Filter>Resource Files</Filter></CustomBuild>
+    <CustomBuild Include="..\..\..\source\layout\LELanguages.h"><Filter>Resource Files</Filter></CustomBuild>
+    <CustomBuild Include="..\..\..\source\layout\LEScripts.h"><Filter>Resource Files</Filter></CustomBuild>
+    <CustomBuild Include="..\..\..\source\layout\LESwaps.h"><Filter>Resource Files</Filter></CustomBuild>
+    <CustomBuild Include="..\..\..\source\layout\LETypes.h"><Filter>Resource Files</Filter></CustomBuild>
+    <CustomBuild Include="..\..\..\source\layout\loengine.h"><Filter>Resource Files</Filter></CustomBuild>
+  </ItemGroup>
+</Project>

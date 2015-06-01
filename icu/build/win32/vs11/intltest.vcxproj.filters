@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\source\test\intltest\aliastst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\allcoll.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\alphaindextst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\apicoll.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\astrotst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\bidiconf.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\bytestrietest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\calcasts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\callimts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\calregts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\caltest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\caltztst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\canittst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\citrtest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\collationtest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\colldata.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\compactdecimalformattest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\convtest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\cpdtrtst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\csdetest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\currcoll.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\dadrcal.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\dadrfmt.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\dcfmapts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\dcfmtest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\decoll.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\dtfmapts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\dtfmrgts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\dtfmtrtts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\dtfmttst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\dtifmtts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\dtptngts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\encoll.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\escoll.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\ficoll.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\fldset.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\frcoll.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\g7coll.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\genderinfotest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\icusvtst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\idnaconf.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\idnaref.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\incaltst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\intltest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\itercoll.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\itformat.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\itmajor.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\itrbbi.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\itrbnf.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\itrbnfp.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\itrbnfrt.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\itspoof.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\ittrans.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\itutil.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\jacoll.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\jamotest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\lcukocol.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\listformattertest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\locnmtst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\loctest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\measfmttest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\miscdtfm.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\mnkytst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\msfmrgts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\nmfmapts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\nmfmtrt.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\normconf.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\nptrans.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\numfmtspectest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\numfmtst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\numrgts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\plurfmts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\plurults.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\pptest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\punyref.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\quantityformattertest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\rbbiapts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\rbbitst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\regcoll.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\regextst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\regiontst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\reldatefmttest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\reptest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\restest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\restsnew.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\scientificnumberformattertest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\sdtfmtts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\selfmts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\sfwdchit.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\simplepatternformattertest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\simplethread.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\srchtest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\ssearch.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\strcase.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\strtest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\svccoll.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tchcfmt.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\testidn.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\testidna.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\testutil.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\textfile.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tfsmalls.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\thcoll.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tmsgfmt.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tokiter.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\transapi.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\transrt.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\transtst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\trcoll.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\trnserr.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tscoll.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tsdate.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tsdcfmsy.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tsdtfmsy.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tsmthred.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tsnmfmt.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tsputil.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tstnorm.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tstnrapi.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tufmtts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tzbdtest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tzfmttst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tzoffloc.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tzregts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tzrulets.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\tztest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\ucaconf.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\ucdtest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\ucharstrietest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\unifiedcachetest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\uobjtest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\usettest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\ustrtest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\uts46test.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\utxttest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\uvectest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\v32test.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\windttst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\winnmtst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\winutil.cpp"><Filter>Sources</Filter></ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="icu-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <ICU_Deprecation_Defines>U_ATTRIBUTE_DEPRECATED=</ICU_Deprecation_Defines>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>icutoolsbuilddefinesprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\..\source\tools\toolutil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="ICU_Deprecation_Defines">
+      <Value>$(ICU_Deprecation_Defines)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
