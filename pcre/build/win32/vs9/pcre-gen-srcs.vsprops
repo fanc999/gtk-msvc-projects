@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="pcregensrcsprops"
+	InheritedPropertySheets=".\pcre-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="CopyConfigH"
+		Value="copy ..\..\..\config.h.win32 ..\..\..\config.h"
+	/>
+	<UserMacro
+		Name="CopyPcreH"
+		Value="copy ..\..\..\pcre.h.win32 ..\..\..\pcre.h"
+	/>
+	<UserMacro
+		Name="CopyPcreCppArgH"
+		Value="copy ..\..\..\pcrecpparg.h.win32 ..\..\..\pcrecpparg.h"
+	/>
+	<UserMacro
+		Name="CopyPcreStringpieceH"
+		Value="copy ..\..\..\pcre_stringpiece.h.win32 ..\..\..\pcre_stringpiece.h"
+	/>
+	<UserMacro
+		Name="CopyPcreChartablesC"
+		Value="copy ..\..\..\pcre_chartables.c.dist ..\..\..\pcre_chartables.c"
+	/>
+</VisualStudioPropertySheet>
