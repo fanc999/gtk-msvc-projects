@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="pixman-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <BinDir>$(SolutionDir)$(Configuration)\$(Platform)\bin</BinDir>
+    <InstalledDlls>$(BinDir)\pixman-1.dll</InstalledDlls>
+    <PixmanDoInstall>
+mkdir $(CopyDir)\bin
+
+copy $(BinDir)\pixman-1.dll $(CopyDir)\bin
+copy $(BinDir)\pixman-1.pdb $(CopyDir)\bin
+
+mkdir $(CopyDir)\lib
+copy $(BinDir)\pixman-1.lib $(CopyDir)\lib
+
+mkdir $(CopyDir)\include\pixman-1
+copy ..\..\..\pixman\pixman.h $(CopyDir)\include\pixman-1
+copy ..\..\..\pixman\pixman-version.h $(CopyDir)\include\pixman-1
+</PixmanDoInstall>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>pixmaninstallprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="BinDir">
+      <Value>$(BinDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="InstalledDlls">
+      <Value>$(InstalledDlls)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PixmanDoInstall">
+      <Value>$(PixmanDoInstall)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
