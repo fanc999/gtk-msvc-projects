@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="epoxyversionpathsprops"
+	InheritedPropertySheets=".\epoxy-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="CopyConfigH"
+		Value="copy ..\..\..\config.h.win32 ..\..\..\config.h"
+	/>
+	<UserMacro
+		Name="GenDispatchSources"
+		Value="
+$(PythonPath)\python.exe ..\..\..\src\gen_dispatch.py --dir ..\..\.. ..\..\..\registry\gl.xml&#x0D;&#x0A;
+$(PythonPath)\python.exe ..\..\..\src\gen_dispatch.py --dir ..\..\.. ..\..\..\registry\wgl.xml&#x0D;&#x0A;
+		      "
+	/>
+</VisualStudioPropertySheet>

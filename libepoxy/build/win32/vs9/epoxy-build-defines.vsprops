@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="epoxybuilddefinesprops"
+	OutputDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin"
+	IntermediateDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)\obj\$(ProjectName)\"
+	InheritedPropertySheets=".\epoxy-version-paths.vsprops"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		PreprocessorDefinitions="_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;inline=__inline"
+		AdditionalIncludeDirectories="..\..\..\include;..\..\..\;$(GlibEtcInstallRoot)\include"
+		AdditionalOptions="/MP"
+	/>
+	<UserMacro
+		Name="GeneratedDispatchSources"
+		Value="..\..\..\include\epoxy\gl_generated.h;..\..\..\include\epoxy\wgl_generated.h;..\..\..\src\gl_generated_dispatch.c;..\..\..\src\wgl_generated_dispatch.c"
+	/>
+</VisualStudioPropertySheet>
