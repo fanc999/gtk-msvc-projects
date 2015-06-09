@@ -1,6 +1,6 @@
-From 0cefe46dc3de10b3358f5528e0be38f69fa14166 Mon Sep 17 00:00:00 2001
+From 737997a61edf511eeecd0102ab1910d73491c660 Mon Sep 17 00:00:00 2001
 From: Chun-wei Fan <fanchunwei@src.gnome.org>
-Date: Fri, 8 May 2015 12:13:12 +0800
+Date: Tue, 9 Jun 2015 15:40:11 +0800
 Subject: [PATCH] gettext-runtime: Add Preconfigured Headers
 
 This adds preconfigured headers that are needed to build various items in
@@ -31,12 +31,12 @@ and public variables from the DLL.
  gettext-runtime/gnulib-lib/uniwidth.h     |   72 ++
  gettext-runtime/gnulib-lib/wchar.h        | 1027 +++++++++++++++++
  gettext-runtime/gnulib-lib/wctype.h       |  513 +++++++++
- gettext-runtime/intl/libgnuintl.h         |  487 ++++++++
+ gettext-runtime/intl/libgnuintl.h         |  495 ++++++++
  gettext-runtime/libasprintf/alloca.h      |   68 ++
  gettext-runtime/libasprintf/autosprintf.h |   79 ++
  gettext-runtime/libasprintf/errno.h       |  280 +++++
  gettext-runtime/libasprintf/stdint.h      |  652 +++++++++++
- 27 files changed, 14114 insertions(+)
+ 27 files changed, 14122 insertions(+)
  create mode 100644 gettext-runtime/config.h.win32
  create mode 100644 gettext-runtime/gnulib-lib/alloca.h
  create mode 100644 gettext-runtime/gnulib-lib/errno.h
@@ -12747,10 +12747,10 @@ index 0000000..104b8dd
 +#endif /* _GL_WCTYPE_H */
 diff --git a/gettext-runtime/intl/libgnuintl.h b/gettext-runtime/intl/libgnuintl.h
 new file mode 100644
-index 0000000..aaec9e6
+index 0000000..106a3d6
 --- /dev/null
 +++ b/gettext-runtime/intl/libgnuintl.h
-@@ -0,0 +1,487 @@
+@@ -0,0 +1,495 @@
 +/* Message catalogs for internationalization.
 +   Copyright (C) 1995-1997, 2000-2012 Free Software Foundation, Inc.
 +
@@ -12799,6 +12799,14 @@ index 0000000..aaec9e6
 +   precedence over _conio_gettext.  */
 +#ifdef __DJGPP__
 +# undef gettext
++#endif
++
++#ifndef LIBINTL_DLL_EXPORTED
++#if (defined(_MSC_VER) && !defined(GETTEXT_STATIC))
++#define LIBINTL_DLL_EXPORTED __declspec (dllimport)
++#else
++#define LIBINTL_DLL_EXPORTED
++#endif
 +#endif
 +
 +#ifdef __cplusplus
