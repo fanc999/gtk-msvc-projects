@@ -1,6 +1,6 @@
-From 51e46e7e11b8f6e9be9d03ece71eaf06c213dfe1 Mon Sep 17 00:00:00 2001
+From 40e0dfc82a1e152d3f010258433a0f292091cfae Mon Sep 17 00:00:00 2001
 From: Chun-wei Fan <fanchunwei@src.gnome.org>
-Date: Tue, 12 May 2015 13:50:06 +0800
+Date: Wed, 10 Jun 2015 10:14:14 +0800
 Subject: [PATCH] freetype: Use Custom ftoption.h
 
 ...so that we can build FreeType as a DLL without using .def files, and
@@ -8,11 +8,11 @@ also enable features that require the use of libbz2 and libpng, since we
 are already building them for the GTK+ stack.  Make freetype link to
 zlib1.dll, which we are also building during the process.
 ---
- include/config/ftoption.h | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+ include/config/ftoption.h | 16 +++++++++++++---
+ 1 file changed, 13 insertions(+), 3 deletions(-)
 
 diff --git a/include/config/ftoption.h b/include/config/ftoption.h
-index 2b0b67e..c0d3755 100644
+index 1536c72..138310c 100644
 --- a/include/config/ftoption.h
 +++ b/include/config/ftoption.h
 @@ -184,7 +184,7 @@ FT_BEGIN_HEADER
@@ -42,10 +42,10 @@ index 2b0b67e..c0d3755 100644
  
  
    /*************************************************************************/
-@@ -281,6 +281,15 @@ FT_BEGIN_HEADER
-   /*                                                                       */
+@@ -282,6 +282,16 @@ FT_BEGIN_HEADER
  /* #define FT_EXPORT(x)      extern x */
  /* #define FT_EXPORT_DEF(x)  x */
+ 
 +#ifndef FT2_STATIC
 +# ifdef FT2_BUILD_LIBRARY
 +#  define FT_EXPORT(x)      extern __declspec (dllexport) x
@@ -55,9 +55,10 @@ index 2b0b67e..c0d3755 100644
 +#  define FT_EXPORT_DEF(x)  __declspec (dllimport) x
 +# endif
 +#endif
- 
++
  
    /*************************************************************************/
+   /*                                                                       */
 -- 
 2.3.5.windows.8
 
