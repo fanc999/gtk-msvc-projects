@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="cairogensrcsprops"
+	InheritedPropertySheets=".\cairo-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="CopyCairoFeaturesH"
+		Value="copy ..\cairo-features.h.win32 ..\..\..\src\cairo-features.h"
+	/>
+</VisualStudioPropertySheet>

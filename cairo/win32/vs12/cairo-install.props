@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="cairo-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <BinDir>$(SolutionDir)$(Configuration)\$(Platform)\bin</BinDir>
+    <InstalledDlls>$(BinDir)\$(CairoDllPrefix)cairo$(CairoDllSuffix).dll;$(BinDir)\$(CairoDllPrefix)cairo-gobject$(CairoDllSuffix).dll;$(BinDir)\$(CairoDllPrefix)cairo-script-interpretor$(CairoDllSuffix).dll</InstalledDlls>
+    <InstalledBins>$(BinDir)\csi-bind.exe;$(BinDir)\csi-exec.exe;$(BinDir)\csi-replay.exe</InstalledBins>
+    <CairoDoInstall>
+mkdir $(CopyDir)
+mkdir $(CopyDir)\bin
+copy $(BinDir)\$(CairoDllPrefix)cairo$(CairoDllSuffix).dll $(CopyDir)\bin
+copy $(BinDir)\$(CairoDllPrefix)cairo$(CairoDllSuffix).pdb $(CopyDir)\bin
+copy $(BinDir)\$(CairoDllPrefix)cairo-gobject$(CairoDllSuffix).dll $(CopyDir)\bin
+copy $(BinDir)\$(CairoDllPrefix)cairo-gobject$(CairoDllSuffix).pdb $(CopyDir)\bin
+copy $(BinDir)\$(CairoDllPrefix)cairo-script-interpretor$(CairoDllSuffix).dll $(CopyDir)\bin
+copy $(BinDir)\$(CairoDllPrefix)cairo-script-interpretor$(CairoDllSuffix).pdb $(CopyDir)\bin
+copy $(BinDir)\csi-bind.exe $(CopyDir)\bin
+copy $(BinDir)\csi-bind.pdb $(CopyDir)\bin
+copy $(BinDir)\csi-exec.exe $(CopyDir)\bin
+copy $(BinDir)\csi-exec.pdb $(CopyDir)\bin
+copy $(BinDir)\csi-replay.exe $(CopyDir)\bin
+copy $(BinDir)\csi-replay.pdb $(CopyDir)\bin
+
+
+mkdir $(CopyDir)\include\
+copy ..\..\..\src\cairo.h $(CopyDir)\include\
+copy ..\..\..\src\cairo-deprecated.h $(CopyDir)\include\
+copy ..\..\..\src\cairo-features.h $(CopyDir)\include\
+copy ..\..\..\src\cairo-ft.h $(CopyDir)\include\
+copy ..\..\..\src\cairo-pdf.h $(CopyDir)\include\
+copy ..\..\..\src\cairo-ps.h $(CopyDir)\include\
+copy ..\..\..\src\cairo-script.h $(CopyDir)\include\
+copy ..\..\..\src\cairo-svg.h $(CopyDir)\include\
+copy ..\..\..\src\cairo-tee.h $(CopyDir)\include\
+copy ..\..\..\src\cairo-win32.h $(CopyDir)\include\
+copy ..\..\..\src\cairo-xml.h $(CopyDir)\include\
+copy ..\..\..\cairo-version.h $(CopyDir)\include\
+copy ..\..\..\util\cairo-gobject\cairo-gobject.h $(CopyDir)\include\
+copy ..\..\..\util\cairo-script\cairo-script-interpreter.h $(CopyDir)\include\
+
+mkdir $(CopyDir)\lib
+copy $(BinDir)\cairo.lib $(CopyDir)\lib
+copy $(BinDir)\cairo-gobject.lib $(CopyDir)\lib
+copy $(BinDir)\cairo-script-interpretor.lib $(CopyDir)\lib
+    </CairoDoInstall>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>cairoinstallprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="BinDir">
+      <Value>$(BinDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="InstalledDlls">
+      <Value>$(InstalledDlls)</Value>
+    </BuildMacro>
+    <BuildMacro Include="InstalledBins">
+      <Value>$(InstalledBins)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CairoDoInstall">
+      <Value>$(CairoDoInstall)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+ ProjectType="Visual C++"
+ Version="8.00"
+ Name="cairoinstallprops"
+ InheritedPropertySheets=".\cairo-build-defines.vsprops"
+ >
+ <UserMacro
+  Name="CairoDoInstall"
+  Value="
+mkdir $(CopyDir)&#x0D;&#x0A;
+mkdir $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\$(CairoDllPrefix)cairo$(CairoDllSuffix).dll $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\$(CairoDllPrefix)cairo$(CairoDllSuffix).pdb $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\$(CairoDllPrefix)cairo-gobject$(CairoDllSuffix).dll $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\$(CairoDllPrefix)cairo-gobject$(CairoDllSuffix).pdb $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\$(CairoDllPrefix)cairo-script-interpretor$(CairoDllSuffix).dll $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\$(CairoDllPrefix)cairo-script-interpretor$(CairoDllSuffix).pdb $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\csi-bind.exe $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\csi-bind.pdb $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\csi-exec.exe $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\csi-exec.pdb $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\csi-replay.exe $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\csi-replay.pdb $(CopyDir)\bin&#x0D;&#x0A;
+
+mkdir $(CopyDir)\include\&#x0D;&#x0A;
+copy ..\..\..\src\cairo.h $(CopyDir)\include\&#x0D;&#x0A;
+copy ..\..\..\src\cairo-deprecated.h $(CopyDir)\include\&#x0D;&#x0A;
+copy ..\..\..\src\cairo-features.h $(CopyDir)\include\&#x0D;&#x0A;
+copy ..\..\..\src\cairo-ft.h $(CopyDir)\include\&#x0D;&#x0A;
+copy ..\..\..\src\cairo-pdf.h $(CopyDir)\include\&#x0D;&#x0A;
+copy ..\..\..\src\cairo-ps.h $(CopyDir)\include\&#x0D;&#x0A;
+copy ..\..\..\src\cairo-script.h $(CopyDir)\include\&#x0D;&#x0A;
+copy ..\..\..\src\cairo-svg.h $(CopyDir)\include\&#x0D;&#x0A;
+copy ..\..\..\src\cairo-tee.h $(CopyDir)\include\&#x0D;&#x0A;
+copy ..\..\..\src\cairo-win32.h $(CopyDir)\include\&#x0D;&#x0A;
+copy ..\..\..\src\cairo-xml.h $(CopyDir)\include\&#x0D;&#x0A;
+copy ..\..\..\cairo-version.h $(CopyDir)\include\&#x0D;&#x0A;
+copy ..\..\..\util\cairo-gobject\cairo-gobject.h $(CopyDir)\include\&#x0D;&#x0A;
+copy ..\..\..\util\cairo-script\cairo-script-interpreter.h $(CopyDir)\include\&#x0D;&#x0A;
+
+mkdir $(CopyDir)\lib&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\cairo.lib $(CopyDir)\lib&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\cairo-gobject.lib $(CopyDir)\lib&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\cairo-script-interpretor.lib $(CopyDir)\lib&#x0D;&#x0A;
+"
+ />
+</VisualStudioPropertySheet>
