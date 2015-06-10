@@ -1,0 +1,67 @@
+From dd2cd29ce3bf5b5363503f7db996b06c80fb8c2e Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Wed, 10 Jun 2015 14:00:25 +0800
+Subject: [PATCH] util/cairo-script: Make Utility Programs Build
+
+Avoid a named-initializer, which is a C99ism.
+---
+ util/cairo-script/csi-exec.c   |  4 +++-
+ util/cairo-script/csi-replay.c | 20 +++++++++++---------
+ 2 files changed, 14 insertions(+), 10 deletions(-)
+
+diff --git a/util/cairo-script/csi-exec.c b/util/cairo-script/csi-exec.c
+index d30b1c9..7e0bd95 100644
+--- a/util/cairo-script/csi-exec.c
++++ b/util/cairo-script/csi-exec.c
+@@ -17,7 +17,9 @@ int
+ main (int argc, char **argv)
+ {
+     const cairo_script_interpreter_hooks_t hooks = {
+-	.surface_create = _surface_create
++      NULL,
++	  _surface_create,
++      NULL,
+     };
+     cairo_script_interpreter_t *csi;
+     int i;
+diff --git a/util/cairo-script/csi-replay.c b/util/cairo-script/csi-replay.c
+index 67fed3b..ca05d75 100644
+--- a/util/cairo-script/csi-replay.c
++++ b/util/cairo-script/csi-replay.c
+@@ -276,22 +276,24 @@ main (int argc, char **argv)
+ {
+     cairo_script_interpreter_t *csi;
+     cairo_script_interpreter_hooks_t hooks = {
++      NULL,
+ #if SINGLE_SURFACE
+-	.surface_create = _similar_surface_create,
+-	.context_create = _context_create,
+-	.context_destroy = _context_destroy
++	  _similar_surface_create,
++      NULL,
++	  _context_create,
++	  _context_destroy,
+ #elif CAIRO_HAS_XLIB_XRENDER_SURFACE
+-	.surface_create = _xrender_surface_create
++	_xrender_surface_create,
+ #elif CAIRO_HAS_XLIB_SURFACE
+-	.surface_create = _xlib_surface_create
++	_xlib_surface_create,
+ #elif CAIRO_PDF_SURFACE
+-	.surface_create = _pdf_surface_create
++	_pdf_surface_create,
+ #elif CAIRO_PS_SURFACE
+-	.surface_create = _ps_surface_create
++	_ps_surface_create,
+ #elif CAIRO_SVG_SURFACE
+-	.surface_create = _svg_surface_create
++	_svg_surface_create,
+ #else
+-	.surface_create = _image_surface_create
++	_image_surface_create,
+ #endif
+     };
+     int i;
+-- 
+2.3.5.windows.8
+
