@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\Bidi.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\CachedFace.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\call_machine.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\CmapCache.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\Code.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\Face.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\FeatureMap.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\FileFace.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\Font.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\GlyphCache.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\GlyphFace.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\gr_char_info.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\gr_face.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\gr_features.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\gr_font.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\gr_logging.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\gr_segment.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\gr_slot.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\json.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\Justifier.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\NameTable.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\Pass.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\Rule.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\SegCache.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\SegCacheEntry.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\SegCacheStore.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\Segment.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\Silf.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\Slot.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\Sparse.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\TtfUtil.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\src\UtfCodec.cpp"><Filter>Sources</Filter></ClCompile>
+  </ItemGroup>
+</Project>

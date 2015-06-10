@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="graphite2"
+	ProjectGUID="{B410469F-4CBC-40BF-8797-6DFB65320E6B}"
+	RootNamespace="graphite2"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\graphite2-build-defines.vsprops"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG;$(Graphite2CFlags)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\graphite2-build-defines.vsprops"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="NDEBUG;$(Graphite2CFlags)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\graphite2-build-defines.vsprops"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG;$(Graphite2CFlags)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\graphite2-build-defines.vsprops"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="NDEBUG;$(Graphite2CFlags)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Sources"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File RelativePath="..\..\..\src\Bidi.cpp" />
+			<File RelativePath="..\..\..\src\CachedFace.cpp" />
+			<File RelativePath="..\..\..\src\call_machine.cpp" />
+			<File RelativePath="..\..\..\src\CmapCache.cpp" />
+			<File RelativePath="..\..\..\src\Code.cpp" />
+			<File RelativePath="..\..\..\src\Face.cpp" />
+			<File RelativePath="..\..\..\src\FeatureMap.cpp" />
+			<File RelativePath="..\..\..\src\FileFace.cpp" />
+			<File RelativePath="..\..\..\src\Font.cpp" />
+			<File RelativePath="..\..\..\src\GlyphCache.cpp" />
+			<File RelativePath="..\..\..\src\GlyphFace.cpp" />
+			<File RelativePath="..\..\..\src\gr_char_info.cpp" />
+			<File RelativePath="..\..\..\src\gr_face.cpp" />
+			<File RelativePath="..\..\..\src\gr_features.cpp" />
+			<File RelativePath="..\..\..\src\gr_font.cpp" />
+			<File RelativePath="..\..\..\src\gr_logging.cpp" />
+			<File RelativePath="..\..\..\src\gr_segment.cpp" />
+			<File RelativePath="..\..\..\src\gr_slot.cpp" />
+			<File RelativePath="..\..\..\src\json.cpp" />
+			<File RelativePath="..\..\..\src\Justifier.cpp" />
+			<File RelativePath="..\..\..\src\NameTable.cpp" />
+			<File RelativePath="..\..\..\src\Pass.cpp" />
+			<File RelativePath="..\..\..\src\Rule.cpp" />
+			<File RelativePath="..\..\..\src\SegCache.cpp" />
+			<File RelativePath="..\..\..\src\SegCacheEntry.cpp" />
+			<File RelativePath="..\..\..\src\SegCacheStore.cpp" />
+			<File RelativePath="..\..\..\src\Segment.cpp" />
+			<File RelativePath="..\..\..\src\Silf.cpp" />
+			<File RelativePath="..\..\..\src\Slot.cpp" />
+			<File RelativePath="..\..\..\src\Sparse.cpp" />
+			<File RelativePath="..\..\..\src\TtfUtil.cpp" />
+			<File RelativePath="..\..\..\src\UtfCodec.cpp" />
+		</Filter>
+		<Filter
+			Name="Headers"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
