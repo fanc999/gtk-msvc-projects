@@ -12,6 +12,7 @@
 		AdditionalIncludeDirectories="..\..\..\include;$(GLibEtcInstallRoot)\include"
 		PreprocessorDefinitions="_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;FT2_BUILD_LIBRARY"
 		DisabledSpecificWarnings="4127"
+		AdditionalOptions="/MP"
 	/>
 	<Tool
 		Name="VCLinkerTool"
