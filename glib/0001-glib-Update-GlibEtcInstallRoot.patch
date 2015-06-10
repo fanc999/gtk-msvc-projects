@@ -1,0 +1,68 @@
+From 4003a4d685d4b2f041b00d63e385d9b7a4a238a8 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Wed, 10 Jun 2015 14:35:16 +0800
+Subject: [PATCH] glib: Update GlibEtcInstallRoot
+
+So that it would fit in better with our all-in-lone solution...
+---
+ build/win32/vs10/glib-version-paths.props  | 2 +-
+ build/win32/vs11/glib-version-paths.props  | 2 +-
+ build/win32/vs12/glib-version-paths.props  | 2 +-
+ build/win32/vs9/glib-version-paths.vsprops | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/build/win32/vs10/glib-version-paths.props b/build/win32/vs10/glib-version-paths.props
+index 4663a84..90255f0 100644
+--- a/build/win32/vs10/glib-version-paths.props
++++ b/build/win32/vs10/glib-version-paths.props
+@@ -2,7 +2,7 @@
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup Label="UserMacros">
+     <VSVer>10</VSVer>
+-    <GlibEtcInstallRoot>..\..\..\..\vs$(VSVer)\$(Platform)</GlibEtcInstallRoot>
++    <GlibEtcInstallRoot>$(SolutionDir)\..\..\vs$(VSVer)\$(Configuration)\$(Platform)</GlibEtcInstallRoot>
+     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
+     <ApiVersion>2.0</ApiVersion>
+     <GlibLibtoolCompatibleDllPrefix>lib</GlibLibtoolCompatibleDllPrefix>
+diff --git a/build/win32/vs11/glib-version-paths.props b/build/win32/vs11/glib-version-paths.props
+index 9377af9..3ee1f64 100644
+--- a/build/win32/vs11/glib-version-paths.props
++++ b/build/win32/vs11/glib-version-paths.props
+@@ -2,7 +2,7 @@
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup Label="UserMacros">
+     <VSVer>11</VSVer>
+-    <GlibEtcInstallRoot>..\..\..\..\vs$(VSVer)\$(Platform)</GlibEtcInstallRoot>
++    <GlibEtcInstallRoot>$(SolutionDir)\..\..\vs$(VSVer)\$(Configuration)\$(Platform)</GlibEtcInstallRoot>
+     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
+     <ApiVersion>2.0</ApiVersion>
+     <GlibLibtoolCompatibleDllPrefix>lib</GlibLibtoolCompatibleDllPrefix>
+diff --git a/build/win32/vs12/glib-version-paths.props b/build/win32/vs12/glib-version-paths.props
+index cd3ca7f..80d203d 100644
+--- a/build/win32/vs12/glib-version-paths.props
++++ b/build/win32/vs12/glib-version-paths.props
+@@ -2,7 +2,7 @@
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup Label="UserMacros">
+     <VSVer>12</VSVer>
+-    <GlibEtcInstallRoot>..\..\..\..\vs$(VSVer)\$(Platform)</GlibEtcInstallRoot>
++    <GlibEtcInstallRoot>$(SolutionDir)\..\..\vs$(VSVer)\$(Configuration)\$(Platform)</GlibEtcInstallRoot>
+     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
+     <ApiVersion>2.0</ApiVersion>
+     <GlibLibtoolCompatibleDllPrefix>lib</GlibLibtoolCompatibleDllPrefix>
+diff --git a/build/win32/vs9/glib-version-paths.vsprops b/build/win32/vs9/glib-version-paths.vsprops
+index 33b276c..1589114 100644
+--- a/build/win32/vs9/glib-version-paths.vsprops
++++ b/build/win32/vs9/glib-version-paths.vsprops
+@@ -10,7 +10,7 @@
+ 	/>
+ 	<UserMacro
+ 		Name="GlibEtcInstallRoot"
+-		Value="..\..\..\..\vs$(VSVer)\$(PlatformName)"
++		Value="$(SolutionDir)\..\..\vs$(VSVer)\$(ConfigurationName)\$(PlatformName)"
+ 	/>
+ 	<UserMacro
+ 		Name="CopyDir"
+-- 
+2.3.5.windows.8
+
