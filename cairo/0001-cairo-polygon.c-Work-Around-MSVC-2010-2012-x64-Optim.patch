@@ -1,0 +1,30 @@
+From c8af46e18d0acfef9db7e2edda052b3546236590 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Wed, 10 Jun 2015 14:03:57 +0800
+Subject: [PATCH] cairo-polygon.c: Work Around MSVC 2010/2012 x64 Optimization
+ Bug
+
+Only assert top < bottom when one or both top and bottom are not 0, so that
+the program does not assert when top = bottom = 0, likely due to an
+optimization issue
+---
+ src/cairo-polygon.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/src/cairo-polygon.c b/src/cairo-polygon.c
+index b0424f6..a27edc1 100644
+--- a/src/cairo-polygon.c
++++ b/src/cairo-polygon.c
+@@ -293,7 +293,8 @@ _add_edge (cairo_polygon_t *polygon,
+ {
+     cairo_edge_t *edge;
+ 
+-    assert (top < bottom);
++    if (top != 0 || bottom != 0)
++      assert (top < bottom);
+ 
+     if (unlikely (polygon->num_edges == polygon->edges_size)) {
+ 	if (! _cairo_polygon_grow (polygon))
+-- 
+2.3.5.windows.8
+
