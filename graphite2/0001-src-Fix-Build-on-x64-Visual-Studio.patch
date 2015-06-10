@@ -1,0 +1,71 @@
+From 2a38503ee48a807b56ba4d7ccef468f11e4a8672 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Wed, 10 Jun 2015 18:01:42 +0800
+Subject: [PATCH] src/: Fix Build on x64 Visual Studio
+
+We need to overload the << operator for size_t, otherwise the build will
+fail with C2666 ('<<' : number overloads have similar conversions) on
+x64 Visual Studio builds.
+
+Taken from David Ostrovsky's patch from
+http://projects.palaso.org/issues/1310, as part of getting libreoffice to
+be built as an x64 application on Windows.
+---
+ src/Pass.cpp   | 4 ++--
+ src/inc/json.h | 3 +++
+ src/json.cpp   | 3 +++
+ 3 files changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/src/Pass.cpp b/src/Pass.cpp
+index 140b45b..9946bd2 100644
+--- a/src/Pass.cpp
++++ b/src/Pass.cpp
+@@ -466,7 +466,7 @@ void Pass::dumpRuleEventConsidered(const FiniteStateMachine & fsm, const RuleEnt
+     {
+         if (r->rule->preContext > fsm.slots.context())  continue;
+     *fsm.dbgout << json::flat << json::object
+-                    << "id"     << r->rule - m_rules
++                    << "id"     << static_cast<size_t>(r->rule - m_rules)
+                     << "failed" << true
+                     << "input" << json::flat << json::object
+                         << "start" << objectid(dslot(&fsm.slots.segment, input_slot(fsm.slots, -r->rule->preContext)))
+@@ -480,7 +480,7 @@ void Pass::dumpRuleEventConsidered(const FiniteStateMachine & fsm, const RuleEnt
+ void Pass::dumpRuleEventOutput(const FiniteStateMachine & fsm, const Rule & r, Slot * const last_slot) const
+ {
+     *fsm.dbgout     << json::item << json::flat << json::object
+-                        << "id"     << &r - m_rules
++                        << "id"     << static_cast<size_t>(&r - m_rules)
+                         << "failed" << false
+                         << "input" << json::flat << json::object
+                             << "start" << objectid(dslot(&fsm.slots.segment, input_slot(fsm.slots, 0)))
+diff --git a/src/inc/json.h b/src/inc/json.h
+index 1310411..cc2e313 100644
+--- a/src/inc/json.h
++++ b/src/inc/json.h
+@@ -78,6 +78,9 @@ public:
+     json & operator << (string) throw();
+     json & operator << (number) throw();
+     json & operator << (integer) throw();
++#ifdef _WIN64
++    json & operator << (size_t) throw();
++#endif
+     json & operator << (long unsigned int d) throw();
+     json & operator << (boolean) throw();
+     json & operator << (_null_t) throw();
+diff --git a/src/json.cpp b/src/json.cpp
+index 2f45cc0..9b02bba 100644
+--- a/src/json.cpp
++++ b/src/json.cpp
+@@ -119,6 +119,9 @@ json & json::operator << (json::string s) throw()
+ json & json::operator << (json::number f) throw()   { context(seq); fprintf(_stream, "%g", f); return *this; }
+ json & json::operator << (json::integer d) throw()  { context(seq); fprintf(_stream, "%ld", d); return *this; }
+ json & json::operator << (long unsigned d) throw()  { context(seq); fprintf(_stream, "%ld", d); return *this; }
++#ifdef _WIN64
++json & json::operator << (size_t d) throw()         { context(seq); fprintf(_stream, "%ld", d); return *this; }
++#endif
+ json & json::operator << (json::boolean b) throw()  { context(seq); fputs(b ? "true" : "false", _stream); return *this; }
+ json & json::operator << (json::_null_t) throw()    { context(seq); fputs("null",_stream); return *this; }
+ 
+-- 
+2.3.5.windows.8
+

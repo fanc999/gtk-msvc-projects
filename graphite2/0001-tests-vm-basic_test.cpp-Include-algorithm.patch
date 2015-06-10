@@ -1,0 +1,32 @@
+From e774930867a0d3578a7255f6d77106fe92eb8b5c Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Wed, 10 Jun 2015 18:03:12 +0800
+Subject: [PATCH] tests/vm/basic_test.cpp: Include algorithm
+
+On newer Visual Studio versions, this is required as otherwise the build
+will fail with a C2039 error ('min' is not a member of 'std')
+---
+ tests/vm/basic_test.cpp | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/tests/vm/basic_test.cpp b/tests/vm/basic_test.cpp
+index 37fd289..97d9a9e 100644
+--- a/tests/vm/basic_test.cpp
++++ b/tests/vm/basic_test.cpp
+@@ -2,11 +2,13 @@
+ #include <iostream>
+ #include <vector>
+ #include <time.h>
++#include <algorithm>
+ #include "inc/Code.h"
+ #include "inc/Rule.h"
+ #include "inc/Silf.h"
+ #include "inc/Face.h"
+ 
++
+ using namespace graphite2;
+ using namespace vm;
+ typedef Machine::Code  Code;
+-- 
+2.3.5.windows.8
+
