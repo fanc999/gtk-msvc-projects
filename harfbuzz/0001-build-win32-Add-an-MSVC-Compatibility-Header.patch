@@ -1,0 +1,44 @@
+From 6c3e1e5dabc241af24d21e3748f9c6d40e1ecf64 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Fri, 12 Jun 2015 16:11:03 +0800
+Subject: [PATCH 1/2] build/win32: Add an MSVC Compatibility Header
+
+...that is used to build the tools, as the tools use strcasecmp and the C99
+scalbn() and scalbnf().  This is forced-included by the Visual Studio
+projects during the build of the tools.
+---
+ build/win32/hb-utils-msvc.h | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+ create mode 100644 build/win32/hb-utils-msvc.h
+
+diff --git a/build/win32/hb-utils-msvc.h b/build/win32/hb-utils-msvc.h
+new file mode 100644
+index 0000000..405925b
+--- /dev/null
++++ b/build/win32/hb-utils-msvc.h
+@@ -0,0 +1,22 @@
++/* hb-msvc-compat.h: Compatibility Header for MSVC to build Harfbuzz Utilities */
++
++#define strcasecmp _stricmp
++#define strncasecmp _strnicmp
++
++#if (_MSC_VER < 1800)
++#include <math.h>
++
++#ifndef FLT_RADIX
++#define FLT_RADIX 2
++#endif
++
++__inline long double scalbn (long double x, int exp)
++{
++  return x * (pow ((long double) FLT_RADIX, exp));
++}
++
++__inline float scalbnf (float x, int exp)
++{
++  return x * (pow ((float) FLT_RADIX, exp));
++}
++#endif
+-- 
+2.3.5.windows.8
+

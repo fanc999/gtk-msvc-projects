@@ -1,0 +1,1885 @@
+From 7f19c507b8595e4a0e2db0fe13ee7e5e03345ba4 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Fri, 12 Jun 2015 15:57:50 +0800
+Subject: [PATCH] Public Headers: Add API extern Annotations
+
+Add HB_AVAILABLE_IN_ALL, which corresponds to _HB_EXTERN, which can be
+overridden during the build so that we can fine-tune what gets exported
+by using compiler-specific directives, if needed, so we would not need to
+rely on items such as scripts or .def files to export the public symbols.
+_HB_EXTERN is defined as 'extern' by default, so the current export
+mechanism should continue to work.
+---
+ src/hb-blob.h               | 12 +++++++++
+ src/hb-buffer.h             | 48 ++++++++++++++++++++++++++++++++++
+ src/hb-common.h             | 17 ++++++++++++
+ src/hb-coretext.h           |  3 +++
+ src/hb-face.h               | 17 ++++++++++++
+ src/hb-font.h               | 63 +++++++++++++++++++++++++++++++++++++++++++++
+ src/hb-ft.h                 |  7 +++++
+ src/hb-glib.h               |  4 +++
+ src/hb-gobject-enums.h.tmpl |  2 +-
+ src/hb-gobject-structs.h    | 13 ++++++++++
+ src/hb-graphite2.h          |  2 ++
+ src/hb-icu.h                |  3 +++
+ src/hb-ot-font.h            |  1 +
+ src/hb-ot-layout.h          | 28 ++++++++++++++++++++
+ src/hb-ot-shape.h           |  2 ++
+ src/hb-ot-tag.h             |  4 +++
+ src/hb-set.h                | 27 ++++++++++++++++++-
+ src/hb-shape-plan.h         |  9 +++++++
+ src/hb-shape.h              |  5 ++++
+ src/hb-unicode.h            | 26 +++++++++++++++++++
+ src/hb-uniscribe.h          |  2 ++
+ src/hb-version.h.in         |  3 +++
+ 22 files changed, 296 insertions(+), 2 deletions(-)
+
+diff --git a/src/hb-blob.h b/src/hb-blob.h
+index b2419ab..cc9c18a 100644
+--- a/src/hb-blob.h
++++ b/src/hb-blob.h
+@@ -64,6 +64,7 @@ typedef enum {
+ 
+ typedef struct hb_blob_t hb_blob_t;
+ 
++HB_AVAILABLE_IN_ALL
+ hb_blob_t *
+ hb_blob_create (const char        *data,
+ 		unsigned int       length,
+@@ -77,20 +78,25 @@ hb_blob_create (const char        *data,
+  * modify the parent data as that data may be
+  * shared among multiple sub-blobs.
+  */
++HB_AVAILABLE_IN_ALL
+ hb_blob_t *
+ hb_blob_create_sub_blob (hb_blob_t    *parent,
+ 			 unsigned int  offset,
+ 			 unsigned int  length);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_blob_t *
+ hb_blob_get_empty (void);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_blob_t *
+ hb_blob_reference (hb_blob_t *blob);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_blob_destroy (hb_blob_t *blob);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_blob_set_user_data (hb_blob_t          *blob,
+ 		       hb_user_data_key_t *key,
+@@ -99,24 +105,30 @@ hb_blob_set_user_data (hb_blob_t          *blob,
+ 		       hb_bool_t           replace);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ void *
+ hb_blob_get_user_data (hb_blob_t          *blob,
+ 		       hb_user_data_key_t *key);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_blob_make_immutable (hb_blob_t *blob);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_blob_is_immutable (hb_blob_t *blob);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_blob_get_length (hb_blob_t *blob);
+ 
++HB_AVAILABLE_IN_ALL
+ const char *
+ hb_blob_get_data (hb_blob_t *blob, unsigned int *length);
+ 
++HB_AVAILABLE_IN_ALL
+ char *
+ hb_blob_get_data_writable (hb_blob_t *blob, unsigned int *length);
+ 
+diff --git a/src/hb-buffer.h b/src/hb-buffer.h
+index 520141b..05e8bca 100644
+--- a/src/hb-buffer.h
++++ b/src/hb-buffer.h
+@@ -77,10 +77,12 @@ typedef struct hb_segment_properties_t {
+ 				       NULL, \
+ 				       NULL}
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_segment_properties_equal (const hb_segment_properties_t *a,
+ 			     const hb_segment_properties_t *b);
+ 
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_segment_properties_hash (const hb_segment_properties_t *p);
+ 
+@@ -92,18 +94,23 @@ hb_segment_properties_hash (const hb_segment_properties_t *p);
+ 
+ typedef struct hb_buffer_t hb_buffer_t;
+ 
++HB_AVAILABLE_IN_ALL
+ hb_buffer_t *
+ hb_buffer_create (void);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_buffer_t *
+ hb_buffer_get_empty (void);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_buffer_t *
+ hb_buffer_reference (hb_buffer_t *buffer);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_destroy (hb_buffer_t *buffer);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_buffer_set_user_data (hb_buffer_t        *buffer,
+ 			 hb_user_data_key_t *key,
+@@ -111,6 +118,7 @@ hb_buffer_set_user_data (hb_buffer_t        *buffer,
+ 			 hb_destroy_func_t   destroy,
+ 			 hb_bool_t           replace);
+ 
++HB_AVAILABLE_IN_ALL
+ void *
+ hb_buffer_get_user_data (hb_buffer_t        *buffer,
+ 			 hb_user_data_key_t *key);
+@@ -122,51 +130,64 @@ typedef enum {
+   HB_BUFFER_CONTENT_TYPE_GLYPHS
+ } hb_buffer_content_type_t;
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_set_content_type (hb_buffer_t              *buffer,
+ 			    hb_buffer_content_type_t  content_type);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_buffer_content_type_t
+ hb_buffer_get_content_type (hb_buffer_t *buffer);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_set_unicode_funcs (hb_buffer_t        *buffer,
+ 			     hb_unicode_funcs_t *unicode_funcs);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_unicode_funcs_t *
+ hb_buffer_get_unicode_funcs (hb_buffer_t        *buffer);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_set_direction (hb_buffer_t    *buffer,
+ 			 hb_direction_t  direction);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_direction_t
+ hb_buffer_get_direction (hb_buffer_t *buffer);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_set_script (hb_buffer_t *buffer,
+ 		      hb_script_t  script);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_script_t
+ hb_buffer_get_script (hb_buffer_t *buffer);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_set_language (hb_buffer_t   *buffer,
+ 			hb_language_t  language);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ hb_language_t
+ hb_buffer_get_language (hb_buffer_t *buffer);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_set_segment_properties (hb_buffer_t *buffer,
+ 				  const hb_segment_properties_t *props);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_get_segment_properties (hb_buffer_t *buffer,
+ 				  hb_segment_properties_t *props);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_guess_segment_properties (hb_buffer_t *buffer);
+ 
+@@ -178,10 +199,12 @@ typedef enum { /*< flags >*/
+   HB_BUFFER_FLAG_PRESERVE_DEFAULT_IGNORABLES	= 0x00000004u
+ } hb_buffer_flags_t;
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_set_flags (hb_buffer_t       *buffer,
+ 		     hb_buffer_flags_t  flags);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_buffer_flags_t
+ hb_buffer_get_flags (hb_buffer_t *buffer);
+ 
+@@ -191,51 +214,62 @@ hb_buffer_get_flags (hb_buffer_t *buffer);
+ 
+ /* Sets codepoint used to replace invalid UTF-8/16/32 entries.
+  * Default is 0xFFFDu. */
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_set_replacement_codepoint (hb_buffer_t    *buffer,
+ 				     hb_codepoint_t  replacement);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_codepoint_t
+ hb_buffer_get_replacement_codepoint (hb_buffer_t    *buffer);
+ 
+ 
+ /* Resets the buffer.  Afterwards it's as if it was just created,
+  * except that it has a larger buffer allocated perhaps... */
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_reset (hb_buffer_t *buffer);
+ 
+ /* Like reset, but does NOT clear unicode_funcs and replacement_codepoint. */
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_clear_contents (hb_buffer_t *buffer);
+ 
+ /* Returns false if allocation failed */
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_buffer_pre_allocate (hb_buffer_t  *buffer,
+ 		        unsigned int  size);
+ 
+ 
+ /* Returns false if allocation has failed before */
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_buffer_allocation_successful (hb_buffer_t  *buffer);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_reverse (hb_buffer_t *buffer);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_reverse_range (hb_buffer_t *buffer,
+ 			 unsigned int start, unsigned int end);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_reverse_clusters (hb_buffer_t *buffer);
+ 
+ 
+ /* Filling the buffer in */
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_add (hb_buffer_t    *buffer,
+ 	       hb_codepoint_t  codepoint,
+ 	       unsigned int    cluster);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_add_utf8 (hb_buffer_t  *buffer,
+ 		    const char   *text,
+@@ -243,6 +277,7 @@ hb_buffer_add_utf8 (hb_buffer_t  *buffer,
+ 		    unsigned int  item_offset,
+ 		    int           item_length);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_add_utf16 (hb_buffer_t    *buffer,
+ 		     const uint16_t *text,
+@@ -250,6 +285,7 @@ hb_buffer_add_utf16 (hb_buffer_t    *buffer,
+ 		     unsigned int    item_offset,
+ 		     int             item_length);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_add_utf32 (hb_buffer_t    *buffer,
+ 		     const uint32_t *text,
+@@ -258,6 +294,7 @@ hb_buffer_add_utf32 (hb_buffer_t    *buffer,
+ 		     int             item_length);
+ 
+ /* Allows only access to first 256 Unicode codepoints. */
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_add_latin1 (hb_buffer_t   *buffer,
+ 		      const uint8_t *text,
+@@ -266,6 +303,7 @@ hb_buffer_add_latin1 (hb_buffer_t   *buffer,
+ 		      int            item_length);
+ 
+ /* Like add_utf32 but does NOT check for invalid Unicode codepoints. */
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_add_codepoints (hb_buffer_t          *buffer,
+ 			  const hb_codepoint_t *text,
+@@ -275,22 +313,26 @@ hb_buffer_add_codepoints (hb_buffer_t          *buffer,
+ 
+ 
+ /* Clears any new items added at the end */
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_buffer_set_length (hb_buffer_t  *buffer,
+ 		      unsigned int  length);
+ 
+ /* Return value valid as long as buffer not modified */
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_buffer_get_length (hb_buffer_t *buffer);
+ 
+ /* Getting glyphs out of the buffer */
+ 
+ /* Return value valid as long as buffer not modified */
++HB_AVAILABLE_IN_ALL
+ hb_glyph_info_t *
+ hb_buffer_get_glyph_infos (hb_buffer_t  *buffer,
+                            unsigned int *length);
+ 
+ /* Return value valid as long as buffer not modified */
++HB_AVAILABLE_IN_ALL
+ hb_glyph_position_t *
+ hb_buffer_get_glyph_positions (hb_buffer_t  *buffer,
+                                unsigned int *length);
+@@ -299,6 +341,7 @@ hb_buffer_get_glyph_positions (hb_buffer_t  *buffer,
+ /* Reorders a glyph buffer to have canonical in-cluster glyph order / position.
+  * The resulting clusters should behave identical to pre-reordering clusters.
+  * NOTE: This has nothing to do with Unicode normalization. */
++HB_AVAILABLE_IN_ALL
+ void
+ hb_buffer_normalize_glyphs (hb_buffer_t *buffer);
+ 
+@@ -321,16 +364,20 @@ typedef enum {
+ } hb_buffer_serialize_format_t;
+ 
+ /* len=-1 means str is NUL-terminated. */
++HB_AVAILABLE_IN_ALL
+ hb_buffer_serialize_format_t
+ hb_buffer_serialize_format_from_string (const char *str, int len);
+ 
++HB_AVAILABLE_IN_ALL
+ const char *
+ hb_buffer_serialize_format_to_string (hb_buffer_serialize_format_t format);
+ 
++HB_AVAILABLE_IN_ALL
+ const char **
+ hb_buffer_serialize_list_formats (void);
+ 
+ /* Returns number of items, starting at start, that were serialized. */
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_buffer_serialize_glyphs (hb_buffer_t *buffer,
+ 			    unsigned int start,
+@@ -342,6 +389,7 @@ hb_buffer_serialize_glyphs (hb_buffer_t *buffer,
+ 			    hb_buffer_serialize_format_t format,
+ 			    hb_buffer_serialize_flags_t flags);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_buffer_deserialize_glyphs (hb_buffer_t *buffer,
+ 			      const char *buf,
+diff --git a/src/hb-common.h b/src/hb-common.h
+index b6ce3f7..44c0332 100644
+--- a/src/hb-common.h
++++ b/src/hb-common.h
+@@ -67,6 +67,12 @@ typedef unsigned __int64 uint64_t;
+ 
+ #endif
+ 
++#ifndef _HB_EXTERN
++#define _HB_EXTERN extern
++#endif
++
++#define HB_AVAILABLE_IN_ALL _HB_EXTERN
++
+ HB_BEGIN_DECLS
+ 
+ 
+@@ -98,10 +104,12 @@ typedef uint32_t hb_tag_t;
+ #define HB_TAG_MAX_SIGNED HB_TAG(0x7f,0xff,0xff,0xff)
+ 
+ /* len=-1 means str is NUL-terminated. */
++HB_AVAILABLE_IN_ALL
+ hb_tag_t
+ hb_tag_from_string (const char *str, int len);
+ 
+ /* buf should have 4 bytes. */
++HB_AVAILABLE_IN_ALL
+ void
+ hb_tag_to_string (hb_tag_t tag, char *buf);
+ 
+@@ -117,9 +125,11 @@ typedef enum {
+ } hb_direction_t;
+ 
+ /* len=-1 means str is NUL-terminated */
++HB_AVAILABLE_IN_ALL
+ hb_direction_t
+ hb_direction_from_string (const char *str, int len);
+ 
++HB_AVAILABLE_IN_ALL
+ const char *
+ hb_direction_to_string (hb_direction_t direction);
+ 
+@@ -137,14 +147,17 @@ hb_direction_to_string (hb_direction_t direction);
+ typedef const struct hb_language_impl_t *hb_language_t;
+ 
+ /* len=-1 means str is NUL-terminated */
++HB_AVAILABLE_IN_ALL
+ hb_language_t
+ hb_language_from_string (const char *str, int len);
+ 
++HB_AVAILABLE_IN_ALL
+ const char *
+ hb_language_to_string (hb_language_t language);
+ 
+ #define HB_LANGUAGE_INVALID ((hb_language_t) NULL)
+ 
++HB_AVAILABLE_IN_ALL
+ hb_language_t
+ hb_language_get_default (void);
+ 
+@@ -314,17 +327,21 @@ typedef enum
+ 
+ /* Script functions */
+ 
++HB_AVAILABLE_IN_ALL
+ hb_script_t
+ hb_script_from_iso15924_tag (hb_tag_t tag);
+ 
+ /* sugar for tag_from_string() then script_from_iso15924_tag */
+ /* len=-1 means s is NUL-terminated */
++HB_AVAILABLE_IN_ALL
+ hb_script_t
+ hb_script_from_string (const char *s, int len);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_tag_t
+ hb_script_to_iso15924_tag (hb_script_t script);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_direction_t
+ hb_script_get_horizontal_direction (hb_script_t script);
+ 
+diff --git a/src/hb-coretext.h b/src/hb-coretext.h
+index 25267bc..98633e3 100644
+--- a/src/hb-coretext.h
++++ b/src/hb-coretext.h
+@@ -44,13 +44,16 @@ HB_BEGIN_DECLS
+ #define HB_CORETEXT_TAG_MORX HB_TAG('m','o','r','x')
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ hb_face_t *
+ hb_coretext_face_create (CGFontRef cg_font);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ CGFontRef
+ hb_coretext_face_get_cg_font (hb_face_t *face);
+ 
++HB_AVAILABLE_IN_ALL
+ CTFontRef
+ hb_coretext_font_get_ct_font (hb_font_t *font);
+ 
+diff --git a/src/hb-face.h b/src/hb-face.h
+index f682c46..5167553 100644
+--- a/src/hb-face.h
++++ b/src/hb-face.h
+@@ -43,6 +43,7 @@ HB_BEGIN_DECLS
+ 
+ typedef struct hb_face_t hb_face_t;
+ 
++HB_AVAILABLE_IN_ALL
+ hb_face_t *
+ hb_face_create (hb_blob_t    *blob,
+ 		unsigned int  index);
+@@ -50,20 +51,25 @@ hb_face_create (hb_blob_t    *blob,
+ typedef hb_blob_t * (*hb_reference_table_func_t)  (hb_face_t *face, hb_tag_t tag, void *user_data);
+ 
+ /* calls destroy() when not needing user_data anymore */
++HB_AVAILABLE_IN_ALL
+ hb_face_t *
+ hb_face_create_for_tables (hb_reference_table_func_t  reference_table_func,
+ 			   void                      *user_data,
+ 			   hb_destroy_func_t          destroy);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_face_t *
+ hb_face_get_empty (void);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_face_t *
+ hb_face_reference (hb_face_t *face);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_face_destroy (hb_face_t *face);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_face_set_user_data (hb_face_t          *face,
+ 		       hb_user_data_key_t *key,
+@@ -72,42 +78,53 @@ hb_face_set_user_data (hb_face_t          *face,
+ 		       hb_bool_t           replace);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ void *
+ hb_face_get_user_data (hb_face_t          *face,
+ 		       hb_user_data_key_t *key);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_face_make_immutable (hb_face_t *face);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_face_is_immutable (hb_face_t *face);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ hb_blob_t *
+ hb_face_reference_table (hb_face_t *face,
+ 			 hb_tag_t   tag);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_blob_t *
+ hb_face_reference_blob (hb_face_t *face);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_face_set_index (hb_face_t    *face,
+ 		   unsigned int  index);
+ 
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_face_get_index (hb_face_t    *face);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_face_set_upem (hb_face_t    *face,
+ 		  unsigned int  upem);
+ 
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_face_get_upem (hb_face_t *face);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_face_set_glyph_count (hb_face_t    *face,
+ 			 unsigned int  glyph_count);
+ 
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_face_get_glyph_count (hb_face_t *face);
+ 
+diff --git a/src/hb-font.h b/src/hb-font.h
+index cf22589..5987603 100644
+--- a/src/hb-font.h
++++ b/src/hb-font.h
+@@ -46,18 +46,23 @@ typedef struct hb_font_t hb_font_t;
+ 
+ typedef struct hb_font_funcs_t hb_font_funcs_t;
+ 
++HB_AVAILABLE_IN_ALL
+ hb_font_funcs_t *
+ hb_font_funcs_create (void);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_font_funcs_t *
+ hb_font_funcs_get_empty (void);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_font_funcs_t *
+ hb_font_funcs_reference (hb_font_funcs_t *ffuncs);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_funcs_destroy (hb_font_funcs_t *ffuncs);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_font_funcs_set_user_data (hb_font_funcs_t    *ffuncs,
+ 			     hb_user_data_key_t *key,
+@@ -66,14 +71,17 @@ hb_font_funcs_set_user_data (hb_font_funcs_t    *ffuncs,
+ 			     hb_bool_t           replace);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ void *
+ hb_font_funcs_get_user_data (hb_font_funcs_t    *ffuncs,
+ 			     hb_user_data_key_t *key);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_funcs_make_immutable (hb_font_funcs_t *ffuncs);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_font_funcs_is_immutable (hb_font_funcs_t *ffuncs);
+ 
+@@ -150,6 +158,7 @@ typedef hb_bool_t (*hb_font_get_glyph_from_name_func_t) (hb_font_t *font, void *
+  *
+  * Since: 1.0
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_funcs_set_glyph_func (hb_font_funcs_t *ffuncs,
+ 			      hb_font_get_glyph_func_t func,
+@@ -166,6 +175,7 @@ hb_font_funcs_set_glyph_func (hb_font_funcs_t *ffuncs,
+  *
+  * Since: 1.0
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_funcs_set_glyph_h_advance_func (hb_font_funcs_t *ffuncs,
+ 					hb_font_get_glyph_h_advance_func_t func,
+@@ -182,6 +192,7 @@ hb_font_funcs_set_glyph_h_advance_func (hb_font_funcs_t *ffuncs,
+  *
+  * Since: 1.0
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_funcs_set_glyph_v_advance_func (hb_font_funcs_t *ffuncs,
+ 					hb_font_get_glyph_v_advance_func_t func,
+@@ -198,6 +209,7 @@ hb_font_funcs_set_glyph_v_advance_func (hb_font_funcs_t *ffuncs,
+  *
+  * Since: 1.0
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_funcs_set_glyph_h_origin_func (hb_font_funcs_t *ffuncs,
+ 				       hb_font_get_glyph_h_origin_func_t func,
+@@ -214,6 +226,7 @@ hb_font_funcs_set_glyph_h_origin_func (hb_font_funcs_t *ffuncs,
+  *
+  * Since: 1.0
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_funcs_set_glyph_v_origin_func (hb_font_funcs_t *ffuncs,
+ 				       hb_font_get_glyph_v_origin_func_t func,
+@@ -230,6 +243,7 @@ hb_font_funcs_set_glyph_v_origin_func (hb_font_funcs_t *ffuncs,
+  *
+  * Since: 1.0
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_funcs_set_glyph_h_kerning_func (hb_font_funcs_t *ffuncs,
+ 					hb_font_get_glyph_h_kerning_func_t func,
+@@ -246,6 +260,7 @@ hb_font_funcs_set_glyph_h_kerning_func (hb_font_funcs_t *ffuncs,
+  *
+  * Since: 1.0
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_funcs_set_glyph_v_kerning_func (hb_font_funcs_t *ffuncs,
+ 					hb_font_get_glyph_v_kerning_func_t func,
+@@ -262,6 +277,7 @@ hb_font_funcs_set_glyph_v_kerning_func (hb_font_funcs_t *ffuncs,
+  *
+  * Since: 1.0
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_funcs_set_glyph_extents_func (hb_font_funcs_t *ffuncs,
+ 				      hb_font_get_glyph_extents_func_t func,
+@@ -278,6 +294,7 @@ hb_font_funcs_set_glyph_extents_func (hb_font_funcs_t *ffuncs,
+  *
+  * Since: 1.0
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_funcs_set_glyph_contour_point_func (hb_font_funcs_t *ffuncs,
+ 					    hb_font_get_glyph_contour_point_func_t func,
+@@ -294,6 +311,7 @@ hb_font_funcs_set_glyph_contour_point_func (hb_font_funcs_t *ffuncs,
+  *
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_funcs_set_glyph_name_func (hb_font_funcs_t *ffuncs,
+ 				   hb_font_get_glyph_name_func_t func,
+@@ -310,6 +328,7 @@ hb_font_funcs_set_glyph_name_func (hb_font_funcs_t *ffuncs,
+  *
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_funcs_set_glyph_from_name_func (hb_font_funcs_t *ffuncs,
+ 					hb_font_get_glyph_from_name_func_t func,
+@@ -318,48 +337,63 @@ hb_font_funcs_set_glyph_from_name_func (hb_font_funcs_t *ffuncs,
+ 
+ /* func dispatch */
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_font_get_glyph (hb_font_t *font,
+ 		   hb_codepoint_t unicode, hb_codepoint_t variation_selector,
+ 		   hb_codepoint_t *glyph);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_position_t
+ hb_font_get_glyph_h_advance (hb_font_t *font,
+ 			     hb_codepoint_t glyph);
++
++HB_AVAILABLE_IN_ALL
+ hb_position_t
+ hb_font_get_glyph_v_advance (hb_font_t *font,
+ 			     hb_codepoint_t glyph);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_font_get_glyph_h_origin (hb_font_t *font,
+ 			    hb_codepoint_t glyph,
+ 			    hb_position_t *x, hb_position_t *y);
++
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_font_get_glyph_v_origin (hb_font_t *font,
+ 			    hb_codepoint_t glyph,
+ 			    hb_position_t *x, hb_position_t *y);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_position_t
+ hb_font_get_glyph_h_kerning (hb_font_t *font,
+ 			     hb_codepoint_t left_glyph, hb_codepoint_t right_glyph);
++
++HB_AVAILABLE_IN_ALL
+ hb_position_t
+ hb_font_get_glyph_v_kerning (hb_font_t *font,
+ 			     hb_codepoint_t top_glyph, hb_codepoint_t bottom_glyph);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_font_get_glyph_extents (hb_font_t *font,
+ 			   hb_codepoint_t glyph,
+ 			   hb_glyph_extents_t *extents);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_font_get_glyph_contour_point (hb_font_t *font,
+ 				 hb_codepoint_t glyph, unsigned int point_index,
+ 				 hb_position_t *x, hb_position_t *y);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_font_get_glyph_name (hb_font_t *font,
+ 			hb_codepoint_t glyph,
+ 			char *name, unsigned int size);
++
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_font_get_glyph_from_name (hb_font_t *font,
+ 			     const char *name, int len, /* -1 means nul-terminated */
+@@ -368,39 +402,48 @@ hb_font_get_glyph_from_name (hb_font_t *font,
+ 
+ /* high-level funcs, with fallback */
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_get_glyph_advance_for_direction (hb_font_t *font,
+ 					 hb_codepoint_t glyph,
+ 					 hb_direction_t direction,
+ 					 hb_position_t *x, hb_position_t *y);
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_get_glyph_origin_for_direction (hb_font_t *font,
+ 					hb_codepoint_t glyph,
+ 					hb_direction_t direction,
+ 					hb_position_t *x, hb_position_t *y);
++
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_add_glyph_origin_for_direction (hb_font_t *font,
+ 					hb_codepoint_t glyph,
+ 					hb_direction_t direction,
+ 					hb_position_t *x, hb_position_t *y);
++
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_subtract_glyph_origin_for_direction (hb_font_t *font,
+ 					     hb_codepoint_t glyph,
+ 					     hb_direction_t direction,
+ 					     hb_position_t *x, hb_position_t *y);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_get_glyph_kerning_for_direction (hb_font_t *font,
+ 					 hb_codepoint_t first_glyph, hb_codepoint_t second_glyph,
+ 					 hb_direction_t direction,
+ 					 hb_position_t *x, hb_position_t *y);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_font_get_glyph_extents_for_origin (hb_font_t *font,
+ 				      hb_codepoint_t glyph,
+ 				      hb_direction_t direction,
+ 				      hb_glyph_extents_t *extents);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_font_get_glyph_contour_point_for_origin (hb_font_t *font,
+ 					    hb_codepoint_t glyph, unsigned int point_index,
+@@ -408,11 +451,14 @@ hb_font_get_glyph_contour_point_for_origin (hb_font_t *font,
+ 					    hb_position_t *x, hb_position_t *y);
+ 
+ /* Generates gidDDD if glyph has no name. */
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_glyph_to_string (hb_font_t *font,
+ 			 hb_codepoint_t glyph,
+ 			 char *s, unsigned int size);
++
+ /* Parses gidDDD and uniUUUU strings automatically. */
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_font_glyph_from_string (hb_font_t *font,
+ 			   const char *s, int len, /* -1 means nul-terminated */
+@@ -425,21 +471,27 @@ hb_font_glyph_from_string (hb_font_t *font,
+ 
+ /* Fonts are very light-weight objects */
+ 
++HB_AVAILABLE_IN_ALL
+ hb_font_t *
+ hb_font_create (hb_face_t *face);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_font_t *
+ hb_font_create_sub_font (hb_font_t *parent);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_font_t *
+ hb_font_get_empty (void);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_font_t *
+ hb_font_reference (hb_font_t *font);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_destroy (hb_font_t *font);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_font_set_user_data (hb_font_t          *font,
+ 		       hb_user_data_key_t *key,
+@@ -448,23 +500,29 @@ hb_font_set_user_data (hb_font_t          *font,
+ 		       hb_bool_t           replace);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ void *
+ hb_font_get_user_data (hb_font_t          *font,
+ 		       hb_user_data_key_t *key);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_make_immutable (hb_font_t *font);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_font_is_immutable (hb_font_t *font);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_font_t *
+ hb_font_get_parent (hb_font_t *font);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_face_t *
+ hb_font_get_face (hb_font_t *font);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_set_funcs (hb_font_t         *font,
+ 		   hb_font_funcs_t   *klass,
+@@ -472,17 +530,20 @@ hb_font_set_funcs (hb_font_t         *font,
+ 		   hb_destroy_func_t  destroy);
+ 
+ /* Be *very* careful with this function! */
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_set_funcs_data (hb_font_t         *font,
+ 		        void              *font_data,
+ 		        hb_destroy_func_t  destroy);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_set_scale (hb_font_t *font,
+ 		   int x_scale,
+ 		   int y_scale);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_get_scale (hb_font_t *font,
+ 		   int *x_scale,
+@@ -491,11 +552,13 @@ hb_font_get_scale (hb_font_t *font,
+ /*
+  * A zero value means "no hinting in that direction"
+  */
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_set_ppem (hb_font_t *font,
+ 		  unsigned int x_ppem,
+ 		  unsigned int y_ppem);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_font_get_ppem (hb_font_t *font,
+ 		  unsigned int *x_ppem,
+diff --git a/src/hb-ft.h b/src/hb-ft.h
+index 92f4b36..7f05918 100644
+--- a/src/hb-ft.h
++++ b/src/hb-ft.h
+@@ -57,6 +57,7 @@ HB_BEGIN_DECLS
+  * probably should use (the more recent) hb_ft_face_create_referenced()
+  * instead.
+  */
++HB_AVAILABLE_IN_ALL
+ hb_face_t *
+ hb_ft_face_create (FT_Face           ft_face,
+ 		   hb_destroy_func_t destroy);
+@@ -69,6 +70,7 @@ hb_ft_face_create (FT_Face           ft_face,
+  * Client is still responsible for making sure that ft-face is destroyed
+  * after hb-face is.
+  */
++HB_AVAILABLE_IN_ALL
+ hb_face_t *
+ hb_ft_face_create_cached (FT_Face ft_face);
+ 
+@@ -79,6 +81,7 @@ hb_ft_face_create_cached (FT_Face ft_face);
+  * This is the most convenient version to use.  Use it unless you have
+  * very good reasons not to.
+  */
++HB_AVAILABLE_IN_ALL
+ hb_face_t *
+ hb_ft_face_create_referenced (FT_Face ft_face);
+ 
+@@ -96,20 +99,24 @@ hb_ft_face_create_referenced (FT_Face ft_face);
+ 
+ /* See notes on hb_ft_face_create().  Same issues re lifecycle-management
+  * apply here.  Use hb_ft_font_create_referenced() if you can. */
++HB_AVAILABLE_IN_ALL
+ hb_font_t *
+ hb_ft_font_create (FT_Face           ft_face,
+ 		   hb_destroy_func_t destroy);
+ 
+ /* See notes on hb_ft_face_create_referenced() re lifecycle-management
+  * issues. */
++HB_AVAILABLE_IN_ALL
+ hb_font_t *
+ hb_ft_font_create_referenced (FT_Face ft_face);
+ 
+ 
+ /* Makes an hb_font_t use FreeType internally to implement font functions. */
++HB_AVAILABLE_IN_ALL
+ void
+ hb_ft_font_set_funcs (hb_font_t *font);
+ 
++HB_AVAILABLE_IN_ALL
+ FT_Face
+ hb_ft_font_get_face (hb_font_t *font);
+ 
+diff --git a/src/hb-glib.h b/src/hb-glib.h
+index 1a8f42e..50a1937 100644
+--- a/src/hb-glib.h
++++ b/src/hb-glib.h
+@@ -36,16 +36,20 @@
+ HB_BEGIN_DECLS
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ hb_script_t
+ hb_glib_script_to_script (GUnicodeScript script);
+ 
++HB_AVAILABLE_IN_ALL
+ GUnicodeScript
+ hb_glib_script_from_script (hb_script_t script);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ hb_unicode_funcs_t *
+ hb_glib_get_unicode_funcs (void);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_blob_t *
+ hb_glib_blob_create (GBytes *gbytes);
+ 
+diff --git a/src/hb-gobject-enums.h.tmpl b/src/hb-gobject-enums.h.tmpl
+index 6ecda06..ffe704e 100644
+--- a/src/hb-gobject-enums.h.tmpl
++++ b/src/hb-gobject-enums.h.tmpl
+@@ -42,7 +42,7 @@ HB_BEGIN_DECLS
+ /*** END file-header ***/
+ 
+ /*** BEGIN value-header ***/
+-GType @enum_name@_get_type (void) G_GNUC_CONST;
++HB_AVAILABLE_IN_ALL GType @enum_name@_get_type (void) G_GNUC_CONST;
+ #define @ENUMPREFIX@_TYPE_@ENUMSHORT@ (@enum_name@_get_type ())
+ 
+ /*** END value-header ***/
+diff --git a/src/hb-gobject-structs.h b/src/hb-gobject-structs.h
+index 0a0387d..39ed652 100644
+--- a/src/hb-gobject-structs.h
++++ b/src/hb-gobject-structs.h
+@@ -43,59 +43,72 @@ HB_BEGIN_DECLS
+ /**
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ GType hb_gobject_blob_get_type (void);
+ #define HB_GOBJECT_TYPE_BLOB (hb_gobject_blob_get_type ())
+ 
+ /**
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ GType hb_gobject_buffer_get_type (void);
+ #define HB_GOBJECT_TYPE_BUFFER (hb_gobject_buffer_get_type ())
+ 
+ /**
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ GType hb_gobject_face_get_type (void);
+ #define HB_GOBJECT_TYPE_FACE (hb_gobject_face_get_type ())
+ 
+ /**
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ GType hb_gobject_font_get_type (void);
+ #define HB_GOBJECT_TYPE_FONT (hb_gobject_font_get_type ())
+ 
+ /**
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ GType hb_gobject_font_funcs_get_type (void);
+ #define HB_GOBJECT_TYPE_FONT_FUNCS (hb_gobject_font_funcs_get_type ())
+ 
++HB_AVAILABLE_IN_ALL
+ GType hb_gobject_set_get_type (void);
+ #define HB_GOBJECT_TYPE_SET (hb_gobject_set_get_type ())
+ 
++HB_AVAILABLE_IN_ALL
+ GType hb_gobject_shape_plan_get_type (void);
+ #define HB_GOBJECT_TYPE_SHAPE_PLAN (hb_gobject_shape_plan_get_type ())
+ 
+ /**
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ GType hb_gobject_unicode_funcs_get_type (void);
+ #define HB_GOBJECT_TYPE_UNICODE_FUNCS (hb_gobject_unicode_funcs_get_type ())
+ 
+ /* Value types */
+ 
++HB_AVAILABLE_IN_ALL
+ GType hb_gobject_feature_get_type (void);
+ #define HB_GOBJECT_TYPE_FEATURE (hb_gobject_feature_get_type ())
+ 
++HB_AVAILABLE_IN_ALL
+ GType hb_gobject_glyph_info_get_type (void);
+ #define HB_GOBJECT_TYPE_GLYPH_INFO (hb_gobject_glyph_info_get_type ())
+ 
++HB_AVAILABLE_IN_ALL
+ GType hb_gobject_glyph_position_get_type (void);
+ #define HB_GOBJECT_TYPE_GLYPH_POSITION (hb_gobject_glyph_position_get_type ())
+ 
++HB_AVAILABLE_IN_ALL
+ GType hb_gobject_segment_properties_get_type (void);
+ #define HB_GOBJECT_TYPE_SEGMENT_PROPERTIES (hb_gobject_segment_properties_get_type ())
+ 
++HB_AVAILABLE_IN_ALL
+ GType hb_gobject_user_data_key_get_type (void);
+ #define HB_GOBJECT_TYPE_USER_DATA_KEY (hb_gobject_user_data_key_get_type ())
+ 
+diff --git a/src/hb-graphite2.h b/src/hb-graphite2.h
+index 3eae54a..b7d0370 100644
+--- a/src/hb-graphite2.h
++++ b/src/hb-graphite2.h
+@@ -36,9 +36,11 @@ HB_BEGIN_DECLS
+ #define HB_GRAPHITE2_TAG_SILF HB_TAG('S','i','l','f')
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ gr_face *
+ hb_graphite2_face_get_gr_face (hb_face_t *face);
+ 
++HB_AVAILABLE_IN_ALL
+ gr_font *
+ hb_graphite2_font_get_gr_font (hb_font_t *font);
+ 
+diff --git a/src/hb-icu.h b/src/hb-icu.h
+index f2f35f0..ae14fd7 100644
+--- a/src/hb-icu.h
++++ b/src/hb-icu.h
+@@ -36,13 +36,16 @@
+ HB_BEGIN_DECLS
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ hb_script_t
+ hb_icu_script_to_script (UScriptCode script);
+ 
++HB_AVAILABLE_IN_ALL
+ UScriptCode
+ hb_icu_script_from_script (hb_script_t script);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ hb_unicode_funcs_t *
+ hb_icu_get_unicode_funcs (void);
+ 
+diff --git a/src/hb-ot-font.h b/src/hb-ot-font.h
+index b9947a1..ea6ae0d 100644
+--- a/src/hb-ot-font.h
++++ b/src/hb-ot-font.h
+@@ -36,6 +36,7 @@
+ HB_BEGIN_DECLS
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_ot_font_set_funcs (hb_font_t *font);
+ 
+diff --git a/src/hb-ot-layout.h b/src/hb-ot-layout.h
+index 949678a..1bbef22 100644
+--- a/src/hb-ot-layout.h
++++ b/src/hb-ot-layout.h
+@@ -48,6 +48,7 @@ HB_BEGIN_DECLS
+  * GDEF
+  */
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_ot_layout_has_glyph_classes (hb_face_t *face);
+ 
+@@ -59,10 +60,12 @@ typedef enum {
+   HB_OT_LAYOUT_GLYPH_CLASS_COMPONENT	= 4
+ } hb_ot_layout_glyph_class_t;
+ 
++HB_AVAILABLE_IN_ALL
+ hb_ot_layout_glyph_class_t
+ hb_ot_layout_get_glyph_class (hb_face_t      *face,
+ 			      hb_codepoint_t  glyph);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_ot_layout_get_glyphs_in_class (hb_face_t                  *face,
+ 				  hb_ot_layout_glyph_class_t  klass,
+@@ -71,6 +74,7 @@ hb_ot_layout_get_glyphs_in_class (hb_face_t                  *face,
+ 
+ /* Not that useful.  Provides list of attach points for a glyph that a
+  * client may want to cache */
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_ot_layout_get_attach_points (hb_face_t      *face,
+ 				hb_codepoint_t  glyph,
+@@ -79,6 +83,7 @@ hb_ot_layout_get_attach_points (hb_face_t      *face,
+ 				unsigned int   *point_array /* OUT */);
+ 
+ /* Ligature caret positions */
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_ot_layout_get_ligature_carets (hb_font_t      *font,
+ 				  hb_direction_t  direction,
+@@ -96,6 +101,7 @@ hb_ot_layout_get_ligature_carets (hb_font_t      *font,
+ #define HB_OT_LAYOUT_NO_FEATURE_INDEX		0xFFFFu
+ #define HB_OT_LAYOUT_DEFAULT_LANGUAGE_INDEX	0xFFFFu
+ 
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_ot_layout_table_get_script_tags (hb_face_t    *face,
+ 				    hb_tag_t      table_tag,
+@@ -103,6 +109,7 @@ hb_ot_layout_table_get_script_tags (hb_face_t    *face,
+ 				    unsigned int *script_count /* IN/OUT */,
+ 				    hb_tag_t     *script_tags /* OUT */);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_ot_layout_table_find_script (hb_face_t    *face,
+ 				hb_tag_t      table_tag,
+@@ -110,6 +117,7 @@ hb_ot_layout_table_find_script (hb_face_t    *face,
+ 				unsigned int *script_index);
+ 
+ /* Like find_script, but takes zero-terminated array of scripts to test */
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_ot_layout_table_choose_script (hb_face_t      *face,
+ 				  hb_tag_t        table_tag,
+@@ -117,6 +125,7 @@ hb_ot_layout_table_choose_script (hb_face_t      *face,
+ 				  unsigned int   *script_index,
+ 				  hb_tag_t       *chosen_script);
+ 
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_ot_layout_table_get_feature_tags (hb_face_t    *face,
+ 				     hb_tag_t      table_tag,
+@@ -124,6 +133,7 @@ hb_ot_layout_table_get_feature_tags (hb_face_t    *face,
+ 				     unsigned int *feature_count /* IN/OUT */,
+ 				     hb_tag_t     *feature_tags /* OUT */);
+ 
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_ot_layout_script_get_language_tags (hb_face_t    *face,
+ 				       hb_tag_t      table_tag,
+@@ -132,6 +142,7 @@ hb_ot_layout_script_get_language_tags (hb_face_t    *face,
+ 				       unsigned int *language_count /* IN/OUT */,
+ 				       hb_tag_t     *language_tags /* OUT */);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_ot_layout_script_find_language (hb_face_t    *face,
+ 				   hb_tag_t      table_tag,
+@@ -139,6 +150,7 @@ hb_ot_layout_script_find_language (hb_face_t    *face,
+ 				   hb_tag_t      language_tag,
+ 				   unsigned int *language_index);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_ot_layout_language_get_required_feature_index (hb_face_t    *face,
+ 						  hb_tag_t      table_tag,
+@@ -146,6 +158,7 @@ hb_ot_layout_language_get_required_feature_index (hb_face_t    *face,
+ 						  unsigned int  language_index,
+ 						  unsigned int *feature_index);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_ot_layout_language_get_required_feature (hb_face_t    *face,
+ 					    hb_tag_t      table_tag,
+@@ -154,6 +167,7 @@ hb_ot_layout_language_get_required_feature (hb_face_t    *face,
+ 					    unsigned int *feature_index,
+ 					    hb_tag_t     *feature_tag);
+ 
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_ot_layout_language_get_feature_indexes (hb_face_t    *face,
+ 					   hb_tag_t      table_tag,
+@@ -163,6 +177,7 @@ hb_ot_layout_language_get_feature_indexes (hb_face_t    *face,
+ 					   unsigned int *feature_count /* IN/OUT */,
+ 					   unsigned int *feature_indexes /* OUT */);
+ 
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_ot_layout_language_get_feature_tags (hb_face_t    *face,
+ 					hb_tag_t      table_tag,
+@@ -172,6 +187,7 @@ hb_ot_layout_language_get_feature_tags (hb_face_t    *face,
+ 					unsigned int *feature_count /* IN/OUT */,
+ 					hb_tag_t     *feature_tags /* OUT */);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_ot_layout_language_find_feature (hb_face_t    *face,
+ 				    hb_tag_t      table_tag,
+@@ -180,6 +196,7 @@ hb_ot_layout_language_find_feature (hb_face_t    *face,
+ 				    hb_tag_t      feature_tag,
+ 				    unsigned int *feature_index);
+ 
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_ot_layout_feature_get_lookups (hb_face_t    *face,
+ 				  hb_tag_t      table_tag,
+@@ -188,11 +205,13 @@ hb_ot_layout_feature_get_lookups (hb_face_t    *face,
+ 				  unsigned int *lookup_count /* IN/OUT */,
+ 				  unsigned int *lookup_indexes /* OUT */);
+ 
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_ot_layout_table_get_lookup_count (hb_face_t    *face,
+ 				     hb_tag_t      table_tag);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_ot_layout_collect_lookups (hb_face_t      *face,
+ 			      hb_tag_t        table_tag,
+@@ -201,6 +220,7 @@ hb_ot_layout_collect_lookups (hb_face_t      *face,
+ 			      const hb_tag_t *features,
+ 			      hb_set_t       *lookup_indexes /* OUT */);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_ot_layout_lookup_collect_glyphs (hb_face_t    *face,
+ 				    hb_tag_t      table_tag,
+@@ -228,6 +248,7 @@ typedef hb_bool_t
+ 				       const hb_ot_layout_glyph_sequence_t *sequence,
+ 				       void         *user_data);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ Xhb_ot_layout_lookup_enumerate_sequences (hb_face_t    *face,
+ 					 hb_tag_t      table_tag,
+@@ -241,9 +262,11 @@ Xhb_ot_layout_lookup_enumerate_sequences (hb_face_t    *face,
+  * GSUB
+  */
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_ot_layout_has_substitution (hb_face_t *face);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_ot_layout_lookup_would_substitute (hb_face_t            *face,
+ 				      unsigned int          lookup_index,
+@@ -251,6 +274,7 @@ hb_ot_layout_lookup_would_substitute (hb_face_t            *face,
+ 				      unsigned int          glyphs_length,
+ 				      hb_bool_t             zero_context);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_ot_layout_lookup_substitute_closure (hb_face_t    *face,
+ 				        unsigned int  lookup_index,
+@@ -259,6 +283,7 @@ hb_ot_layout_lookup_substitute_closure (hb_face_t    *face,
+ 
+ #ifdef HB_NOT_IMPLEMENTED
+ /* Note: You better have GDEF when using this API, or marks won't do much. */
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ Xhb_ot_layout_lookup_substitute (hb_font_t            *font,
+ 				unsigned int          lookup_index,
+@@ -274,11 +299,13 @@ Xhb_ot_layout_lookup_substitute (hb_font_t            *font,
+  * GPOS
+  */
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_ot_layout_has_positioning (hb_face_t *face);
+ 
+ #ifdef HB_NOT_IMPLEMENTED
+ /* Note: You better have GDEF when using this API, or marks won't do much. */
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ Xhb_ot_layout_lookup_position (hb_font_t            *font,
+ 			      unsigned int          lookup_index,
+@@ -288,6 +315,7 @@ Xhb_ot_layout_lookup_position (hb_font_t            *font,
+ 
+ /* Optical 'size' feature info.  Returns true if found.
+  * http://www.microsoft.com/typography/otspec/features_pt.htm#size */
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_ot_layout_get_size_params (hb_face_t    *face,
+ 			      unsigned int *design_size,       /* OUT.  May be NULL */
+diff --git a/src/hb-ot-shape.h b/src/hb-ot-shape.h
+index 1402f54..ee5a3e5 100644
+--- a/src/hb-ot-shape.h
++++ b/src/hb-ot-shape.h
+@@ -36,6 +36,7 @@
+ HB_BEGIN_DECLS
+ 
+ /* TODO port to shape-plan / set. */
++HB_AVAILABLE_IN_ALL
+ void
+ hb_ot_shape_glyphs_closure (hb_font_t          *font,
+ 			    hb_buffer_t        *buffer,
+@@ -43,6 +44,7 @@ hb_ot_shape_glyphs_closure (hb_font_t          *font,
+ 			    unsigned int        num_features,
+ 			    hb_set_t           *glyphs);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_ot_shape_plan_collect_lookups (hb_shape_plan_t *shape_plan,
+ 				  hb_tag_t         table_tag,
+diff --git a/src/hb-ot-tag.h b/src/hb-ot-tag.h
+index 1bf12ab..7ac1e6a 100644
+--- a/src/hb-ot-tag.h
++++ b/src/hb-ot-tag.h
+@@ -39,17 +39,21 @@ HB_BEGIN_DECLS
+ #define HB_OT_TAG_DEFAULT_SCRIPT	HB_TAG ('D', 'F', 'L', 'T')
+ #define HB_OT_TAG_DEFAULT_LANGUAGE	HB_TAG ('d', 'f', 'l', 't')
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_ot_tags_from_script (hb_script_t  script,
+ 			hb_tag_t    *script_tag_1,
+ 			hb_tag_t    *script_tag_2);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_script_t
+ hb_ot_tag_to_script (hb_tag_t tag);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_tag_t
+ hb_ot_tag_from_language (hb_language_t language);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_language_t
+ hb_ot_tag_to_language (hb_tag_t tag);
+ 
+diff --git a/src/hb-set.h b/src/hb-set.h
+index bafdae9..0ead840 100644
+--- a/src/hb-set.h
++++ b/src/hb-set.h
+@@ -40,19 +40,23 @@ HB_BEGIN_DECLS
+ 
+ typedef struct hb_set_t hb_set_t;
+ 
+-
++HB_AVAILABLE_IN_ALL
+ hb_set_t *
+ hb_set_create (void);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_set_t *
+ hb_set_get_empty (void);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_set_t *
+ hb_set_reference (hb_set_t *set);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_set_destroy (hb_set_t *set);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_set_set_user_data (hb_set_t           *set,
+ 		      hb_user_data_key_t *key,
+@@ -60,89 +64,110 @@ hb_set_set_user_data (hb_set_t           *set,
+ 		      hb_destroy_func_t   destroy,
+ 		      hb_bool_t           replace);
+ 
++HB_AVAILABLE_IN_ALL
+ void *
+ hb_set_get_user_data (hb_set_t           *set,
+ 		      hb_user_data_key_t *key);
+ 
+ 
+ /* Returns false if allocation has failed before */
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_set_allocation_successful (const hb_set_t *set);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_set_clear (hb_set_t *set);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_set_is_empty (const hb_set_t *set);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_set_has (const hb_set_t *set,
+ 	    hb_codepoint_t  codepoint);
+ 
+ /* Right now limited to 16-bit integers.  Eventually will do full codepoint range, sans -1
+  * which we will use as a sentinel. */
++HB_AVAILABLE_IN_ALL
+ void
+ hb_set_add (hb_set_t       *set,
+ 	    hb_codepoint_t  codepoint);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_set_add_range (hb_set_t       *set,
+ 		  hb_codepoint_t  first,
+ 		  hb_codepoint_t  last);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_set_del (hb_set_t       *set,
+ 	    hb_codepoint_t  codepoint);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_set_del_range (hb_set_t       *set,
+ 		  hb_codepoint_t  first,
+ 		  hb_codepoint_t  last);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_set_is_equal (const hb_set_t *set,
+ 		 const hb_set_t *other);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_set_set (hb_set_t       *set,
+ 	    const hb_set_t *other);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_set_union (hb_set_t       *set,
+ 	      const hb_set_t *other);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_set_intersect (hb_set_t       *set,
+ 		  const hb_set_t *other);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_set_subtract (hb_set_t       *set,
+ 		 const hb_set_t *other);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_set_symmetric_difference (hb_set_t       *set,
+ 			     const hb_set_t *other);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_set_invert (hb_set_t *set);
+ 
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_set_get_population (const hb_set_t *set);
+ 
+ /* Returns -1 if set empty. */
++HB_AVAILABLE_IN_ALL
+ hb_codepoint_t
+ hb_set_get_min (const hb_set_t *set);
+ 
+ /* Returns -1 if set empty. */
++HB_AVAILABLE_IN_ALL
+ hb_codepoint_t
+ hb_set_get_max (const hb_set_t *set);
+ 
+ /* Pass -1 in to get started. */
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_set_next (const hb_set_t *set,
+ 	     hb_codepoint_t *codepoint);
+ 
+ /* Pass -1 for first and last to get started. */
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_set_next_range (const hb_set_t *set,
+ 		   hb_codepoint_t *first,
+diff --git a/src/hb-shape-plan.h b/src/hb-shape-plan.h
+index 8f54552..e7916bb 100644
+--- a/src/hb-shape-plan.h
++++ b/src/hb-shape-plan.h
+@@ -38,6 +38,7 @@ HB_BEGIN_DECLS
+ 
+ typedef struct hb_shape_plan_t hb_shape_plan_t;
+ 
++HB_AVAILABLE_IN_ALL
+ hb_shape_plan_t *
+ hb_shape_plan_create (hb_face_t                     *face,
+ 		      const hb_segment_properties_t *props,
+@@ -45,6 +46,7 @@ hb_shape_plan_create (hb_face_t                     *face,
+ 		      unsigned int                   num_user_features,
+ 		      const char * const            *shaper_list);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_shape_plan_t *
+ hb_shape_plan_create_cached (hb_face_t                     *face,
+ 			     const hb_segment_properties_t *props,
+@@ -52,15 +54,19 @@ hb_shape_plan_create_cached (hb_face_t                     *face,
+ 			     unsigned int                   num_user_features,
+ 			     const char * const            *shaper_list);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_shape_plan_t *
+ hb_shape_plan_get_empty (void);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_shape_plan_t *
+ hb_shape_plan_reference (hb_shape_plan_t *shape_plan);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_shape_plan_destroy (hb_shape_plan_t *shape_plan);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_shape_plan_set_user_data (hb_shape_plan_t    *shape_plan,
+ 			     hb_user_data_key_t *key,
+@@ -68,11 +74,13 @@ hb_shape_plan_set_user_data (hb_shape_plan_t    *shape_plan,
+ 			     hb_destroy_func_t   destroy,
+ 			     hb_bool_t           replace);
+ 
++HB_AVAILABLE_IN_ALL
+ void *
+ hb_shape_plan_get_user_data (hb_shape_plan_t    *shape_plan,
+ 			     hb_user_data_key_t *key);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_shape_plan_execute (hb_shape_plan_t    *shape_plan,
+ 		       hb_font_t          *font,
+@@ -80,6 +88,7 @@ hb_shape_plan_execute (hb_shape_plan_t    *shape_plan,
+ 		       const hb_feature_t *features,
+ 		       unsigned int        num_features);
+ 
++HB_AVAILABLE_IN_ALL
+ const char *
+ hb_shape_plan_get_shaper (hb_shape_plan_t *shape_plan);
+ 
+diff --git a/src/hb-shape.h b/src/hb-shape.h
+index b665509..0215933 100644
+--- a/src/hb-shape.h
++++ b/src/hb-shape.h
+@@ -47,21 +47,25 @@ typedef struct hb_feature_t {
+   unsigned int  end;
+ } hb_feature_t;
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_feature_from_string (const char *str, int len,
+ 			hb_feature_t *feature);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_feature_to_string (hb_feature_t *feature,
+ 		      char *buf, unsigned int size);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_shape (hb_font_t           *font,
+ 	  hb_buffer_t         *buffer,
+ 	  const hb_feature_t  *features,
+ 	  unsigned int         num_features);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_shape_full (hb_font_t          *font,
+ 	       hb_buffer_t        *buffer,
+@@ -69,6 +73,7 @@ hb_shape_full (hb_font_t          *font,
+ 	       unsigned int        num_features,
+ 	       const char * const *shaper_list);
+ 
++HB_AVAILABLE_IN_ALL
+ const char **
+ hb_shape_list_shapers (void);
+ 
+diff --git a/src/hb-unicode.h b/src/hb-unicode.h
+index bf1796d..5d6d91d 100644
+--- a/src/hb-unicode.h
++++ b/src/hb-unicode.h
+@@ -174,22 +174,28 @@ typedef struct hb_unicode_funcs_t hb_unicode_funcs_t;
+ /*
+  * just give me the best implementation you've got there.
+  */
++HB_AVAILABLE_IN_ALL
+ hb_unicode_funcs_t *
+ hb_unicode_funcs_get_default (void);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ hb_unicode_funcs_t *
+ hb_unicode_funcs_create (hb_unicode_funcs_t *parent);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_unicode_funcs_t *
+ hb_unicode_funcs_get_empty (void);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_unicode_funcs_t *
+ hb_unicode_funcs_reference (hb_unicode_funcs_t *ufuncs);
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_unicode_funcs_destroy (hb_unicode_funcs_t *ufuncs);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_unicode_funcs_set_user_data (hb_unicode_funcs_t *ufuncs,
+ 			        hb_user_data_key_t *key,
+@@ -198,17 +204,21 @@ hb_unicode_funcs_set_user_data (hb_unicode_funcs_t *ufuncs,
+ 				hb_bool_t           replace);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ void *
+ hb_unicode_funcs_get_user_data (hb_unicode_funcs_t *ufuncs,
+ 			        hb_user_data_key_t *key);
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_unicode_funcs_make_immutable (hb_unicode_funcs_t *ufuncs);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_unicode_funcs_is_immutable (hb_unicode_funcs_t *ufuncs);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_unicode_funcs_t *
+ hb_unicode_funcs_get_parent (hb_unicode_funcs_t *ufuncs);
+ 
+@@ -285,6 +295,7 @@ typedef unsigned int			(*hb_unicode_decompose_compatibility_func_t)	(hb_unicode_
+  *
+  * Since: 1.0
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_unicode_funcs_set_combining_class_func (hb_unicode_funcs_t *ufuncs,
+ 					   hb_unicode_combining_class_func_t func,
+@@ -301,6 +312,7 @@ hb_unicode_funcs_set_combining_class_func (hb_unicode_funcs_t *ufuncs,
+  *
+  * Since: 1.0
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_unicode_funcs_set_eastasian_width_func (hb_unicode_funcs_t *ufuncs,
+ 					   hb_unicode_eastasian_width_func_t func,
+@@ -317,6 +329,7 @@ hb_unicode_funcs_set_eastasian_width_func (hb_unicode_funcs_t *ufuncs,
+  *
+  * Since: 1.0
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_unicode_funcs_set_general_category_func (hb_unicode_funcs_t *ufuncs,
+ 					    hb_unicode_general_category_func_t func,
+@@ -333,6 +346,7 @@ hb_unicode_funcs_set_general_category_func (hb_unicode_funcs_t *ufuncs,
+  *
+  * Since: 1.0
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_unicode_funcs_set_mirroring_func (hb_unicode_funcs_t *ufuncs,
+ 				     hb_unicode_mirroring_func_t func,
+@@ -349,6 +363,7 @@ hb_unicode_funcs_set_mirroring_func (hb_unicode_funcs_t *ufuncs,
+  *
+  * Since: 1.0
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_unicode_funcs_set_script_func (hb_unicode_funcs_t *ufuncs,
+ 				  hb_unicode_script_func_t func,
+@@ -365,6 +380,7 @@ hb_unicode_funcs_set_script_func (hb_unicode_funcs_t *ufuncs,
+  *
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_unicode_funcs_set_compose_func (hb_unicode_funcs_t *ufuncs,
+ 				   hb_unicode_compose_func_t func,
+@@ -381,6 +397,7 @@ hb_unicode_funcs_set_compose_func (hb_unicode_funcs_t *ufuncs,
+  *
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_unicode_funcs_set_decompose_func (hb_unicode_funcs_t *ufuncs,
+ 				     hb_unicode_decompose_func_t func,
+@@ -397,6 +414,7 @@ hb_unicode_funcs_set_decompose_func (hb_unicode_funcs_t *ufuncs,
+  *
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ void
+ hb_unicode_funcs_set_decompose_compatibility_func (hb_unicode_funcs_t *ufuncs,
+ 						   hb_unicode_decompose_compatibility_func_t func,
+@@ -407,6 +425,7 @@ hb_unicode_funcs_set_decompose_compatibility_func (hb_unicode_funcs_t *ufuncs,
+ /**
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ hb_unicode_combining_class_t
+ hb_unicode_combining_class (hb_unicode_funcs_t *ufuncs,
+ 			    hb_codepoint_t unicode);
+@@ -414,6 +433,7 @@ hb_unicode_combining_class (hb_unicode_funcs_t *ufuncs,
+ /**
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_unicode_eastasian_width (hb_unicode_funcs_t *ufuncs,
+ 			    hb_codepoint_t unicode);
+@@ -421,6 +441,7 @@ hb_unicode_eastasian_width (hb_unicode_funcs_t *ufuncs,
+ /**
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ hb_unicode_general_category_t
+ hb_unicode_general_category (hb_unicode_funcs_t *ufuncs,
+ 			     hb_codepoint_t unicode);
+@@ -428,6 +449,7 @@ hb_unicode_general_category (hb_unicode_funcs_t *ufuncs,
+ /**
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ hb_codepoint_t
+ hb_unicode_mirroring (hb_unicode_funcs_t *ufuncs,
+ 		      hb_codepoint_t unicode);
+@@ -435,6 +457,7 @@ hb_unicode_mirroring (hb_unicode_funcs_t *ufuncs,
+ /**
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ hb_script_t
+ hb_unicode_script (hb_unicode_funcs_t *ufuncs,
+ 		   hb_codepoint_t unicode);
+@@ -442,6 +465,7 @@ hb_unicode_script (hb_unicode_funcs_t *ufuncs,
+ /**
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_unicode_compose (hb_unicode_funcs_t *ufuncs,
+ 		    hb_codepoint_t      a,
+@@ -451,6 +475,7 @@ hb_unicode_compose (hb_unicode_funcs_t *ufuncs,
+ /**
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_unicode_decompose (hb_unicode_funcs_t *ufuncs,
+ 		      hb_codepoint_t      ab,
+@@ -460,6 +485,7 @@ hb_unicode_decompose (hb_unicode_funcs_t *ufuncs,
+ /**
+  * Since: 0.9.2
+  **/
++HB_AVAILABLE_IN_ALL
+ unsigned int
+ hb_unicode_decompose_compatibility (hb_unicode_funcs_t *ufuncs,
+ 				    hb_codepoint_t      u,
+diff --git a/src/hb-uniscribe.h b/src/hb-uniscribe.h
+index 001ab38..7f10076 100644
+--- a/src/hb-uniscribe.h
++++ b/src/hb-uniscribe.h
+@@ -34,9 +34,11 @@
+ HB_BEGIN_DECLS
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ LOGFONTW *
+ hb_uniscribe_font_get_logfontw (hb_font_t *font);
+ 
++HB_AVAILABLE_IN_ALL
+ HFONT
+ hb_uniscribe_font_get_hfont (hb_font_t *font);
+ 
+diff --git a/src/hb-version.h.in b/src/hb-version.h.in
+index 2517160..60f9207 100644
+--- a/src/hb-version.h.in
++++ b/src/hb-version.h.in
+@@ -47,14 +47,17 @@ HB_BEGIN_DECLS
+ 	 HB_VERSION_MAJOR*10000+HB_VERSION_MINOR*100+HB_VERSION_MICRO)
+ 
+ 
++HB_AVAILABLE_IN_ALL
+ void
+ hb_version (unsigned int *major,
+ 	    unsigned int *minor,
+ 	    unsigned int *micro);
+ 
++HB_AVAILABLE_IN_ALL
+ const char *
+ hb_version_string (void);
+ 
++HB_AVAILABLE_IN_ALL
+ hb_bool_t
+ hb_version_atleast (unsigned int major,
+ 		    unsigned int minor,
+-- 
+2.3.5.windows.8
+

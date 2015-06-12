@@ -1,0 +1,142 @@
+From 8227a0132e5257ae542f230644e6cd38e20cbaa8 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Fri, 12 Jun 2015 16:15:04 +0800
+Subject: [PATCH 2/2] MSVC Builds: Add .bat To Generate Enum Sources
+
+This adds a Windows .bat that is used to call the PERL script glib-mkenums
+to generate the hb-gobject-enums.[cc|h] sources, and a Python script that
+is used to change '_t_get_type' to '_get_type' and 'T (' to ' (', since the
+sed tool is not regularly available on Windows and Python is already used
+to build the GTK+ stack (specifically the GDbus-related sources that are
+being generated in GTK+-3.x).
+---
+ build/win32/enums.bat     | 85 +++++++++++++++++++++++++++++++++++++++++++++++
+ build/win32/replacestr.py | 24 +++++++++++++
+ 2 files changed, 109 insertions(+)
+ create mode 100644 build/win32/enums.bat
+ create mode 100644 build/win32/replacestr.py
+
+diff --git a/build/win32/enums.bat b/build/win32/enums.bat
+new file mode 100644
+index 0000000..6601fc5
+--- /dev/null
++++ b/build/win32/enums.bat
+@@ -0,0 +1,85 @@
++@echo off
++
++if "%1" == "GlibPath" set GLibPath=%2
++if "%3" == "TARGET" set TARGET=%4
++if "%5" == "PYTHON" set PYTHON=%6
++
++if "%1" == "GlibPath" set GLibPath=%2
++if "%3" == "PYTHON" set PYTHON=%4
++if "%5" == "TARGET" set TARGET=%6
++
++if "%1" == "TARGET" set TARGET=%2
++if "%3" == "GlibPath" set GLibPath=%4
++if "%5" == "PYTHON" set PYTHON=%6
++
++if "%1" == "TARGET" set TARGET=%2
++if "%3" == "PYTHON" set PYTHON=%4
++if "%5" == "GlibPath" set GLibPath=%6
++
++if "%1" == "PYTHON" set PYTHON=%2
++if "%3" == "TARGET" set TARGET=%4
++if "%5" == "GlibPath" set GLibPath=%6
++
++if "%1" == "PYTHON" set PYTHON=%2
++if "%3" == "GlibPath" set GLibPath=%4
++if "%5" == "TARGET" set TARGET=%6
++
++if not exist %GlibPath%\bin\glib-mkenums goto ERR_INVALID_GLIB_BASE_PATH
++
++if not exist ..\..\src\%TARGET%.tmpl goto ERR_INVALID_TMPL_BASENAME
++
++%PYTHON% -V 2> pythonver.tmp
++for /f "tokens=1,2,3" %%i in ('type pythonver.tmp') do (
++set pyexecutable=%%i
++set pythonver=%%j
++set pyerrmsg=%%k
++)
++
++if not "%pyexecutable%" == "Python" goto ERR_INVALID_PYTHON
++if not "%pyerrmsg%" == "" goto ERR_INVALID_PYTHON
++
++del pythonver.tmp
++
++perl %GlibPath%\bin\glib-mkenums --identifier-prefix hb_ --symbol-prefix hb_gobject --template ..\..\src\%TARGET%.tmpl ^
++..\..\src\hb.h ^
++..\..\src\hb-blob.h ^
++..\..\src\hb-buffer.h ^
++..\..\src\hb-common.h ^
++..\..\src\hb-deprecated.h ^
++..\..\src\hb-face.h ^
++..\..\src\hb-font.h ^
++..\..\src\hb-set.h ^
++..\..\src\hb-shape.h ^
++..\..\src\hb-shape-plan.h ^
++..\..\src\hb-unicode.h ^
++..\..\src\hb-ot.h ^
++..\..\src\hb-ot-font.h ^
++..\..\src\hb-ot-layout.h ^
++..\..\src\hb-ot-shape.h ^
++..\..\src\hb-ot-tag.h ^
++..\..\src\hb-glib.h ^
++..\..\src\hb-ft.h ^
++..\..\src\hb-graphite2.h ^
++..\..\src\hb-uniscribe.h ^
++>NUL >..\..\src\%TARGET%
++
++call %PYTHON% replacestr.py ..\..\src\%TARGET%
++
++goto END
++
++:ERR_INVALID_GLIB_BASE_PATH
++echo You need to specify a valid GlibPath where glib-mkenums can be found in %%GlibPath%%\bin\glib-mkenums 1>&2
++goto END
++
++:ERR_INVALID_TMPL_BASENAME
++echo You need to specify TARGET, a valid glib-enum template file base name where $(srcdir)\%%TARGET%%.tmpl can be found 1>&2
++goto END
++
++:ERR_INVALID_PYTHON
++echo You need to specify PYTHON, a valid path where your Python interpretor can be found 1>&2
++goto END
++
++:END
++
++set GlibPath=
++set TARGET=
+diff --git a/build/win32/replacestr.py b/build/win32/replacestr.py
+new file mode 100644
+index 0000000..364fff1
+--- /dev/null
++++ b/build/win32/replacestr.py
+@@ -0,0 +1,24 @@
++import sys
++
++def replace_strings(s, dic):
++    for i, j in dic.iteritems():
++        s = s.replace(i,j)
++    return s
++
++def replace(file):
++    dic = {'_T (':' (', '_t_get_type':'_get_type'}
++    f_in = open(file, 'r')
++    s_in = f_in.read()
++    f_in.close()
++
++    s_out = replace_strings(s_in, dic)
++
++    f_out = open(file, 'w')
++    f_out.write(s_out)
++    f_out.close()
++
++if __name__ == '__main__':
++    if len(sys.argv) != 2:
++        raise SystemExit('Usage: %s <file-to-replace-string>' % sys.argv[0])
++    else:
++        replace(sys.argv[1])
+-- 
+2.3.5.windows.8
+
