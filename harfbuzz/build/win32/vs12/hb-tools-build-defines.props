@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="hb-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <ToolsCFlags>HB_DISABLE_DEPRECATED</ToolsCFlags>
+    <CairoLibs>cairo.lib</CairoLibs>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>hbtoolsbuilddefinesprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>hb-utils-msvc.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$(GLibLib);%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="ToolsCFlags">
+      <Value>$(ToolsCFlags)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CairoLibs">
+      <Value>$(CairoLibs)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

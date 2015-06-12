@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="hbversionpathsprops"
+	>
+	<UserMacro
+		Name="VSVer"
+		Value="9"
+	/>
+	<UserMacro
+		Name="GlibEtcInstallRoot"
+		Value="$(SolutionDir)\..\..\vs$(VSVer)\$(ConfigurationName)\$(PlatformName)"
+	/>
+	<UserMacro
+		Name="CopyDir"
+		Value="$(GlibEtcInstallRoot)"
+	/>
+	<UserMacro
+		Name="HBLibtoolCompatibleDllPrefix"
+		Value="lib"
+	/>
+	<UserMacro
+		Name="HBLibtoolCompatibleDllSuffix"
+		Value="-0"
+	/>
+	<UserMacro
+		Name="HBSeparateVSDllPrefix"
+		Value=""
+	/>
+	<UserMacro
+		Name="HBSeparateVSDllSuffix"
+		Value="-0-vs$(VSVer)"
+	/>
+	<!-- Change these two to HBLibtoolCompatibleDllPrefix and
+	HBLibtoolCompatibleDllSuffix if that is what you want -->
+	<UserMacro
+		Name="HBDllPrefix"
+		Value="$(HBSeparateVSDllPrefix)"
+	/>
+	<UserMacro
+		Name="HBDllSuffix"
+		Value="$(HBSeparateVSDllSuffix)"
+	/>
+	<UserMacro
+		Name="PythonBase"
+		Value="c:\python27"
+	/>
+	<UserMacro
+		Value="$(PythonBase)\python.exe"
+		Name="PythonExeWin32"
+	/>
+	<UserMacro
+		Name="PythonExeX64"
+		Value="$(PythonBase).x64\python.exe"
+	/>
+</VisualStudioPropertySheet>

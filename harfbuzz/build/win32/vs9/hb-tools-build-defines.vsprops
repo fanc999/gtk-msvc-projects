@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="hbtoolsbuilddefinesprops"
+	InheritedPropertySheets=".\hb-build-defines.vsprops"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalIncludeDirectories=".."
+		ForcedIncludeFiles="hb-utils-msvc.h"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		AdditionalDependencies="$(GLibLib)"
+	/>
+	<UserMacro
+		Name="ToolsCFlags"
+		Value="HB_DISABLE_DEPRECATED"
+	/>
+	<UserMacro
+		Name="CairoLibs"
+		Value="cairo.lib"
+	/>
+</VisualStudioPropertySheet>

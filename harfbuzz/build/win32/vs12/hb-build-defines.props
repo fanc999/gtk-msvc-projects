@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="hb-version-paths.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <GLibLib>glib-2.0.lib</GLibLib>
+    <FTLib>freetype.lib</FTLib>
+    <BaseLibs>$(FTLib);$(GLibLib);graphite2.lib;usp10.lib;rpcrt4.lib</BaseLibs>
+    <ICULibs>icuuc.lib</ICULibs>
+    <GObjectLibs>gobject-2.0.lib;$(GLibLib)</GObjectLibs>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>hbbuilddefinesprops</_PropertySheetDisplayName>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformName)\bin\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(PlatformName)\obj\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\..;..\..\..\src;$(GlibEtcInstallRoot)\include\glib-2.0;$(GlibEtcInstallRoot)\lib\glib-2.0\include;$(GlibEtcInstallRoot)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ForcedIncludeFiles>msvc_recommended_pragmas.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/d2Zi+ %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(GLibEtcInstallRoot)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="GLibLib">
+      <Value>$(GLibLib)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FTLib">
+      <Value>$(FTLib)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BaseLibs">
+      <Value>$(BaseLibs)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ICULibs">
+      <Value>$(ICULibs)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GObjectLibs">
+      <Value>$(GObjectLibs)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

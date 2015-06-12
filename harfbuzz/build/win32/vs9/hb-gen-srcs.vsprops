@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="hbgensrcsprops"
+	InheritedPropertySheets=".\hb-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="CopyConfigH"
+		Value="copy ..\..\..\config.h.win32 ..\..\..\config.h"
+	/>
+	<UserMacro
+		Name="GenEnumsH"
+		Value="
+cd ..&#x0D;&#x0A;
+call enums.bat GlibPath=$(GlibEtcInstallRoot) PYTHON=$(PythonExeWin32) TARGET=hb-gobject-enums.h&#x0D;&#x0A;
+		      "
+	/>
+	<UserMacro
+		Name="X64GenEnumsH"
+		Value="
+cd ..&#x0D;&#x0A;
+call enums.bat GlibPath=$(GlibEtcInstallRoot) PYTHON=$(PythonExeX64) TARGET=hb-gobject-enums.h&#x0D;&#x0A;
+		      "
+	/>
+	<UserMacro
+		Name="GenEnumsC"
+		Value="
+cd ..&#x0D;&#x0A;
+call enums.bat GlibPath=$(GlibEtcInstallRoot) PYTHON=$(PythonExeWin32) TARGET=hb-gobject-enums.cc&#x0D;&#x0A;
+		      "
+	/>
+	<UserMacro
+		Name="X64GenEnumsC"
+		Value="
+cd ..&#x0D;&#x0A;
+call enums.bat GlibPath=$(GlibEtcInstallRoot) PYTHON=$(PythonExeX64) TARGET=hb-gobject-enums.cc&#x0D;&#x0A;
+		      "
+	/>
+</VisualStudioPropertySheet>
