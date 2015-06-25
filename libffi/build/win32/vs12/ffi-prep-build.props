@@ -17,7 +17,7 @@ copy ..\..\..\src\x86\ffitarget.h ..\..\..\include
     <BuildWin32ASM>
 <!-- This is due to a bug in MSVC 2013's 32-bit ml.exe, ugh! -->
 cd ..\..\..\src\x86
-ml /c /nologo /Zi /Fo$(IntDir)win32.obj /W3 /errorReport:prompt /Tawin32.asm
+ml /c /nologo /Zi /Fo$(IntDir)win32.obj /W3 /errorReport:prompt /safeseh /Tawin32.asm
     </BuildWin32ASM>
   </PropertyGroup>
   <PropertyGroup>

@@ -133,6 +133,8 @@
     <MASM Include="..\..\..\src\x86\win32.asm">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <UseSafeExceptionHandlers Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</UseSafeExceptionHandlers>
+      <UseSafeExceptionHandlers Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</UseSafeExceptionHandlers>
     </MASM>
     <MASM Include="..\..\..\src\x86\win64.asm">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
