@@ -1471,6 +1471,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hb-install", "..\..\harfbuz
 		{F7E20CF9-1D22-483E-BA33-E4555E4EA383} = {F7E20CF9-1D22-483E-BA33-E4555E4EA383}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atk", "..\..\atk\build\win32\vs9\atk.vcproj", "{86EACD59-F69F-4AAD-854B-AA03D5447360}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2093D218-190E-4194-9421-3BA7CBF33B10} = {2093D218-190E-4194-9421-3BA7CBF33B10}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atk-install", "..\..\atk\build\win32\vs9\atk-install.vcproj", "{00702787-1566-484D-991F-3E7E459BB909}"
+	ProjectSection(ProjectDependencies) = postProject
+		{86EACD59-F69F-4AAD-854B-AA03D5447360} = {86EACD59-F69F-4AAD-854B-AA03D5447360}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -3295,6 +3305,22 @@ Global
 		{42684189-DC20-4C58-82BF-9CCAD273536C}.Release|Win32.Build.0 = Release|Win32
 		{42684189-DC20-4C58-82BF-9CCAD273536C}.Release|x64.ActiveCfg = Release|x64
 		{42684189-DC20-4C58-82BF-9CCAD273536C}.Release|x64.Build.0 = Release|x64
+		{86EACD59-F69F-4AAD-854B-AA03D5447360}.Debug|Win32.ActiveCfg = Debug|Win32
+		{86EACD59-F69F-4AAD-854B-AA03D5447360}.Debug|Win32.Build.0 = Debug|Win32
+		{86EACD59-F69F-4AAD-854B-AA03D5447360}.Debug|x64.ActiveCfg = Debug|x64
+		{86EACD59-F69F-4AAD-854B-AA03D5447360}.Debug|x64.Build.0 = Debug|x64
+		{86EACD59-F69F-4AAD-854B-AA03D5447360}.Release|Win32.ActiveCfg = Release|Win32
+		{86EACD59-F69F-4AAD-854B-AA03D5447360}.Release|Win32.Build.0 = Release|Win32
+		{86EACD59-F69F-4AAD-854B-AA03D5447360}.Release|x64.ActiveCfg = Release|x64
+		{86EACD59-F69F-4AAD-854B-AA03D5447360}.Release|x64.Build.0 = Release|x64
+		{00702787-1566-484D-991F-3E7E459BB909}.Debug|Win32.ActiveCfg = Debug|Win32
+		{00702787-1566-484D-991F-3E7E459BB909}.Debug|Win32.Build.0 = Debug|Win32
+		{00702787-1566-484D-991F-3E7E459BB909}.Debug|x64.ActiveCfg = Debug|x64
+		{00702787-1566-484D-991F-3E7E459BB909}.Debug|x64.Build.0 = Debug|x64
+		{00702787-1566-484D-991F-3E7E459BB909}.Release|Win32.ActiveCfg = Release|Win32
+		{00702787-1566-484D-991F-3E7E459BB909}.Release|Win32.Build.0 = Release|Win32
+		{00702787-1566-484D-991F-3E7E459BB909}.Release|x64.ActiveCfg = Release|x64
+		{00702787-1566-484D-991F-3E7E459BB909}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
