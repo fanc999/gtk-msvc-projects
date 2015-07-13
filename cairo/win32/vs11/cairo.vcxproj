@@ -95,6 +95,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(TargetDir)$(ProjectName).lib</ImportLibrary>
+      <ProgramDatabaseFile>$(TargetDir)$(CairoDllPrefix)$(ProjectName)$(CairoDllSuffix).pdb</ProgramDatabaseFile>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -116,6 +117,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <ImportLibrary>$(TargetDir)$(ProjectName).lib</ImportLibrary>
+      <ProgramDatabaseFile>$(TargetDir)$(CairoDllPrefix)$(ProjectName)$(CairoDllSuffix).pdb</ProgramDatabaseFile>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -139,6 +141,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(TargetDir)$(ProjectName).lib</ImportLibrary>
+      <ProgramDatabaseFile>$(TargetDir)$(CairoDllPrefix)$(ProjectName)$(CairoDllSuffix).pdb</ProgramDatabaseFile>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -163,6 +166,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <ImportLibrary>$(TargetDir)$(ProjectName).lib</ImportLibrary>
+      <ProgramDatabaseFile>$(TargetDir)$(CairoDllPrefix)$(ProjectName)$(CairoDllSuffix).pdb</ProgramDatabaseFile>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
