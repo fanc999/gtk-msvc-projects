@@ -1,0 +1,69 @@
+From 1b80274b93d6d87d78d83099533a5aaaab5abc66 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Mon, 13 Jul 2015 14:02:37 +0800
+Subject: [PATCH] Pango: Adjust GlibEtcInstallRoot for AIO Builds
+
+This makes the builds get in line with the all-in-one solution file that is
+used to build the entire GTK+ stack.
+---
+ build/win32/vs10/pango-version-paths.props  | 2 +-
+ build/win32/vs11/pango-version-paths.props  | 2 +-
+ build/win32/vs12/pango-version-paths.props  | 2 +-
+ build/win32/vs9/pango-version-paths.vsprops | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/build/win32/vs10/pango-version-paths.props b/build/win32/vs10/pango-version-paths.props
+index 9780f39..1d0960d 100644
+--- a/build/win32/vs10/pango-version-paths.props
++++ b/build/win32/vs10/pango-version-paths.props
+@@ -2,7 +2,7 @@
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup Label="UserMacros">
+     <VSVer>10</VSVer>
+-    <GlibEtcInstallRoot>$(SolutionDir)\..\..\..\..\vs$(VSVer)\$(Platform)</GlibEtcInstallRoot>
++    <GlibEtcInstallRoot>$(SolutionDir)\..\..\vs$(VSVer)\$(Configuration)\$(Platform)</GlibEtcInstallRoot>
+     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
+     <ApiVersion>1.0</ApiVersion>
+     <PangoLibtoolCompatibleDllPrefix>lib</PangoLibtoolCompatibleDllPrefix>
+diff --git a/build/win32/vs11/pango-version-paths.props b/build/win32/vs11/pango-version-paths.props
+index 411614d..d2bdbeb 100644
+--- a/build/win32/vs11/pango-version-paths.props
++++ b/build/win32/vs11/pango-version-paths.props
+@@ -2,7 +2,7 @@
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup Label="UserMacros">
+     <VSVer>11</VSVer>
+-    <GlibEtcInstallRoot>$(SolutionDir)\..\..\..\..\vs$(VSVer)\$(Platform)</GlibEtcInstallRoot>
++    <GlibEtcInstallRoot>$(SolutionDir)\..\..\vs$(VSVer)\$(Configuration)\$(Platform)</GlibEtcInstallRoot>
+     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
+     <ApiVersion>1.0</ApiVersion>
+     <PangoLibtoolCompatibleDllPrefix>lib</PangoLibtoolCompatibleDllPrefix>
+diff --git a/build/win32/vs12/pango-version-paths.props b/build/win32/vs12/pango-version-paths.props
+index 902a7b8..6e75b13 100644
+--- a/build/win32/vs12/pango-version-paths.props
++++ b/build/win32/vs12/pango-version-paths.props
+@@ -2,7 +2,7 @@
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup Label="UserMacros">
+     <VSVer>12</VSVer>
+-    <GlibEtcInstallRoot>$(SolutionDir)\..\..\..\..\vs$(VSVer)\$(Platform)</GlibEtcInstallRoot>
++    <GlibEtcInstallRoot>$(SolutionDir)\..\..\vs$(VSVer)\$(Configuration)\$(Platform)</GlibEtcInstallRoot>
+     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
+     <ApiVersion>1.0</ApiVersion>
+     <PangoLibtoolCompatibleDllPrefix>lib</PangoLibtoolCompatibleDllPrefix>
+diff --git a/build/win32/vs9/pango-version-paths.vsprops b/build/win32/vs9/pango-version-paths.vsprops
+index a40f4a2..e08442e 100644
+--- a/build/win32/vs9/pango-version-paths.vsprops
++++ b/build/win32/vs9/pango-version-paths.vsprops
+@@ -10,7 +10,7 @@
+ 	/>
+ 	<UserMacro
+ 		Name="GlibEtcInstallRoot"
+-		Value="$(SolutionDir)\..\..\..\..\vs$(VSVer)\$(PlatformName)"
++		Value="$(SolutionDir)\..\..\vs$(VSVer)\$(ConfigurationName)\$(PlatformName)"
+ 	/>
+ 	<UserMacro
+ 		Name="CopyDir"
+-- 
+2.3.5.windows.8
+
