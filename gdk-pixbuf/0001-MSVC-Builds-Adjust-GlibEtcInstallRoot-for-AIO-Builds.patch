@@ -1,0 +1,69 @@
+From cb2bdb3742b8f8075a22c48bc9493471398e9267 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Tue, 14 Jul 2015 12:58:12 +0800
+Subject: [PATCH] MSVC Builds: Adjust GlibEtcInstallRoot for AIO Builds
+
+Adjust the path so that the project files can fit in the all-in-one
+solution file used to build the GTK+ stack.
+---
+ build/win32/vs10/gdk-pixbuf-version-paths.props  | 2 +-
+ build/win32/vs11/gdk-pixbuf-version-paths.props  | 2 +-
+ build/win32/vs12/gdk-pixbuf-version-paths.props  | 2 +-
+ build/win32/vs9/gdk-pixbuf-version-paths.vsprops | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/build/win32/vs10/gdk-pixbuf-version-paths.props b/build/win32/vs10/gdk-pixbuf-version-paths.props
+index 33aee7e..828e280 100644
+--- a/build/win32/vs10/gdk-pixbuf-version-paths.props
++++ b/build/win32/vs10/gdk-pixbuf-version-paths.props
+@@ -2,7 +2,7 @@
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup Label="UserMacros">
+     <VSVer>10</VSVer>
+-    <GlibEtcInstallRoot>$(SolutionDir)\..\..\..\..\vs$(VSVer)\$(Platform)</GlibEtcInstallRoot>
++    <GlibEtcInstallRoot>$(SolutionDir)\..\..\vs$(VSVer)\$(Configuration)\$(Platform)</GlibEtcInstallRoot>
+     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
+     <ApiVersion>2.0</ApiVersion>
+     <GdkPixbufLibtoolCompatibleDllPrefix>lib</GdkPixbufLibtoolCompatibleDllPrefix>
+diff --git a/build/win32/vs11/gdk-pixbuf-version-paths.props b/build/win32/vs11/gdk-pixbuf-version-paths.props
+index f51f113..b2ee04e 100644
+--- a/build/win32/vs11/gdk-pixbuf-version-paths.props
++++ b/build/win32/vs11/gdk-pixbuf-version-paths.props
+@@ -2,7 +2,7 @@
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup Label="UserMacros">
+     <VSVer>11</VSVer>
+-    <GlibEtcInstallRoot>$(SolutionDir)\..\..\..\..\vs$(VSVer)\$(Platform)</GlibEtcInstallRoot>
++    <GlibEtcInstallRoot>$(SolutionDir)\..\..\vs$(VSVer)\$(Configuration)\$(Platform)</GlibEtcInstallRoot>
+     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
+     <ApiVersion>2.0</ApiVersion>
+     <GdkPixbufLibtoolCompatibleDllPrefix>lib</GdkPixbufLibtoolCompatibleDllPrefix>
+diff --git a/build/win32/vs12/gdk-pixbuf-version-paths.props b/build/win32/vs12/gdk-pixbuf-version-paths.props
+index 536f7b3..6cf3c87 100644
+--- a/build/win32/vs12/gdk-pixbuf-version-paths.props
++++ b/build/win32/vs12/gdk-pixbuf-version-paths.props
+@@ -2,7 +2,7 @@
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup Label="UserMacros">
+     <VSVer>12</VSVer>
+-    <GlibEtcInstallRoot>$(SolutionDir)\..\..\..\..\vs$(VSVer)\$(Platform)</GlibEtcInstallRoot>
++    <GlibEtcInstallRoot>$(SolutionDir)\..\..\vs$(VSVer)\$(Configuration)\$(Platform)</GlibEtcInstallRoot>
+     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
+     <ApiVersion>2.0</ApiVersion>
+     <GdkPixbufLibtoolCompatibleDllPrefix>lib</GdkPixbufLibtoolCompatibleDllPrefix>
+diff --git a/build/win32/vs9/gdk-pixbuf-version-paths.vsprops b/build/win32/vs9/gdk-pixbuf-version-paths.vsprops
+index 1f167bd..1e6a45a 100644
+--- a/build/win32/vs9/gdk-pixbuf-version-paths.vsprops
++++ b/build/win32/vs9/gdk-pixbuf-version-paths.vsprops
+@@ -10,7 +10,7 @@
+ 	/>
+ 	<UserMacro
+ 		Name="GlibEtcInstallRoot"
+-		Value="..\..\..\..\vs$(VSVer)\$(PlatformName)"
++		Value="$(SolutionDir)\..\..\vs$(VSVer)\$(ConfigurationName)\$(PlatformName)"
+ 	/>
+ 	<UserMacro
+ 		Name="DefDir"
+-- 
+2.3.5.windows.8
+
