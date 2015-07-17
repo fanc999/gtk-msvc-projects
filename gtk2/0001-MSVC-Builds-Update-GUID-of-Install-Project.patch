@@ -1,0 +1,117 @@
+From b2d60ff8cb63de52febd8f3fa76b4ae53ca5f067 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Fri, 17 Jul 2015 17:13:42 +0800
+Subject: [PATCH] MSVC Builds: Update GUID of "Install" Project
+
+The GUID of the "Install" project files happen to be the same as Pango's
+"install" projects, so we need to update the GUID here so that the projects
+can cooperate with each other when used in an all-in-one build for the GTK+
+stack.
+---
+ build/win32/vs10/gtk+.sln            | 18 +++++++++---------
+ build/win32/vs10/gtk-install.vcxproj |  2 +-
+ build/win32/vs9/gtk+.sln             | 18 +++++++++---------
+ build/win32/vs9/gtk-install.vcproj   |  2 +-
+ 4 files changed, 20 insertions(+), 20 deletions(-)
+
+diff --git a/build/win32/vs10/gtk+.sln b/build/win32/vs10/gtk+.sln
+index 26b5853..2dfe270 100644
+--- a/build/win32/vs10/gtk+.sln
++++ b/build/win32/vs10/gtk+.sln
+@@ -12,7 +12,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gailutil", "gailutil.vcxpro
+ EndProject
+ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libwimp", "libwimp.vcxproj", "{7660FB4E-2AE6-483E-8813-0974CBE6F97F}"
+ EndProject
+-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtk-install", "gtk-install.vcxproj", "{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}"
++Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtk-install", "gtk-install.vcxproj", "{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}"
+ EndProject
+ Global
+ 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+@@ -70,14 +70,14 @@ Global
+ 		{7660FB4E-2AE6-483E-8813-0974CBE6F97F}.Release|Win32.Build.0 = Release|Win32
+ 		{7660FB4E-2AE6-483E-8813-0974CBE6F97F}.Release|x64.ActiveCfg = Release|x64
+ 		{7660FB4E-2AE6-483E-8813-0974CBE6F97F}.Release|x64.Build.0 = Release|x64
+-		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}.Debug|Win32.ActiveCfg = Debug|Win32
+-		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}.Debug|Win32.Build.0 = Debug|Win32
+-		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}.Debug|x64.ActiveCfg = Debug|x64
+-		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}.Debug|x64.Build.0 = Debug|x64
+-		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}.Release|Win32.ActiveCfg = Release|Win32
+-		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}.Release|Win32.Build.0 = Release|Win32
+-		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}.Release|x64.ActiveCfg = Release|x64
+-		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}.Release|x64.Build.0 = Release|x64
++		{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}.Debug|Win32.ActiveCfg = Debug|Win32
++		{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}.Debug|Win32.Build.0 = Debug|Win32
++		{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}.Debug|x64.ActiveCfg = Debug|x64
++		{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}.Debug|x64.Build.0 = Debug|x64
++		{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}.Release|Win32.ActiveCfg = Release|Win32
++		{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}.Release|Win32.Build.0 = Release|Win32
++		{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}.Release|x64.ActiveCfg = Release|x64
++		{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}.Release|x64.Build.0 = Release|x64
+ 	EndGlobalSection
+ 	GlobalSection(SolutionProperties) = preSolution
+ 		HideSolutionNode = FALSE
+diff --git a/build/win32/vs10/gtk-install.vcxproj b/build/win32/vs10/gtk-install.vcxproj
+index d66e2d6..86437c2 100644
+--- a/build/win32/vs10/gtk-install.vcxproj
++++ b/build/win32/vs10/gtk-install.vcxproj
+@@ -19,7 +19,7 @@
+     </ProjectConfiguration>
+   </ItemGroup>
+   <PropertyGroup Label="Globals">
+-    <ProjectGuid>{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}</ProjectGuid>
++    <ProjectGuid>{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}</ProjectGuid>
+     <RootNamespace>gtkinstall</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
+   </PropertyGroup>
+diff --git a/build/win32/vs9/gtk+.sln b/build/win32/vs9/gtk+.sln
+index 2537881..853b23d 100644
+--- a/build/win32/vs9/gtk+.sln
++++ b/build/win32/vs9/gtk+.sln
+@@ -18,7 +18,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtk-demo", "gtk-demo.vcproj
+ 		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073F7} = {FC5AADB5-95CD-4BF0-BA8B-0C16FE7073F7}
+ 	EndProjectSection
+ EndProject
+-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtk-install", "gtk-install.vcproj", "{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}"
++Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtk-install", "gtk-install.vcproj", "{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}"
+ 	ProjectSection(ProjectDependencies) = postProject
+ 		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073F5} = {FC5AADB5-95CD-4BF0-BA8B-0C16FE7073F5}
+ 		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073F7} = {FC5AADB5-95CD-4BF0-BA8B-0C16FE7073F7}
+@@ -79,14 +79,14 @@ Global
+ 		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FC}.Release|Win32.Build.0 = Release|Win32
+ 		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FC}.Release|x64.ActiveCfg = Release|x64
+ 		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FC}.Release|x64.Build.0 = Release|x64
+-		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}.Debug|Win32.ActiveCfg = Debug|Win32
+-		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}.Debug|Win32.Build.0 = Debug|Win32
+-		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}.Debug|x64.ActiveCfg = Debug|x64
+-		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}.Debug|x64.Build.0 = Debug|x64
+-		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}.Release|Win32.ActiveCfg = Release|Win32
+-		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}.Release|Win32.Build.0 = Release|Win32
+-		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}.Release|x64.ActiveCfg = Release|x64
+-		{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}.Release|x64.Build.0 = Release|x64
++		{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}.Debug|Win32.ActiveCfg = Debug|Win32
++		{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}.Debug|Win32.Build.0 = Debug|Win32
++		{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}.Debug|x64.ActiveCfg = Debug|x64
++		{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}.Debug|x64.Build.0 = Debug|x64
++		{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}.Release|Win32.ActiveCfg = Release|Win32
++		{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}.Release|Win32.Build.0 = Release|Win32
++		{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}.Release|x64.ActiveCfg = Release|x64
++		{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}.Release|x64.Build.0 = Release|x64
+ 		{B3B6558A-01C8-4C72-9BDE-84ABB1AE67DF}.Debug|Win32.ActiveCfg = Debug|Win32
+ 		{B3B6558A-01C8-4C72-9BDE-84ABB1AE67DF}.Debug|Win32.Build.0 = Debug|Win32
+ 		{B3B6558A-01C8-4C72-9BDE-84ABB1AE67DF}.Debug|x64.ActiveCfg = Debug|x64
+diff --git a/build/win32/vs9/gtk-install.vcproj b/build/win32/vs9/gtk-install.vcproj
+index ec88e75..2396b9a 100644
+--- a/build/win32/vs9/gtk-install.vcproj
++++ b/build/win32/vs9/gtk-install.vcproj
+@@ -3,7 +3,7 @@
+ 	ProjectType="Visual C++"
+ 	Version="9.00"
+ 	Name="gtk-install"
+-	ProjectGUID="{FC5AADB5-95CD-4BF0-BA8B-0C16FE7073FB}"
++	ProjectGUID="{FC5AADB5-95CD-4BF0-BA8B-0C16FE8073FB}"
+ 	RootNamespace="gtkinstall"
+ 	Keyword="Win32Proj"
+ 	TargetFrameworkVersion="131072"
+-- 
+2.3.5.windows.8
+
