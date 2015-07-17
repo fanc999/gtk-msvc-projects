@@ -1,0 +1,70 @@
+From 7616a0363a53bdcea029cc7fb339b36fba424b2d Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Fri, 17 Jul 2015 17:24:24 +0800
+Subject: [PATCH] MSVC Builds: Adjust GlibEtcInstallRoot for AIO Builds
+
+Update the GlibEtcInstallRoot macro so that GTK+-2.x's MSVC projects can
+fir better into the all-in-one solution for building the GTK+-2.x/3.x
+stack.
+---
+ build/win32/vs10/gtk-version-paths.props  | 2 +-
+ build/win32/vs11/gtk-version-paths.props  | 2 +-
+ build/win32/vs12/gtk-version-paths.props  | 2 +-
+ build/win32/vs9/gtk-version-paths.vsprops | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/build/win32/vs10/gtk-version-paths.props b/build/win32/vs10/gtk-version-paths.props
+index 7d8f5e9..e8c85de 100644
+--- a/build/win32/vs10/gtk-version-paths.props
++++ b/build/win32/vs10/gtk-version-paths.props
+@@ -2,7 +2,7 @@
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup Label="UserMacros">
+     <VSVer>10</VSVer>
+-    <GlibEtcInstallRoot>..\..\..\..\vs$(VSVer)\$(Platform)</GlibEtcInstallRoot>
++    <GlibEtcInstallRoot>$(SolutionDir)\..\..\vs$(VSVer)\$(Configuration)\$(Platform)</GlibEtcInstallRoot>
+     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
+     <DefDir>$(SolutionDir)$(Configuration)\$(Platform)\obj\$(ProjectName)</DefDir>
+     <ApiVersion>2.0</ApiVersion>
+diff --git a/build/win32/vs11/gtk-version-paths.props b/build/win32/vs11/gtk-version-paths.props
+index bd61a97..4b2b28f 100644
+--- a/build/win32/vs11/gtk-version-paths.props
++++ b/build/win32/vs11/gtk-version-paths.props
+@@ -2,7 +2,7 @@
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup Label="UserMacros">
+     <VSVer>11</VSVer>
+-    <GlibEtcInstallRoot>..\..\..\..\vs$(VSVer)\$(Platform)</GlibEtcInstallRoot>
++    <GlibEtcInstallRoot>$(SolutionDir)\..\..\vs$(VSVer)\$(Configuration)\$(Platform)</GlibEtcInstallRoot>
+     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
+     <DefDir>$(SolutionDir)$(Configuration)\$(Platform)\obj\$(ProjectName)</DefDir>
+     <ApiVersion>2.0</ApiVersion>
+diff --git a/build/win32/vs12/gtk-version-paths.props b/build/win32/vs12/gtk-version-paths.props
+index 02868da..7fff940 100644
+--- a/build/win32/vs12/gtk-version-paths.props
++++ b/build/win32/vs12/gtk-version-paths.props
+@@ -2,7 +2,7 @@
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup Label="UserMacros">
+     <VSVer>12</VSVer>
+-    <GlibEtcInstallRoot>..\..\..\..\vs$(VSVer)\$(Platform)</GlibEtcInstallRoot>
++    <GlibEtcInstallRoot>$(SolutionDir)\..\..\vs$(VSVer)\$(Configuration)\$(Platform)</GlibEtcInstallRoot>
+     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
+     <DefDir>$(SolutionDir)$(Configuration)\$(Platform)\obj\$(ProjectName)</DefDir>
+     <ApiVersion>2.0</ApiVersion>
+diff --git a/build/win32/vs9/gtk-version-paths.vsprops b/build/win32/vs9/gtk-version-paths.vsprops
+index 910c4d8..f3e8b84 100644
+--- a/build/win32/vs9/gtk-version-paths.vsprops
++++ b/build/win32/vs9/gtk-version-paths.vsprops
+@@ -10,7 +10,7 @@
+ 	/>
+ 	<UserMacro
+ 		Name="GlibEtcInstallRoot"
+-		Value="..\..\..\..\vs$(VSVer)\$(PlatformName)"
++		Value="$(SolutionDir)\..\..\vs$(VSVer)\$(ConfigurationName)\$(PlatformName)"
+ 	/>
+ 	<UserMacro
+ 		Name="CopyDir"
+-- 
+2.3.5.windows.8
+
