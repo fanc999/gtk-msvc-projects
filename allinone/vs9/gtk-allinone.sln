@@ -1588,6 +1588,23 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtk-install", "..\..\gtk2\b
 		{7660FB4E-2AE6-483E-8813-0974CBE6F97F} = {7660FB4E-2AE6-483E-8813-0974CBE6F97F}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "croco", "..\..\libcroco\build\win32\vs9\croco.vcproj", "{4AFE9F9B-7F78-41A8-B066-C7CA89938ABA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8C5A30E2-4A08-488F-8949-DFABE8D1706F} = {8C5A30E2-4A08-488F-8949-DFABE8D1706F}
+		{2093D218-190E-4194-9421-3BA7CBF33B10} = {2093D218-190E-4194-9421-3BA7CBF33B10}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "csslint", "..\..\libcroco\build\win32\vs9\csslint.vcproj", "{345080B1-9C5B-44B8-98D7-7381D50F3E13}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4AFE9F9B-7F78-41A8-B066-C7CA89938ABA} = {4AFE9F9B-7F78-41A8-B066-C7CA89938ABA}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "croco-install", "..\..\libcroco\build\win32\vs9\croco-install.vcproj", "{00702787-1566-484D-991F-4E7E459BB909}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4AFE9F9B-7F78-41A8-B066-C7CA89938ABA} = {4AFE9F9B-7F78-41A8-B066-C7CA89938ABA}
+		{345080B1-9C5B-44B8-98D7-7381D50F3E13} = {345080B1-9C5B-44B8-98D7-7381D50F3E13}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -3556,6 +3573,30 @@ Global
 		{7660FB4E-2AE6-483E-8813-0974CBE6F97F}.Release|Win32.Build.0 = Release|Win32
 		{7660FB4E-2AE6-483E-8813-0974CBE6F97F}.Release|x64.ActiveCfg = Release|x64
 		{7660FB4E-2AE6-483E-8813-0974CBE6F97F}.Release|x64.Build.0 = Release|x64
+		{4AFE9F9B-7F78-41A8-B066-C7CA89938ABA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4AFE9F9B-7F78-41A8-B066-C7CA89938ABA}.Debug|Win32.Build.0 = Debug|Win32
+		{4AFE9F9B-7F78-41A8-B066-C7CA89938ABA}.Debug|x64.ActiveCfg = Debug|x64
+		{4AFE9F9B-7F78-41A8-B066-C7CA89938ABA}.Debug|x64.Build.0 = Debug|x64
+		{4AFE9F9B-7F78-41A8-B066-C7CA89938ABA}.Release|Win32.ActiveCfg = Release|Win32
+		{4AFE9F9B-7F78-41A8-B066-C7CA89938ABA}.Release|Win32.Build.0 = Release|Win32
+		{4AFE9F9B-7F78-41A8-B066-C7CA89938ABA}.Release|x64.ActiveCfg = Release|x64
+		{4AFE9F9B-7F78-41A8-B066-C7CA89938ABA}.Release|x64.Build.0 = Release|x64
+		{345080B1-9C5B-44B8-98D7-7381D50F3E13}.Debug|Win32.ActiveCfg = Debug|Win32
+		{345080B1-9C5B-44B8-98D7-7381D50F3E13}.Debug|Win32.Build.0 = Debug|Win32
+		{345080B1-9C5B-44B8-98D7-7381D50F3E13}.Debug|x64.ActiveCfg = Debug|x64
+		{345080B1-9C5B-44B8-98D7-7381D50F3E13}.Debug|x64.Build.0 = Debug|x64
+		{345080B1-9C5B-44B8-98D7-7381D50F3E13}.Release|Win32.ActiveCfg = Release|Win32
+		{345080B1-9C5B-44B8-98D7-7381D50F3E13}.Release|Win32.Build.0 = Release|Win32
+		{345080B1-9C5B-44B8-98D7-7381D50F3E13}.Release|x64.ActiveCfg = Release|x64
+		{345080B1-9C5B-44B8-98D7-7381D50F3E13}.Release|x64.Build.0 = Release|x64
+		{00702787-1566-484D-991F-4E7E459BB909}.Debug|Win32.ActiveCfg = Debug|Win32
+		{00702787-1566-484D-991F-4E7E459BB909}.Debug|Win32.Build.0 = Debug|Win32
+		{00702787-1566-484D-991F-4E7E459BB909}.Debug|x64.ActiveCfg = Debug|x64
+		{00702787-1566-484D-991F-4E7E459BB909}.Debug|x64.Build.0 = Debug|x64
+		{00702787-1566-484D-991F-4E7E459BB909}.Release|Win32.ActiveCfg = Release|Win32
+		{00702787-1566-484D-991F-4E7E459BB909}.Release|Win32.Build.0 = Release|Win32
+		{00702787-1566-484D-991F-4E7E459BB909}.Release|x64.ActiveCfg = Release|x64
+		{00702787-1566-484D-991F-4E7E459BB909}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
