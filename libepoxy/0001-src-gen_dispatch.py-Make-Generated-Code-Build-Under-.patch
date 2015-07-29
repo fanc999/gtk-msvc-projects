@@ -1,0 +1,46 @@
+From c976864bc9edc23f4ae0c4361be107338e9b1d04 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Tue, 28 Jul 2015 18:35:59 +0800
+Subject: [PATCH 1/2] src/gen_dispatch.py: Make Generated Code Build Under C89
+
+ ...so that the generated code are buildable by pre-2013 Visual Studio.
+
+ The main thing that this does is that we avoid named initializers, but
+ instead initialize the structs in old-school C89 way.
+
+ The generated code may not look that robust, but since this is generated
+ code, I think this is not that much an issue; when the Khronos registry gets
+ updated, all that is needed is that the code gets re-generated, and we have the
+ items in the right order.
+---
+ src/gen_dispatch.py | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/src/gen_dispatch.py b/src/gen_dispatch.py
+index 1644cbf..5a45284 100755
+--- a/src/gen_dispatch.py
++++ b/src/gen_dispatch.py
+@@ -659,9 +659,10 @@ class Generator(object):
+         assert(offset < 65536)
+ 
+         self.outln('static const uint16_t enum_string_offsets[] = {')
++        self.outln('    -1, /* {0}_provider_terminator, unused */'.format(self.target))
+         for human_name in sorted_providers:
+             enum = self.provider_enum[human_name]
+-            self.outln('    [{0}] = {1},'.format(enum, self.enum_string_offset[human_name]))
++            self.outln('    {1}, /* {0} */'.format(enum, self.enum_string_offset[human_name]))
+         self.outln('};')
+         self.outln('')
+ 
+@@ -789,7 +790,7 @@ class Generator(object):
+ 
+         self.outln('static struct dispatch_table resolver_table = {')
+         for func in self.sorted_functions:
+-            self.outln('    .{0} = epoxy_{0}_dispatch_table_rewrite_ptr,'.format(func.wrapped_name))
++            self.outln('    epoxy_{0}_dispatch_table_rewrite_ptr, /* {0} */'.format(func.wrapped_name))
+         self.outln('};')
+         self.outln('')
+ 
+-- 
+2.3.5.windows.8
+
