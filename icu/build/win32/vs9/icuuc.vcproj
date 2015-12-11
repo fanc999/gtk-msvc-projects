@@ -164,6 +164,7 @@
 			<File RelativePath="..\..\..\source\common\dictionarydata.cpp" />
 			<File RelativePath="..\..\..\source\common\dtintrv.cpp" />
 			<File RelativePath="..\..\..\source\common\errorcode.cpp" />
+			<File RelativePath="..\..\..\source\common\filteredbrk.cpp" />
 			<File RelativePath="..\..\..\source\common\filterednormalizer2.cpp" />
 			<File RelativePath="..\..\..\source\common\icudataver.c" />
 			<File RelativePath="..\..\..\source\common\icuplug.cpp" />
@@ -183,6 +184,7 @@
 			<File RelativePath="..\..\..\source\common\normlzr.cpp" />
 			<File RelativePath="..\..\..\source\common\parsepos.cpp" />
 			<File RelativePath="..\..\..\source\common\patternprops.cpp" />
+			<File RelativePath="..\..\..\source\common\pluralmap.cpp" />
 			<File RelativePath="..\..\..\source\common\propname.cpp" />
 			<File RelativePath="..\..\..\source\common\propsvec.c" />
 			<File RelativePath="..\..\..\source\common\punycode.cpp" />
@@ -402,6 +404,12 @@
 				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
 			</File>
 			<File RelativePath="..\..\..\source\common\unicode\errorcode.h">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\source\common\unicode\filteredbrk.h">
 				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
 				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
 				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>

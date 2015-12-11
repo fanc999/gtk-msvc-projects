@@ -155,15 +155,15 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File RelativePath="..\..\..\source\tools\genrb\errmsg.c" />
-			<File RelativePath="..\..\..\source\tools\genrb\genrb.c" />
+			<File RelativePath="..\..\..\source\tools\genrb\genrb.cpp" />
 			<File RelativePath="..\..\..\source\tools\genrb\parse.cpp" />
 			<File RelativePath="..\..\..\source\tools\genrb\prscmnts.cpp" />
 			<File RelativePath="..\..\..\source\tools\genrb\rbutil.c" />
 			<File RelativePath="..\..\..\source\tools\genrb\read.c" />
-			<File RelativePath="..\..\..\source\tools\genrb\reslist.c" />
+			<File RelativePath="..\..\..\source\tools\genrb\reslist.cpp" />
 			<File RelativePath="..\..\..\source\tools\genrb\rle.c" />
 			<File RelativePath="..\..\..\source\tools\genrb\ustr.c" />
-			<File RelativePath="..\..\..\source\tools\genrb\wrtjava.c" />
+			<File RelativePath="..\..\..\source\tools\genrb\wrtjava.cpp" />
 			<File RelativePath="..\..\..\source\tools\genrb\wrtxml.cpp" />
 		</Filter>
 		<Filter

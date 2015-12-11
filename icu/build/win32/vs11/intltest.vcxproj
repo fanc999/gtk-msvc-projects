@@ -184,6 +184,7 @@
     <ClCompile Include="..\..\..\source\test\intltest\currcoll.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\dadrcal.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\dadrfmt.cpp" />
+    <ClCompile Include="..\..\..\source\test\intltest\datadrivennumberformattestsuite.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\dcfmapts.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\dcfmtest.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\decoll.cpp" />
@@ -229,9 +230,12 @@
     <ClCompile Include="..\..\..\source\test\intltest\nmfmtrt.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\normconf.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\nptrans.cpp" />
+    <ClCompile Include="..\..\..\source\test\intltest\numberformattesttuple.cpp" />
+    <ClCompile Include="..\..\..\source\test\intltest\numberformat2test.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\numfmtspectest.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\numfmtst.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\numrgts.cpp" />
+    <ClCompile Include="..\..\..\source\test\intltest\pluralmaptest.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\plurfmts.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\plurults.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\pptest.cpp" />

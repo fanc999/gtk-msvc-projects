@@ -16,15 +16,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\tools\genrb\errmsg.c"><Filter>Sources</Filter></ClCompile>
-    <ClCompile Include="..\..\..\source\tools\genrb\genrb.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\genrb\genrb.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\tools\genrb\parse.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\tools\genrb\prscmnts.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\tools\genrb\rbutil.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\tools\genrb\read.c"><Filter>Sources</Filter></ClCompile>
-    <ClCompile Include="..\..\..\source\tools\genrb\reslist.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\genrb\reslist.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\tools\genrb\rle.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\tools\genrb\ustr.c"><Filter>Sources</Filter></ClCompile>
-    <ClCompile Include="..\..\..\source\tools\genrb\wrtjava.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\genrb\wrtjava.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\tools\genrb\wrtxml.cpp"><Filter>Sources</Filter></ClCompile>
   </ItemGroup>
 </Project>

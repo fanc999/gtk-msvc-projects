@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="icu-version-paths.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <DbgFlag>_DEBUG</DbgFlag>
+    <RelFlag>NDEBUG</RelFlag>
+    <ICUTEST_Defines>T_CTEST_IMPLEMENTATION</ICUTEST_Defines>
+    <Common_Inc_Dir>..\..\..\include;..\..\..\source\common</Common_Inc_Dir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>icubuilddefinesprops</_PropertySheetDisplayName>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformName)\bin\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(PlatformName)\obj\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(Common_Inc_Dir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4244;4307;4308;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/d2Zi+ %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="DbgFlag">
+      <Value>$(DbgFlag)</Value>
+    </BuildMacro>
+    <BuildMacro Include="RelFlag">
+      <Value>$(RelFlag)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ICUTEST_Defines">
+      <Value>$(ICUTEST_Defines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="Common_Inc_Dir">
+      <Value>$(Common_Inc_Dir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

@@ -158,15 +158,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\tools\genrb\errmsg.c" />
-    <ClCompile Include="..\..\..\source\tools\genrb\genrb.c" />
+    <ClCompile Include="..\..\..\source\tools\genrb\genrb.cpp" />
     <ClCompile Include="..\..\..\source\tools\genrb\parse.cpp" />
     <ClCompile Include="..\..\..\source\tools\genrb\prscmnts.cpp" />
     <ClCompile Include="..\..\..\source\tools\genrb\rbutil.c" />
     <ClCompile Include="..\..\..\source\tools\genrb\read.c" />
-    <ClCompile Include="..\..\..\source\tools\genrb\reslist.c" />
+    <ClCompile Include="..\..\..\source\tools\genrb\reslist.cpp" />
     <ClCompile Include="..\..\..\source\tools\genrb\rle.c" />
     <ClCompile Include="..\..\..\source\tools\genrb\ustr.c" />
-    <ClCompile Include="..\..\..\source\tools\genrb\wrtjava.c" />
+    <ClCompile Include="..\..\..\source\tools\genrb\wrtjava.cpp" />
     <ClCompile Include="..\..\..\source\tools\genrb\wrtxml.cpp" />
   </ItemGroup>
   <ItemGroup>

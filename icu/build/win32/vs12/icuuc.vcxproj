@@ -167,6 +167,7 @@
     <ClCompile Include="..\..\..\source\common\dictionarydata.cpp" />
     <ClCompile Include="..\..\..\source\common\dtintrv.cpp" />
     <ClCompile Include="..\..\..\source\common\errorcode.cpp" />
+    <ClCompile Include="..\..\..\source\common\filteredbrk.cpp" />
     <ClCompile Include="..\..\..\source\common\filterednormalizer2.cpp" />
     <ClCompile Include="..\..\..\source\common\icudataver.c" />
     <ClCompile Include="..\..\..\source\common\icuplug.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="..\..\..\source\common\normlzr.cpp" />
     <ClCompile Include="..\..\..\source\common\parsepos.cpp" />
     <ClCompile Include="..\..\..\source\common\patternprops.cpp" />
+    <ClCompile Include="..\..\..\source\common\pluralmap.cpp" />
     <ClCompile Include="..\..\..\source\common\propname.cpp" />
     <ClCompile Include="..\..\..\source\common\propsvec.c" />
     <ClCompile Include="..\..\..\source\common\punycode.cpp" />
@@ -482,6 +484,20 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\errorcode.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\source\common\unicode\filteredbrk.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Filename)%(Extension)...</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>

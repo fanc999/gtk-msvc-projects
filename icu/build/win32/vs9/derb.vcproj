@@ -150,7 +150,7 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
-			<File RelativePath="..\..\..\source\tools\genrb\derb.c" />
+			<File RelativePath="..\..\..\source\tools\genrb\derb.cpp" />
 		</Filter>
 		<Filter
 			Name="Headers"

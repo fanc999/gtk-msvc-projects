@@ -6,7 +6,7 @@
     <VSVer>10</VSVer>
     <GlibEtcInstallRoot>$(SolutionDir)\..\..\vs$(VSVer)\$(Configuration)\$(Platform)</GlibEtcInstallRoot>
     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
-    <ICUVer>55</ICUVer>
+    <ICUVer>56</ICUVer>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>icuversionpathsprops</_PropertySheetDisplayName>

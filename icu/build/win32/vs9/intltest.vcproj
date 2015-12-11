@@ -181,6 +181,7 @@
 			<File RelativePath="..\..\..\source\test\intltest\currcoll.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\dadrcal.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\dadrfmt.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\datadrivennumberformattestsuite.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\dcfmapts.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\dcfmtest.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\decoll.cpp" />
@@ -226,9 +227,12 @@
 			<File RelativePath="..\..\..\source\test\intltest\nmfmtrt.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\normconf.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\nptrans.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\numberformattesttuple.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\numberformat2test.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\numfmtspectest.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\numfmtst.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\numrgts.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\pluralmaptest.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\plurfmts.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\plurults.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\pptest.cpp" />

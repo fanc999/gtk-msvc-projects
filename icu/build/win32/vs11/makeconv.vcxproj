@@ -155,7 +155,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\source\tools\makeconv\gencnvex.c" />
     <ClCompile Include="..\..\..\source\tools\makeconv\genmbcs.cpp" />
-    <ClCompile Include="..\..\..\source\tools\makeconv\makeconv.c" />
+    <ClCompile Include="..\..\..\source\tools\makeconv\makeconv.cpp" />
     <ClCompile Include="..\..\..\source\tools\makeconv\ucnvstat.c" />
   </ItemGroup>
   <ItemGroup>

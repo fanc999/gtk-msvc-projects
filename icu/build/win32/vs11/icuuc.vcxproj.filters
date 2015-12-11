@@ -34,6 +34,7 @@
     <ClCompile Include="..\..\..\source\common\dtintrv.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\errorcode.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\filterednormalizer2.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\common\filteredbrk.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\icudataver.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\icuplug.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\listformatter.cpp"><Filter>Sources</Filter></ClCompile>
@@ -52,6 +53,7 @@
     <ClCompile Include="..\..\..\source\common\normlzr.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\parsepos.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\patternprops.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\common\pluralmap.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\propname.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\propsvec.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\punycode.cpp"><Filter>Sources</Filter></ClCompile>
@@ -208,6 +210,7 @@
     <CustomBuild Include="..\..\..\source\common\unicode\dtintrv.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\enumset.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\errorcode.h"><Filter>Resource Files</Filter></CustomBuild>
+	<CustomBuild Include="..\..\..\source\common\unicode\filteredbrk.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\icudataver.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\icuplug.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\idna.h"><Filter>Resource Files</Filter></CustomBuild>

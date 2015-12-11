@@ -17,7 +17,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\source\tools\makeconv\gencnvex.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\tools\makeconv\genmbcs.cpp"><Filter>Sources</Filter></ClCompile>
-    <ClCompile Include="..\..\..\source\tools\makeconv\makeconv.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\makeconv\makeconv.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\tools\makeconv\ucnvstat.c"><Filter>Sources</Filter></ClCompile>
   </ItemGroup>
 </Project>

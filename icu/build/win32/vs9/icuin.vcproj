@@ -146,6 +146,7 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
+			<File RelativePath="..\..\..\source\i18n\affixpatternparser.cpp" />
 			<File RelativePath="..\..\..\source\i18n\alphaindex.cpp" />
 			<File RelativePath="..\..\..\source\i18n\anytrans.cpp" />
 			<File RelativePath="..\..\..\source\i18n\astro.cpp" />
@@ -201,7 +202,14 @@
 			<File RelativePath="..\..\..\source\i18n\decfmtst.cpp" />
 			<File RelativePath="..\..\..\source\i18n\decimalformatpattern.cpp" />
 			<File RelativePath="..\..\..\source\i18n\decimfmt.cpp" />
+			<File RelativePath="..\..\..\source\i18n\decimfmtimpl.cpp" />
 			<File RelativePath="..\..\..\source\i18n\decNumber.c" />
+			<File RelativePath="..\..\..\source\i18n\digitaffix.cpp" />
+			<File RelativePath="..\..\..\source\i18n\digitaffixesandpadding.cpp" />
+			<File RelativePath="..\..\..\source\i18n\digitformatter.cpp" />
+			<File RelativePath="..\..\..\source\i18n\digitgrouping.cpp" />
+			<File RelativePath="..\..\..\source\i18n\digitinterval.cpp" />
+			<File RelativePath="..\..\..\source\i18n\digitlst.cpp" />
 			<File RelativePath="..\..\..\source\i18n\digitlst.cpp" />
 			<File RelativePath="..\..\..\source\i18n\dtfmtsym.cpp" />
 			<File RelativePath="..\..\..\source\i18n\dtitvfmt.cpp" />
@@ -210,7 +218,6 @@
 			<File RelativePath="..\..\..\source\i18n\dtrule.cpp" />
 			<File RelativePath="..\..\..\source\i18n\esctrn.cpp" />
 			<File RelativePath="..\..\..\source\i18n\ethpccal.cpp" />
-			<File RelativePath="..\..\..\source\i18n\filteredbrk.cpp" />
 			<File RelativePath="..\..\..\source\i18n\fmtable.cpp" />
 			<File RelativePath="..\..\..\source\i18n\fmtable_cnv.cpp" />
 			<File RelativePath="..\..\..\source\i18n\format.cpp" />
@@ -240,9 +247,11 @@
 			<File RelativePath="..\..\..\source\i18n\numfmt.cpp" />
 			<File RelativePath="..\..\..\source\i18n\numsys.cpp" />
 			<File RelativePath="..\..\..\source\i18n\olsontz.cpp" />
+			<File RelativePath="..\..\..\source\i18n\pluralaffix.cpp" />
 			<File RelativePath="..\..\..\source\i18n\persncal.cpp" />
 			<File RelativePath="..\..\..\source\i18n\plurfmt.cpp" />
 			<File RelativePath="..\..\..\source\i18n\plurrule.cpp" />
+			<File RelativePath="..\..\..\source\i18n\precision.cpp" />
 			<File RelativePath="..\..\..\source\i18n\quant.cpp" />
 			<File RelativePath="..\..\..\source\i18n\quantityformatter.cpp" />
 			<File RelativePath="..\..\..\source\i18n\rbnf.cpp" />
@@ -269,6 +278,7 @@
 			<File RelativePath="..\..\..\source\i18n\selfmt.cpp" />
 			<File RelativePath="..\..\..\source\i18n\sharedbreakiterator.cpp" />
 			<File RelativePath="..\..\..\source\i18n\simpletz.cpp" />
+			<File RelativePath="..\..\..\source\i18n\smallintformatter.cpp" />
 			<File RelativePath="..\..\..\source\i18n\smpdtfmt.cpp" />
 			<File RelativePath="..\..\..\source\i18n\smpdtfst.cpp" />
 			<File RelativePath="..\..\..\source\i18n\sortkey.cpp" />
@@ -325,6 +335,8 @@
 			<File RelativePath="..\..\..\source\i18n\utf8collationiterator.cpp" />
 			<File RelativePath="..\..\..\source\i18n\utmscale.c" />
 			<File RelativePath="..\..\..\source\i18n\utrans.cpp" />
+			<File RelativePath="..\..\..\source\i18n\valueformatter.cpp" />
+			<File RelativePath="..\..\..\source\i18n\visibledigits.cpp" />
 			<File RelativePath="..\..\..\source\i18n\vtzone.cpp" />
 			<File RelativePath="..\..\..\source\i18n\vzone.cpp" />
 			<File RelativePath="..\..\..\source\i18n\windtfmt.cpp" />

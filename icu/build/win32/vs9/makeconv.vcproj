@@ -152,7 +152,7 @@
 			>
 			<File RelativePath="..\..\..\source\tools\makeconv\gencnvex.c" />
 			<File RelativePath="..\..\..\source\tools\makeconv\genmbcs.cpp" />
-			<File RelativePath="..\..\..\source\tools\makeconv\makeconv.c" />
+			<File RelativePath="..\..\..\source\tools\makeconv\makeconv.cpp" />
 			<File RelativePath="..\..\..\source\tools\makeconv\ucnvstat.c" />
 		</Filter>
 		<Filter

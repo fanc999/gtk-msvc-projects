@@ -15,6 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\source\tools\genrb\derb.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\genrb\derb.cpp"><Filter>Sources</Filter></ClCompile>
   </ItemGroup>
 </Project>
