@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="srclib"
+	ProjectGUID="{328D31C9-C8AD-40B1-8C8B-64319EF4CE77}"
+	RootNamespace="srclib"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="4"
+			InheritedPropertySheets=".\iconv-build-defines.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="$(IconvIncludeDirs)"
+				PreprocessorDefinitions="_DEBUG;$(IconvDefines)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="4"
+			InheritedPropertySheets=".\iconv-build-defines.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="$(IconvIncludeDirs)"
+				PreprocessorDefinitions="$(IconvDefines)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			ConfigurationType="4"
+			InheritedPropertySheets=".\iconv-build-defines.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="$(IconvIncludeDirs)"
+				PreprocessorDefinitions="_DEBUG;$(IconvDefines)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			ConfigurationType="4"
+			InheritedPropertySheets=".\iconv-build-defines.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="$(IconvIncludeDirs)"
+				PreprocessorDefinitions="$(IconvDefines)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Sources"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File RelativePath="..\..\..\srclib\allocator.c" />
+			<File RelativePath="..\..\..\srclib\areadlink.c" />
+			<File RelativePath="..\..\..\srclib\c-ctype.c" />
+			<File RelativePath="..\..\..\srclib\canonicalize-lgpl.c" />
+			<File RelativePath="..\..\..\srclib\careadlinkat.c" />
+			<File RelativePath="..\..\..\srclib\error.c" />
+			<File RelativePath="..\..\..\srclib\lstat.c" />
+			<File RelativePath="..\..\..\srclib\malloca.c" />
+			<File RelativePath="..\..\..\srclib\memmove.c" />
+			<File RelativePath="..\..\..\srclib\progname.c" />
+			<File RelativePath="..\..\..\srclib\progreloc.c" />
+			<File RelativePath="..\..\..\srclib\read.c" />
+			<File RelativePath="..\..\..\srclib\readlink.c" />
+			<File RelativePath="..\..\..\srclib\relocatable.c" />
+			<File RelativePath="..\..\..\srclib\safe-read.c" />
+			<File RelativePath="..\..\..\srclib\setenv.c" />
+			<File RelativePath="..\..\..\srclib\sigprocmask.c" />
+			<File RelativePath="..\..\..\srclib\stat.c" />
+			<File RelativePath="..\..\..\srclib\stdio-write.c" />
+			<File RelativePath="..\..\..\srclib\strerror-override.c" />
+			<File RelativePath="..\..\..\srclib\strerror.c" />
+			<File RelativePath="..\..\..\srclib\uniwidth\width.c" />
+			<File RelativePath="..\..\..\srclib\xmalloc.c" />
+			<File RelativePath="..\..\..\srclib\xreadlink.c" />
+			<File RelativePath="..\..\..\srclib\xstrdup.c" />
+		</Filter>
+		<Filter
+			Name="Headers"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

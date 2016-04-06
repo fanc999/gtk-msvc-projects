@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="iconv-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <BinDir>$(SolutionDir)$(Configuration)\$(Platform)\bin</BinDir>
+    <IconvDoInstall>
+mkdir $(CopyDir)
+mkdir $(CopyDir)\bin
+
+copy $(BinDir)\charset.dll $(CopyDir)\bin
+copy $(BinDir)\charset.pdb $(CopyDir)\bin
+copy $(BinDir)\iconv.dll $(CopyDir)\bin
+copy $(BinDir)\iconv.pdb $(CopyDir)\bin
+copy $(BinDir)\iconv.exe $(CopyDir)\bin
+
+mkdir $(CopyDir)\include
+
+copy ..\..\..\libcharset\include\msvc\libcharset.h $(CopyDir)\include
+copy ..\..\..\libcharset\include\msvc\localcharset.h $(CopyDir)\include
+copy ..\..\..\include\msvc\iconv.h $(CopyDir)\include
+
+mkdir $(CopyDir)\lib
+
+copy $(BinDir)\charset.lib $(CopyDir)\lib
+copy $(BinDir)\iconv.lib $(CopyDir)\lib
+</IconvDoInstall>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>iconvinstallprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemGroup>
+    <BuildMacro Include="BinDir">
+      <Value>$(BinDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="IconvDoInstall">
+      <Value>$(IconvDoInstall)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
