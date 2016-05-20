@@ -196,6 +196,7 @@
 			<File RelativePath="..\..\..\source\test\cintltst\cnumtst.c" />
 			<File RelativePath="..\..\..\source\test\cintltst\cpluralrulestest.c" />
 			<File RelativePath="..\..\..\source\test\cintltst\cposxtst.c" />
+			<File RelativePath="..\..\..\source\test\cintltst\crelativedateformattest.c" />
 			<File RelativePath="..\..\..\source\test\cintltst\crestst.c" />
 			<File RelativePath="..\..\..\source\test\cintltst\creststn.c" />
 			<File RelativePath="..\..\..\source\test\cintltst\cstrcase.c" />

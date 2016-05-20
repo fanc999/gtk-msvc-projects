@@ -199,6 +199,7 @@
     <ClCompile Include="..\..\..\source\test\cintltst\cnumtst.c" />
     <ClCompile Include="..\..\..\source\test\cintltst\cpluralrulestest.c" />
     <ClCompile Include="..\..\..\source\test\cintltst\cposxtst.c" />
+    <ClCompile Include="..\..\..\source\test\cintltst\crelativedateformattest.c" />
     <ClCompile Include="..\..\..\source\test\cintltst\crestst.c" />
     <ClCompile Include="..\..\..\source\test\cintltst\creststn.c" />
     <ClCompile Include="..\..\..\source\test\cintltst\cstrcase.c" />

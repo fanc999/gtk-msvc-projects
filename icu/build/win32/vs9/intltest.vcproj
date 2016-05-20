@@ -240,6 +240,7 @@
 			<File RelativePath="..\..\..\source\test\intltest\quantityformattertest.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\rbbiapts.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\rbbitst.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\rbbimonkeytest.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\regcoll.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\regextst.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\regiontst.cpp" />
@@ -251,7 +252,7 @@
 			<File RelativePath="..\..\..\source\test\intltest\sdtfmtts.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\selfmts.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\sfwdchit.cpp" />
-			<File RelativePath="..\..\..\source\test\intltest\simplepatternformattertest.cpp" />
+			<File RelativePath="..\..\..\source\test\intltest\simpleformattertest.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\simplethread.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\srchtest.cpp" />
 			<File RelativePath="..\..\..\source\test\intltest\ssearch.cpp" />

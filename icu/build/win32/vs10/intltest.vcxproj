@@ -243,6 +243,7 @@
     <ClCompile Include="..\..\..\source\test\intltest\quantityformattertest.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\rbbiapts.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\rbbitst.cpp" />
+    <ClCompile Include="..\..\..\source\test\intltest\rbbimonkeytest.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\regcoll.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\regextst.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\regiontst.cpp" />
@@ -254,7 +255,7 @@
     <ClCompile Include="..\..\..\source\test\intltest\sdtfmtts.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\selfmts.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\sfwdchit.cpp" />
-    <ClCompile Include="..\..\..\source\test\intltest\simplepatternformattertest.cpp" />
+    <ClCompile Include="..\..\..\source\test\intltest\simpleformattertest.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\simplethread.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\srchtest.cpp" />
     <ClCompile Include="..\..\..\source\test\intltest\ssearch.cpp" />

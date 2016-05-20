@@ -96,6 +96,7 @@
     <ClCompile Include="..\..\..\source\test\intltest\punyref.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\test\intltest\quantityformattertest.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\test\intltest\rbbiapts.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\rbbimonkeytest.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\test\intltest\rbbitst.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\test\intltest\regcoll.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\test\intltest\regextst.cpp"><Filter>Sources</Filter></ClCompile>
@@ -108,7 +109,7 @@
     <ClCompile Include="..\..\..\source\test\intltest\sdtfmtts.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\test\intltest\selfmts.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\test\intltest\sfwdchit.cpp"><Filter>Sources</Filter></ClCompile>
-    <ClCompile Include="..\..\..\source\test\intltest\simplepatternformattertest.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\intltest\simpleformattertest.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\test\intltest\simplethread.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\test\intltest\srchtest.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\test\intltest\ssearch.cpp"><Filter>Sources</Filter></ClCompile>

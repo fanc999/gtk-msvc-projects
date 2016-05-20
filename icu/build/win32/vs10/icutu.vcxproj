@@ -167,7 +167,7 @@
     <ClCompile Include="..\..\..\source\tools\toolutil\ppucd.cpp" />
     <ClCompile Include="..\..\..\source\tools\toolutil\swapimpl.cpp" />
     <ClCompile Include="..\..\..\source\tools\toolutil\toolutil.cpp" />
-    <ClCompile Include="..\..\..\source\tools\toolutil\ucbuf.c" />
+    <ClCompile Include="..\..\..\source\tools\toolutil\ucbuf.cpp" />
     <ClCompile Include="..\..\..\source\tools\toolutil\ucln_tu.cpp" />
     <ClCompile Include="..\..\..\source\tools\toolutil\ucm.c" />
     <ClCompile Include="..\..\..\source\tools\toolutil\ucmstate.c" />

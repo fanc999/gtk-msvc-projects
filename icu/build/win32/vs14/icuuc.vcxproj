@@ -161,6 +161,7 @@
     <ClCompile Include="..\..\..\source\common\chariter.cpp" />
     <ClCompile Include="..\..\..\source\common\charstr.cpp" />
     <ClCompile Include="..\..\..\source\common\cmemory.c" />
+    <ClCompile Include="..\..\..\source\common\cstr.cpp" />
     <ClCompile Include="..\..\..\source\common\cstring.c" />
     <ClCompile Include="..\..\..\source\common\cwchar.c" />
     <ClCompile Include="..\..\..\source\common\dictbe.cpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="..\..\..\source\common\locavailable.cpp" />
     <ClCompile Include="..\..\..\source\common\locbased.cpp" />
     <ClCompile Include="..\..\..\source\common\locdispnames.cpp" />
+    <ClCompile Include="..\..\..\source\common\locdspnm.cpp" />
     <ClCompile Include="..\..\..\source\common\locid.cpp" />
     <ClCompile Include="..\..\..\source\common\loclikely.cpp" />
     <ClCompile Include="..\..\..\source\common\locmap.c" />
@@ -202,6 +204,7 @@
     <ClCompile Include="..\..\..\source\common\rbbitblb.cpp" />
     <ClCompile Include="..\..\..\source\common\resbund.cpp" />
     <ClCompile Include="..\..\..\source\common\resbund_cnv.cpp" />
+    <ClCompile Include="..\..\..\source\common\resource.cpp" />
     <ClCompile Include="..\..\..\source\common\ruleiter.cpp" />
     <ClCompile Include="..\..\..\source\common\schriter.cpp" />
     <ClCompile Include="..\..\..\source\common\serv.cpp" />
@@ -212,7 +215,7 @@
     <ClCompile Include="..\..\..\source\common\servrbf.cpp" />
     <ClCompile Include="..\..\..\source\common\servslkf.cpp" />
     <ClCompile Include="..\..\..\source\common\sharedobject.cpp" />
-    <ClCompile Include="..\..\..\source\common\simplepatternformatter.cpp" />
+    <ClCompile Include="..\..\..\source\common\simpleformatter.cpp" />
     <ClCompile Include="..\..\..\source\common\stringpiece.cpp" />
     <ClCompile Include="..\..\..\source\common\stringtriebuilder.cpp" />
     <ClCompile Include="..\..\..\source\common\uarrsort.c" />
@@ -256,6 +259,7 @@
     <ClCompile Include="..\..\..\source\common\ucnv_u7.c" />
     <ClCompile Include="..\..\..\source\common\ucnv_u8.c" />
     <ClCompile Include="..\..\..\source\common\ucol_swp.cpp" />
+    <ClCompile Include="..\..\..\source\common\ucurr.cpp" />
     <ClCompile Include="..\..\..\source\common\udata.cpp" />
     <ClCompile Include="..\..\..\source\common\udatamem.c" />
     <ClCompile Include="..\..\..\source\common\udataswp.c" />
@@ -293,7 +297,7 @@
     <ClCompile Include="..\..\..\source\common\uobject.cpp" />
     <ClCompile Include="..\..\..\source\common\uprops.cpp" />
     <ClCompile Include="..\..\..\source\common\uresbund.cpp" />
-    <ClCompile Include="..\..\..\source\common\uresdata.c" />
+    <ClCompile Include="..\..\..\source\common\uresdata.cpp" />
     <ClCompile Include="..\..\..\source\common\ures_cnv.c" />
     <ClCompile Include="..\..\..\source\common\uscript.c" />
     <ClCompile Include="..\..\..\source\common\uscript_props.cpp" />
@@ -568,6 +572,20 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\localpointer.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\source\common\unicode\locdspnm.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Filename)%(Extension)...</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
@@ -1029,7 +1047,35 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
     </CustomBuild>
+    <CustomBuild Include="..\..\..\source\common\unicode\ucurr.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+    </CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\udata.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\source\common\unicode\udisplaycontext.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Filename)%(Extension)...</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
@@ -1072,6 +1118,20 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\uiter.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Copying %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\source\common\unicode\uldnames.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(Filename)%(Extension)...</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy %(FullPath) ..\..\..\include\unicode\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\include\unicode\%(Filename)%(Extension);%(Outputs)</Outputs>

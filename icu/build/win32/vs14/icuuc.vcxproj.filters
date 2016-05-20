@@ -27,6 +27,7 @@
     <ClCompile Include="..\..\..\source\common\chariter.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\charstr.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\cmemory.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\common\cstr.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\cstring.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\cwchar.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\dictbe.cpp"><Filter>Sources</Filter></ClCompile>
@@ -68,6 +69,7 @@
     <ClCompile Include="..\..\..\source\common\rbbitblb.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\resbund.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\resbund_cnv.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\common\resource.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\ruleiter.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\schriter.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\serv.cpp"><Filter>Sources</Filter></ClCompile>
@@ -78,7 +80,7 @@
     <ClCompile Include="..\..\..\source\common\servrbf.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\servslkf.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\sharedobject.cpp"><Filter>Sources</Filter></ClCompile>
-    <ClCompile Include="..\..\..\source\common\simplepatternformatter.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\common\simpleformatter.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\stringpiece.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\stringtriebuilder.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\uarrsort.c"><Filter>Sources</Filter></ClCompile>
@@ -122,6 +124,7 @@
     <ClCompile Include="..\..\..\source\common\ucnvscsu.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\ucnvsel.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\ucol_swp.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\common\ucurr.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\udata.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\udatamem.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\udataswp.c"><Filter>Sources</Filter></ClCompile>
@@ -160,7 +163,7 @@
     <ClCompile Include="..\..\..\source\common\uprops.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\ures_cnv.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\uresbund.cpp"><Filter>Sources</Filter></ClCompile>
-    <ClCompile Include="..\..\..\source\common\uresdata.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\common\uresdata.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\usc_impl.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\uscript.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\common\uscript_props.cpp"><Filter>Sources</Filter></ClCompile>
@@ -216,6 +219,7 @@
     <CustomBuild Include="..\..\..\source\common\unicode\idna.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\listformatter.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\localpointer.h"><Filter>Resource Files</Filter></CustomBuild>
+    <CustomBuild Include="..\..\..\source\common\unicode\locdspnm.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\locid.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\messagepattern.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\normalizer2.h"><Filter>Resource Files</Filter></CustomBuild>
@@ -248,10 +252,13 @@
     <CustomBuild Include="..\..\..\source\common\unicode\ucnv_err.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\ucnvsel.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\uconfig.h"><Filter>Resource Files</Filter></CustomBuild>
+    <CustomBuild Include="..\..\..\source\common\unicode\ucurr.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\udata.h"><Filter>Resource Files</Filter></CustomBuild>
+    <CustomBuild Include="..\..\..\source\common\unicode\udisplaycontext.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\uenum.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\uidna.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\uiter.h"><Filter>Resource Files</Filter></CustomBuild>
+    <CustomBuild Include="..\..\..\source\common\unicode\uldnames.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\ulistformatter.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\uloc.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\common\unicode\umachine.h"><Filter>Resource Files</Filter></CustomBuild>

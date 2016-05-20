@@ -53,6 +53,7 @@
     <ClCompile Include="..\..\..\source\test\cintltst\cnumtst.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\test\cintltst\cpluralrulestest.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\test\cintltst\cposxtst.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\test\cintltst\crelativedateformattest.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\test\cintltst\crestst.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\test\cintltst\creststn.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\test\cintltst\cstrcase.c"><Filter>Sources</Filter></ClCompile>

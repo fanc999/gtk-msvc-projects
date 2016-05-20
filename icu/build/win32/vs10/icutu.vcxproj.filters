@@ -29,7 +29,7 @@
     <ClCompile Include="..\..\..\source\tools\toolutil\ppucd.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\tools\toolutil\swapimpl.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\tools\toolutil\toolutil.cpp"><Filter>Sources</Filter></ClCompile>
-    <ClCompile Include="..\..\..\source\tools\toolutil\ucbuf.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\tools\toolutil\ucbuf.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\tools\toolutil\ucln_tu.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\tools\toolutil\ucm.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\tools\toolutil\ucmstate.c"><Filter>Sources</Filter></ClCompile>

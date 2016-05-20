@@ -66,6 +66,7 @@
     <ClCompile Include="..\..\..\source\i18n\currunit.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\dangical.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\datefmt.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\i18n\dayperiodrules.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\dcfmtsym.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\decContext.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\decfmtst.cpp"><Filter>Sources</Filter></ClCompile>
@@ -101,7 +102,6 @@
     <ClCompile Include="..\..\..\source\i18n\inputext.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\islamcal.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\japancal.cpp"><Filter>Sources</Filter></ClCompile>
-    <ClCompile Include="..\..\..\source\i18n\locdspnm.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\measfmt.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\measunit.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\measure.cpp"><Filter>Sources</Filter></ClCompile>
@@ -149,6 +149,7 @@
     <ClCompile Include="..\..\..\source\i18n\smallintformatter.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\smpdtfmt.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\smpdtfst.cpp"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\source\i18n\standardplural.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\sortkey.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\strmatch.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\strrepl.cpp"><Filter>Sources</Filter></ClCompile>
@@ -177,7 +178,6 @@
     <ClCompile Include="..\..\..\source\i18n\ucol_sit.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\ucoleitr.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\ucsdet.cpp"><Filter>Sources</Filter></ClCompile>
-    <ClCompile Include="..\..\..\source\i18n\ucurr.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\udat.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\udateintervalformat.cpp"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\source\i18n\udatpg.cpp"><Filter>Sources</Filter></ClCompile>
@@ -242,7 +242,6 @@
     <CustomBuild Include="..\..\..\source\i18n\unicode\fpositer.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\i18n\unicode\gender.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\i18n\unicode\gregocal.h"><Filter>Resource Files</Filter></CustomBuild>
-    <CustomBuild Include="..\..\..\source\i18n\unicode\locdspnm.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\i18n\unicode\measfmt.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\i18n\unicode\measunit.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\i18n\unicode\measure.h"><Filter>Resource Files</Filter></CustomBuild>
@@ -277,15 +276,12 @@
     <CustomBuild Include="..\..\..\source\i18n\unicode\ucol.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\i18n\unicode\ucoleitr.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\i18n\unicode\ucsdet.h"><Filter>Resource Files</Filter></CustomBuild>
-    <CustomBuild Include="..\..\..\source\i18n\unicode\ucurr.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\i18n\unicode\udat.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\i18n\unicode\udateintervalformat.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\i18n\unicode\udatpg.h"><Filter>Resource Files</Filter></CustomBuild>
-    <CustomBuild Include="..\..\..\source\i18n\unicode\udisplaycontext.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\i18n\unicode\ufieldpositer.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\i18n\unicode\uformattable.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\i18n\unicode\ugender.h"><Filter>Resource Files</Filter></CustomBuild>
-    <CustomBuild Include="..\..\..\source\i18n\unicode\uldnames.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\i18n\unicode\ulocdata.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\i18n\unicode\umsg.h"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\..\..\source\i18n\unicode\unirepl.h"><Filter>Resource Files</Filter></CustomBuild>

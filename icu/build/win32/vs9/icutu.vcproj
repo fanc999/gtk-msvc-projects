@@ -164,7 +164,7 @@
 			<File RelativePath="..\..\..\source\tools\toolutil\ppucd.cpp" />
 			<File RelativePath="..\..\..\source\tools\toolutil\swapimpl.cpp" />
 			<File RelativePath="..\..\..\source\tools\toolutil\toolutil.cpp" />
-			<File RelativePath="..\..\..\source\tools\toolutil\ucbuf.c" />
+			<File RelativePath="..\..\..\source\tools\toolutil\ucbuf.cpp" />
 			<File RelativePath="..\..\..\source\tools\toolutil\ucln_tu.cpp" />
 			<File RelativePath="..\..\..\source\tools\toolutil\ucm.c" />
 			<File RelativePath="..\..\..\source\tools\toolutil\ucmstate.c" />

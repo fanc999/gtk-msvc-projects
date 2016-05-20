@@ -158,6 +158,7 @@
 			<File RelativePath="..\..\..\source\common\chariter.cpp" />
 			<File RelativePath="..\..\..\source\common\charstr.cpp" />
 			<File RelativePath="..\..\..\source\common\cmemory.c" />
+			<File RelativePath="..\..\..\source\common\cstr.cpp" />
 			<File RelativePath="..\..\..\source\common\cstring.c" />
 			<File RelativePath="..\..\..\source\common\cwchar.c" />
 			<File RelativePath="..\..\..\source\common\dictbe.cpp" />
@@ -173,6 +174,7 @@
 			<File RelativePath="..\..\..\source\common\locavailable.cpp" />
 			<File RelativePath="..\..\..\source\common\locbased.cpp" />
 			<File RelativePath="..\..\..\source\common\locdispnames.cpp" />
+			<File RelativePath="..\..\..\source\common\locdspnm.cpp" />
 			<File RelativePath="..\..\..\source\common\locid.cpp" />
 			<File RelativePath="..\..\..\source\common\loclikely.cpp" />
 			<File RelativePath="..\..\..\source\common\locmap.c" />
@@ -199,6 +201,7 @@
 			<File RelativePath="..\..\..\source\common\rbbitblb.cpp" />
 			<File RelativePath="..\..\..\source\common\resbund.cpp" />
 			<File RelativePath="..\..\..\source\common\resbund_cnv.cpp" />
+			<File RelativePath="..\..\..\source\common\resource.cpp" />
 			<File RelativePath="..\..\..\source\common\ruleiter.cpp" />
 			<File RelativePath="..\..\..\source\common\schriter.cpp" />
 			<File RelativePath="..\..\..\source\common\serv.cpp" />
@@ -209,7 +212,7 @@
 			<File RelativePath="..\..\..\source\common\servrbf.cpp" />
 			<File RelativePath="..\..\..\source\common\servslkf.cpp" />
 			<File RelativePath="..\..\..\source\common\sharedobject.cpp" />
-			<File RelativePath="..\..\..\source\common\simplepatternformatter.cpp" />
+			<File RelativePath="..\..\..\source\common\simpleformatter.cpp" />
 			<File RelativePath="..\..\..\source\common\stringpiece.cpp" />
 			<File RelativePath="..\..\..\source\common\stringtriebuilder.cpp" />
 			<File RelativePath="..\..\..\source\common\uarrsort.c" />
@@ -253,6 +256,7 @@
 			<File RelativePath="..\..\..\source\common\ucnvscsu.c" />
 			<File RelativePath="..\..\..\source\common\ucnvsel.cpp" />
 			<File RelativePath="..\..\..\source\common\ucol_swp.cpp" />
+			<File RelativePath="..\..\..\source\common\ucurr.cpp" />
 			<File RelativePath="..\..\..\source\common\udata.cpp" />
 			<File RelativePath="..\..\..\source\common\udatamem.c" />
 			<File RelativePath="..\..\..\source\common\udataswp.c" />
@@ -291,7 +295,7 @@
 			<File RelativePath="..\..\..\source\common\uprops.cpp" />
 			<File RelativePath="..\..\..\source\common\ures_cnv.c" />
 			<File RelativePath="..\..\..\source\common\uresbund.cpp" />
-			<File RelativePath="..\..\..\source\common\uresdata.c" />
+			<File RelativePath="..\..\..\source\common\uresdata.cpp" />
 			<File RelativePath="..\..\..\source\common\usc_impl.c" />
 			<File RelativePath="..\..\..\source\common\uscript.c" />
 			<File RelativePath="..\..\..\source\common\uscript_props.cpp" />
@@ -440,6 +444,12 @@
 				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
 			</File>
 			<File RelativePath="..\..\..\source\common\unicode\localpointer.h">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\source\common\unicode\locdspnm.h">
 				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
 				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
 				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
@@ -637,7 +647,19 @@
 				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
 				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
 			</File>
+			<File RelativePath="..\..\..\source\common\unicode\ucurr.h">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+			</File>
 			<File RelativePath="..\..\..\source\common\unicode\udata.h">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\source\common\unicode\udisplaycontext.h">
 				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
 				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
 				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
@@ -656,6 +678,12 @@
 				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
 			</File>
 			<File RelativePath="..\..\..\source\common\unicode\uiter.h">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\..\source\common\unicode\uldnames.h">
 				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
 				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
 				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying $(InputFileName)..." CommandLine="copy $(InputPath) ..\..\..\include\unicode\$(InputFileName)" Outputs="..\..\..\include\unicode\$(InputFileName)" /></FileConfiguration>
