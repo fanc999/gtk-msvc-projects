@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="pcre-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <CopyConfigH>copy ..\..\..\config.h.win32 ..\..\..\config.h</CopyConfigH>
+    <CopyPcreH>copy ..\..\..\pcre.h.win32 ..\..\..\pcre.h</CopyPcreH>
+    <CopyPcreCppArgH>copy ..\..\..\pcrecpparg.h.win32 ..\..\..\pcrecpparg.h</CopyPcreCppArgH>
+    <CopyPcreStringpieceH>copy ..\..\..\pcre_stringpiece.h.win32 ..\..\..\pcre_stringpiece.h</CopyPcreStringpieceH>
+    <CopyPcreChartablesC>copy ..\..\..\pcre_chartables.c.dist ..\..\..\pcre_chartables.c</CopyPcreChartablesC>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>pcregensrcsprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="CopyConfigH">
+      <Value>$(CopyConfigH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CopyPcreH">
+      <Value>$(CopyPcreH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CopyPcreCppArgH">
+      <Value>$(CopyPcreCppArgH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CopyPcreStringpieceH">
+      <Value>$(CopyPcreStringpieceH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CopyPcreChartablesC">
+      <Value>$(CopyPcreChartablesC)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
