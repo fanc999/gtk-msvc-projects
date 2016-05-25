@@ -1,0 +1,45 @@
+From eba362af5ea5af5ca7f36082a58a807ed0cd140f Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Wed, 25 May 2016 13:06:00 +0800
+Subject: [PATCH] output/codeview.c: Fix for C89 compilers
+
+This ensures that the latest nasm release is still buildable on pre-2013
+Visual Studio.
+---
+ output/codeview.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/output/codeview.c b/output/codeview.c
+index f9750bf..210df8b 100644
+--- a/output/codeview.c
++++ b/output/codeview.c
+@@ -364,6 +364,8 @@ static void register_reloc(struct coff_Section *const sect,
+ {
+     struct coff_Reloc *r;
+     struct coff_Section *sec;
++    int i;
++    uint32_t j;
+ 
+     r = *sect->tail = nasm_malloc(sizeof(struct coff_Reloc));
+     sect->tail = &r->next;
+@@ -375,7 +377,7 @@ static void register_reloc(struct coff_Section *const sect,
+     r->type = type;
+ 
+     r->symbol = 0;
+-    for (int i = 0; i < coff_nsects; i++) {
++    for (i = 0; i < coff_nsects; i++) {
+         sec = coff_sects[i];
+         if (!strcmp(sym, sec->name)) {
+             return;
+@@ -384,7 +386,7 @@ static void register_reloc(struct coff_Section *const sect,
+     }
+ 
+     saa_rewind(coff_syms);
+-    for (uint32_t i = 0; i < coff_nsyms; i++) {
++    for (j = 0; j < coff_nsyms; j++) {
+         struct coff_Symbol *s = saa_rstruct(coff_syms);
+         r->symbol++;
+         if (s->strpos == -1 && !strcmp(sym, s->name)) {
+-- 
+2.8.1.windows.1
+
