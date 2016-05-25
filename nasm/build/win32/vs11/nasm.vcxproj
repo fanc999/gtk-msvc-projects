@@ -170,8 +170,10 @@
     <ClCompile Include="..\..\..\labels.c" />
     <ClCompile Include="..\..\..\listing.c" />
     <ClCompile Include="..\..\..\macros.c" />
+    <ClCompile Include="..\..\..\md5c.c" />
     <ClCompile Include="..\..\..\nasm.c" />
     <ClCompile Include="..\..\..\nasmlib.c" />
+    <ClCompile Include="..\..\..\output\codeview.c" />
     <ClCompile Include="..\..\..\output\nulldbg.c" />
     <ClCompile Include="..\..\..\output\nullout.c" />
     <ClCompile Include="..\..\..\output\outaout.c" />
@@ -186,8 +188,7 @@
     <ClCompile Include="..\..\..\output\outform.c" />
     <ClCompile Include="..\..\..\output\outieee.c" />
     <ClCompile Include="..\..\..\output\outlib.c" />
-    <ClCompile Include="..\..\..\output\outmac32.c" />
-    <ClCompile Include="..\..\..\output\outmac64.c" />
+    <ClCompile Include="..\..\..\output\outmacho.c" />
     <ClCompile Include="..\..\..\output\outobj.c" />
     <ClCompile Include="..\..\..\output\outrdf2.c" />
     <ClCompile Include="..\..\..\parser.c" />
@@ -197,6 +198,7 @@
     <ClCompile Include="..\..\..\quote.c" />
     <ClCompile Include="..\..\..\raa.c" />
     <ClCompile Include="..\..\..\rbtree.c" />
+    <ClCompile Include="..\..\..\realpath.c" />
     <ClCompile Include="..\..\..\regflags.c" />
     <ClCompile Include="..\..\..\regvals.c" />
     <ClCompile Include="..\..\..\saa.c" />

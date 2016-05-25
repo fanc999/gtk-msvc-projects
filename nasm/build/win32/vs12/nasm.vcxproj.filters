@@ -30,8 +30,10 @@
     <ClCompile Include="..\..\..\labels.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\listing.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\macros.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\md5c.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\nasm.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\nasmlib.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\output\codeview.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\output\nulldbg.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\output\nullout.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\output\outaout.c"><Filter>Sources</Filter></ClCompile>
@@ -46,8 +48,7 @@
     <ClCompile Include="..\..\..\output\outform.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\output\outieee.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\output\outlib.c"><Filter>Sources</Filter></ClCompile>
-    <ClCompile Include="..\..\..\output\outmac32.c"><Filter>Sources</Filter></ClCompile>
-    <ClCompile Include="..\..\..\output\outmac64.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\output\outmacho.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\output\outobj.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\output\outrdf2.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\parser.c"><Filter>Sources</Filter></ClCompile>
@@ -57,6 +58,7 @@
     <ClCompile Include="..\..\..\quote.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\raa.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\rbtree.c"><Filter>Sources</Filter></ClCompile>
+    <ClCompile Include="..\..\..\realpath.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\regflags.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\regvals.c"><Filter>Sources</Filter></ClCompile>
     <ClCompile Include="..\..\..\saa.c"><Filter>Sources</Filter></ClCompile>

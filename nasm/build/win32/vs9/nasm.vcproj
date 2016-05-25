@@ -169,8 +169,10 @@
 			<File RelativePath="..\..\..\labels.c" />
 			<File RelativePath="..\..\..\listing.c" />
 			<File RelativePath="..\..\..\macros.c" />
+			<File RelativePath="..\..\..\md5c.c" />
 			<File RelativePath="..\..\..\nasm.c" />
 			<File RelativePath="..\..\..\nasmlib.c" />
+			<File RelativePath="..\..\..\output\codeview.c" />
 			<File RelativePath="..\..\..\output\nulldbg.c" />
 			<File RelativePath="..\..\..\output\nullout.c" />
 			<File RelativePath="..\..\..\output\outaout.c" />
@@ -185,8 +187,7 @@
 			<File RelativePath="..\..\..\output\outform.c" />
 			<File RelativePath="..\..\..\output\outieee.c" />
 			<File RelativePath="..\..\..\output\outlib.c" />
-			<File RelativePath="..\..\..\output\outmac32.c" />
-			<File RelativePath="..\..\..\output\outmac64.c" />
+			<File RelativePath="..\..\..\output\outmacho.c" />
 			<File RelativePath="..\..\..\output\outobj.c" />
 			<File RelativePath="..\..\..\output\outrdf2.c" />
 			<File RelativePath="..\..\..\parser.c" />
@@ -196,6 +197,7 @@
 			<File RelativePath="..\..\..\quote.c" />
 			<File RelativePath="..\..\..\raa.c" />
 			<File RelativePath="..\..\..\rbtree.c" />
+			<File RelativePath="..\..\..\realpath.c" />
 			<File RelativePath="..\..\..\regflags.c" />
 			<File RelativePath="..\..\..\regvals.c" />
 			<File RelativePath="..\..\..\saa.c" />

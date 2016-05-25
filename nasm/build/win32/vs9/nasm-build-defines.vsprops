@@ -10,6 +10,6 @@
 	<Tool
 		Name="VCCLCompilerTool"
 		AdditionalIncludeDirectories="..\..\..;..\..\..\inttypes"
-		PreprocessorDefinitions="HAVE__SNPRINTF;HAVE_VSNPRINTF"
+		PreprocessorDefinitions="HAVE__SNPRINTF;HAVE_VSNPRINTF;HAVE__FULLPATH"
 	/>
 </VisualStudioPropertySheet>
