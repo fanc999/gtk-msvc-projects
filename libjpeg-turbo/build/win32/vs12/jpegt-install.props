@@ -1,38 +1,36 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets">
     <Import Project="jpegt-build-defines.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
     <BinDir>$(SolutionDir)$(Configuration)\$(Platform)\bin</BinDir>
-    <InstalledDlls>$(BinDir)\jpeg$(JpegReleaseSeries).dll;$(BinDir)\turbojpeg.dll</InstalledDlls>
-    <InstalledBins>$(BinDir)\cjpeg.exe;$(BinDir)\djpeg.exe;$(BinDir)\jpegtran.exe;$(BinDir)\wrjpgcom.exe;$(BinDir)\rdjpgcom.exe</InstalledBins>
     <JPEGDoInstall>
 mkdir $(CopyDir)
 
 mkdir $(CopyDir)\bin
 
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\jpeg$(JpegReleaseSeries).dll $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\jpeg$(JpegReleaseSeries).pdb $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\turbojpeg.dll $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\turbojpeg.pdb $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\cjpeg.exe $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\cjpeg.pdb $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\djpeg.exe $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\djpeg.pdb $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\jpegtran.exe $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\jpegtran.pdb $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\wrjpgcom.exe $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\wrjpgcom.pdb $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\rdjpgcom.exe $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\rdjpgcom.pdb $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\tjbench.exe $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\tjbench.pdb $(CopyDir)\bin
+copy $(BinDir)\jpeg$(JpegReleaseSeries).dll $(CopyDir)\bin
+copy $(BinDir)\jpeg$(JpegReleaseSeries).pdb $(CopyDir)\bin
+copy $(BinDir)\turbojpeg.dll $(CopyDir)\bin
+copy $(BinDir)\turbojpeg.pdb $(CopyDir)\bin
+copy $(BinDir)\cjpeg.exe $(CopyDir)\bin
+copy $(BinDir)\cjpeg.pdb $(CopyDir)\bin
+copy $(BinDir)\djpeg.exe $(CopyDir)\bin
+copy $(BinDir)\djpeg.pdb $(CopyDir)\bin
+copy $(BinDir)\jpegtran.exe $(CopyDir)\bin
+copy $(BinDir)\jpegtran.pdb $(CopyDir)\bin
+copy $(BinDir)\wrjpgcom.exe $(CopyDir)\bin
+copy $(BinDir)\wrjpgcom.pdb $(CopyDir)\bin
+copy $(BinDir)\rdjpgcom.exe $(CopyDir)\bin
+copy $(BinDir)\rdjpgcom.pdb $(CopyDir)\bin
+copy $(BinDir)\tjbench.exe $(CopyDir)\bin
+copy $(BinDir)\tjbench.pdb $(CopyDir)\bin
 
 
 mkdir $(CopyDir)\lib
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\jpeg.lib $(CopyDir)\lib
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\turbojpeg.lib $(CopyDir)\lib
+copy $(BinDir)\jpeg.lib $(CopyDir)\lib
+copy $(BinDir)\turbojpeg.lib $(CopyDir)\lib
 
 
 mkdir $(CopyDir)\include

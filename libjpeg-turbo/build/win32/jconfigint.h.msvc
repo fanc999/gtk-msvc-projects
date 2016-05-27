@@ -1,5 +1,5 @@
-#define VERSION "1.4.1"
-#define BUILD "20150615153833"
+#define VERSION "1.4.2"
+#define BUILD "20160527172433"
 #define PACKAGE_NAME "libjpeg-turbo C"
 
 #ifndef INLINE
