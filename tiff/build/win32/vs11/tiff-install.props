@@ -1,12 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets">
     <Import Project="tiff-build-defines.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
     <BinDir>$(SolutionDir)$(Configuration)\$(Platform)\bin</BinDir>
-    <InstalledDlls>$(BinDir)\libtiff.dll</InstalledDlls>
-    <InstalledBins>$(BinDir)\bmp2tiff.exe;$(BinDir)\fax2ps.exe;$(BinDir)\fax2tiff.exe;$(BinDir)\gif2tiff.exe;$(BinDir)\pal2rgb.exe;$(BinDir)\ppm2tiff.exe;$(BinDir)\ras2tiff.exe;$(BinDir)\raw2tiff.exe;$(BinDir)\rgb2ycbcr.exe;$(BinDir)\tiff-install.exe;$(BinDir)\tiff-thumbnail.exe;$(BinDir)\tiff2bw.exe;$(BinDir)\tiff2pdf.exe;$(BinDir)\tiff2ps.exe;$(BinDir)\tiff2rgba.exe;$(BinDir)\tiffcmp.exe;$(BinDir)\tiffcp.exe;$(BinDir)\tiffcrop.exe;$(BinDir)\tiffdither.exe;$(BinDir)\tiffdump.exe;$(BinDir)\tiffinfo.exe;$(BinDir)\tiffmedian.exe;$(BinDir)\tiffset.exe;$(BinDir)\tiffsplit.exe</InstalledBins>
     <TIFFDoInstall>
 mkdir $(CopyDir)
 
@@ -32,12 +30,6 @@ copy ..\..\..\libtiff\tiffconf.h $(CopyDir)\include
   <ItemGroup>
     <BuildMacro Include="BinDir">
       <Value>$(BinDir)</Value>
-    </BuildMacro>
-    <BuildMacro Include="InstalledDlls">
-      <Value>$(InstalledDlls)</Value>
-    </BuildMacro>
-    <BuildMacro Include="InstalledBins">
-      <Value>$(InstalledBins)</Value>
     </BuildMacro>
     <BuildMacro Include="TIFFDoInstall">
       <Value>$(TIFFDoInstall)</Value>

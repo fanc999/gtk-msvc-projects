@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libtiff", "libtiff.vcproj", "{86EAF624-047E-4FC9-ABFF-0DD89FE72952}"
+	ProjectSection(ProjectDependencies) = postProject
+		{393D5E4C-45AE-496D-B997-FC7F94095FAB} = {393D5E4C-45AE-496D-B997-FC7F94095FAB}
+	EndProjectSection
+EndProject
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libport", "libport.vcproj", "{393D5E4C-45AE-496D-B997-FC7F94095FAB}"
 EndProject

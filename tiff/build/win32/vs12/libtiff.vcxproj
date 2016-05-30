@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -241,6 +241,10 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\zlib\build\win32\vs12\zlib-install.vcxproj">
       <Project>{71f0994a-a49d-4797-a432-52734249a013}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="libport.vcxproj">
+      <Project>{393d5e4c-45ae-496d-b997-fc7f94095fab}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
