@@ -14,6 +14,11 @@ copy ..\..\..\src\x86\ffitarget.h ..\..\..\include
     <GenerateASMSrcDbg>/DFFI_DEBUG </GenerateASMSrcDbg>
     <PreprocessASMX86Src>..\..\..\src\x86\win32.S &gt; ..\..\..\src\x86\win32.asm</PreprocessASMX86Src>
     <PreprocessASMX64Src>..\..\..\src\x86\win64.S &gt; ..\..\..\src\x86\win64.asm</PreprocessASMX64Src>
+    <BuildWin32ASM>
+<!-- This is due to a bug in MSVC 2013's 32-bit ml.exe, ugh! -->
+cd ..\..\..\src\x86
+ml /c /nologo /Zi /Fo$(IntDir)win32.obj /W3 /errorReport:prompt /safeseh /Tawin32.asm
+    </BuildWin32ASM>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>ffiprepbuildprops</_PropertySheetDisplayName>
@@ -37,6 +42,9 @@ copy ..\..\..\src\x86\ffitarget.h ..\..\..\include
     </BuildMacro>
     <BuildMacro Include="PreprocessASMX64Src">
       <Value>$(PreprocessASMX64Src)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BuildWin32ASM">
+      <Value>$(BuildWin32ASM)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>
