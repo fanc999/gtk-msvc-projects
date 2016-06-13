@@ -1,11 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets">
     <Import Project="ft2-build-defines.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
     <BinDir>$(SolutionDir)$(Configuration)\$(Platform)\bin</BinDir>
-    <InstalledDlls>$(BinDir)\freetype.dll</InstalledDlls>
     <FT2DoInstall>
 mkdir $(CopyDir)
 
@@ -17,14 +16,17 @@ mkdir $(CopyDir)\lib
 copy $(BinDir)\freetype.lib $(CopyDir)\lib
 
 mkdir $(CopyDir)\include
-copy ..\..\..\include\*.h $(CopyDir)\include
+copy ..\..\..\include\ft2build.h $(CopyDir)\include
 
-mkdir $(CopyDir)\include\config
-copy ..\..\..\include\config\*.h $(CopyDir)\include\config
+mkdir $(CopyDir)\include\freetype
+copy ..\..\..\include\freetype\*.h $(CopyDir)\include\freetype
 
-mkdir $(CopyDir)\include\internal\services
-copy ..\..\..\include\internal\*.h $(CopyDir)\include\internal
-copy ..\..\..\include\internal\services\*.h $(CopyDir)\include\internal\services
+mkdir $(CopyDir)\include\freetype\config
+copy ..\..\..\include\freetype\config\*.h $(CopyDir)\include\freetype\config
+
+mkdir $(CopyDir)\include\freetype\internal\services
+copy ..\..\..\include\freetype\internal\*.h $(CopyDir)\include\freetype\internal
+copy ..\..\..\include\freetype\internal\services\*.h $(CopyDir)\include\freetype\internal\services
 </FT2DoInstall>
   </PropertyGroup>
   <PropertyGroup>
@@ -36,9 +38,6 @@ copy ..\..\..\include\internal\services\*.h $(CopyDir)\include\internal\services
     </BuildMacro>
     <BuildMacro Include="BinDir">
       <Value>$(BinDir)</Value>
-    </BuildMacro>
-    <BuildMacro Include="InstalledDlls">
-      <Value>$(InstalledDlls)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

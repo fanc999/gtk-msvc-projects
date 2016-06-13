@@ -17,14 +17,17 @@ mkdir $(CopyDir)\lib&#x0D;&#x0A;
 copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\freetype.lib $(CopyDir)\lib&#x0D;&#x0A;
 
 mkdir $(CopyDir)\include&#x0D;&#x0A;
-copy ..\..\..\include\*.h $(CopyDir)\include&#x0D;&#x0A;
+copy ..\..\..\include\ft2build.h $(CopyDir)\include&#x0D;&#x0A;
 
-mkdir $(CopyDir)\include\config&#x0D;&#x0A;
-copy ..\..\..\include\config\*.h $(CopyDir)\include\config&#x0D;&#x0A;
+mkdir $(CopyDir)\include\freetype&#x0D;&#x0A;
+copy ..\..\..\include\freetype\*.h $(CopyDir)\include\freetype&#x0D;&#x0A;
 
-mkdir $(CopyDir)\include\internal\services&#x0D;&#x0A;
-copy ..\..\..\include\internal\*.h $(CopyDir)\include\internal&#x0D;&#x0A;
-copy ..\..\..\include\internal\services\*.h $(CopyDir)\include\internal\services&#x0D;&#x0A;
+mkdir $(CopyDir)\include\freetype\config&#x0D;&#x0A;
+copy ..\..\..\include\freetype\config\*.h $(CopyDir)\include\freetype\config&#x0D;&#x0A;
+
+mkdir $(CopyDir)\include\freetype\internal\services&#x0D;&#x0A;
+copy ..\..\..\include\freetype\internal\*.h $(CopyDir)\include\freetype\internal&#x0D;&#x0A;
+copy ..\..\..\include\freetype\internal\services\*.h $(CopyDir)\include\freetype\internal\services&#x0D;&#x0A;
 "
 	/>
 </VisualStudioPropertySheet>
