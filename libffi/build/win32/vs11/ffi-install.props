@@ -1,16 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets">
     <Import Project="ffi-build-defines.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
     <BinDir>$(SolutionDir)$(Configuration)\$(Platform)\bin</BinDir>
-    <InstalledLibs>$(BinDir)\libffi.lib</InstalledLibs>
     <FFIDoInstall>
 mkdir $(CopyDir)\lib
 mkdir $(CopyDir)\include
 
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\libffi.lib $(CopyDir)\lib
+copy $(BinDir)\libffi.lib $(CopyDir)\lib
 
 copy ..\..\..\include\ffi.h $(CopyDir)\include
 copy ..\..\..\include\ffitarget.h $(CopyDir)\include
@@ -26,9 +25,6 @@ copy ..\..\..\include\ffitarget.h $(CopyDir)\include
     </BuildMacro>
     <BuildMacro Include="BinDir">
       <Value>$(BinDir)</Value>
-    </BuildMacro>
-    <BuildMacro Include="InstalledLibs">
-      <Value>$(InstalledLibs)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>
