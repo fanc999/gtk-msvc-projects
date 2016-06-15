@@ -5,7 +5,6 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
     <BinDir>$(SolutionDir)$(Configuration)\$(Platform)\bin</BinDir>
-    <InstalledDlls>$(BinDir)\pixman-1.dll</InstalledDlls>
     <PixmanDoInstall>
 mkdir $(CopyDir)\bin
 
@@ -27,9 +26,6 @@ copy ..\..\..\pixman\pixman-version.h $(CopyDir)\include\pixman-1
   <ItemGroup>
     <BuildMacro Include="BinDir">
       <Value>$(BinDir)</Value>
-    </BuildMacro>
-    <BuildMacro Include="InstalledDlls">
-      <Value>$(InstalledDlls)</Value>
     </BuildMacro>
     <BuildMacro Include="PixmanDoInstall">
       <Value>$(PixmanDoInstall)</Value>
