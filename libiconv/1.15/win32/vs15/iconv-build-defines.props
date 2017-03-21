@@ -11,7 +11,7 @@
     <LibIconvDefines>$(BaseDLLDefines);$(BasePathDefines);BUILDING_LIBICONV;DEPENDS_ON_LIBCHARSET;set_relocation_prefix=libiconv_set_relocation_prefix;relocate=libiconv_relocate</LibIconvDefines>
     <CharsetIncludeDirs>..\..\libcharset\include\msvc;..\..\libcharset\msvc</CharsetIncludeDirs>
     <LibIconvIncludeDirs>..\..\include\msvc;..\..\libcharset\include\msvc;..\..\msvc</LibIconvIncludeDirs>
-    <IconvIncludeDirs>..\..\srclib\msvc;..\..\srclib;..\..\msvc</IconvIncludeDirs>
+    <IconvIncludeDirs>..\..\srclib\msvc;..\..\srclib;..\..\include\msvc;..\..\msvc</IconvIncludeDirs>
     <IconvDefines>$(BaseDefines);$(BasePathDefines);EXEEXT=".exe"</IconvDefines>
   </PropertyGroup>
   <PropertyGroup>

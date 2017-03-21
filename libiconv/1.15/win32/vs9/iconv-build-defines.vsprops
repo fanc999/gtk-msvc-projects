@@ -45,7 +45,7 @@
 	/>
 	<UserMacro
 		Name="IconvIncludeDirs"
-		Value="..\..\srclib\msvc;..\..\srclib;..\..\msvc"
+		Value="..\..\srclib\msvc;..\..\srclib;..\..\include\msvc;..\..\msvc"
 	/>
 	<UserMacro
 		Name="IconvDefines"
