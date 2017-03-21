@@ -1,0 +1,1 @@
+#include "../gnulib-lib/file-ostream.c"

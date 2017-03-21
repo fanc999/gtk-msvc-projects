@@ -1,0 +1,560 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4C779A72-8DCC-4896-A8D7-A17FA6019682}</ProjectGuid>
+    <RootNamespace>libxml_rpl</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="gettext-tools-copy-xmlh.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="gettext-tools-copy-xmlh.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="gettext-tools-copy-xmlh.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="gettext-tools-copy-xmlh.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(GettextLibBaseIncludeDirs);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(GettextLibBaseIncludeDirs);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(GettextLibBaseIncludeDirs);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(GettextLibBaseIncludeDirs);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\buf.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\c14n.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\catalog.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\chvalid.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\debugXML.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\dict.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\DOCBparser.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\encoding.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\entities.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\error.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\globals.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\hash.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\HTMLparser.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\HTMLtree.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\legacy.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\list.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\nanoftp.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\nanohttp.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\parser.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\parserInternals.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\pattern.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\relaxng.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\SAX.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\SAX2.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\schematron.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\threads.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\tree.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\uri.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\valid.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\xinclude.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\xlink.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\xmlIO.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\xmlmemory.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\xmlmodule.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\xmlreader.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\xmlregexp.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\xmlsave.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\xmlschemas.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\xmlschemastypes.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\xmlstring.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\xmlunicode.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\xmlwriter.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\xpath.c" />
+    <ClCompile Include="..\..\gettext-tools\gnulib-lib\libxml\xpointer.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\c14n.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying c14n.h from c14n.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLC14NH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\c14n.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying c14n.h from c14n.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLC14NH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\c14n.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\catalog.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying catalog.h from catalog.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLCatalogH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\catalog.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying catalog.h from catalog.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLCatalogH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\catalog.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\chvalid.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying chvalid.h from chvalid.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLChvalidH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\chvalid.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying chvalid.h from chvalid.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLChvalidH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\chvalid.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\debugXML.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying debugXML.h from debugXML.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLDebugXMLH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\debugXML.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying debugXML.h from debugXML.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLDebugXMLH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\debugXML.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\dict.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying dict.h from dict.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLDictH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\dict.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying dict.h from dict.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLDictH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\dict.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\DOCBparser.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying DOCBparser.h from DOCBparser.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLDOCBParserH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\DOCBparser.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying DOCBparser.h from DOCBparser.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLDOCBParserH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\DOCBparser.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\encoding.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying encoding.h from encoding.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLEncodingH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\encoding.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying encoding.h from encoding.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLEncodingH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\encoding.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\entities.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying entities.h from entities.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLEntitiesH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\entities.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying entities.h from entities.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLEntitiesH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\entities.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\globals.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying globals.h from globals.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLGlobalsH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\globals.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying globals.h from globals.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLGlobalsH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\globals.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\hash.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying hash.h from hash.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLHashH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\hash.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying hash.h from hash.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLHashH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\hash.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\HTMLparser.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying HTMLparser.h from HTMLparser.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLHTMLParserH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\HTMLparser.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying HTMLparser.h from HTMLparser.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLHTMLParserH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\HTMLparser.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\HTMLtree.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying HTMLtree.h from HTMLtree.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLHTMLTreeH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\HTMLtree.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying HTMLtree.h from HTMLtree.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLHTMLTreeH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\HTMLtree.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\list.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying list.h from list.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLListH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\list.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying list.h from list.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLListH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\list.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\nanoftp.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying nanoftp.h from nanoftp.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLNanoftpH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\nanoftp.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying nanoftp.h from nanoftp.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLNanoftpH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\nanoftp.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\nanohttp.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying nanohttp.h from nanohttp.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLNanohttpH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\nanohttp.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying nanohttp.h from nanohttp.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLNanohttpH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\nanohttp.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\parser.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying parser.h from parser.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLParserH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\parser.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying parser.h from parser.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLParserH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\parser.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\parserInternals.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying parserInternals.h from parserInternals.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLParserInternalsH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\parserInternals.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying parserInternals.h from parserInternals.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLParserInternalsH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\parserInternals.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\pattern.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying pattern.h from pattern.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLPatternH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\pattern.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying pattern.h from pattern.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLPatternH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\pattern.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\relaxng.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying relaxng.h from relaxng.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLRelaxngH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\relaxng.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying relaxng.h from relaxng.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLRelaxngH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\relaxng.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\SAX.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying SAX.h from SAX.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLSAXH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\SAX.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying SAX.h from SAX.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLSAXH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\SAX.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\SAX2.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying SAX2.h from SAX2.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLSAX2H)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\SAX2.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying SAX2.h from SAX2.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLSAX2H)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\SAX2.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\schemasInternals.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying schemasInternals.h from schemasInternals.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLSchemasInternalsH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\schemasInternals.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying schemasInternals.h from schemasInternals.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLSchemasInternalsH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\schemasInternals.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\schematron.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying schematron.h from schematron.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLSchematronH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\schematron.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying schematron.h from schematron.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLSchematronH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\schematron.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\threads.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying threads.h from threads.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLThreadsH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\threads.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying threads.h from threads.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLThreadsH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\threads.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\tree.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying tree.h from tree.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLTreeH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\tree.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Copying tree.h from tree.in.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(CopyXMLTreeH)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\gettext-tools\gnulib-lib\libxml\tree.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying tree.h from tree.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLTreeH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\tree.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Copying tree.h from tree.in.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(CopyXMLTreeH)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\gettext-tools\gnulib-lib\libxml\tree.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\uri.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying uri.h from uri.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLUriH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\uri.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying uri.h from uri.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLUriH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\uri.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\valid.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying valid.h from valid.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLValidH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\valid.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying valid.h from valid.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLValidH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\valid.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xinclude.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xinclude.h from xinclude.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXincludeH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xinclude.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xinclude.h from xinclude.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXincludeH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xinclude.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xlink.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xlink.h from xlink.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXlinkH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xlink.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xlink.h from xlink.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXlinkH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xlink.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xmlautomata.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xmlautomata.h from xmlautomata.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXMLAutomataH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xmlautomata.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xmlautomata.h from xmlautomata.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXMLAutomataH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xmlautomata.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xmlerror.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xmlerror.h from xmlerror.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXMLErrorH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xmlerror.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xmlerror.h from xmlerror.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXMLErrorH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xmlerror.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xmlexports.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xmlexports.h from xmlexports.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXMLExportsH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xmlexports.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xmlexports.h from xmlexports.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXMLExportsH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xmlexports.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xmlIO.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xmlIO.h from xmlIO.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXMLIOH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xmlIO.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xmlIO.h from xmlIO.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXMLIOH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xmlIO.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xmlmemory.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xmlmemory.h from xmlmemory.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXMLMemoryH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xmlmemory.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xmlmemory.h from xmlmemory.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXMLMemoryH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xmlmemory.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xmlmodule.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xmlmodule.h from xmlmodule.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXMLModuleH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xmlmodule.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xmlmodule.h from xmlmodule.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXMLModuleH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xmlmodule.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xmlreader.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xmlreader.h from xmlreader.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXMLReaderH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xmlreader.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xmlreader.h from xmlreader.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXMLReaderH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xmlreader.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xmlregexp.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xmlregexp.h from xmlregexp.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXMLRegexpH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xmlregexp.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xmlregexp.h from xmlregexp.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXMLRegexpH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xmlregexp.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xmlsave.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xmlsave.h from xmlsave.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXMLSaveH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xmlsave.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xmlsave.h from xmlsave.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXMLSaveH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xmlsave.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xmlschemas.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xmlschemas.h from xmlschemas.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXMLSchemasH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xmlschemas.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xmlschemas.h from xmlschemas.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXMLSchemasH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xmlschemas.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xmlschemastypes.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xmlschemastypes.h from xmlschemastypes.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXMLSchemasTypesH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xmlschemastypes.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xmlschemastypes.h from xmlschemastypes.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXMLSchemasTypesH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xmlschemastypes.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xmlstring.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xmlstring.h from xmlstring.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXMLStringH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xmlstring.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xmlstring.h from xmlstring.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXMLStringH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xmlstring.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xmlunicode.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xmlunicode.h from xmlunicode.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXMLUnicodeH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xmlunicode.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xmlunicode.h from xmlunicode.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXMLUnicodeH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xmlunicode.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xmlversion.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xmlversion.h from xmlversion.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXMLVersionH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xmlversion.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xmlversion.h from xmlversion.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXMLVersionH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xmlversion.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xmlwriter.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xmlwriter.h from xmlwriter.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXMLWriterH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xmlwriter.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xmlwriter.h from xmlwriter.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXMLWriterH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xmlwriter.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xpath.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xpath.h from xpath.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXpathH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xpath.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xpath.h from xpath.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXpathH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xpath.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xpathInternals.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xpathInternals.h from xpathInternals.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXPathInternalsH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xpathInternals.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xpathInternals.h from xpathInternals.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXPathInternalsH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xpathInternals.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\gettext-tools\gnulib-lib\libxml\xpointer.in.h">
+      <Message Condition="'$(Configuration)'=='Debug'">Copying xpointer.h from xpointer.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Debug'">$(CopyXMLXPointerH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gettext-tools\gnulib-lib\libxml\xpointer.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)'=='Release'">Copying xpointer.h from xpointer.in.h...</Message>
+      <Command Condition="'$(Configuration)'=='Release'">$(CopyXMLXPointerH)</Command>
+      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gettext-tools\gnulib-lib\libxml\xpointer.h;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

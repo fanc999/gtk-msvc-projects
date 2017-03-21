@@ -1,0 +1,1 @@
+#include "../gnulib-lib/fd-ostream.c"
