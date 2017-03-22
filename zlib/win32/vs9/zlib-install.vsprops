@@ -17,8 +17,8 @@ mkdir $(CopyDir)\lib&#x0D;&#x0A;
 copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\zlib1.lib $(CopyDir)\lib&#x0D;&#x0A;
 
 mkdir $(CopyDir)\include&#x0D;&#x0A;
-copy ..\..\..\zlib.h $(CopyDir)\include&#x0D;&#x0A;
-copy ..\..\..\zconf.h $(CopyDir)\include&#x0D;&#x0A;
+copy ..\..\zlib.h $(CopyDir)\include&#x0D;&#x0A;
+copy ..\..\zconf.h $(CopyDir)\include&#x0D;&#x0A;
 "
 	/>
 </VisualStudioPropertySheet>

@@ -9,7 +9,7 @@
 	>
 	<Tool
 		Name="VCCLCompilerTool"
-		AdditionalIncludeDirectories="..\..\..;$(GLibEtcInstallRoot)\include"
+		AdditionalIncludeDirectories="..\..;$(GLibEtcInstallRoot)\include"
 		PreprocessorDefinitions="ZLIB_DLL;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
 		DisabledSpecificWarnings="4127"
 	/>

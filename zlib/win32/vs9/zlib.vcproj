@@ -171,42 +171,42 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
-			<File RelativePath="..\..\..\adler32.c" />
-			<File RelativePath="..\..\..\compress.c" />
-			<File RelativePath="..\..\..\crc32.c" />
-			<File RelativePath="..\..\..\deflate.c" />
-			<File RelativePath="..\..\..\contrib\masmx64\gvmat64.asm">
+			<File RelativePath="..\..\adler32.c" />
+			<File RelativePath="..\..\compress.c" />
+			<File RelativePath="..\..\crc32.c" />
+			<File RelativePath="..\..\deflate.c" />
+			<File RelativePath="..\..\contrib\masmx64\gvmat64.asm">
 				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"><Tool Name="MASM" /></FileConfiguration>
 				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"><Tool Name="MASM" /></FileConfiguration>
 			</File>
-			<File RelativePath="..\..\..\gzclose.c" />
-			<File RelativePath="..\..\..\gzlib.c" />
-			<File RelativePath="..\..\..\gzread.c" />
-			<File RelativePath="..\..\..\gzwrite.c" />
-			<File RelativePath="..\..\..\infback.c" />
-			<File RelativePath="..\..\..\contrib\masmx86\inffas32.asm"
+			<File RelativePath="..\..\gzclose.c" />
+			<File RelativePath="..\..\gzlib.c" />
+			<File RelativePath="..\..\gzread.c" />
+			<File RelativePath="..\..\gzwrite.c" />
+			<File RelativePath="..\..\infback.c" />
+			<File RelativePath="..\..\contrib\masmx86\inffas32.asm"
 				>
 				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"><Tool Name="MASM" /></FileConfiguration>
 				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"><Tool Name="MASM" /></FileConfiguration>
 			</File>
-			<File RelativePath="..\..\..\contrib\masmx64\inffas8664.c">
+			<File RelativePath="..\..\contrib\masmx64\inffas8664.c">
 				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"><Tool Name="VCCLCompilerTool" /></FileConfiguration>
 				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"><Tool Name="VCCLCompilerTool" /></FileConfiguration>
 			</File>
-			<File RelativePath="..\..\..\inffast.c" />
-			<File RelativePath="..\..\..\contrib\masmx64\inffasx64.asm">
+			<File RelativePath="..\..\inffast.c" />
+			<File RelativePath="..\..\contrib\masmx64\inffasx64.asm">
 				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true"><Tool Name="MASM" /></FileConfiguration>
 				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"><Tool Name="MASM" /></FileConfiguration>
 			</File>
-			<File RelativePath="..\..\..\inflate.c" />
-			<File RelativePath="..\..\..\inftrees.c" />
-			<File RelativePath="..\..\..\contrib\masmx86\match686.asm">
+			<File RelativePath="..\..\inflate.c" />
+			<File RelativePath="..\..\inftrees.c" />
+			<File RelativePath="..\..\contrib\masmx86\match686.asm">
 				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"><Tool Name="MASM" /></FileConfiguration>
 				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true"><Tool Name="MASM" /></FileConfiguration>
 			</File>
-			<File RelativePath="..\..\..\trees.c" />
-			<File RelativePath="..\..\..\uncompr.c" />
-			<File RelativePath="..\..\..\zutil.c" />
+			<File RelativePath="..\..\trees.c" />
+			<File RelativePath="..\..\uncompr.c" />
+			<File RelativePath="..\..\zutil.c" />
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -219,7 +219,7 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
-			<File RelativePath="..\..\..\win32\zlib1.rc" />
+			<File RelativePath="..\zlib1.rc" />
 		</Filter>
 	</Files>
 	<Globals>
