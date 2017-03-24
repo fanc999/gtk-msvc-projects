@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="jpegt-nasm.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <CopyJpegConfigH>copy ..\jconfig.h.msvc ..\..\jconfig.h</CopyJpegConfigH>
+    <CopyJpegConfigIntH>copy ..\jconfigint.h.msvc ..\..\jconfigint.h</CopyJpegConfigIntH>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>jpeggensrcprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemGroup>
+    <BuildMacro Include="CopyJpegConfigH">
+      <Value>$(CopyJpegConfigH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CopyJpegConfigIntH">
+      <Value>$(CopyJpegConfigIntH)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

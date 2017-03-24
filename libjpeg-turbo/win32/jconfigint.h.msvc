@@ -1,0 +1,19 @@
+#define VERSION "1.5.1"
+#define BUILD "20170324121536"
+#define PACKAGE_NAME "libjpeg-turbo C"
+
+#ifndef INLINE
+#if defined(__GNUC__)
+#define INLINE inline __attribute__((always_inline))
+#elif defined(_MSC_VER)
+#define INLINE __forceinline
+#else
+#define INLINE
+#endif
+#endif
+
+#ifdef _WIN64
+# define SIZEOF_SIZE_T 8
+#else
+# define SIZEOF_SIZE_T 4
+#endif

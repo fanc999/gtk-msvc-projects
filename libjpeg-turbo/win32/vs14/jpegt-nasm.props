@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="jpegt-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <NASMBaseFlags>-I..\..\win\ -I..\..\simd\</NASMBaseFlags>
+    <NASM32Flags>$(NASMBaseFlags) -fwin32 -DWIN32</NASM32Flags>
+    <NASM64Flags>$(NASMBaseFlags) -fwin64 -DWIN64 -D__x86_64__</NASM64Flags>
+    <NASMBaseDeps>..\..\simd\jsimdext.inc</NASMBaseDeps>
+    <NASMColSampleDeps>..\..\simd\jcolsamp.inc</NASMColSampleDeps>
+    <NASMJDCTDeps>..\..\simd\jdct.inc</NASMJDCTDeps>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>jpegnasmprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemGroup>
+    <BuildMacro Include="NASMBaseFlags">
+      <Value>$(NASMBaseFlags)</Value>
+    </BuildMacro>
+    <BuildMacro Include="NASM32Flags">
+      <Value>$(NASM32Flags)</Value>
+    </BuildMacro>
+    <BuildMacro Include="NASM64Flags">
+      <Value>$(NASM64Flags)</Value>
+    </BuildMacro>
+    <BuildMacro Include="NASMBaseDeps">
+      <Value>$(NASMBaseDeps)</Value>
+    </BuildMacro>
+    <BuildMacro Include="NASMColSampleDeps">
+      <Value>$(NASMColSampleDeps)</Value>
+    </BuildMacro>
+    <BuildMacro Include="NASMJDCTDeps">
+      <Value>$(NASMJDCTDeps)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
