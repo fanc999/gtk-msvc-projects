@@ -1,0 +1,29 @@
+From d77b4b1d3525b6b643d9b7b08aed120d1cf77266 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Fri, 24 Mar 2017 16:29:16 +0800
+Subject: [PATCH] jmemmgr.c: Include stdint.h on Visual Studio 2010 or later
+
+Visual Studio 2008 does not come with stdint.h, so just include it on
+non-Visual Studio or when we are building on 2010 or later.
+---
+ jmemmgr.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/jmemmgr.c b/jmemmgr.c
+index adccbdf..6415f77 100644
+--- a/jmemmgr.c
++++ b/jmemmgr.c
+@@ -32,7 +32,9 @@
+ #include "jinclude.h"
+ #include "jpeglib.h"
+ #include "jmemsys.h"            /* import the system-dependent declarations */
+-#include <stdint.h>
++#if !defined (_MSC_VER) || (_MSC_VER >= 1600)
++# include <stdint.h>
++#endif
+ 
+ #ifndef NO_GETENV
+ #ifndef HAVE_STDLIB_H           /* <stdlib.h> should declare getenv() */
+-- 
+2.10.2.windows.1
+
