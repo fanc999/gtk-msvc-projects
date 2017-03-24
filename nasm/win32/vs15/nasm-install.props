@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="nasm-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <BinDir>$(SolutionDir)$(Configuration)\$(Platform)\bin</BinDir>
+    <NASMDoInstall>
+mkdir $(CopyDir)
+
+mkdir $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\nasm.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\nasm.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\ndisasm.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\ndisasm.pdb $(CopyDir)\bin
+</NASMDoInstall>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>nasminstallprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemGroup>
+    <BuildMacro Include="NASMDoInstall">
+      <Value>$(NASMDoInstall)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
