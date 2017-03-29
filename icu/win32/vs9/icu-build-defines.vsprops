@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="icubuilddefinesprops"
+	OutputDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin"
+	IntermediateDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)\obj\$(ProjectName)\"
+	InheritedPropertySheets=".\icu-version-paths.vsprops"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalIncludeDirectories="$(Common_Inc_Dir)"
+		PreprocessorDefinitions="_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+		DisableSpecificWarnings="4244;4307;4308"
+		AdditionalOptions="/MP"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		GenerateDebugInformation="true"
+	/>
+	<UserMacro
+		Name="DbgFlag"
+		Value="_DEBUG"
+	/>
+	<UserMacro
+		Name="RelFlag"
+		Value="NDEBUG"
+	/>
+	<UserMacro
+		Name="ICUTEST_Defines"
+		Value="T_CTEST_IMPLEMENTATION"
+	/>
+	<UserMacro
+		Name="Common_Inc_Dir"
+		Value="..\..\include;..\..\source\common"
+	/>
+</VisualStudioPropertySheet>

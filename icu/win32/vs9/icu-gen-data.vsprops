@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="icugendataprops"
+	InheritedPropertySheets=".\icu-tools-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="UconvDir"
+		Value="..\..\source\extra\uconv"
+	/>
+	<UserMacro
+		Name="ResDir"
+		Value="$(UconvDir)\resources"
+	/>
+	<UserMacro
+		Name="GenPkgDataLib"
+		Value="(dir /b $(ResDir)\*.res &gt; $(UconvDir)\pkgdatain.txt) &amp; ($(SolutionDir)\$(ConfigurationName)\$(PlatformName)\bin\pkgdata.exe -f -v -m static -c -p uconvmsg -d $(SolutionDir)\$(ConfigurationName)\$(PlatformName)\bin -s $(ResDir) $(UconvDir)\pkgdatain.txt)"
+	/>
+	<UserMacro
+		Name="UCONV_Flags"
+		Value="UCONVMSG_LINK"
+	/>
+	<UserMacro
+		Name="MakeDataNMakeCMD"
+		Value="NMAKE /f ..\..\source\data\makedata.mak ICUMAKE=$(SolutionDir)\..\..\source\data\ PROJECTDIR=$(SolutionDir) CFG=$(ConfigurationName) PLAT=$(PlatformName)"
+	/>
+</VisualStudioPropertySheet>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="icu-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <InstalledDlls>$(BinDir)\icudt$(ICUVer).dll;$(BinDir)\icuuc$(ICUVer).dll;$(BinDir)\icuin$(ICUVer).dll;$(BinDir)\icutu$(ICUVer).dll;$(BinDir)\icuio$(ICUVer).dll;$(BinDir)\icule$(ICUVer).dll;$(BinDir)\iculx$(ICUVer).dll;$(BinDir)\icutest$(ICUVer).dll</InstalledDlls>
+    <InstalledBins>$(BinDir)\cal.exe;$(BinDir)\date.exe;$(BinDir)\derb.exe;$(BinDir)\genbrk.exe;$(BinDir)\genccode.exe;$(BinDir)\gencfu.exe;$(BinDir)\gencmn.exe;$(BinDir)\gencnval.exe;$(BinDir)\gendict.exe;$(BinDir)\gennorm2.exe;$(BinDir)\genrb.exe;$(BinDir)\gensprep.exe;$(BinDir)\gentest.exe;$(BinDir)\icuinfo.exe;$(BinDir)\icupkg.exe;$(BinDir)\makeconv.exe;$(BinDir)\pkgdata.exe;$(BinDir)\uconv.exe</InstalledBins>
+    <ICUDoInstall>
+mkdir $(CopyDir)
+
+mkdir $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icudt$(ICUVer).dll $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icudt$(ICUVer).pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icuuc$(ICUVer).dll $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icuuc$(ICUVer).pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icuin$(ICUVer).dll $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icuin$(ICUVer).pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icutu$(ICUVer).dll $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icutu$(ICUVer).pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icutest$(ICUVer).dll $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icutest$(ICUVer).pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\cal.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\cal.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\date.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\date.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\derb.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\derb.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\genbrk.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\genbrk.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\genccode.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\genccode.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gencfu.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gencfu.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gencmn.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gencmn.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gencnval.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gencnval.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gendict.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gendict.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gennorm2.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gennorm2.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\genrb.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\genrb.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gensprep.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gensprep.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gentest.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gentest.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icuinfo.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icuinfo.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icupkg.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icupkg.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\makeconv.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\makeconv.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pkgdata.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pkgdata.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\uconv.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\uconv.pdb $(CopyDir)\bin
+
+mkdir $(CopyDir)\lib
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icudt.lib $(CopyDir)\lib
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icuuc.lib $(CopyDir)\lib
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icuin.lib $(CopyDir)\lib
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\icuio.lib $(CopyDir)\lib
+
+mkdir $(CopyDir)\include\unicode
+copy ..\..\include\unicode\*.h $(CopyDir)\include\unicode
+</ICUDoInstall>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>icuinstallprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="BinDir">
+      <Value>$(BinDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="InstalledDlls">
+      <Value>$(InstalledDlls)</Value>
+    </BuildMacro>
+    <BuildMacro Include="InstalledBins">
+      <Value>$(InstalledBins)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ICUDoInstall">
+      <Value>$(ICUDoInstall)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
