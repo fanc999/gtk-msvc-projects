@@ -1,0 +1,199 @@
+From 0565aa043a1c668d6b7d64c6a188c236c502a4a4 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Wed, 29 Mar 2017 14:47:44 +0800
+Subject: [PATCH] Data: Update NMake Makefiles to suit our projects
+
+Since we could not use a project file layout as we want to support
+multiple Visual Studio IDEs, patch the NMake Makefiles so that they will
+support our use cases, by mainly make the paths suitable for our use case.
+---
+ source/data/makedata.mak          | 39 ++++++++++++++++++----------
+ source/test/testdata/testdata.mak | 54 +++++++++++++++++++--------------------
+ 2 files changed, 53 insertions(+), 40 deletions(-)
+
+diff --git a/source/data/makedata.mak b/source/data/makedata.mak
+index 83a2e8d..d1ed1ff 100644
+--- a/source/data/makedata.mak
++++ b/source/data/makedata.mak
+@@ -119,11 +119,22 @@ ICUDATA=$(ICUP)\source\data
+ #      This is the same place that all of the other ICU DLLs go (the code-containing DLLs)
+ #      The lib file for the data DLL goes in $(DLL_OUTPUT)/../lib/
+ #
+-!IF "$(CFG)" == "x64\Release" || "$(CFG)" == "x64\Debug"
+-DLL_OUTPUT=$(ICUP)\bin64
+-!ELSE
+-DLL_OUTPUT=$(ICUP)\bin
+-!ENDIF
++#!IF "$(CFG)" == "x64\Release" || "$(CFG)" == "x64\Debug"
++#DLL_OUTPUT=$(ICUP)\bin64
++#!ELSE
++#DLL_OUTPUT=$(ICUP)\bin
++#!ENDIF
++!IF "$(CFG)" != "Release"
++!IF "$(CFG)" != "Debug"
++!ERROR CFG Must be specified (Release or Debug)
++!endif
++!endif
++!IF "$(PLAT)" != "Win32"
++!IF "$(PLAT)" != "x64"
++!ERROR PLAT Must be specified (Win32 or x64)
++!endif
++!endif
++DLL_OUTPUT=$(PROJECTDIR)\$(CFG)\$(PLAT)\bin
+ 
+ #
+ #  TESTDATA
+@@ -149,13 +160,15 @@ TESTDATABLD=$(ICUP)\source\test\testdata\out\build
+ ICUTOOLS=$(ICUP)\source\tools
+ 
+ # The current ICU tools need to be in the path first.
+-!IF "$(CFG)" == "x64\Release" || "$(CFG)" == "x64\Debug"
+-PATH = $(ICUP)\bin64;$(PATH)
+-ICUPBIN=$(ICUP)\bin64
+-!ELSE
+-PATH = $(ICUP)\bin;$(PATH)
+-ICUPBIN=$(ICUP)\bin
+-!ENDIF
++#!IF "$(CFG)" == "x64\Release" || "$(CFG)" == "x64\Debug"
++#PATH = $(ICUP)\bin64;$(PATH)
++#ICUPBIN=$(ICUP)\bin64
++#!ELSE
++#PATH = $(ICUP)\bin;$(PATH)
++#ICUPBIN=$(ICUP)\bin
++#!ENDIF
++PATH=$(DLL_OUTPUT);$(PATH)
++ICUPBIN=$(DLL_OUTPUT)
+ 
+ 
+ # This variable can be overridden to "-m static" by the project settings,
+@@ -602,7 +615,7 @@ icu4j-data-install :
+ #
+ # testdata - nmake will invoke pkgdata, which will create testdata.dat
+ #
+-"$(TESTDATAOUT)\testdata.dat": "$(TESTDATA)\*" "$(ICUBLD_PKG)\$(ICUCOL)\ucadata.icu" $(TRANSLIT_RES_FILES) $(MISC_FILES) $(RB_FILES) {"$(ICUTOOLS)\genrb\$(CFG)"}genrb.exe
++"$(TESTDATAOUT)\testdata.dat": "$(TESTDATA)\*" "$(ICUBLD_PKG)\$(ICUCOL)\ucadata.icu" $(TRANSLIT_RES_FILES) $(MISC_FILES) $(RB_FILES) $(PROJECTDIR)\$(CFG)\$(PLAT)\bin\genrb.exe
+ 	@cd "$(TESTDATA)"
+ 	@echo building testdata...
+ 	nmake /nologo /f "$(TESTDATA)\testdata.mak" TESTDATA=. ICUTOOLS="$(ICUTOOLS)" ICUPBIN="$(ICUPBIN)" ICUP="$(ICUP)" CFG=$(CFG) TESTDATAOUT="$(TESTDATAOUT)" TESTDATABLD="$(TESTDATABLD)"
+diff --git a/source/test/testdata/testdata.mak b/source/test/testdata/testdata.mak
+index ccc388d..17a7f26 100644
+--- a/source/test/testdata/testdata.mak
++++ b/source/test/testdata/testdata.mak
+@@ -81,87 +81,87 @@ $(TEST_RES_FILES:.res =.res
+ # The -q option is there on purpose, so we don't see it normally.
+ {$(TESTDATA)}.txt.res:: 
+ 	@echo Making Test Resource Bundle files $<
+-	@"$(ICUTOOLS)\genrb\$(CFG)\genrb" -q -s"$(TESTDATA)" -d"$(TESTDATABLD)" $<
++	@"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\genrb" -q -s"$(TESTDATA)" -d"$(TESTDATABLD)" $<
+ 
+ "$(TESTDATABLD)\encoded.res": "$(TESTDATA)\encoded.utf16be"
+ 	@echo Making Test Resource Bundle file with encoding
+-	"$(ICUTOOLS)\genrb\$(CFG)\genrb" -s"$(TESTDATA)" -eUTF-16BE -d"$(TESTDATABLD)" encoded.utf16be
++	"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\genrb" -s"$(TESTDATA)" -eUTF-16BE -d"$(TESTDATABLD)" encoded.utf16be
+ 
+ "$(TESTDATABLD)\idna_rules.res": "$(TESTDATA)\idna_rules.txt"
+ 	@echo Making Test Resource Bundle file for IDNA reference implementation
+-	@"$(ICUTOOLS)\genrb\$(CFG)\genrb" -s"$(TESTDATA)" -d"$(TESTDATABLD)" idna_rules.txt
++	@"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\genrb" -s"$(TESTDATA)" -d"$(TESTDATABLD)" idna_rules.txt
+ 
+ 
+-"$(TESTDATABLD)\test.icu" : {"$(ICUTOOLS)\gentest\$(CFG)"}gentest.exe
+-	"$(ICUTOOLS)\gentest\$(CFG)\gentest" -d"$(TESTDATABLD)"
++"$(TESTDATABLD)\test.icu" : $(PROJECTDIR)\$(CFG)\$(PLAT)\bin\gentest.exe
++	"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\gentest" -d"$(TESTDATABLD)"
+ 
+ # testtable32 resource file
+-"$(TESTDATABLD)\testtable32.txt" : {"$(ICUTOOLS)\gentest\$(CFG)"}gentest.exe
+-	"$(ICUTOOLS)\gentest\$(CFG)\gentest" -r -d"$(TESTDATABLD)"
++"$(TESTDATABLD)\testtable32.txt" : $(PROJECTDIR)\$(CFG)\$(PLAT)\bin\gentest.exe
++	"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\gentest" -r -d"$(TESTDATABLD)"
+ 
+ "$(TESTDATABLD)\testtable32.res": "$(TESTDATABLD)\testtable32.txt"
+-	"$(ICUTOOLS)\genrb\$(CFG)\genrb" -s"$(TESTDATABLD)" -d"$(TESTDATABLD)" testtable32.txt
++	"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\genrb" -s"$(TESTDATABLD)" -d"$(TESTDATABLD)" testtable32.txt
+ 
+ # Targets for nfscsi.spp
+-"$(TESTDATABLD)\nfscsi.spp" : {"$(ICUTOOLS)\gensprep\$(CFG)"}gensprep.exe "$(TESTDATA)\nfs4_cs_prep_ci.txt"
++"$(TESTDATABLD)\nfscsi.spp" : $(PROJECTDIR)\$(CFG)\$(PLAT)\bin\gensprep.exe "$(TESTDATA)\nfs4_cs_prep_ci.txt"
+ 	@echo Building $@
+-	@"$(ICUTOOLS)\gensprep\$(CFG)\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfscsi -u 3.2.0 nfs4_cs_prep_ci.txt
++	@"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfscsi -u 3.2.0 nfs4_cs_prep_ci.txt
+ 
+ # Targets for nfscss.spp
+-"$(TESTDATABLD)\nfscss.spp" : {"$(ICUTOOLS)\gensprep\$(CFG)"}gensprep.exe "$(TESTDATA)\nfs4_cs_prep_cs.txt"
++"$(TESTDATABLD)\nfscss.spp" : $(PROJECTDIR)\$(CFG)\$(PLAT)\bin\gensprep.exe "$(TESTDATA)\nfs4_cs_prep_cs.txt"
+ 	@echo Building $@
+-	@"$(ICUTOOLS)\gensprep\$(CFG)\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfscss -u 3.2.0 nfs4_cs_prep_cs.txt
++	@"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfscss -u 3.2.0 nfs4_cs_prep_cs.txt
+ 
+ # Targets for nfscis.spp
+-"$(TESTDATABLD)\nfscis.spp" : {"$(ICUTOOLS)\gensprep\$(CFG)"}gensprep.exe "$(TESTDATA)\nfs4_cis_prep.txt"
++"$(TESTDATABLD)\nfscis.spp" : $(PROJECTDIR)\$(CFG)\$(PLAT)\bin\gensprep.exe "$(TESTDATA)\nfs4_cis_prep.txt"
+ 	@echo Building $@
+-	@"$(ICUTOOLS)\gensprep\$(CFG)\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfscis -u 3.2.0 -k -n "$(ICUTOOLS)\..\data\unidata" nfs4_cis_prep.txt
++	@"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfscis -u 3.2.0 -k -n "$(ICUTOOLS)\..\data\unidata" nfs4_cis_prep.txt
+ 
+ # Targets for nfsmxs.spp
+-"$(TESTDATABLD)\nfsmxs.spp" : {"$(ICUTOOLS)\gensprep\$(CFG)"}gensprep.exe "$(TESTDATA)\nfs4_mixed_prep_s.txt"
++"$(TESTDATABLD)\nfsmxs.spp" : $(PROJECTDIR)\$(CFG)\$(PLAT)\bin\gensprep.exe "$(TESTDATA)\nfs4_mixed_prep_s.txt"
+ 	@echo Building $@
+-	@"$(ICUTOOLS)\gensprep\$(CFG)\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfsmxs -u 3.2.0 -k -n "$(ICUTOOLS)\..\data\unidata" nfs4_mixed_prep_s.txt
++	@"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfsmxs -u 3.2.0 -k -n "$(ICUTOOLS)\..\data\unidata" nfs4_mixed_prep_s.txt
+ 
+ # Targets for nfsmxp.spp
+-"$(TESTDATABLD)\nfsmxp.spp" : {"$(ICUTOOLS)\gensprep\$(CFG)"}gensprep.exe "$(TESTDATA)\nfs4_mixed_prep_p.txt"
++"$(TESTDATABLD)\nfsmxp.spp" : $(PROJECTDIR)\$(CFG)\$(PLAT)\bin\gensprep.exe "$(TESTDATA)\nfs4_mixed_prep_p.txt"
+ 	@echo Building $@
+-	@"$(ICUTOOLS)\gensprep\$(CFG)\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfsmxp -u 3.2.0 -k -n "$(ICUTOOLS)\..\data\unidata" nfs4_mixed_prep_p.txt
++	@"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\gensprep" -s "$(TESTDATA)" -d "$(TESTDATABLD)\\" -b nfsmxp -u 3.2.0 -k -n "$(ICUTOOLS)\..\data\unidata" nfs4_mixed_prep_p.txt
+ 
+ 
+ # Targets for test converter data
+ "$(TESTDATABLD)\test1.cnv": "$(TESTDATA)\test1.ucm"
+ 	@echo Building $@
+-	@"$(ICUTOOLS)\makeconv\$(CFG)\makeconv" --small -d"$(TESTDATABLD)" $**
++	@"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\makeconv" --small -d"$(TESTDATABLD)" $**
+ 
+ "$(TESTDATABLD)\test1bmp.cnv": "$(TESTDATA)\test1bmp.ucm"
+ 	@echo Building $@
+-	@"$(ICUTOOLS)\makeconv\$(CFG)\makeconv" --small -d"$(TESTDATABLD)" $**
++	@"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\makeconv" --small -d"$(TESTDATABLD)" $**
+ 
+ "$(TESTDATABLD)\test2.cnv": "$(TESTDATA)\test2.ucm"
+ 	@echo Building $@
+-	@"$(ICUTOOLS)\makeconv\$(CFG)\makeconv" --small -d"$(TESTDATABLD)" $**
++	@"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\makeconv" --small -d"$(TESTDATABLD)" $**
+ 
+ "$(TESTDATABLD)\test3.cnv": "$(TESTDATA)\test3.ucm"
+ 	@echo Building $@
+-	@"$(ICUTOOLS)\makeconv\$(CFG)\makeconv" --small -d"$(TESTDATABLD)" $**
++	@"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\makeconv" --small -d"$(TESTDATABLD)" $**
+ 
+ "$(TESTDATABLD)\test4.cnv": "$(TESTDATA)\test4.ucm"
+ 	@echo Building $@
+-	@"$(ICUTOOLS)\makeconv\$(CFG)\makeconv" --small -d"$(TESTDATABLD)" $**
++	@"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\makeconv" --small -d"$(TESTDATABLD)" $**
+ 
+ "$(TESTDATABLD)\test4x.cnv": "$(TESTDATA)\test4x.ucm"
+ 	@echo Building $@
+-	@"$(ICUTOOLS)\makeconv\$(CFG)\makeconv" --small -d"$(TESTDATABLD)" $**
++	@"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\makeconv" --small -d"$(TESTDATABLD)" $**
+ 
+ "$(TESTDATABLD)\test5.cnv": "$(TESTDATA)\test5.ucm"
+ 	@echo Building $@
+-	@"$(ICUTOOLS)\makeconv\$(CFG)\makeconv" --small -d"$(TESTDATABLD)" $**
++	@"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\makeconv" --small -d"$(TESTDATABLD)" $**
+ 
+ "$(TESTDATABLD)\ibm9027.cnv": "$(TESTDATA)\ibm9027.ucm"
+ 	@echo Building $@
+-	@"$(ICUTOOLS)\makeconv\$(CFG)\makeconv" --small -d"$(TESTDATABLD)" $**
++	@"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\makeconv" --small -d"$(TESTDATABLD)" $**
+ 
+ # Target for test normalization data
+ "$(TESTDATABLD)\testnorm.nrm": "$(TESTDATA)\testnorm.txt"
+ 	@echo Building $@
+-	@"$(ICUTOOLS)\gennorm2\$(CFG)\gennorm2" -s "$(TESTDATA)" testnorm.txt -o $@
++	@"$(PROJECTDIR)\$(CFG)\$(PLAT)\bin\gennorm2" -s "$(TESTDATA)" testnorm.txt -o $@
+-- 
+2.10.2.windows.1
+
