@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="pcre-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <BinDir>$(SolutionDir)$(Configuration)\$(Platform)\bin</BinDir>
+    <InstalledDlls>$(BinDir)\pcre.dll;$(BinDir)\pcre16.dll;$(BinDir)\pcre32.dll;$(BinDir)\pcrecpp.dll;$(BinDir)\pcreposix.dll</InstalledDlls>
+    <InstalledBins>;$(BinDir)\pcregrep.exe</InstalledBins>
+    <PCREDoInstall>
+mkdir $(CopyDir)\bin
+
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcre.dll $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcre.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcre16.dll $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcre16.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcre32.dll $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcre32.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcrecpp.dll $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcrecpp.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcreposix.dll $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcreposix.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcregrep.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcregrep.pdb $(CopyDir)\bin
+
+mkdir $(CopyDir)\lib
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcre.lib $(CopyDir)\lib
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcre16.lib $(CopyDir)\lib
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcre32.lib $(CopyDir)\lib
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcrecpp.lib $(CopyDir)\lib
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\pcreposix.lib $(CopyDir)\lib
+
+mkdir $(CopyDir)\include
+copy ..\..\pcre.h $(CopyDir)\include
+copy ..\..\pcrecpp.h $(CopyDir)\include
+copy ..\..\pcre_scanner.h $(CopyDir)\include
+copy ..\..\pcrecpparg.h $(CopyDir)\include
+copy ..\..\pcre_stringpiece.h $(CopyDir)\include
+copy ..\..\pcreposix.h $(CopyDir)\include
+</PCREDoInstall>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>pcreinstallprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="BinDir">
+      <Value>$(BinDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="InstalledDlls">
+      <Value>$(InstalledDlls)</Value>
+    </BuildMacro>
+    <BuildMacro Include="InstalledBins">
+      <Value>$(InstalledBins)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PCREDoInstall">
+      <Value>$(PCREDoInstall)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

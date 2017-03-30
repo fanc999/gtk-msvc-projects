@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="pcre-prepbuild"
+	ProjectGUID="{6AD7BCE7-1BB8-4E30-A03A-FC5E54E37B05}"
+	RootNamespace="pcreprepbuild"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="10"
+			InheritedPropertySheets=".\pcre-gen-srcs.vsprops"
+			CharacterSet="2"
+			>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="10"
+			InheritedPropertySheets=".\pcre-gen-srcs.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			ConfigurationType="10"
+			InheritedPropertySheets=".\pcre-gen-srcs.vsprops"
+			CharacterSet="2"
+			>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			ConfigurationType="10"
+			InheritedPropertySheets=".\pcre-gen-srcs.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+			<File RelativePath="..\..\config.h.win32">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying config.h..." CommandLine="$(CopyConfigH)" Outputs="..\..\config.h" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying config.h..." CommandLine="$(CopyConfigH)" Outputs="..\..\config.h" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying config.h..." CommandLine="$(CopyConfigH)" Outputs="..\..\config.h" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying config.h..." CommandLine="$(CopyConfigH)" Outputs="..\..\config.h" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\pcre.h.win32">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying pcre.h..." CommandLine="$(CopyPcreH)" Outputs="..\..\pcre.h" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying pcre.h..." CommandLine="$(CopyPcreH)" Outputs="..\..\pcre.h" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying pcre.h..." CommandLine="$(CopyPcreH)" Outputs="..\..\pcre.h" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying pcre.h..." CommandLine="$(CopyPcreH)" Outputs="..\..\pcre.h" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\pcre_chartables.c.dist">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying pcre_chartables.c..." CommandLine="$(CopyPcreChartablesC)" Outputs="..\..\pcre_chartables.c" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying pcre_chartables.c..." CommandLine="$(CopyPcreChartablesC)" Outputs="..\..\pcre_chartables.c" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying pcre_chartables.c..." CommandLine="$(CopyPcreChartablesC)" Outputs="..\..\pcre_chartables.c" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying pcre_chartables.c..." CommandLine="$(CopyPcreChartablesC)" Outputs="..\..\pcre_chartables.c" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\pcre_stringpiece.h.win32">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying pcre_stringpiece.h..." CommandLine="$(CopyPcreStringpieceH)" Outputs="..\..\pcre_stringpiece.h" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying pcre_stringpiece.h..." CommandLine="$(CopyPcreStringpieceH)" Outputs="..\..\pcre_stringpiece.h" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying pcre_stringpiece.h..." CommandLine="$(CopyPcreStringpieceH)" Outputs="..\..\pcre_stringpiece.h" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying pcre_stringpiece.h..." CommandLine="$(CopyPcreStringpieceH)" Outputs="..\..\pcre_stringpiece.h" /></FileConfiguration>
+			</File>
+			<File RelativePath="..\..\pcrecpparg.h.win32">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Copying pcrecpparg.h..." CommandLine="$(CopyPcreCppArgH)" Outputs="..\..\pcrecpparg.h" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Copying pcrecpparg.h..." CommandLine="$(CopyPcreCppArgH)" Outputs="..\..\pcrecpparg.h" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Copying pcrecpparg.h..." CommandLine="$(CopyPcreCppArgH)" Outputs="..\..\pcrecpparg.h" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Copying pcrecpparg.h..." CommandLine="$(CopyPcreCppArgH)" Outputs="..\..\pcrecpparg.h" /></FileConfiguration>
+			</File>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
