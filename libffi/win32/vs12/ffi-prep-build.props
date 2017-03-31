@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="ffi-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <CopyFFIConfigH>copy ..\..\fficonfig.h.win32 ..\..\fficonfig.h</CopyFFIConfigH>
+    <CopyFFIH>
+copy ..\..\include\ffi.h.win32 ..\..\include\ffi.h
+
+copy ..\..\src\x86\ffitarget.h ..\..\include
+        </CopyFFIH>
+    <GenerateASMSrcCmdBase>cl /EP /nologo /I..\.. /I..\..\include /I..\..\src</GenerateASMSrcCmdBase>
+    <GenerateASMSrcDbg>/DFFI_DEBUG </GenerateASMSrcDbg>
+    <PreprocessASMX86Src>..\..\src\x86\win32.S &gt; ..\..\src\x86\win32.asm</PreprocessASMX86Src>
+    <PreprocessASMX64Src>..\..\src\x86\win64.S &gt; ..\..\src\x86\win64.asm</PreprocessASMX64Src>
+    <BuildWin32ASM>
+<!-- This is due to a bug in MSVC 2013's 32-bit ml.exe, ugh! -->
+cd ..\..\src\x86
+ml /c /nologo /Zi /Fo$(IntDir)win32.obj /W3 /errorReport:prompt /safeseh /Tawin32.asm
+    </BuildWin32ASM>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>ffiprepbuildprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="CopyFFIConfigH">
+      <Value>$(CopyFFIConfigH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CopyFFIH">
+      <Value>$(CopyFFIH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GenerateASMSrcCmdBase">
+      <Value>$(GenerateASMSrcCmdBase)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GenerateASMSrcDbg">
+      <Value>$(GenerateASMSrcDbg)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PreprocessASMX86Src">
+      <Value>$(PreprocessASMX86Src)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PreprocessASMX64Src">
+      <Value>$(PreprocessASMX64Src)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BuildWin32ASM">
+      <Value>$(BuildWin32ASM)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
