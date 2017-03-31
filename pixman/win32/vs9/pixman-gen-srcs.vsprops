@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="pixmangensrcsprops"
+	InheritedPropertySheets=".\pixman-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="GenPixmanDef"
+		Value="
+echo EXPORTS &gt; $(SolutionDir)\$(ConfigurationName)\$(PlatformName)\obj\$(ProjectName)\$(ProjectName).def&#x0D;&#x0A;
+cl /EP ..\..\pixman\pixman.symbols &gt;&gt; $(SolutionDir)\$(ConfigurationName)\$(PlatformName)\obj\$(ProjectName)\$(ProjectName).def&#x0D;&#x0A;
+		      "
+	/>
+</VisualStudioPropertySheet>

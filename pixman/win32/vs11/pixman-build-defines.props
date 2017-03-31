@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="pixman-version-paths.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <PixmanCFlags>USE_SSE2;USE_SSSE3</PixmanCFlags>
+    <PixmanX86ExtraCFlags>/DUSE_X86_MMX /w14710 /w14714</PixmanX86ExtraCFlags>
+    <TestCFlags>HAVE_LIBPNG</TestCFlags>
+    <TestAdditionalLibs>libpng16.lib;zlib1.lib</TestAdditionalLibs>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>pixmanbuilddefinesprops</_PropertySheetDisplayName>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformName)\bin\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(PlatformName)\obj\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..;..\..\pixman;$(GlibEtcInstallRoot)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;PACKAGE=pixman-1;PACKAGE_VERSION="";PACKAGE_BUGREPORT="";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/d2Zi+ %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(GlibEtcInstallRoot)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="PixmanCFlags">
+      <Value>$(PixmanCFlags)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PixmanX86ExtraCFlags">
+      <Value>$(PixmanX86ExtraCFlags)</Value>
+    </BuildMacro>
+    <BuildMacro Include="TestCFlags">
+      <Value>$(TestCFlags)</Value>
+    </BuildMacro>
+    <BuildMacro Include="TestAdditionalLibs">
+      <Value>$(TestAdditionalLibs)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

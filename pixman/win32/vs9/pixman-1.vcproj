@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="pixman-1"
+	ProjectGUID="{3D884060-985F-4A20-8BA9-9DF4E33A9582}"
+	RootNamespace="pixman1"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\pixman-gen-srcs.vsprops"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="$(PixmanX86ExtraCFlags)"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG;$(PixmanCFlags)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				ModuleDefinitionFile="$(IntDir)\$(ProjectName).def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\pixman-gen-srcs.vsprops"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="$(PixmanX86ExtraCFlags)"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="$(PixmanCFlags)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				ModuleDefinitionFile="$(IntDir)\$(ProjectName).def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\pixman-gen-srcs.vsprops"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG;$(PixmanCFlags)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				ModuleDefinitionFile="$(IntDir)\$(ProjectName).def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\pixman-gen-srcs.vsprops"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="$(PixmanCFlags)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				ModuleDefinitionFile="$(IntDir)\$(ProjectName).def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Sources"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File RelativePath="..\..\pixman\pixman-access-accessors.c" />
+			<File RelativePath="..\..\pixman\pixman-access.c" />
+			<File RelativePath="..\..\pixman\pixman-arm.c" />
+			<File RelativePath="..\..\pixman\pixman-bits-image.c" />
+			<File RelativePath="..\..\pixman\pixman-combine-float.c" />
+			<File RelativePath="..\..\pixman\pixman-combine32.c" />
+			<File RelativePath="..\..\pixman\pixman-conical-gradient.c" />
+			<File RelativePath="..\..\pixman\pixman-edge-accessors.c" />
+			<File RelativePath="..\..\pixman\pixman-edge.c" />
+			<File RelativePath="..\..\pixman\pixman-fast-path.c" />
+			<File RelativePath="..\..\pixman\pixman-filter.c" />
+			<File RelativePath="..\..\pixman\pixman-general.c" />
+			<File RelativePath="..\..\pixman\pixman-glyph.c" />
+			<File RelativePath="..\..\pixman\pixman-gradient-walker.c" />
+			<File RelativePath="..\..\pixman\pixman-image.c" />
+			<File RelativePath="..\..\pixman\pixman-implementation.c" />
+			<File RelativePath="..\..\pixman\pixman-linear-gradient.c" />
+			<File RelativePath="..\..\pixman\pixman-matrix.c" />
+			<File RelativePath="..\..\pixman\pixman-mips.c" />
+			<File RelativePath="..\..\pixman\pixman-mmx.c" />
+			<File RelativePath="..\..\pixman\pixman-noop.c" />
+			<File RelativePath="..\..\pixman\pixman-ppc.c" />
+			<File RelativePath="..\..\pixman\pixman-radial-gradient.c" />
+			<File RelativePath="..\..\pixman\pixman-region16.c" />
+			<File RelativePath="..\..\pixman\pixman-region32.c" />
+			<File RelativePath="..\..\pixman\pixman-solid-fill.c" />
+			<File RelativePath="..\..\pixman\pixman-sse2.c" />
+			<File RelativePath="..\..\pixman\pixman-ssse3.c">
+				<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true" />
+				<FileConfiguration Name="Release|x64" ExcludedFromBuild="true" />
+			</File>
+			<File RelativePath="..\..\pixman\pixman-timer.c" />
+			<File RelativePath="..\..\pixman\pixman-trap.c" />
+			<File RelativePath="..\..\pixman\pixman-utils.c" />
+			<File RelativePath="..\..\pixman\pixman-x86.c" />
+			<File RelativePath="..\..\pixman\pixman.c" />
+		</Filter>
+		<Filter
+			Name="Headers"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+			<File RelativePath="..\..\pixman\pixman.symbols">
+				<FileConfiguration Name="Debug|Win32"><Tool Name="VCCustomBuildTool" Description="Generating pixman-1.def..." CommandLine="$(GenPixmanDef)" Outputs="$(IntDir)\$(ProjectName).def" /></FileConfiguration>
+				<FileConfiguration Name="Release|Win32"><Tool Name="VCCustomBuildTool" Description="Generating pixman-1.def..." CommandLine="$(GenPixmanDef)" Outputs="$(IntDir)\$(ProjectName).def" /></FileConfiguration>
+				<FileConfiguration Name="Debug|x64"><Tool Name="VCCustomBuildTool" Description="Generating pixman-1.def..." CommandLine="$(GenPixmanDef)" Outputs="$(IntDir)\$(ProjectName).def" /></FileConfiguration>
+				<FileConfiguration Name="Release|x64"><Tool Name="VCCustomBuildTool" Description="Generating pixman-1.def..." CommandLine="$(GenPixmanDef)" Outputs="$(IntDir)\$(ProjectName).def" /></FileConfiguration>
+			</File>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
