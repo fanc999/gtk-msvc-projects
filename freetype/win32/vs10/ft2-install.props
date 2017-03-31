@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="ft2-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <BinDir>$(SolutionDir)$(Configuration)\$(Platform)\bin</BinDir>
+    <FT2DoInstall>
+mkdir $(CopyDir)
+
+mkdir $(CopyDir)\bin
+copy $(BinDir)\freetype.dll $(CopyDir)\bin
+copy $(BinDir)\freetype.pdb $(CopyDir)\bin
+
+mkdir $(CopyDir)\lib
+copy $(BinDir)\freetype.lib $(CopyDir)\lib
+
+mkdir $(CopyDir)\include
+copy ..\..\include\ft2build.h $(CopyDir)\include
+
+mkdir $(CopyDir)\include\freetype
+copy ..\..\include\freetype\*.h $(CopyDir)\include\freetype
+
+mkdir $(CopyDir)\include\freetype\config
+copy ..\..\include\freetype\config\*.h $(CopyDir)\include\freetype\config
+
+mkdir $(CopyDir)\include\freetype\internal\services
+copy ..\..\include\freetype\internal\*.h $(CopyDir)\include\freetype\internal
+copy ..\..\include\freetype\internal\services\*.h $(CopyDir)\include\freetype\internal\services
+</FT2DoInstall>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>ft2installprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemGroup>
+    <BuildMacro Include="FT2DoInstall">
+      <Value>$(FT2DoInstall)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BinDir">
+      <Value>$(BinDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

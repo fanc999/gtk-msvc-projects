@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "freetype", "freetype.vcxproj", "{7DEC3E1F-54F0-45C4-B31F-21FA458B8DAF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ft2-install", "ft2-install.vcxproj", "{BEFD8220-BF67-4429-9463-C9FB008C2524}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DEC3E1F-54F0-45C4-B31F-21FA458B8DAF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7DEC3E1F-54F0-45C4-B31F-21FA458B8DAF}.Debug|Win32.Build.0 = Debug|Win32
+		{7DEC3E1F-54F0-45C4-B31F-21FA458B8DAF}.Debug|x64.ActiveCfg = Debug|x64
+		{7DEC3E1F-54F0-45C4-B31F-21FA458B8DAF}.Debug|x64.Build.0 = Debug|x64
+		{7DEC3E1F-54F0-45C4-B31F-21FA458B8DAF}.Release|Win32.ActiveCfg = Release|Win32
+		{7DEC3E1F-54F0-45C4-B31F-21FA458B8DAF}.Release|Win32.Build.0 = Release|Win32
+		{7DEC3E1F-54F0-45C4-B31F-21FA458B8DAF}.Release|x64.ActiveCfg = Release|x64
+		{7DEC3E1F-54F0-45C4-B31F-21FA458B8DAF}.Release|x64.Build.0 = Release|x64
+		{BEFD8220-BF67-4429-9463-C9FB008C2524}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BEFD8220-BF67-4429-9463-C9FB008C2524}.Debug|Win32.Build.0 = Debug|Win32
+		{BEFD8220-BF67-4429-9463-C9FB008C2524}.Debug|x64.ActiveCfg = Debug|x64
+		{BEFD8220-BF67-4429-9463-C9FB008C2524}.Debug|x64.Build.0 = Debug|x64
+		{BEFD8220-BF67-4429-9463-C9FB008C2524}.Release|Win32.ActiveCfg = Release|Win32
+		{BEFD8220-BF67-4429-9463-C9FB008C2524}.Release|Win32.Build.0 = Release|Win32
+		{BEFD8220-BF67-4429-9463-C9FB008C2524}.Release|x64.ActiveCfg = Release|x64
+		{BEFD8220-BF67-4429-9463-C9FB008C2524}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
