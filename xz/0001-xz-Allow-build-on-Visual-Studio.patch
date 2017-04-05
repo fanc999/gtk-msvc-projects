@@ -1,0 +1,97 @@
+From e727a3e3e10d7930d9b3347628e41b25648d0dcd Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Wed, 5 Apr 2017 17:14:03 +0800
+Subject: [PATCH] xz: Allow build on Visual Studio
+
+Use implementations of gettimeofday() from PostgreSQL for Visual Studio 2013
+and later, and not include sys/time.h on Windows as that does not exist
+on Visual Studio.
+
+Also define S_ISDIR and S_ISREG for Visual Studio as well.
+---
+ src/xz/file_io.c | 12 +++++++++++-
+ src/xz/mytime.c  | 37 ++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 47 insertions(+), 2 deletions(-)
+
+diff --git a/src/xz/file_io.c b/src/xz/file_io.c
+index c01f4e8..024e7e1 100644
+--- a/src/xz/file_io.c
++++ b/src/xz/file_io.c
+@@ -16,6 +16,14 @@
+ 
+ #ifdef TUKLIB_DOSLIKE
+ #	include <io.h>
++
++# ifndef S_ISDIR
++#  define S_ISDIR(mode) (((mode) & _S_IFMT) == _S_IFDIR)
++# endif
++
++# ifndef S_ISREG
++#  define S_ISREG(mode) (((mode) & _S_IFMT) == _S_IFREG)
++# endif
+ #else
+ #	include <poll.h>
+ static bool warn_fchown;
+@@ -880,8 +888,10 @@ io_open_dest_real(file_pair *pair)
+ 				| O_CREAT | O_EXCL;
+ #ifndef TUKLIB_DOSLIKE
+ 		flags |= O_NONBLOCK;
+-#endif
+ 		const mode_t mode = S_IRUSR | S_IWUSR;
++#else
++    const int mode = S_IREAD | S_IWRITE;
++#endif
+ 		pair->dest_fd = open(pair->dest_name, flags, mode);
+ 
+ 		if (pair->dest_fd == -1) {
+diff --git a/src/xz/mytime.c b/src/xz/mytime.c
+index 4be184f..46e4c7a 100644
+--- a/src/xz/mytime.c
++++ b/src/xz/mytime.c
+@@ -13,7 +13,42 @@
+ #include "private.h"
+ 
+ #if !(defined(HAVE_CLOCK_GETTIME) && HAVE_DECL_CLOCK_MONOTONIC)
+-#	include <sys/time.h>
++# ifdef _MSC_VER
++#  include <time.h>
++#  include <winsock2.h>
++
++/* taken from PostgreSQL */
++
++/* FILETIME of Jan 1 1970 00:00:00 */
++static const unsigned __int64 epoch = ((unsigned __int64)116444736000000000ULL);
++
++/*
++* timezone information is stored outside the kernel so tzp isn't used anymore.
++*
++* Note: this function is not for Win32 high precision timing purpose. See
++* elapsed_time().
++*/
++static int
++gettimeofday(struct timeval * tp, struct timezone * tzp)
++{
++  FILETIME    file_time;
++  SYSTEMTIME  system_time;
++  ULARGE_INTEGER ularge;
++
++  GetSystemTime(&system_time);
++  SystemTimeToFileTime(&system_time, &file_time);
++  ularge.LowPart = file_time.dwLowDateTime;
++  ularge.HighPart = file_time.dwHighDateTime;
++
++  tp->tv_sec = (long)((ularge.QuadPart - epoch) / 10000000L);
++  tp->tv_usec = (long)(system_time.wMilliseconds * 1000);
++
++  return 0;
++}
++
++# else
++#	 include <sys/time.h>
++# endif
+ #endif
+ 
+ uint64_t opt_flush_timeout = 0;
+-- 
+2.10.2.windows.1
+
