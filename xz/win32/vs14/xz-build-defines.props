@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="xz-version-paths.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <LibLZMADefines>DLL_EXPORT</LibLZMADefines>
+    <XZIncludeDirs>..\..\windows;..\..\src\liblzma\common;..\..\src\common;..\..\src\liblzma\api;..\..\src\liblzma\check;..\..\src\liblzma\delta;..\..\src\liblzma\lz;..\..\src\liblzma\lzma;..\..\src\liblzma\rangecoder;..\..\src\liblzma\simple</XZIncludeDirs>
+    <XZToolsIncludeDirs>..\..\lib;$(XZIncludeDirs)</XZToolsIncludeDirs>
+    <XZToolsDefines>PACKAGE_BUGREPORT="lasse.collin@tukaani.org"</XZToolsDefines>
+    <LZMADecDefines>LZMADEC</LZMADecDefines>
+    <XZExtraDefines Condition="'$(Platform)'=='x64'">ssize_t=signed __int64;strcasecmp=_stricmp</XZExtraDefines>
+    <XZExtraDefines Condition="'$(Platform)'=='Win32'">ssize_t=signed int;strcasecmp=_stricmp</XZExtraDefines>
+    <CopyGetoptH>if not exist ..\..\lib\getopt.h copy ..\..\lib\getopt.in.h ..\..\lib\getopt.h</CopyGetoptH>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>xzbuilddefinesprops</_PropertySheetDisplayName>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformName)\bin\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(PlatformName)\obj\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(XZIncludeDirs);$(GLibEtcInstallRoot)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>HAVE_CONFIG_H;TUKLIB_GETTTEXT;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisabledSpecificWarnings>4127;%(DisabledSpecificWarnings)</DisabledSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(XZIncludeDirs);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="LibLZMADefines">
+      <Value>$(LibLZMADefines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="XZIncludeDirs">
+      <Value>$(XZIncludeDirs)</Value>
+    </BuildMacro>
+    <BuildMacro Include="XZToolsIncludeDirs">
+      <Value>$(XZToolsIncludeDirs)</Value>
+    </BuildMacro>
+    <BuildMacro Include="XZToolsDefines">
+      <Value>$(XZToolsDefines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LZMADecDefines">
+      <Value>$(LZMADecDefines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="CopyGetoptH">
+      <Value>$(CopyGetoptH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="XZExtraDefines">
+      <Value>$(XZExtraDefines)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

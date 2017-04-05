@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="xz-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <BinDir>$(SolutionDir)$(Configuration)\$(Platform)\bin</BinDir>
+    <XZDoInstall>
+mkdir $(CopyDir)
+
+mkdir $(CopyDir)\bin
+copy $(BinDir)\liblzma.dll $(CopyDir)\bin
+copy $(BinDir)\liblzma.pdb $(CopyDir)\bin
+copy $(BinDir)\lzmainfo.exe $(CopyDir)\bin
+copy $(BinDir)\lzmainfo.pdb $(CopyDir)\bin
+copy $(BinDir)\lzmadec.exe $(CopyDir)\bin
+copy $(BinDir)\lzmadec.pdb $(CopyDir)\bin
+copy $(BinDir)\xz.exe $(CopyDir)\bin
+copy $(BinDir)\xz.pdb $(CopyDir)\bin
+copy $(BinDir)\xzdec.exe $(CopyDir)\bin
+copy $(BinDir)\xzdec.pdb $(CopyDir)\bin
+
+mkdir $(CopyDir)\lib
+copy $(BinDir)\liblzma.lib $(CopyDir)\lib
+
+mkdir $(CopyDir)\include\lzma
+copy ..\..\src\liblzma\api\lzma.h $(CopyDir)\include
+copy ..\..\src\liblzma\api\lzma\*.h $(CopyDir)\include\lzma
+    </XZDoInstall>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>xzinstallprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemGroup>
+    <BuildMacro Include="XZDoInstall">
+      <Value>$(XZDoInstall)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
