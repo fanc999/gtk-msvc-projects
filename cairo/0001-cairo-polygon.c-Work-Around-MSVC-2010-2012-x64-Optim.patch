@@ -20,7 +20,7 @@ index b0424f6..a27edc1 100644
      cairo_edge_t *edge;
  
 -    assert (top < bottom);
-+    if (top != 0 || bottom != 0)
++    if (top != 0 && bottom != 0)
 +      assert (top < bottom);
  
      if (unlikely (polygon->num_edges == polygon->edges_size)) {
