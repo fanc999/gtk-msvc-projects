@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="lzoinstallprops"
+	InheritedPropertySheets=".\lzo-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="LZODoInstall"
+		Value="
+mkdir $(CopyDir)&#x0D;&#x0A;
+mkdir $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\lzo2.dll $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\lzo2.pdb $(CopyDir)\bin&#x0D;&#x0A;
+
+mkdir $(CopyDir)\lib&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\lzo2.lib $(CopyDir)\lib&#x0D;&#x0A;
+
+mkdir $(CopyDir)\include\lzo&#x0D;&#x0A;
+copy ..\..\include\lzo\*.h $(CopyDir)\include\lzo&#x0D;&#x0A;
+"
+	/>
+</VisualStudioPropertySheet>

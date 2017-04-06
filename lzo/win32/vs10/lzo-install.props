@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="lzo-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <BinDir>$(SolutionDir)$(Configuration)\$(Platform)\bin</BinDir>
+    <LZODoInstall>
+mkdir $(CopyDir)
+
+mkdir $(CopyDir)\bin
+copy $(BinDir)\lzo2.dll $(CopyDir)\bin
+copy $(BinDir)\lzo2.pdb $(CopyDir)\bin
+
+mkdir $(CopyDir)\lib
+copy $(BinDir)\lzo2.lib $(CopyDir)\lib
+
+mkdir $(CopyDir)\include\lzo
+copy ..\..\include\lzo\*.h $(CopyDir)\include\lzo
+    </LZODoInstall>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>lzoinstallprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemGroup>
+    <BuildMacro Include="BinDir">
+      <Value>$(BinDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LZODoInstall">
+      <Value>$(LZODoInstall)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

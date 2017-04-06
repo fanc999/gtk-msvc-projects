@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="big5"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="lzo2"
+	ProjectGUID="{A5E68BF8-2D7F-4BB9-BBAD-6470E3D5AD7F}"
+	RootNamespace="lzo2"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+		<DefaultToolFile
+			FileName="masm.rules"
+		/>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\lzo-build-defines.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG;$(AsmDefines)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\lzo-build-defines.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\lzo-build-defines.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="$(AsmDefines)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\lzo-build-defines.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions=""
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Sources"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File RelativePath="..\..\src\lzo1.c" />
+			<File RelativePath="..\..\src\lzo1_99.c" />
+			<File RelativePath="..\..\src\lzo1a.c" />
+			<File RelativePath="..\..\src\lzo1a_99.c" />
+			<File RelativePath="..\..\src\lzo1b_1.c" />
+			<File RelativePath="..\..\src\lzo1b_2.c" />
+			<File RelativePath="..\..\src\lzo1b_3.c" />
+			<File RelativePath="..\..\src\lzo1b_4.c" />
+			<File RelativePath="..\..\src\lzo1b_5.c" />
+			<File RelativePath="..\..\src\lzo1b_6.c" />
+			<File RelativePath="..\..\src\lzo1b_7.c" />
+			<File RelativePath="..\..\src\lzo1b_8.c" />
+			<File RelativePath="..\..\src\lzo1b_9.c" />
+			<File RelativePath="..\..\src\lzo1b_99.c" />
+			<File RelativePath="..\..\src\lzo1b_9x.c" />
+			<File RelativePath="..\..\src\lzo1b_cc.c" />
+			<File RelativePath="..\..\src\lzo1b_d1.c" />
+			<File RelativePath="..\..\src\lzo1b_d2.c" />
+			<File RelativePath="..\..\src\lzo1b_rr.c" />
+			<File RelativePath="..\..\src\lzo1b_xx.c" />
+			<File RelativePath="..\..\src\lzo1c_1.c" />
+			<File RelativePath="..\..\src\lzo1c_2.c" />
+			<File RelativePath="..\..\src\lzo1c_3.c" />
+			<File RelativePath="..\..\src\lzo1c_4.c" />
+			<File RelativePath="..\..\src\lzo1c_5.c" />
+			<File RelativePath="..\..\src\lzo1c_6.c" />
+			<File RelativePath="..\..\src\lzo1c_7.c" />
+			<File RelativePath="..\..\src\lzo1c_8.c" />
+			<File RelativePath="..\..\src\lzo1c_9.c" />
+			<File RelativePath="..\..\src\lzo1c_99.c" />
+			<File RelativePath="..\..\src\lzo1c_9x.c" />
+			<File RelativePath="..\..\src\lzo1c_cc.c" />
+			<File RelativePath="..\..\src\lzo1c_d1.c" />
+			<File RelativePath="..\..\src\lzo1c_d2.c" />
+			<File RelativePath="..\..\src\lzo1c_rr.c" />
+			<File RelativePath="..\..\src\lzo1c_xx.c" />
+			<File RelativePath="..\..\src\lzo1f_1.c" />
+			<File RelativePath="..\..\src\lzo1f_9x.c" />
+			<File RelativePath="..\..\src\lzo1f_d1.c" />
+			<File RelativePath="..\..\src\lzo1f_d2.c" />
+			<File RelativePath="..\..\src\lzo1x_1.c" />
+			<File RelativePath="..\..\src\lzo1x_1k.c" />
+			<File RelativePath="..\..\src\lzo1x_1l.c" />
+			<File RelativePath="..\..\src\lzo1x_1o.c" />
+			<File RelativePath="..\..\src\lzo1x_9x.c" />
+			<File RelativePath="..\..\src\lzo1x_d1.c" />
+			<File RelativePath="..\..\src\lzo1x_d2.c" />
+			<File RelativePath="..\..\src\lzo1x_d3.c" />
+			<File RelativePath="..\..\src\lzo1x_o.c" />
+			<File RelativePath="..\..\src\lzo1y_1.c" />
+			<File RelativePath="..\..\src\lzo1y_9x.c" />
+			<File RelativePath="..\..\src\lzo1y_d1.c" />
+			<File RelativePath="..\..\src\lzo1y_d2.c" />
+			<File RelativePath="..\..\src\lzo1y_d3.c" />
+			<File RelativePath="..\..\src\lzo1y_o.c" />
+			<File RelativePath="..\..\src\lzo1z_9x.c" />
+			<File RelativePath="..\..\src\lzo1z_d1.c" />
+			<File RelativePath="..\..\src\lzo1z_d2.c" />
+			<File RelativePath="..\..\src\lzo1z_d3.c" />
+			<File RelativePath="..\..\src\lzo2a_9x.c" />
+			<File RelativePath="..\..\src\lzo2a_d1.c" />
+			<File RelativePath="..\..\src\lzo2a_d2.c" />
+			<File RelativePath="..\..\src\lzo_crc.c" />
+			<File RelativePath="..\..\src\lzo_init.c" />
+			<File RelativePath="..\..\src\lzo_ptr.c" />
+			<File RelativePath="..\..\src\lzo_str.c" />
+			<File RelativePath="..\..\src\lzo_util.c" />
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
