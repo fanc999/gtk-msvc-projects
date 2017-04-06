@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="tiff-version-paths.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <LibTIFFDefs>TIF_PLATFORM_CONSOLE;PACKBITS_SUPPORT;LZW_SUPPORT;NEXT_SUPPORT;LOGLUV_SUPPORT;PIXARLOG_SUPPORT;STRIPCHOP_DEFAULT=TIFF_STRIPCHOP;STRIP_SIZE_DEFAULT=8192;DEFAULT_EXTRASAMPLE_AS_ALPHA;CHECK_JPEG_YCBCR_SUBSAMPLING</LibTIFFDefs>
+    <ToolsDefs>NEED_LIBPORT</ToolsDefs>
+    <LibportIncl>..\..\port</LibportIncl>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>tiffbuilddefinesprops</_PropertySheetDisplayName>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformName)\bin\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(PlatformName)\obj\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\libtiff;..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;CCITT_SUPPORT;JPEG_SUPPORT;OJPEG_SUPPORT;ZIP_SUPPORT;LZMA_SUPPORT;USE_WIN32_FILEIO;HAVE_SNPRINTF;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/d2Zi+ %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>jpeg.lib;zlib1.lib;liblzma.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(GLibEtcInstallRoot)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="LibTIFFDefs">
+      <Value>$(LibTIFFDefs)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ToolsDefs">
+      <Value>$(ToolsDefs)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LibportIncl">
+      <Value>$(LibportIncl)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

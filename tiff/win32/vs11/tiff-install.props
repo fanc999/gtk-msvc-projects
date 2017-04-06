@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="tiff-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <BinDir>$(SolutionDir)$(Configuration)\$(Platform)\bin</BinDir>
+    <TIFFDoInstall>
+mkdir $(CopyDir)
+
+mkdir $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\libtiff.dll $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\libtiff.pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\*tiff*.exe $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\*tiff*.pdb $(CopyDir)\bin
+
+mkdir $(CopyDir)\lib
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\libtiff_i.lib $(CopyDir)\lib
+
+mkdir $(CopyDir)\include
+copy ..\..\libtiff\tiff.h $(CopyDir)\include
+copy ..\..\libtiff\tiffio.h $(CopyDir)\include
+copy ..\..\libtiff\tiffvers.h $(CopyDir)\include
+copy ..\..\libtiff\tiffio.hxx $(CopyDir)\include
+copy ..\..\libtiff\tiffconf.h $(CopyDir)\include
+</TIFFDoInstall>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>tiffinstallprops</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemGroup>
+    <BuildMacro Include="BinDir">
+      <Value>$(BinDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="TIFFDoInstall">
+      <Value>$(TIFFDoInstall)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

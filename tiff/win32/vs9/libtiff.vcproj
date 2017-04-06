@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="big5"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="libtiff"
+	ProjectGUID="{86EAF624-047E-4FC9-ABFF-0DD89FE72952}"
+	RootNamespace="libtiff"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\tiff-gen-src.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG;$(LibTIFFDefs)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				ModuleDefinitionFile="..\..\libtiff\libtiff.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				ImportLibrary="$(TargetDir)$(TargetName)_i.lib"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\tiff-gen-src.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="$(LibTIFFDefs)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				ModuleDefinitionFile="..\..\libtiff\libtiff.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="$(TargetDir)$(TargetName)_i.lib"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			
+			ConfigurationType="2"
+			InheritedPropertySheets=".\tiff-gen-src.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG;$(LibTIFFDefs)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				ModuleDefinitionFile="..\..\libtiff\libtiff.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				ImportLibrary="$(TargetDir)$(TargetName)_i.lib"
+				TargetMachine="17"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			
+			ConfigurationType="2"
+			InheritedPropertySheets=".\tiff-gen-src.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="$(LibTIFFDefs)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				ModuleDefinitionFile="..\..\libtiff\libtiff.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="$(TargetDir)$(TargetName)_i.lib"
+				TargetMachine="17"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Sources"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File RelativePath="..\..\libtiff\tif_aux.c" />
+			<File RelativePath="..\..\libtiff\tif_close.c" />
+			<File RelativePath="..\..\libtiff\tif_codec.c" />
+			<File RelativePath="..\..\libtiff\tif_color.c" />
+			<File RelativePath="..\..\libtiff\tif_compress.c" />
+			<File RelativePath="..\..\libtiff\tif_dir.c" />
+			<File RelativePath="..\..\libtiff\tif_dirinfo.c" />
+			<File RelativePath="..\..\libtiff\tif_dirread.c" />
+			<File RelativePath="..\..\libtiff\tif_dirwrite.c" />
+			<File RelativePath="..\..\libtiff\tif_dumpmode.c" />
+			<File RelativePath="..\..\libtiff\tif_error.c" />
+			<File RelativePath="..\..\libtiff\tif_extension.c" />
+			<File RelativePath="..\..\libtiff\tif_fax3.c" />
+			<File RelativePath="..\..\libtiff\tif_fax3sm.c" />
+			<File RelativePath="..\..\libtiff\tif_flush.c" />
+			<File RelativePath="..\..\libtiff\tif_getimage.c" />
+			<File RelativePath="..\..\libtiff\tif_jbig.c" />
+			<File RelativePath="..\..\libtiff\tif_jpeg.c" />
+			<File RelativePath="..\..\libtiff\tif_jpeg_12.c" />
+			<File RelativePath="..\..\libtiff\tif_luv.c" />
+			<File RelativePath="..\..\libtiff\tif_lzma.c" />
+			<File RelativePath="..\..\libtiff\tif_lzw.c" />
+			<File RelativePath="..\..\libtiff\tif_next.c" />
+			<File RelativePath="..\..\libtiff\tif_ojpeg.c" />
+			<File RelativePath="..\..\libtiff\tif_open.c" />
+			<File RelativePath="..\..\libtiff\tif_packbits.c" />
+			<File RelativePath="..\..\libtiff\tif_pixarlog.c" />
+			<File RelativePath="..\..\libtiff\tif_predict.c" />
+			<File RelativePath="..\..\libtiff\tif_print.c" />
+			<File RelativePath="..\..\libtiff\tif_read.c" />
+			<File RelativePath="..\..\libtiff\tif_stream.cxx" />
+			<File RelativePath="..\..\libtiff\tif_strip.c" />
+			<File RelativePath="..\..\libtiff\tif_swab.c" />
+			<File RelativePath="..\..\libtiff\tif_thunder.c" />
+			<File RelativePath="..\..\libtiff\tif_tile.c" />
+			<File RelativePath="..\..\libtiff\tif_version.c" />
+			<File RelativePath="..\..\libtiff\tif_warning.c" />
+			<File RelativePath="..\..\libtiff\tif_win32.c" />
+			<File RelativePath="..\..\libtiff\tif_write.c" />
+			<File RelativePath="..\..\libtiff\tif_zip.c" />
+		</Filter>
+		<Filter
+			Name="Headers"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+			<File RelativePath="..\..\libtiff\tif_config.vc.h"
+				>
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Copying tif_config.h from tif_config.vc.h..."
+						CommandLine="$(CopyTifConfigH)"
+						Outputs="..\..\libtiff\tif_config.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Copying tif_config.h from tif_config.vc.h..."
+						CommandLine="$(CopyTifConfigH)"
+						Outputs="..\..\libtiff\tif_config.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Copying tif_config.h from tif_config.vc.h..."
+						CommandLine="$(CopyTifConfigH)"
+						Outputs="..\..\libtiff\tif_config.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Copying tif_config.h from tif_config.vc.h..."
+						CommandLine="$(CopyTifConfigH)"
+						Outputs="..\..\libtiff\tif_config.h"
+					/>
+				</FileConfiguration>
+			</File>
+			<File RelativePath="..\..\libtiff\tiffconf.vc.h"
+				>
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Copying tiffconf.h from tiffconf.vc.h..."
+						CommandLine="$(CopyTiffConfH)"
+						Outputs="..\..\libtiff\tiffconf.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCustomBuildTool"
+						Description="Copying tiffconf.h from tiffconf.vc.h..."
+						CommandLine="$(CopyTiffConfH)"
+						Outputs="..\..\libtiff\tiffconf.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Debug|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Copying tiffconf.h from tiffconf.vc.h..."
+						CommandLine="$(CopyTiffConfH)"
+						Outputs="..\..\libtiff\tiffconf.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration Name="Release|x64">
+					<Tool Name="VCCustomBuildTool"
+						Description="Copying tiffconf.h from tiffconf.vc.h..."
+						CommandLine="$(CopyTiffConfH)"
+						Outputs="..\..\libtiff\tiffconf.h"
+					/>
+				</FileConfiguration>
+			</File>
+		</Filter>
+	</Files>
+</VisualStudioProject>
