@@ -40,7 +40,7 @@ help:
 	@echo.
 	@echo OPTION: Optional, may be any of the following, use OPTION=1 to enable;
 	@echo multiple OPTION's may be used.  If no OPTION is specified, a default
-	@echo HarfBuzz DLL is built with expat XML support.
+	@echo FontConfig DLL is built with expat XML support.
 	@echo ======
 	@echo.
 	@echo LIBXML2:

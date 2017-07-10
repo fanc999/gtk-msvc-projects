@@ -19,7 +19,6 @@ XML_LIBS = expat.lib
 !endif
 
 # Please do not change anything beneath this line unless maintaining the NMake Makefiles
-# Bare minimum features and sources built into HarfBuzz on Windows
 
 FC_INCLUDES = /I$(PREFIX)\include /I$(CFG)\$(PLAT)\fontconfig /I.\compat /I.
 FC_BASE_DEFINES = /DHAVE_CONFIG_H /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_WARNINGS
