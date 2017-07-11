@@ -1,0 +1,33 @@
+From aa57ab25c11399c7bca3aef36f019b757944d926 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Wed, 29 Mar 2017 14:40:33 +0800
+Subject: [PATCH] intltest/numberformat2test.cpp: Fix build on pre-2010 Visual
+ Studio
+
+Visual Studio 2008 and earlier do not come with stdint.h, where some
+INT64_MAX and INT64_MIN are defined.  Use definitions from the
+definitions in msinttypes' stdint.h, which actually uses constants from
+Visual Studio's incuded headers.
+---
+ source/test/intltest/numberformat2test.cpp | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/source/test/intltest/numberformat2test.cpp b/source/test/intltest/numberformat2test.cpp
+index 1fdc75c..1aef1f1 100644
+--- a/source/test/intltest/numberformat2test.cpp
++++ b/source/test/intltest/numberformat2test.cpp
+@@ -37,6 +37,11 @@
+ #include "valueformatter.h"
+ #include "visibledigits.h"
+ 
++#if defined (_MSC_VER) && (_MSC_VER < 1600)
++#define INT64_MAX _I64_MAX
++#define INT64_MIN _I64_MIN
++#endif
++
+ struct NumberFormat2Test_Attributes {
+     int32_t id;
+     int32_t spos;
+-- 
+2.10.2.windows.1
+

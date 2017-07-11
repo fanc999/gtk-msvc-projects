@@ -1,0 +1,49 @@
+From c44f8c65ceee5491b7731b13fb7837e7fa62040b Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Wed, 29 Mar 2017 14:36:33 +0800
+Subject: [PATCH] cintltst/spooftest.c: Fix build on pre-C99
+
+Enable the cintltst sources to build on pre-C99 compilers.
+---
+ source/test/cintltst/spooftest.c | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
+
+diff --git a/source/test/cintltst/spooftest.c b/source/test/cintltst/spooftest.c
+index 68f968b..e40185a 100644
+--- a/source/test/cintltst/spooftest.c
++++ b/source/test/cintltst/spooftest.c
+@@ -471,15 +471,17 @@ static void TestUSpoofCAPI(void) {
+     TEST_SETUP
+         int32_t result1, result2;
+         char utf8buf[200];
+-        uspoof_setChecks(sc, USPOOF_ALL_CHECKS | USPOOF_AUX_INFO, &status);
+-        USpoofCheckResult* checkResult = uspoof_openCheckResult(&status);
+-        TEST_ASSERT_SUCCESS(status);
+-
++        USpoofCheckResult* checkResult;
+         const UChar* tests[] = { goodLatin, scMixed, scLatin,
+                 goodCyrl, goodGreek, lll_Latin_a, lll_Latin_b, han_Hiragana };
++        int32_t i;
++        uspoof_setChecks(sc, USPOOF_ALL_CHECKS | USPOOF_AUX_INFO, &status);
++        checkResult = uspoof_openCheckResult(&status);
++        TEST_ASSERT_SUCCESS(status);
+ 
+-        for (int32_t i=0; i<UPRV_LENGTHOF(tests); i++) {
++        for (i=0; i<UPRV_LENGTHOF(tests); i++) {
+             const UChar* str = tests[i];
++            URestrictionLevel restrictionLevel;
+ 
+             // Basic test
+             result1 = uspoof_check(sc, str, -1, NULL, &status);
+@@ -497,7 +499,7 @@ static void TestUSpoofCAPI(void) {
+             TEST_ASSERT_EQ(result1 & USPOOF_ALL_CHECKS, uspoof_getCheckResultChecks(checkResult, &status));
+ 
+             // Restriction level from checkResult should be same as that from bitmask
+-            URestrictionLevel restrictionLevel = uspoof_getCheckResultRestrictionLevel(checkResult, &status);
++            restrictionLevel = uspoof_getCheckResultRestrictionLevel(checkResult, &status);
+             TEST_ASSERT_EQ(result1 & restrictionLevel, restrictionLevel);
+ 
+             // UTF8 endpoint
+-- 
+2.10.2.windows.1
+
