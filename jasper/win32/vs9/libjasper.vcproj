@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="libjasper"
+	ProjectGUID="{64F86487-09E2-44D6-8158-B6FDCC5A2175}"
+	RootNamespace="libjasper"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\jasper-build-defines.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG;$(LibjasperCFlags)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="jpeg.lib"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\jasper-build-defines.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="$(LibjasperCFlags)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="jpeg.lib"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\jasper-build-defines.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="_DEBUG;$(LibjasperCFlags)"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="jpeg.lib"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			ConfigurationType="2"
+			InheritedPropertySheets=".\jasper-build-defines.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				PreprocessorDefinitions="$(LibjasperCFlags)"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="jpeg.lib"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="17"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Sources"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File RelativePath="..\..\src\libjasper\bmp\bmp_cod.c" />
+			<File RelativePath="..\..\src\libjasper\bmp\bmp_dec.c" />
+			<File RelativePath="..\..\src\libjasper\bmp\bmp_enc.c" />
+			<File RelativePath="..\..\src\libjasper\base\jas_cm.c" />
+			<File RelativePath="..\..\src\libjasper\base\jas_debug.c" />
+			<File RelativePath="..\..\src\libjasper\base\jas_getopt.c" />
+			<File RelativePath="..\..\src\libjasper\base\jas_icc.c" />
+			<File RelativePath="..\..\src\libjasper\base\jas_iccdata.c" />
+			<File RelativePath="..\..\src\libjasper\base\jas_image.c" />
+			<File RelativePath="..\..\src\libjasper\base\jas_init.c" />
+			<File RelativePath="..\..\src\libjasper\base\jas_malloc.c" />
+			<File RelativePath="..\..\src\libjasper\base\jas_seq.c" />
+			<File RelativePath="..\..\src\libjasper\base\jas_stream.c" />
+			<File RelativePath="..\..\src\libjasper\base\jas_string.c" />
+			<File RelativePath="..\..\src\libjasper\base\jas_tmr.c" />
+			<File RelativePath="..\..\src\libjasper\base\jas_tvp.c" />
+			<File RelativePath="..\..\src\libjasper\base\jas_version.c" />
+			<File RelativePath="..\..\src\libjasper\jp2\jp2_cod.c" />
+			<File RelativePath="..\..\src\libjasper\jp2\jp2_dec.c" />
+			<File RelativePath="..\..\src\libjasper\jp2\jp2_enc.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_bs.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_cs.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_dec.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_enc.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_math.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_mct.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_mqcod.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_mqdec.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_mqenc.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_qmfb.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_t1cod.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_t1dec.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_t1enc.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_t2cod.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_t2dec.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_t2enc.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_tagtree.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_tsfb.c" />
+			<File RelativePath="..\..\src\libjasper\jpc\jpc_util.c" />
+			<File RelativePath="..\..\src\libjasper\jpg\jpg_dec.c" />
+			<File RelativePath="..\..\src\libjasper\jpg\jpg_enc.c" />
+			<File RelativePath="..\..\src\libjasper\jpg\jpg_val.c" />
+			<File RelativePath="..\..\src\libjasper\mif\mif_cod.c" />
+			<File RelativePath="..\..\src\libjasper\pgx\pgx_cod.c" />
+			<File RelativePath="..\..\src\libjasper\pgx\pgx_dec.c" />
+			<File RelativePath="..\..\src\libjasper\pgx\pgx_enc.c" />
+			<File RelativePath="..\..\src\libjasper\pnm\pnm_cod.c" />
+			<File RelativePath="..\..\src\libjasper\pnm\pnm_dec.c" />
+			<File RelativePath="..\..\src\libjasper\pnm\pnm_enc.c" />
+			<File RelativePath="..\..\src\libjasper\ras\ras_cod.c" />
+			<File RelativePath="..\..\src\libjasper\ras\ras_dec.c" />
+			<File RelativePath="..\..\src\libjasper\ras\ras_enc.c" />
+		</Filter>
+		<Filter
+			Name="Headers"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+		</Filter>
+	</Files>
+</VisualStudioProject>
