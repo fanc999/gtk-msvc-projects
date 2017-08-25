@@ -365,7 +365,7 @@ Description:             Fixes multiple security issues, including:
  
  /******************************************************************************\
 @@ -115,6 +118,12 @@
- /* Allocate a block of memory and initialize the contents to zero. */
+ JAS_EXPORT
  void *jas_calloc(size_t nmemb, size_t size);
  
 +/* size-checked double allocation .*/
