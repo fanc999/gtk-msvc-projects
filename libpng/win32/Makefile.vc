@@ -1,0 +1,37 @@
+# NMake Makefile for building libpng as a DLL on Windows
+
+# The items below this line should not be changed, unless one is maintaining
+# the NMake Makefiles.  Customizations can be done in the following NMake Makefile
+# portions (please see comments in the these files to see what can be customized):
+#
+# detectenv-msvc.mak
+# config-msvc.mak
+
+!include detectenv-msvc.mak
+
+# Include the Makefile portion that enables features based on user input
+!include config-msvc.mak
+
+!if "$(VALID_CFGSET)" == "TRUE"
+
+# Include the Makefile portion to convert the source and header lists
+# into the lists we need for compilation and introspection
+!include create-lists-msvc.mak
+
+all: $(PNG_LIB) $(PNG_TOOLS)
+
+tests: all $(PNG_TESTS)
+
+run-tests: $(PNG_TESTS)
+	$(CFG)\$(PLAT)\pngstest.exe --strict --log --touch pngstest.out ..\contrib\pngsuite\basn0g01.png ..\contrib\pngsuite\basn0g02.png ..\contrib\pngsuite\basn0g04.png ..\contrib\pngsuite\basn0g08.png ..\contrib\pngsuite\basn0g16.png ..\contrib\pngsuite\basn2c08.png ..\contrib\pngsuite\basn2c16.png ..\contrib\pngsuite\basn3p01.png ..\contrib\pngsuite\basn3p02.png ..\contrib\pngsuite\basn3p04.png ..\contrib\pngsuite\basn3p08.png ..\contrib\pngsuite\basn4a08.png ..\contrib\pngsuite\basn4a16.png ..\contrib\pngsuite\basn6a08.png ..\contrib\pngsuite\basn6a16.png ..\contrib\pngsuite\ftbbn0g01.png ..\contrib\pngsuite\ftbbn0g02.png ..\contrib\pngsuite\ftbbn0g04.png ..\contrib\pngsuite\ftbbn2c16.png ..\contrib\pngsuite\ftbbn3p08.png ..\contrib\pngsuite\ftbgn2c16.png ..\contrib\pngsuite\ftbgn3p08.png ..\contrib\pngsuite\ftbrn2c08.png ..\contrib\pngsuite\ftbwn0g16.png ..\contrib\pngsuite\ftbwn3p08.png ..\contrib\pngsuite\ftbyn3p08.png ..\contrib\pngsuite\ftp0n0g08.png ..\contrib\pngsuite\ftp0n2c08.png ..\contrib\pngsuite\ftp0n3p08.png ..\contrib\pngsuite\ftp1n3p08.png
+	$(CFG)\$(PLAT)\pngtest.exe ..\pngtest.png pngout.png
+	$(CFG)\$(PLAT)\pngunknown.exe --strict --default --touch pngunknown.out ..\pngtest.png
+	$(CFG)\$(PLAT)\pngvalid.exe --touch pngvalid.out
+
+# Include the build rules for sources, DLLs and executables
+!include build-rules-msvc.mak
+
+# Include the rules for build directory creation and code generation
+!include generate-msvc.mak
+!else
+!endif
