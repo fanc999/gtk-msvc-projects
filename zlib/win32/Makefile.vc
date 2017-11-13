@@ -20,7 +20,7 @@
 
 all: $(ZLIB_LIB)
 
-tests: all
+tests: all $(ZLIB_TESTS)
 
 # Include the build rules for sources, DLLs and executables
 !include build-rules-msvc.mak

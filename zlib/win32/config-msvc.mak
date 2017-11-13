@@ -21,8 +21,11 @@ ZLIB_CFLAGS =	\
 ZLIB_INCLUDES = /I..
 
 ZLIB_SRCS = $(ZLIB_BASE_SRCS)
+NMAKE_SAVED_OPTS =
 
 !if "$(USE_ASM_OPT)" == "1"
+# Note: the ^ in USE_ASM_OPT^=1 is required!
+NMAKE_SAVED_OPTS = $(NMAKE_SAVED_OPTS) USE_ASM_OPT^=1
 ASM_DEFINES = -DASMV -DASMINF
 ASM_FLAGS = -Zi
 
@@ -39,3 +42,8 @@ ZLIB_CFLAGS = $(ZLIB_CFLAGS) $(ASM_DEFINES)
 
 # We build the ZLib DLL/LIB at least
 ZLIB_LIB = $(CFG)\$(PLAT)\zlib1.lib
+
+ZLIB_TESTS =	\
+	$(CFG)\$(PLAT)\example.exe	\
+	$(CFG)\$(PLAT)\minigzip.exe
+	

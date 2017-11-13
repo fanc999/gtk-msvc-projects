@@ -4,5 +4,6 @@
 # one is maintaining the NMake build files.
 
 # Create the build directories
-$(CFG)\$(PLAT)\zlib:
+$(CFG)\$(PLAT)\zlib	\
+$(CFG)\$(PLAT)\zlib-tests:
 	@-md $@

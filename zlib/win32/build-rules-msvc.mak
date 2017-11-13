@@ -24,6 +24,7 @@ $<
 $<
 <<
 
+
 {..\contrib\masmx64\}.asm{$(CFG)\$(PLAT)\zlib\}.obj:
 	$(AS) $(ZLIB_INCLUDES) $(ASM_FLAGS) /Fo$(CFG)\$(PLAT)\zlib\ $< /c
 
@@ -41,6 +42,10 @@ $(CFG)\$(PLAT)\zlib\zlib1.res: zlib1.rc
 #
 # {$(srcdir)}.$(srcext){$(destdir)}.exe::
 # 	$(CC)|$(CXX) $(cflags) $< /Fo$*.obj  /Fe$@ [/link $(linker_flags) $(dep_libs)]
+{..\test\}.c{$(CFG)\$(PLAT)\}.exe:
+	@if not exist $(ZLIB_LIB) $(MAKE) -f Makefile.vc CFG=$(CFG) $(NMAKE_SAVED_OPTS)
+	@if not exist $(CFG)\$(PLAT)\zlib-tests mkdir $(CFG)\$(PLAT)\zlib-tests
+	$(CC) $(ZLIB_INCLUDES) $(ZLIB_CFLAGS) $(ZLIB_CFLAGS) /Fo$(CFG)\$(PLAT)\zlib-tests\ /Fe$@ $< /link $(LDFLAGS) $(ZLIB_LIB)
 
 # Rules for building .lib files
 $(ZLIB_LIB): $(CFG)\$(PLAT)\zlib1.dll
@@ -75,9 +80,12 @@ $(CFG)\$(PLAT)\zlib1.dll: $(CFG)\$(PLAT)\zlib $(zlib_OBJS)
 clean:
 	@-del /f /q $(CFG)\$(PLAT)\*.lib
 	@-del /f /q $(CFG)\$(PLAT)\*.pdb
-	@-if exist $(CFG)\$(PLAT)\*.dll del /f /q $(CFG)\$(PLAT)\*.dll.manifest
+	@-del /f /q $(CFG)\$(PLAT)\*.exe.manifest
+	@-del /f /q $(CFG)\$(PLAT)\*.exe
+	@-del /f /q $(CFG)\$(PLAT)\*.dll.manifest
 	@-del /f /q $(CFG)\$(PLAT)\*.dll
 	@-del /f /q $(CFG)\$(PLAT)\*.ilk
+	@-del /f /q $(CFG)\$(PLAT)\zlib-tests\*.obj
 	@-del /f /q $(CFG)\$(PLAT)\zlib\*.obj
 	@-del /f /q vc$(VSVER)0.pdb
 	@-rmdir /s /q $(CFG)\$(PLAT)
