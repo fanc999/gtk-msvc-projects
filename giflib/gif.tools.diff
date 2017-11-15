@@ -1,0 +1,19 @@
+--- a/util/gifinto.c	2016-03-18 00:26:04.000000000 +0800
++++ b/util/gifinto.c	2017-01-10 16:33:14.572179800 +0800
+@@ -4,7 +4,6 @@
+ 
+ *****************************************************************************/
+ 
+-#include <unistd.h>
+ #include <fcntl.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+@@ -14,6 +13,8 @@
+ 
+ #ifdef _WIN32
+ #include <io.h>
++#else
++#include <unistd.h>
+ #endif /* _WIN32 */
+ 
+ #include "gif_lib.h"
