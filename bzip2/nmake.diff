@@ -1,0 +1,85 @@
+--- a/makefile.msc	2017-11-16 08:34:55.725136600 +0800
++++ b/makefile.msc	2017-11-16 08:55:05.790254300 +0800
+@@ -3,8 +3,24 @@
+ # K.M. Syring (syring@gsf.de)
+ # Fixed up by JRS for bzip2-0.9.5d release.
+ 
+-CC=cl
+-CFLAGS= -DWIN32 -MD -Ox -D_FILE_OFFSET_BITS=64 -nologo
++BASE_CFLAGS = -D_FILE_OFFSET_BITS=64 -nologo -Zi -W3 -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_WARNINGS
++BASE_LDFLAGS = /DEBUG
++
++!ifdef DEBUG
++CFLAGS= -MDd -Od $(BASE_CFLAGS)
++ARFLAGS =
++LDFLAGS = $(BASE_LDFLAGS) $(ARFLAGS)
++!else
++CFLAGS= -MD -Ox -GL -MP $(BASE_CFLAGS)
++ARFLAGS = /LTCG
++LDFLAGS = $(BASE_LDFLAGS) $(ARFLAGS) /LTCG /opt:ref
++!endif
++
++!ifdef STATIC
++BZIP2_LIB = libbz2.lib
++!else
++BZIP2_LIB = libbz2.dll
++!endif
+ 
+ OBJS= blocksort.obj  \
+       huffman.obj    \
+@@ -14,16 +30,26 @@
+       decompress.obj \
+       bzlib.obj
+ 
+-all: lib bzip2 test
++BZIP_PROGS = bzip2.exe bzip2recover.exe
++
++all: $(BZIP2_LIB) $(BZIP_PROGS) test
++
++bzip2.exe: $(BZIP2_LIB)
++	$(CC) $(CFLAGS) -Fe$@ $(@B).c libbz2.lib setargv.obj
++	if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;1
++
++bzip2recover.exe: $(BZIP2_LIB)
++	$(CC) $(CFLAGS) -Fe$@ $(@B).c
++	if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;1
+ 
+-bzip2: lib
+-	$(CC) $(CFLAGS) -o bzip2 bzip2.c libbz2.lib setargv.obj
+-	$(CC) $(CFLAGS) -o bzip2recover bzip2recover.c
++libbz2.lib: $(OBJS)
++	lib $(ARFLAGS) /out:$@ $(OBJS)
+ 
+-lib: $(OBJS)
+-	lib /out:libbz2.lib $(OBJS)
++libbz2.dll: $(OBJS)
++	link /DLL $(LDFLAGS) $(OBJS) /out:$@ /def:$(@B).def
++	if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;2
+ 
+-test: bzip2
++test: $(BZIP_PROGS)
+ 	type words1
+ 	.\\bzip2 -1  < sample1.ref > sample1.rb2
+ 	.\\bzip2 -2  < sample2.ref > sample2.rb2
+@@ -48,8 +74,13 @@
+ 
+ clean: 
+ 	del *.obj
+-	del libbz2.lib 
++	del *.pdb
++	if exist libbz2.dll.manifest del libbz2.dll.manifest
++	if exist libbz2.dll del libbz2.dll
++	del libbz2.lib
++	if exist bzip2.exe.manifest del bzip2.exe.manifest
+ 	del bzip2.exe
++	if exist bzip2recover.exe.manifest del bzip2recover.exe.manifest
+ 	del bzip2recover.exe
+ 	del sample1.rb2 
+ 	del sample2.rb2 
+@@ -59,5 +90,5 @@
+ 	del sample3.tst
+ 
+ .c.obj: 
+-	$(CC) $(CFLAGS) -c $*.c -o $*.obj
++	$(CC) $(CFLAGS) -c $*.c -Fo$*.obj
+ 
