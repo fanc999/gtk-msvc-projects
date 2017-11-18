@@ -1,0 +1,50 @@
+--- a/CMakeLists.txt	2015-09-01 22:22:51.000000000 +0800
++++ b/CMakeLists.txt"	2017-11-18 10:25:50.935041600 +0800
+@@ -181,6 +181,8 @@
+ endforeach(flag ${test_flags})
+ 
+ if(MSVC)
++    set(CMAKE_C_FLAGS "-D_CRT_SECURE_NO_WARNINGS")
++    set(CMAKE_C_FLAGS "-D_CRT_NONSTDC_NO_WARNINGS")
+     set(CMAKE_DEBUG_POSTFIX "d")
+ endif()
+ 
+--- a/contrib/iptcutil/CMakeLists.txt	2015-06-25 09:41:29.000000000 +0800
++++ b/contrib/iptcutil/CMakeLists.txt"	2017-11-18 10:28:46.100576400 +0800
+@@ -32,4 +32,7 @@
+                     ${CMAKE_CURRENT_BINARY_DIR})
+ 
+ add_executable(iptcutil iptcutil.c)
++if (MSVC)
++  set_target_properties(iptcutil PROPERTIES COMPILE_FLAGS "-Dstrncasecmp=_strnicmp")
++endif ()
+ target_link_libraries(iptcutil tiff port)
+--- a/libtiff/CMakeLists.txt	2017-11-18 10:06:41.194777700 +0800
++++ b/libtiff/CMakeLists.txt"	2017-11-18 10:35:10.282257000 +0800
+@@ -125,6 +125,12 @@
+     # seems to be the default.
+     set_target_properties(tiff PROPERTIES VERSION ${SO_VERSION})
+ endif()
++if(MSVC)
++  if(BUILD_SHARED_LIBS)
++    set_target_properties(tiff PROPERTIES PREFIX "lib")
++    set_target_properties(tiff PROPERTIES ARCHIVE_OUTPUT_NAME "libtiff_i")
++  endif()
++endif()
+ if(HAVE_LD_VERSION_SCRIPT)
+   set_target_properties(tiff PROPERTIES LINK_FLAGS
+                         "-Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/libtiff.map")
+@@ -153,6 +159,13 @@
+     set_target_properties(tiffxx PROPERTIES LINK_FLAGS
+                           "-Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/libtiffxx.map")
+   endif()
++  if(MSVC)
++    if(BUILD_SHARED_LIBS)
++      set_target_properties(tiffxx PROPERTIES COMPILE_FLAGS "-DTIFFIOXX_EXTERN=__declspec(dllexport)extern")
++      set_target_properties(tiffxx PROPERTIES PREFIX "lib")
++      set_target_properties(tiffxx PROPERTIES ARCHIVE_OUTPUT_NAME "libtiffxx_i")
++    endif()
++  endif()
+ 
+   install(TARGETS tiffxx
+           RUNTIME DESTINATION ${CMAKE_INSTALL_FULL_BINDIR}

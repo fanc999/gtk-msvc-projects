@@ -1,0 +1,24 @@
+--- a/libtiff/tiffio.hxx	2017-11-18 10:20:36.730403200 +0800
++++ b/libtiff/tiffio.hxx	2017-11-18 10:21:53.392229100 +0800
+@@ -27,6 +27,10 @@
+ #ifndef _TIFFIO_HXX_
+ #define	_TIFFIO_HXX_
+ 
++#ifndef TIFFIOXX_EXTERN
++# define TIFFIOXX_EXTERN extern
++#endif
++
+ /*
+  * TIFF I/O library definitions which provide C++ streams API.
+  */
+@@ -34,8 +38,8 @@
+ #include <iostream>
+ #include "tiff.h"
+ 
+-extern TIFF* TIFFStreamOpen(const char*, std::ostream *);
+-extern TIFF* TIFFStreamOpen(const char*, std::istream *);
++TIFFIOXX_EXTERN TIFF* TIFFStreamOpen(const char*, std::ostream *);
++TIFFIOXX_EXTERN TIFF* TIFFStreamOpen(const char*, std::istream *);
+ 
+ #endif /* _TIFFIO_HXX_ */
+ 
