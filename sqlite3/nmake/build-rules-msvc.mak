@@ -23,8 +23,8 @@ $(CFG)\$(PLAT)\sqlite3\shell.obj: ..\shell.c ..\sqlite3.h ..\sqlite3ext.h $(CFG)
 $(CFG)\$(PLAT)\tcl-sqlite3\nmakehlp.obj: $(CFG)\$(PLAT)\tcl-sqlite3 ..\tea\win\nmakehlp.c
 	$(CC) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\tcl-sqlite3\ ..\tea\win\$(@B).c /c
 
-$(CFG)\$(PLAT)\tcl-sqlite3\tclsqlite3.obj: $(CFG)\$(PLAT)\tcl-sqlite3\sqlite-version.h ..\tea\generic\tclsqlite3.c
-	$(CC) $(SQLITE3_INCLUDES) $(SQLITE3_TCL_CFLAGS) /Fo$(CFG)\$(PLAT)\tcl-sqlite3\ ..\tea\generic\$(@B).c /c
+$(CFG)\$(PLAT)\tcl-sqlite3\tclsqlite3.obj: ..\tea\generic\tclsqlite3.c
+	$(CC) $(SQLITE3_INCLUDES) $(SQLITE3_TCL_CFLAGS) /Fo$(CFG)\$(PLAT)\tcl-sqlite3\ $** /c
 
 # Inference rules for building the test programs
 # Used for programs with a single source file.
@@ -36,7 +36,6 @@ $(CFG)\$(PLAT)\tcl-sqlite3\tclsqlite3.obj: $(CFG)\$(PLAT)\tcl-sqlite3\sqlite-ver
 
 # Rules for building .lib files
 $(SQLITE3_LIB): $(CFG)\$(PLAT)\sqlite3.dll
-$(TCL_SQLITE3_LIB): $(CFG)\$(PLAT)\tclsqlite3.dll
 
 # Rules for linking DLLs
 # Format is as follows (the mt command is needed for MSVC 2005/2008 builds):
@@ -49,7 +48,7 @@ $(CFG)\$(PLAT)\sqlite3.dll: $(CFG)\$(PLAT)\sqlite3-dll\sqlite3.obj
 	link /DLL $(LDFLAGS) -out:$@ $(SQLITE3_DEP_LIBS) /PDB:$(@R)-dll.pdb $**
 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;2
 
-$(CFG)\$(PLAT)\tclsqlite3.dll: $(CFG)\$(PLAT)\tcl-sqlite3\tclsqlite3.obj $(SQLITE3_LIB)
+$(CFG)\$(PLAT)\sqlite3$(SQLITE3_VER_NUM)t.dll: $(SQLITE3_LIB) $(CFG)\$(PLAT)\tcl-sqlite3\tclsqlite3.obj
 	link /DLL $(LDFLAGS) -out:$@ $(TCL_SQLITE3_DEP_LIBS) $**
 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;2
 
@@ -76,6 +75,10 @@ $(CFG)\$(PLAT)\nmakehlp.exe: $(CFG)\$(PLAT)\tcl-sqlite3\nmakehlp.obj
 # 	$(CC)|$(CXX) $(cflags) /Fo$(obj_destdir) /c @<<
 # $(srcfile)
 # <<
+tcl: $(CFG)\$(PLAT)\nmakehlp.exe $(SQLITE3_LIB)
+	$(CFG)\$(PLAT)\nmakehlp.exe -V ..\configure.ac AC_INIT > $(CFG)\$(PLAT)\tcl-sqlite3\version
+	@for /f "delims=" %%x in ($(CFG)\$(PLAT)\tcl-sqlite3\version)	\
+	do @$(MAKE) /f Makefile.tcl.vc CFG=$(CFG) SQLITE3_VER=%%x
 
 clean:
 	@-del /f /q $(CFG)\$(PLAT)\*.lib
@@ -85,9 +88,9 @@ clean:
 	@-del /f /q $(CFG)\$(PLAT)\*.dll.manifest
 	@-del /f /q $(CFG)\$(PLAT)\*.dll
 	@-del /f /q $(CFG)\$(PLAT)\*.ilk
+	@-del /f /q $(CFG)\$(PLAT)\sqlite3-sqlite\*.obj
 	@-del /f /q $(CFG)\$(PLAT)\sqlite3-dll\*.obj
 	@-del /f /q $(CFG)\$(PLAT)\sqlite3\*.obj
 	@-if exist $(CFG)\$(PLAT)\tcl-sqlite3 del $(CFG)\$(PLAT)\tcl-sqlite3\version
-	@-if exist $(CFG)\$(PLAT)\tcl-sqlite3 del $(CFG)\$(PLAT)\tcl-sqlite3\sqlite-version.h
 	@-del /f /q vc$(VSVER)0.pdb
 	@-rmdir /s /q $(CFG)\$(PLAT)

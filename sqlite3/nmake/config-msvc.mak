@@ -4,6 +4,13 @@
 
 # Please do not change anything beneath this line unless maintaining the NMake Makefiles
 # Bare minimum features and sources built into sqlite3 on Windows
+!ifndef TCLVER
+TCLVER = 86
+!endif
+
+!ifndef SQLITE3_VER
+SQLITE3_VER = 0000
+!endif
 
 BASE_CFLAGS =	\
 	$(CFLAGS)	\
@@ -27,14 +34,10 @@ SQLITE3_USE_CFLAGS =	\
 
 SQLITE3_TCL_CFLAGS =	\
 	$(SQLITE3_USE_CFLAGS)	\
-	/FI$(CFG)\$(PLAT)\tcl-sqlite3\sqlite-version.h	\
+	/DPACKAGE_VERSION="\"$(SQLITE3_VER)\""	\
 	/DUSE_TCL_STUBS	\
 	/DBUILD_sqlite	\
 	/DUSE_SYSTEM_SQLITE=1
-
-!ifndef TCLVER
-TCLVER = 86
-!endif
 
 SQLITE3_DEP_LIBS =
 TCL_SQLITE3_DEP_LIBS = tclstub$(TCLVER).lib
@@ -53,14 +56,13 @@ SQLITE3_LIB_CFLAGS = $(SQLITE3_LIB_CFLAGS) /DSQLITE_OS_WINRT=1
 !endif
 
 SQLITE3_INCLUDES = /I..
+SQLITE3_EXTRA_TARGETS =
 
 # We build the sqlite3.dll with the sqlite3 tool at least
 SQLITE3_LIB = $(CFG)\$(PLAT)\sqlite3.lib
 TCL_SQLITE3_LIB = $(CFG)\$(PLAT)\tclsqlite3.lib
-SQLITE3_TOOL = $(CFG)\$(PLAT)\sqlite3.exe $(CFG)\$(PLAT)\sqlite3.exe
-
-SQLITE3_LIBS = $(SQLITE3_LIB)
+SQLITE3_TOOL = $(CFG)\$(PLAT)\sqlite3.exe
 
 !if "$(TCL)" == "1"
-SQLITE3_LIBS = $(SQLITE3_LIBS) $(TCL_SQLITE3_LIB)
+SQLITE3_EXTRA_TARGETS = $(SQLITE3_EXTRA_TARGETS) tcl
 !endif

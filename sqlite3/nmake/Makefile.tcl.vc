@@ -9,6 +9,13 @@
 
 !include detectenv-msvc.mak
 
+!if !exist($(CFG)\$(PLAT)\tcl-sqlite3\version)
+!error This NMake Makefiles should be invoked via Makefile.vc
+!endif
+
+SQLITE3_VER_NUM = $(SQLITE3_VER:.=)
+TCL_SQLITE3_DLL = $(CFG)\$(PLAT)\sqlite3$(SQLITE3_VER_NUM)t.dll
+
 # Include the Makefile portion that enables features based on user input
 !include config-msvc.mak
 
@@ -18,9 +25,7 @@
 # into the lists we need for compilation and introspection
 #!include create-lists-msvc.mak
 
-all: $(SQLITE3_LIB) $(SQLITE3_TOOL) $(SQLITE3_EXTRA_TARGETS)
-
-tests: all
+all: $(TCL_SQLITE3_DLL)
 
 # Include the build rules for sources, DLLs and executables
 !include build-rules-msvc.mak
