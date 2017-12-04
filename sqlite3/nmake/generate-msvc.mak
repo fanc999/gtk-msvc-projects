@@ -9,6 +9,10 @@ $(CFG)\$(PLAT)\tcl-sqlite3	\
 $(CFG)\$(PLAT)\sqlite3:
 	@-md $@
 
-$(CFG)\$(PLAT)\tcl-sqlite3\sqlite-version.h: $(CFG)\$(PLAT)\nmakehlp.exe
-	$(CFG)\$(PLAT)\nmakehlp.exe -V ..\configure.ac AC_INIT > $(CFG)\$(PLAT)\tcl-sqlite3\version
-	for /f "delims=" %%x in ($(CFG)\$(PLAT)\tcl-sqlite3\version) do echo #define PACKAGE_VERSION "%%x" > $@
+$(CFG)\$(PLAT)\sqlite3-dll\version: $(CFG)\$(PLAT)\nmakehlp.exe $(CFG)\$(PLAT)\sqlite3-dll
+	$(CFG)\$(PLAT)\nmakehlp.exe -V ..\configure.ac AC_INIT > $@
+
+$(CFG)\$(PLAT)\sqlite3-dll\sqlite3rc.h: $(CFG)\$(PLAT)\sqlite3-dll\version
+	@echo #ifndef SQLITE_RESOURCE_VERSION > $@
+	@echo #define SQLITE_RESOURCE_VERSION $(SQLITE3_VER_RSRC) >> $@
+	@echo #endif >> $@

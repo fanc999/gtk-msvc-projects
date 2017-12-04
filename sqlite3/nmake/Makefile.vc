@@ -18,7 +18,7 @@
 # into the lists we need for compilation and introspection
 #!include create-lists-msvc.mak
 
-all: $(SQLITE3_LIB) $(SQLITE3_TOOL) $(SQLITE3_EXTRA_TARGETS)
+all: targets
 
 tests: all
 

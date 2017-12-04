@@ -44,7 +44,7 @@ $(SQLITE3_LIB): $(CFG)\$(PLAT)\sqlite3.dll
 # $(dependent_objects)
 # <<
 # 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;2
-$(CFG)\$(PLAT)\sqlite3.dll: $(CFG)\$(PLAT)\sqlite3-dll\sqlite3.obj
+$(CFG)\$(PLAT)\sqlite3.dll: $(CFG)\$(PLAT)\sqlite3-dll\sqlite3.obj $(CFG)\$(PLAT)\sqlite3-dll\sqlite3.res
 	link /DLL $(LDFLAGS) -out:$@ $(SQLITE3_DEP_LIBS) /PDB:$(@R)-dll.pdb $**
 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;2
 
@@ -60,8 +60,8 @@ $(CFG)\$(PLAT)\sqlite3$(SQLITE3_VER_NUM)t.dll: $(SQLITE3_LIB) $(CFG)\$(PLAT)\tcl
 # <<
 # 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;1
 
-$(CFG)\$(PLAT)\sqlite3.exe: $(SQLITE3_LIB) $(CFG)\$(PLAT)\sqlite3\shell.obj
-	link $(LDFLAGS) -out:$@ $(SQLITE3_LIB) $(CFG)\$(PLAT)\sqlite3\shell.obj
+$(CFG)\$(PLAT)\sqlite3.exe: $(SQLITE3_LIB) $(CFG)\$(PLAT)\sqlite3\shell.obj $(CFG)\$(PLAT)\sqlite3-dll\sqlite3.res
+	link $(LDFLAGS) -out:$@ $**
 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;1
 
 $(CFG)\$(PLAT)\nmakehlp.exe: $(CFG)\$(PLAT)\tcl-sqlite3\nmakehlp.obj
@@ -75,10 +75,11 @@ $(CFG)\$(PLAT)\nmakehlp.exe: $(CFG)\$(PLAT)\tcl-sqlite3\nmakehlp.obj
 # 	$(CC)|$(CXX) $(cflags) /Fo$(obj_destdir) /c @<<
 # $(srcfile)
 # <<
-tcl: $(CFG)\$(PLAT)\nmakehlp.exe $(SQLITE3_LIB)
-	$(CFG)\$(PLAT)\nmakehlp.exe -V ..\configure.ac AC_INIT > $(CFG)\$(PLAT)\tcl-sqlite3\version
-	@for /f "delims=" %%x in ($(CFG)\$(PLAT)\tcl-sqlite3\version)	\
-	do @$(MAKE) /f Makefile.tcl.vc CFG=$(CFG) SQLITE3_VER=%%x
+$(CFG)\$(PLAT)\sqlite3-dll\sqlite3.res: ..\sqlite3.rc $(CFG)\$(PLAT)\sqlite3-dll\sqlite3rc.h
+	rc /fo$@ /DRC_VERONLY /I$(@D) $(SQLITE3_LIB_DEFINES) ..\$(@B).rc
+
+targets: $(CFG)\$(PLAT)\sqlite3-dll\version
+	@for /f "delims=" %%x in ($**) do @$(MAKE) /f Makefile.sqlite3.vc $(BUILD_OPTIONS) SQLITE3_VER=%%x
 
 clean:
 	@-del /f /q $(CFG)\$(PLAT)\*.lib
@@ -88,9 +89,11 @@ clean:
 	@-del /f /q $(CFG)\$(PLAT)\*.dll.manifest
 	@-del /f /q $(CFG)\$(PLAT)\*.dll
 	@-del /f /q $(CFG)\$(PLAT)\*.ilk
-	@-del /f /q $(CFG)\$(PLAT)\sqlite3-sqlite\*.obj
-	@-del /f /q $(CFG)\$(PLAT)\sqlite3-dll\*.obj
+	@-if exist $(CFG)\$(PLAT)\tcl-sqlite3 del /f /q $(CFG)\$(PLAT)\tcl-sqlite3\*.obj
 	@-del /f /q $(CFG)\$(PLAT)\sqlite3\*.obj
-	@-if exist $(CFG)\$(PLAT)\tcl-sqlite3 del $(CFG)\$(PLAT)\tcl-sqlite3\version
+	@-del /f /q $(CFG)\$(PLAT)\sqlite3-dll\sqlite3.res
+	@-del /f /q $(CFG)\$(PLAT)\sqlite3-dll\sqlite3rc.h
+	@-del /f /q $(CFG)\$(PLAT)\sqlite3-dll\*.obj
+	@-del $(CFG)\$(PLAT)\sqlite3-dll\version
 	@-del /f /q vc$(VSVER)0.pdb
 	@-rmdir /s /q $(CFG)\$(PLAT)
