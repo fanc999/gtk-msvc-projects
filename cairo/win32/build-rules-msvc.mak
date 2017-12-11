@@ -21,7 +21,7 @@ $<
 
 # For QT, for now
 {..\src\}.cpp{$(CFG)\$(PLAT)\cairo\}.obj::
-	$(CC) $(CAIRO_INCLUDES) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo\ /c @<<
+	$(CC) $(CAIRO_QT_INCLUDES) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo\ /c @<<
 $<
 <<
 
