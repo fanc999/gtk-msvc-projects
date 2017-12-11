@@ -48,7 +48,7 @@ $<
 # {$(srcdir)}.$(srcext){$(destdir)}.exe::
 # 	$(CC)|$(CXX) $(cflags) $< /Fo$*.obj  /Fe$@ [/link $(linker_flags) $(dep_libs)]
 {..\util\cairo-script\}.c{$(CFG)\$(PLAT)\}.exe:
-	@if not exist $(CAIRO_SCRIPT_INTERPRETER_LIB) $(MAKE) $(CAIRO_MAKE_OPTIONS) $(CAIRO_SCRIPT_INTERPRETER_LIB)
+	@if not exist $(CAIRO_SCRIPT_INTERPRETER_LIB) $(MAKE) /f Makefile.vc $(CAIRO_MAKE_OPTIONS) $(CAIRO_SCRIPT_INTERPRETER_LIB)
 	$(CC) $(CAIRO_SCRIPT_CFLAGS) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo-script\ /Fe$@ $< /link $(LDFLAGS) $(CAIRO_SCRIPT_INTERPRETER_LIB) $(CAIRO_LIB) $(CAIRO_DEP_LIBS)
 
 # Rules for building .lib files
@@ -75,7 +75,7 @@ $(cairo_gobject_dll_OBJS)
 <<
 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;2
 
-$(CFG)\$(PLAT)\$(CAIRO_DLL_PREFIX)cairo-script-interpreter$(CAIRO_DLL_SUFFIX).dll: $(CFG)\$(PLAT)\cairo-script\config.h $(cairo_script_dll_OBJS)
+$(CFG)\$(PLAT)\$(CAIRO_DLL_PREFIX)cairo-script-interpreter$(CAIRO_DLL_SUFFIX).dll: $(CAIRO_LIB) $(CFG)\$(PLAT)\cairo-script\config.h $(cairo_script_dll_OBJS)
 	link /DLL $(LDFLAGS) $(CAIRO_LIB) $(CAIRO_DEP_LIBS) -out:$@ /implib:$(CFG)\$(PLAT)\cairo-script-interpreter.lib @<<
 $(cairo_script_dll_OBJS)
 <<
