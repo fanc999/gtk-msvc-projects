@@ -1,0 +1,74 @@
+--- a/win32/Makefile.msvc	2018-01-23 13:26:16.845904200 +0800
++++ b/win32/Makefile.msvc	2018-01-23 14:25:22.338479400 +0800
+@@ -27,6 +27,9 @@
+ XML_A = $(XML_BASENAME)_a.lib
+ XML_A_DLL = $(XML_BASENAME)_a_dll.lib
+ 
++# Extra required objects for the build
++EXTRA_OBJS =
++
+ # Place where we let the compiler put its output.
+ BINDIR = bin.msvc
+ XML_INTDIR = int.msvc
+@@ -75,15 +78,16 @@
+ LIBS = $(LIBS) iconv.lib
+ !endif 
+ !if "$(WITH_ICU)" == "1"
+-LIBS = $(LIBS) icu.lib
++LIBS = $(LIBS) icuin.lib icuuc.lib
+ !endif
+ !if "$(WITH_ZLIB)" == "1"
+ # could be named differently zdll or zlib
+ # LIBS = $(LIBS) zdll.lib
+-LIBS = $(LIBS) zlib.lib
++LIBS = $(LIBS) zlib1.lib
+ !endif
+ !if "$(WITH_LZMA)" == "1"
+ LIBS = $(LIBS) liblzma.lib
++EXTRA_OBJS = $(EXTRA_OBJS) $(XML_INTDIR)\xzlib.obj
+ !endif
+ !if "$(WITH_THREADS)" == "posix"
+ LIBS = $(LIBS) pthreadVC.lib
+@@ -101,10 +105,10 @@
+ CFLAGS = $(CFLAGS) /D "_DEBUG" /Od /Z7
+ LDFLAGS = $(LDFLAGS) /DEBUG
+ !else
+-CFLAGS = $(CFLAGS) /D "NDEBUG" /O2 
++CFLAGS = $(CFLAGS) /D "NDEBUG" /O2 /Zi
+ # commented out as this break VC10 c.f. 634846
+ # LDFLAGS = $(LDFLAGS) /OPT:NOWIN98
+-LDFLAGS = $(LDFLAGS)
++LDFLAGS = $(LDFLAGS) /DEBUG
+ !endif
+ 
+ # Libxml object files.
+@@ -151,7 +155,8 @@
+ 	$(XML_INTDIR)\xmlwriter.obj\
+ 	$(XML_INTDIR)\xpath.obj\
+ 	$(XML_INTDIR)\xpointer.obj\
+-	$(XML_INTDIR)\xmlstring.obj
++	$(XML_INTDIR)\xmlstring.obj\
++	$(EXTRA_OBJS)
+ 
+ # Static libxml object files.
+ XML_OBJS_A = $(XML_INTDIR_A)\buf.obj\
+@@ -197,7 +202,8 @@
+ 	$(XML_INTDIR_A)\xmlwriter.obj\
+ 	$(XML_INTDIR_A)\xpath.obj\
+ 	$(XML_INTDIR_A)\xpointer.obj\
+-	$(XML_INTDIR_A)\xmlstring.obj
++	$(XML_INTDIR_A)\xmlstring.obj\
++	$(EXTRA_OBJS)
+ 
+ # Static libxml object files.
+ XML_OBJS_A_DLL = $(XML_INTDIR_A_DLL)\buf.obj\
+@@ -243,7 +249,8 @@
+ 	$(XML_INTDIR_A_DLL)\xmlwriter.obj\
+ 	$(XML_INTDIR_A_DLL)\xpath.obj\
+ 	$(XML_INTDIR_A_DLL)\xpointer.obj\
+-	$(XML_INTDIR_A_DLL)\xmlstring.obj
++	$(XML_INTDIR_A_DLL)\xmlstring.obj\
++	$(EXTRA_OBJS)
+ 
+ # Xmllint and friends executables.
+ UTILS = $(BINDIR)\xmllint.exe\
