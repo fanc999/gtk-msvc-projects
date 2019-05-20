@@ -1,0 +1,14 @@
+--- a/libcharset/include/libcharset.h.in	2018-09-18 00:07:42.000000000 +0800
++++ b/libcharset/include/libcharset.h.in	2019-05-17 13:05:51.567096700 +0800
+@@ -33,8 +33,9 @@
+    by the corresponding pathname with the current prefix instead.  Both
+    prefixes should be directory names without trailing slash (i.e. use ""
+    instead of "/").  */
+-extern void libcharset_set_relocation_prefix (const char *orig_prefix,
+-                                              const char *curr_prefix);
++extern LIBCHARSET_DLL_EXPORTED
++void libcharset_set_relocation_prefix (const char *orig_prefix,
++                                       const char *curr_prefix);
+ 
+ 
+ #ifdef __cplusplus
