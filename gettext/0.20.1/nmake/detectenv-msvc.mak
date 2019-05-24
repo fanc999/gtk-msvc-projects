@@ -89,8 +89,10 @@ VSVER = 11
 VSVER = 12
 !elseif $(VCVERSION) > 1899 && $(VCVERSION) < 1910
 VSVER = 14
-!elseif $(VCVERSION) > 1909 && $(VCVERSION) < 2000
+!elseif $(VCVERSION) > 1909 && $(VCVERSION) < 1920
 VSVER = 15
+!elseif $(VCVERSION) > 1919 && $(VCVERSION) < 2000
+VSVER = 16
 !else
 VSVER = 0
 !endif
@@ -140,9 +142,13 @@ LDFLAGS_BASE = $(LDFLAGS_ARCH) /libpath:$(PREFIX)\lib $(ADDITIONAL_LIB_ARG) /DEB
 
 !if "$(CFG)" == "debug"
 LDFLAGS = $(LDFLAGS_BASE)
+CXXFLAGS =
 ARFLAGS = $(LDFLAGS_ARCH)
+CSCFLAGS = /debug+
 !else
+CXXFLAGS = /EHsc
 LDFLAGS = $(LDFLAGS_BASE) /opt:ref /DEBUG /LTCG
 ARFLAGS = $(LDFLAGS_ARCH) /LTCG
+CSCFLAGS = /o /debug:pdbonly
 !endif
 !endif

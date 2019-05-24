@@ -38,15 +38,14 @@ GETTEXT_RUNTIME_CFLAGS =	\
 	/Drelocate=libintl_relocate	\
 	/Drelocate2=libintl_relocate2
 
-GETTEXT_RUNTIME_DEP_LIBS = iconv.lib advapi32.lib
+GETTEXT_RUNTIME_GNULIB_CFLAGS =	\
+	$(GETTEXT_BASE_DEFINES)	\
+	$(GETTEXT_BASE_PATH_DEFINES)	\
+	/DDEPENDS_ON_LIBICONV=1	\
+	/DDEPENDS_ON_LIBINTL=1	\
+	/DEXEEXT=\".exe\"
 
-GETTEXT_CFLAGS =	\
-	$(ICONV_DLL_BASE_DEFINES)	\
-	$(ICONV_BASE_PATH_DEFINES)	\
-	/DBUILDING_LIBICONV	\
-	/DDEPENDS_ON_LIBCHARSET	\
-	/Dset_relocation_prefix=libiconv_set_relocation_prefix	\
-	/Drelocate=libiconv_relocate
+GETTEXT_RUNTIME_DEP_LIBS = iconv.lib advapi32.lib
 
 ICONV_CFLAGS =	\
 	$(ICONV_BASE_DEFINES)	\
@@ -54,7 +53,7 @@ ICONV_CFLAGS =	\
 	/DEXEEXT=\".exe\"
 
 BASE_GETTEXT_RUNTIME_INCLUDES =	\
-	/I..\srclib	\
+	/I..\gettext-runtime\gnulib-lib	\
 	/FIarg-nonnull.h	\
 	/FIc++defs.h	\
 	/FIwarn-on-use.h	\
@@ -63,7 +62,13 @@ BASE_GETTEXT_RUNTIME_INCLUDES =	\
 GETTEXT_RUNTIME_INCLUDES =	\
 	/I..\gettext-runtime\intl\msvc	\
 	/I..\gettext-runtime\intl	\
-	/I..\gettext-runtime\msvc
+	/I..\gettext-runtime\msvc	\
+	$(BASE_GETTEXT_RUNTIME_INCLUDES)
+
+GETTEXT_RUNTIME_GNULIB_INCLUDES =	\
+	/I..\gettext-runtime\gnulib-lib\msvc	\
+	/I..\gettext-runtime\gnulib-lib	\
+	$(GETTEXT_RUNTIME_INCLUDES)
 
 !if "$(VSVER)" == "9"
 GETTEXT_RUNTIME_INCLUDES =	\
@@ -75,14 +80,17 @@ GETTEXT_INCLUDES =	\
 	/I..\msvc\include	\
 	/I..\libcharset\msvc\include	\
 	/I..\msvc	\
-	$(BASE_GETTEXT_INCLUDES)
+	$(BASE_GETTEXT_RUNTIME_INCLUDES)
 
-ICONV_INCLUDES =	\
-	/I..\srclib\msvc	\
-	/I..\srclib	\
-	/I..\msvc\include	\
-	/I..\msvc	\
-	$(BASE_GETTEXT_INCLUDES)
+ASPRINTF_INCLUDES =	\
+	/I..\gettext-runtime\libasprintf\msvc	\
+	/I..\gettext-runtime\libasprintf	\
+	/I..\gettext-runtime\msvc	\
+	$(BASE_GETTEXT_RUNTIME_INCLUDES)
+
+ASPRINTF_DEFINES =	\
+	/DIN_LIBASPRINTF=1	\
+	$(GETTEXT_BASE_DEFINES)
 
 GETTEXT_RC_FLAGS =	\
 	/dPACKAGE_VERSION_MAJOR=$(GETTEXT_VERSION_MAJOR)	\
@@ -90,8 +98,39 @@ GETTEXT_RC_FLAGS =	\
 	/dPACKAGE_VERSION_SUBMINOR=$(GETTEXT_VERSION_MICRO)	\
 	/dPACKAGE_VERSION_STRING=\"$(GETTEXT_VERSION)\"
 
-# We build the libiconv/libcharset DLL/LIB at least
+BASE_LIBTEXTSTYLE_INCLUDES =	\
+	/I..\libtextstyle\lib	\
+	/FIarg-nonnull.h	\
+	/FIc++defs.h	\
+	/FIwarn-on-use.h	\
+	/FI_Noreturn.h
+
+LIBTEXTSTYLE_INCLUDES =	\
+	/I..\libtextstyle\lib\libcroco	\
+	/I..\libtextstyle\lib\msvc\glib	\
+	/I..\libtextstyle\lib\msvc	\
+	/I..\libtextstyle\lib	\
+	/I..\libtextstyle\msvc	\
+	$(BASE_LIBTEXTSTYLE_INCLUDES)
+
+LIBTEXTSTYLE_DEFINES =	\
+	/DIN_LIBTEXTSTYLE=1	\
+	/DDEPENDS_ON_LIBICONV=1	\
+	/DLIBXML_STATIC=1	\
+	$(GETTEXT_BASE_DEFINES)
+
+# We build the libintl DLL/LIB at least
 INTL_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\intl.lib
+ASPRINTF_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\asprintf.lib
+INTL_CS_DLL = vs$(VSVER)\$(CFG)\$(PLAT)\GNU.Gettext.dll
+GRT_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\grt.lib
+LIBTEXTSTYLE_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\textstyle.lib
+
+GETTEXT_RUNTIME_LIBS =	\
+	$(ASPRINTF_LIB)	\
+	$(INTL_LIB)	\
+	$(INTL_CS_DLL)
+
 ICONV_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\iconv.lib
 ICONV_GNULIB_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\iconv-gnulib.lib
 

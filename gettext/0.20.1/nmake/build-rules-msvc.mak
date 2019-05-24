@@ -14,37 +14,85 @@
 # $<
 # <<
 
+{..\gettext-runtime\libasprintf\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\asprintf\}.obj::
+	$(CC) $(ASPRINTF_INCLUDES) $(ASPRINTF_DEFINES) /Fovs$(VSVER)\$(CFG)\$(PLAT)\asprintf\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\asprintf\ /c @<<
+$<
+<<
+
+{..\gettext-runtime\libasprintf\}.cc{vs$(VSVER)\$(CFG)\$(PLAT)\asprintf\}.obj::
+	$(CC) $(CXXFLAGS) $(ASPRINTF_INCLUDES) $(ASPRINTF_DEFINES) /Fovs$(VSVER)\$(CFG)\$(PLAT)\asprintf\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\asprintf\ /c @<<
+$<
+<<
+
 {..\gettext-runtime\intl\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime\}.obj::
 	$(CC) $(GETTEXT_RUNTIME_INCLUDES) $(GETTEXT_RUNTIME_CFLAGS) /Fovs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime\ /c @<<
 $<
 <<
 
-{..\lib\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\libiconv\}.obj::
-	$(CC) $(LIBICONV_INCLUDES) $(LIBICONV_CFLAGS) /Fovs$(VSVER)\$(CFG)\$(PLAT)\libiconv\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\libiconv\ /c @<<
+{..\gettext-runtime\gnulib-lib\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\grt\}.obj::
+	$(CC) $(GETTEXT_RUNTIME_GNULIB_INCLUDES) $(GETTEXT_RUNTIME_GNULIB_CFLAGS) /DLIBPATHVAR=\"PATH\" /DLIBDIRS=\"c:/vs$(VSVER).0/$(PLAT)/bin\", /DINSTALLDIR=\"c:/vs$(VSVER).0/$(PLAT)/bin\" /Fovs$(VSVER)\$(CFG)\$(PLAT)\grt\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\grt\ /c @<<
 $<
 <<
 
-{..\srclib\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\iconv-gnulib\}.obj::
-	$(CC) $(ICONV_INCLUDES) $(ICONV_CFLAGS) /DLIBPATHVAR=\"PATH\" /DLIBDIRS=\"c:/vs$(VSVER).0/$(PLAT)/bin\", /DINSTALLDIR=\"c:/vs$(VSVER).0/$(PLAT)/bin\" /Fovs$(VSVER)\$(CFG)\$(PLAT)\iconv-gnulib\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\iconv-gnulib\ /c @<<
+{..\gettext-runtime\gnulib-lib\glthread\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\grt\}.obj::
+	$(CC) $(GETTEXT_RUNTIME_GNULIB_INCLUDES) $(GETTEXT_RUNTIME_GNULIB_CFLAGS) /Fovs$(VSVER)\$(CFG)\$(PLAT)\grt\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\grt\ /c @<<
 $<
 <<
 
-{..\srclib\uniwidth\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\iconv-gnulib\}.obj::
-	$(CC) $(ICONV_INCLUDES) $(ICONV_CFLAGS) /Fovs$(VSVER)\$(CFG)\$(PLAT)\iconv-gnulib\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\iconv-gnulib\ /c @<<
+{..\gettext-runtime\gnulib-lib\unistr\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\grt\}.obj::
+	$(CC) $(GETTEXT_RUNTIME_GNULIB_INCLUDES) $(GETTEXT_RUNTIME_GNULIB_CFLAGS) /Fovs$(VSVER)\$(CFG)\$(PLAT)\grt\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\grt\ /c @<<
 $<
 <<
 
-{..\src\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\iconv\}.obj::
-	$(CC) $(ICONV_INCLUDES) $(ICONV_CFLAGS) /Fovs$(VSVER)\$(CFG)\$(PLAT)\iconv\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\iconv\ /c @<<
+{..\gettext-runtime\gnulib-lib\uniwidth\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\grt\}.obj::
+	$(CC) $(GETTEXT_RUNTIME_GNULIB_INCLUDES) $(GETTEXT_RUNTIME_GNULIB_CFLAGS) /Fovs$(VSVER)\$(CFG)\$(PLAT)\grt\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\grt\ /c @<<
+$<
+<<
+
+{..\gettext-runtime\src\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\}.obj::
+	@if not exist vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\ $(MAKE) /f Makefile.vc CFG=$(CFG) vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools
+	$(CC) $(GETTEXT_RUNTIME_GNULIB_INCLUDES) $(GETTEXT_RUNTIME_GNULIB_CFLAGS) /DINSTALLDIR=\"c:/vs$(VSVER).0/$(PLAT)/bin\" /Fovs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\ /c @<<
+$<
+<<
+
+## libtextstyle
+{..\libtextstyle\lib\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\}.obj::
+	$(CC) $(LIBTEXTSTYLE_INCLUDES) $(LIBTEXTSTYLE_DEFINES) /Fovs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\ /c @<<
+$<
+<<
+
+{..\libtextstyle\lib\libcroco\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\}.obj::
+	$(CC) $(LIBTEXTSTYLE_INCLUDES) $(LIBTEXTSTYLE_DEFINES) /Fovs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\ /c @<<
+$<
+<<
+
+{..\libtextstyle\lib\glib\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\}.obj::
+	$(CC) $(LIBTEXTSTYLE_INCLUDES) $(LIBTEXTSTYLE_DEFINES) /Fovs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\ /c @<<
+$<
+<<
+
+{..\libtextstyle\lib\libxml\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\libxml\}.obj::
+	$(CC) $(LIBTEXTSTYLE_INCLUDES) $(LIBTEXTSTYLE_DEFINES) /Fovs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\libxml\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\libxml\ /c @<<
+$<
+<<
+
+{..\libtextstyle\lib\unistr\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\}.obj::
+	$(CC) $(LIBTEXTSTYLE_INCLUDES) $(LIBTEXTSTYLE_DEFINES) /Fovs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\ /c @<<
 $<
 <<
 
 # Rules for building .rc files
+vs$(VSVER)\$(CFG)\$(PLAT)\asprintf\libasprintf.res: ..\gettext-runtime\libasprintf\libasprintf.rc
 vs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime\libintl.res: ..\gettext-runtime\intl\libintl.rc
-	$(RC) $(GETTEXT_RC_FLAGS) /fo$@ $**
+vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\gettext.res: ..\windows\gettext.rc
+vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\libtextstyle.res: ..\libtextstyle\lib\libtextstyle.rc
 
-vs$(VSVER)\$(CFG)\$(PLAT)\iconv\iconv.res: ..\windows\iconv.rc
-	$(RC) $(LIBICONV_RC_FLAGS) /fo$@ $**
+vs$(VSVER)\$(CFG)\$(PLAT)\asprintf\libasprintf.res	\
+vs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime\libintl.res	\
+vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\gettext.res	\
+vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\libtextstyle.res:
+	@if not exist $(@D) $(MAKE) /f Makefile.vc CFG=$(CFG) $(@D)
+	$(RC) $(GETTEXT_RC_FLAGS) /fo$@ $**
 
 # Inference rules for building the test programs
 # Used for programs with a single source file.
@@ -56,10 +104,11 @@ vs$(VSVER)\$(CFG)\$(PLAT)\iconv\iconv.res: ..\windows\iconv.rc
 
 # Rules for building .lib files
 $(INTL_LIB): vs$(VSVER)\$(CFG)\$(PLAT)\intl.dll
-$(ICONV_LIB): vs$(VSVER)\$(CFG)\$(PLAT)\iconv.dll
+$(ASPRINTF_LIB): vs$(VSVER)\$(CFG)\$(PLAT)\asprintf.dll
+$(LIBTEXTSTYLE_LIB): vs$(VSVER)\$(CFG)\$(PLAT)\textstyle.dll
 
-$(ICONV_GNULIB_LIB): vs$(VSVER)\$(CFG)\$(PLAT)\iconv-gnulib $(iconv_gnulib_OBJS)
-	lib $(ARFLAGS) $(iconv_gnulib_OBJS) /out:$@
+$(GRT_LIB): vs$(VSVER)\$(CFG)\$(PLAT)\grt $(grt_OBJS)
+	lib $(ARFLAGS) $(grt_OBJS) /out:$@
 
 # Rules for linking DLLs
 # Format is as follows (the mt command is needed for MSVC 2005/2008 builds):
@@ -72,8 +121,15 @@ vs$(VSVER)\$(CFG)\$(PLAT)\intl.dll: vs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime $(int
 	link /DLL $(LDFLAGS) -out:$@ $(intl_runtime_OBJS) $(GETTEXT_RUNTIME_DEP_LIBS)
 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;2
 
-vs$(VSVER)\$(CFG)\$(PLAT)\iconv.dll: $(CHARSET_LIB) vs$(VSVER)\$(CFG)\$(PLAT)\libiconv $(libiconv_OBJS)
-	link /DLL $(LDFLAGS) $(CHARSET_LIB) /pdb:$(@R)_lib.pdb -out:$@ $(libiconv_OBJS)
+vs$(VSVER)\$(CFG)\$(PLAT)\asprintf.dll: vs$(VSVER)\$(CFG)\$(PLAT)\asprintf $(libasprintf_OBJS)
+	link /DLL $(LDFLAGS) -out:$@ $(libasprintf_OBJS)
+	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;2
+
+vs$(VSVER)\$(CFG)\$(PLAT)\GNU.Gettext.dll: ..\gettext-runtime\intl-csharp\intl.cs vs$(VSVER)\$(CFG)\$(PLAT)\intl.dll
+	csc $(CSCFLAGS) /target:library /out:$@ ..\gettext-runtime\intl-csharp\intl.cs
+
+vs$(VSVER)\$(CFG)\$(PLAT)\textstyle.dll: vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\libxml $(libtextstyle_OBJS)
+	link /DLL $(LDFLAGS) -out:$@ $(libtextstyle_OBJS) $(GETTEXT_RUNTIME_DEP_LIBS) /def:..\libtextstyle\lib\msvc\libtextstyle.def
 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;2
 
 # Rules for linking Executables
@@ -83,8 +139,14 @@ vs$(VSVER)\$(CFG)\$(PLAT)\iconv.dll: $(CHARSET_LIB) vs$(VSVER)\$(CFG)\$(PLAT)\li
 # $(dependent_objects)
 # <<
 # 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;1
-vs$(VSVER)\$(CFG)\$(PLAT)\iconv.exe: $(ICONV_LIB) $(ICONV_GNULIB_LIB) vs$(VSVER)\$(CFG)\$(PLAT)\iconv $(iconv_OBJS)
-	link $(LDFLAGS) $(ICONV_LIB) $(ICONV_GNULIB_LIB) $(ICONV_DEP_LIBS) -out:$@ $(iconv_OBJS) /implib:$(@D)\unwanted.lib
+vs$(VSVER)\$(CFG)\$(PLAT)\envsubst.exe: $(INTL_LIB) $(GRT_LIB) vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\envsubst.obj vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\gettext.res
+vs$(VSVER)\$(CFG)\$(PLAT)\gettext.exe: $(INTL_LIB) $(GRT_LIB) vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\gettext.obj vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\gettext.res
+vs$(VSVER)\$(CFG)\$(PLAT)\ngettext.exe: $(INTL_LIB) $(GRT_LIB) vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\ngettext.obj vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\gettext.res
+
+vs$(VSVER)\$(CFG)\$(PLAT)\envsubst.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\gettext.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\ngettext.exe:
+	link $(LDFLAGS) $(INTL_LIB) $(GRT_LIB) $(GETTEXT_RUNTIME_DEP_LIBS) -out:$@ vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\$(@B).obj vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\gettext.res /implib:$(@D)\unwanted.lib
 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;1
 
 # Other .obj files requiring individual attention, that could not be covered by the inference rules.
@@ -102,6 +164,16 @@ clean:
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\*.dll.manifest
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\*.dll
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\*.ilk
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\*.obj
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\*.pdb
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\grt\*.obj
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\grt\*.pdb
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\asprintf\*.obj
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\asprintf\*.pdb
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime\*.obj
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime\*.pdb
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\libxml\*.obj
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\libxml\*.pdb
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\*.obj
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\*.pdb
 	@-rmdir /s /q vs$(VSVER)\$(CFG)\$(PLAT)

@@ -4,5 +4,10 @@
 # one is maintaining the NMake build files.
 
 # Create the build directories
-vs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime:
+vs$(VSVER)\$(CFG)\$(PLAT)\asprintf	\
+vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools	\
+vs$(VSVER)\$(CFG)\$(PLAT)\grt	\
+vs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime	\
+vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle	\
+vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\libxml:
 	@-md $@

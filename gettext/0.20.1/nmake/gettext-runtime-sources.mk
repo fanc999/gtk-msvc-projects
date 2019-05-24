@@ -31,6 +31,73 @@ INTL_RUNTIME_SRCS =	\
 	..\gettext-runtime\intl\version.c	\
 	..\gettext-runtime\intl\xsize.c
 
+GETTEXT_RUNTIME_BASE_GNULIB_SRCS =	\
+	..\gettext-runtime\gnulib-lib\allocator.c	\
+	..\gettext-runtime\gnulib-lib\areadlink.c	\
+	..\gettext-runtime\gnulib-lib\basename-lgpl.c	\
+	..\gettext-runtime\gnulib-lib\basename.c	\
+	..\gettext-runtime\gnulib-lib\binary-io.c	\
+	..\gettext-runtime\gnulib-lib\c-ctype.c	\
+	..\gettext-runtime\gnulib-lib\c-strcasecmp.c	\
+	..\gettext-runtime\gnulib-lib\c-strncasecmp.c	\
+	..\gettext-runtime\gnulib-lib\canonicalize-lgpl.c	\
+	..\gettext-runtime\gnulib-lib\careadlinkat.c	\
+	..\gettext-runtime\gnulib-lib\closeout.c	\
+	..\gettext-runtime\gnulib-lib\dirname-lgpl.c	\
+	..\gettext-runtime\gnulib-lib\error.c	\
+	..\gettext-runtime\gnulib-lib\fwriteerror.c	\
+	..\gettext-runtime\gnulib-lib\getopt.c	\
+	..\gettext-runtime\gnulib-lib\getopt1.c	\
+	..\gettext-runtime\gnulib-lib\getprogname.c	\
+	..\gettext-runtime\gnulib-lib\hard-locale.c	\
+	..\gettext-runtime\gnulib-lib\localcharset.c	\
+	..\gettext-runtime\gnulib-lib\localename-table.c	\
+	..\gettext-runtime\gnulib-lib\localename.c	\
+	..\gettext-runtime\gnulib-lib\malloc.c	\
+	..\gettext-runtime\gnulib-lib\malloca.c	\
+	..\gettext-runtime\gnulib-lib\mbchar.c	\
+	..\gettext-runtime\gnulib-lib\mbiter.c	\
+	..\gettext-runtime\gnulib-lib\mbrtowc.c	\
+	..\gettext-runtime\gnulib-lib\mbsinit.c	\
+	..\gettext-runtime\gnulib-lib\mbslen.c	\
+	..\gettext-runtime\gnulib-lib\mbsstr.c	\
+	..\gettext-runtime\gnulib-lib\mbuiter.c	\
+	..\gettext-runtime\gnulib-lib\msvc-inval.c	\
+	..\gettext-runtime\gnulib-lib\msvc-nothrow.c	\
+	..\gettext-runtime\gnulib-lib\progname.c	\
+	..\gettext-runtime\gnulib-lib\progreloc.c	\
+	..\gettext-runtime\gnulib-lib\propername.c	\
+	..\gettext-runtime\gnulib-lib\raise.c	\
+	..\gettext-runtime\gnulib-lib\readlink.c	\
+	..\gettext-runtime\gnulib-lib\relocatable.c	\
+	..\gettext-runtime\gnulib-lib\relocwrapper.c	\
+	..\gettext-runtime\gnulib-lib\setenv.c	\
+	..\gettext-runtime\gnulib-lib\setlocale.c	\
+	..\gettext-runtime\gnulib-lib\sigprocmask.c	\
+	..\gettext-runtime\gnulib-lib\stat-time.c	\
+	..\gettext-runtime\gnulib-lib\stat-w32.c	\
+	..\gettext-runtime\gnulib-lib\stat.c	\
+	..\gettext-runtime\gnulib-lib\stdio-write.c	\
+	..\gettext-runtime\gnulib-lib\strerror-override.c	\
+	..\gettext-runtime\gnulib-lib\strerror.c	\
+	..\gettext-runtime\gnulib-lib\striconv.c	\
+	..\gettext-runtime\gnulib-lib\stripslash.c	\
+	..\gettext-runtime\gnulib-lib\strnlen1.c	\
+	..\gettext-runtime\gnulib-lib\trim.c	\
+	..\gettext-runtime\gnulib-lib\unistd.c	\
+	..\gettext-runtime\gnulib-lib\wctype-h.c	\
+	..\gettext-runtime\gnulib-lib\wcwidth.c	\
+	..\gettext-runtime\gnulib-lib\xmalloc.c	\
+	..\gettext-runtime\gnulib-lib\xreadlink.c	\
+	..\gettext-runtime\gnulib-lib\xstrdup.c	\
+	..\gettext-runtime\gnulib-lib\xstriconv.c
+
+!if $(VSVER) < 12
+GETTEXT_RUNTIME_BASE_GNULIB_SRCS =	\
+	$(GETTEXT_RUNTIME_BASE_GNULIB_SRCS)	\
+	..\gettext-runtime\gnulib-lib\iswblank.c
+!endif
+
 LIBCHARSET_SRCS =	\
 	..\libcharset\lib\localcharset.c	\
 	..\libcharset\lib\relocatable-stub.c
@@ -81,4 +148,4 @@ LIBICONV_GNULIB_SRCS =	\
 ICONV_SRCS = ..\src\iconv.c
 !else
 ICONV_SRCS = ..\src\iconv_no_i18n.c
-!endif
+!endif 

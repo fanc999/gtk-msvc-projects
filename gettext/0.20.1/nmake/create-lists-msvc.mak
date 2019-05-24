@@ -49,7 +49,81 @@ NULL=
 !if [call create-lists.bat footer gettext-runtime-objs.mak]
 !endif
 
+!if [call create-lists.bat header gettext-runtime-objs.mak grt_OBJS]
+!endif
+
+!if [for %c in ($(GETTEXT_RUNTIME_BASE_GNULIB_SRCS)) do @if "%~xc" == ".c" @call create-lists.bat file gettext-runtime-objs.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\grt\%~nc.obj]
+!endif
+
+!if [for %s in (..\gettext-runtime\gnulib-lib\glthread\*.c) do @call create-lists.bat file gettext-runtime-objs.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\grt\%~ns.obj]
+!endif
+
+!if [for %s in (..\gettext-runtime\gnulib-lib\unistr\*.c) do @call create-lists.bat file gettext-runtime-objs.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\grt\%~ns.obj]
+!endif
+
+!if [for %s in (..\gettext-runtime\gnulib-lib\uniwidth\*.c) do @call create-lists.bat file gettext-runtime-objs.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\grt\%~ns.obj]
+!endif
+
+!if [call create-lists.bat footer gettext-runtime-objs.mak]
+!endif
+
+!if [call create-lists.bat header gettext-runtime-objs.mak libasprintf_OBJS]
+!endif
+
+!if [for %s in (lib-asprintf.c xsize.c) do @call create-lists.bat file gettext-runtime-objs.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\asprintf\%~ns.obj]
+!endif
+
+!if [for %s in (..\gettext-runtime\libasprintf\*.cc) do @call create-lists.bat file gettext-runtime-objs.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\asprintf\%~ns.obj]
+!endif
+
+!if [@call create-lists.bat file gettext-runtime-objs.mak ^vs$(VSVER)\^$(CFG)\^$(PLAT)\asprintf\libasprintf.res]
+!endif
+
+!if [call create-lists.bat footer gettext-runtime-objs.mak]
+!endif
+
+!if [call create-lists.bat header gettext-runtime-objs.mak gettext_runtime_tools]
+!endif
+
+!if [for %s in (..\gettext-runtime\src\*.c) do @call create-lists.bat file gettext-runtime-objs.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\%~ns.exe]
+!endif
+
+!if [call create-lists.bat footer gettext-runtime-objs.mak]
+!endif
+
 !include gettext-runtime-objs.mak
 
 !if [del /f /q gettext-runtime-objs.mak]
 !endif
+
+# libtextstyle
+!include libtextstyle-sources.mk
+
+!if [call create-lists.bat header libtextstyle-objs.mak libtextstyle_OBJS]
+!endif
+
+!if [for %s in ($(LIBTEXTSTYLE_BASE_SRCS)) do @call create-lists.bat file libtextstyle-objs.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\libtextstyle\%~ns.obj ]
+!endif
+
+!if [for %s in (..\libtextstyle\lib\libcroco\*.c) do @call create-lists.bat file libtextstyle-objs.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\libtextstyle\%~ns.obj ]
+!endif
+
+!if [for %s in (..\libtextstyle\lib\glib\*.c) do @call create-lists.bat file libtextstyle-objs.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\libtextstyle\%~ns.obj ]
+!endif
+
+!if [for %s in (..\libtextstyle\lib\libxml\*.c) do @call create-lists.bat file libtextstyle-objs.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\libtextstyle\libxml\%~ns.obj ]
+!endif
+
+!if [for %s in (..\libtextstyle\lib\unistr\*.c) do @call create-lists.bat file libtextstyle-objs.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\libtextstyle\%~ns.obj ]
+!endif
+
+!if [@call create-lists.bat file libtextstyle-objs.mak ^vs$(VSVER)\^$(CFG)\^$(PLAT)\libtextstyle\libtextstyle.res]
+!endif
+
+!if [call create-lists.bat footer libtextstyle-objs.mak]
+!endif
+
+!include libtextstyle-objs.mak
+
+#!if [del /f /q libtextstyle-objs.mak]
+#!endif
