@@ -35,11 +35,21 @@
 #include <string>
 #include <iostream>
 
+#ifdef _MSC_VER
+# ifdef IN_LIBASPRINTF
+#  define LIBASPRINTF_EXPORTS __declspec(dllexport)
+# else
+#  define LIBASPRINTF_EXPORTS __declspec(dllexport)
+# endif
+#else
+# define LIBASPRINTF_EXPORTS
+#endif
+
 namespace gnu
 {
   /* A temporary object, usually allocated on the stack, representing
      the result of an asprintf() call.  */
-  class autosprintf
+  class LIBASPRINTF_EXPORTS autosprintf
   {
   public:
     /* Constructor: takes a format string and the printf arguments.  */

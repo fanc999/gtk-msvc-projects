@@ -80,7 +80,7 @@
 #define ENABLE_NLS 1
 
 /* Define to 1 if the package shall run at any location in the file system. */
-/* #undef ENABLE_RELOCATABLE */
+#define ENABLE_RELOCATABLE 1
 
 /* Define to nothing if C supports flexible array members, and to 1 if it does
    not. That way, with a declaration like 'struct s { int n; double
@@ -765,7 +765,7 @@
 /* #undef ICONV_FLAVOR */
 
 /* Define to the value of ${prefix}, as a string. */
-#define INSTALLPREFIX BASEFPX
+#define INSTALLPREFIX BASEPFX
 
 /* Define if integer division by zero raises signal SIGFPE. */
 #define INTDIV0_RAISES_SIGFPE 0
