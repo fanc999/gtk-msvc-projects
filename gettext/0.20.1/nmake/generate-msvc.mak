@@ -5,9 +5,14 @@
 
 # Create the build directories
 vs$(VSVER)\$(CFG)\$(PLAT)\asprintf	\
+vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib	\
+vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib\libxml	\
+vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo	\
 vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools	\
+vs$(VSVER)\$(CFG)\$(PLAT)\gnu	\
 vs$(VSVER)\$(CFG)\$(PLAT)\grt	\
 vs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime	\
+vs$(VSVER)\$(CFG)\$(PLAT)\libgrep	\
 vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle	\
 vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\libxml:
 	@-md $@

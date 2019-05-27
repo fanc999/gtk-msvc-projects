@@ -20,7 +20,7 @@
 # into the lists we need for compilation and introspection
 !include create-lists-msvc.mak
 
-all: $(GETTEXT_RUNTIME_LIBS) $(gettext_runtime_tools) $(LIBTEXTSTYLE_LIB)
+all: $(GETTEXT_RUNTIME_LIBS) $(gettext_runtime_tools) $(LIBTEXTSTYLE_LIB) $(GETTEXTPO_LIB)
 
 tests: all
 

@@ -28,6 +28,11 @@ GETTEXT_BASE_PATH_DEFINES =	\
 	/DLOCALEDIR=\"\"	\
 	/DLOCALE_ALIAS_PATH=\"\"
 
+EXTRA_INSTALL_PATHS_DEFINES =	\
+	/DLIBPATHVAR=\"PATH\"	\
+	/DLIBDIRS=\"c:/vs$(VSVER).0/$(PLAT)/bin\",	\
+	/DINSTALLDIR=\"c:/vs$(VSVER).0/$(PLAT)/bin\"
+
 GETTEXT_RUNTIME_CFLAGS =	\
 	$(GETTEXT_RUNTIME_BASE_DEFINES)	\
 	$(GETTEXT_BASE_PATH_DEFINES)	\
@@ -47,17 +52,15 @@ GETTEXT_RUNTIME_GNULIB_CFLAGS =	\
 
 GETTEXT_RUNTIME_DEP_LIBS = iconv.lib advapi32.lib
 
-ICONV_CFLAGS =	\
-	$(ICONV_BASE_DEFINES)	\
-	$(ICONV_BASE_PATH_DEFINES)	\
-	/DEXEEXT=\".exe\"
-
-BASE_GETTEXT_RUNTIME_INCLUDES =	\
-	/I..\gettext-runtime\gnulib-lib	\
+FORCED_INCLUDED_HEADERS =	\
 	/FIarg-nonnull.h	\
 	/FIc++defs.h	\
 	/FIwarn-on-use.h	\
 	/FI_Noreturn.h
+
+BASE_GETTEXT_RUNTIME_INCLUDES =	\
+	/I..\gettext-runtime\gnulib-lib	\
+	$(FORCED_INCLUDED_HEADERS)
 
 GETTEXT_RUNTIME_INCLUDES =	\
 	/I..\gettext-runtime\intl\msvc	\
@@ -100,10 +103,7 @@ GETTEXT_RC_FLAGS =	\
 
 BASE_LIBTEXTSTYLE_INCLUDES =	\
 	/I..\libtextstyle\lib	\
-	/FIarg-nonnull.h	\
-	/FIc++defs.h	\
-	/FIwarn-on-use.h	\
-	/FI_Noreturn.h
+	$(FORCED_INCLUDED_HEADERS)
 
 LIBTEXTSTYLE_INCLUDES =	\
 	/I..\libtextstyle\lib\libcroco	\
@@ -119,11 +119,49 @@ LIBTEXTSTYLE_DEFINES =	\
 	/DLIBXML_STATIC=1	\
 	$(GETTEXT_BASE_DEFINES)
 
+BASE_GETTEXT_TOOLS_INCLUDES =	\
+	/I..\gettext-tools\gnulib-lib	\
+	$(FORCED_INCLUDED_HEADERS)
+
+GETTEXT_TOOLS_INCLUDES =	\
+	/I..\gettext-tools\gnulib-lib\msvc	\
+	/I..\gettext-tools\gnulib-lib	\
+	/I..\gettext-tools\msvc	\
+	$(BASE_GETTEXT_TOOLS_INCLUDES)
+
+GETTEXT_TOOLS_GNULIB_CFLAGS =	\
+	$(GETTEXT_RUNTIME_GNULIB_CFLAGS)	\
+	/DLIBXML_STATIC=1
+
+LIBGREP_INCLUDES =	\
+	/I..\gettext-tools\libgrep\msvc	\
+	/I..\gettext-tools\libgrep	\
+	$(GETTEXT_TOOLS_INCLUDES)
+
+LIBGREP_CFLAGS =	\
+	$(GETTEXT_RUNTIME_GNULIB_CFLAGS)	\
+	/DIN_GETTEXT_TOOLS_LIBGREP=1
+
+GETTEXTPO_GNULIB_INCLUDES =	\
+	/I..\gettext-tools\libgettextpo\msvc	\
+	/I..\gettext-tools\libgettextpo	\
+	/I..\gettext-tools\src	\
+	/I..\gettext-tools\msvc	\
+	/I..\gettext-runtime\intl	\
+	$(BASE_GETTEXT_TOOLS_INCLUDES)
+
+LIBGETTEXTPO_DEFINES =	\
+	/DIN_LIBGETTEXTPO=1	\
+	$(GETTEXT_RUNTIME_GNULIB_CFLAGS)
+
 # We build the libintl DLL/LIB at least
 INTL_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\intl.lib
 ASPRINTF_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\asprintf.lib
-INTL_CS_DLL = vs$(VSVER)\$(CFG)\$(PLAT)\GNU.Gettext.dll
+GETTEXTLIB_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib-$(GETTEXT_VERSION).lib
+GETTEXTPO_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo.lib
 GRT_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\grt.lib
+INTL_CS_DLL = vs$(VSVER)\$(CFG)\$(PLAT)\GNU.Gettext.dll
+LIBGREP_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\grep.lib
 LIBTEXTSTYLE_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\textstyle.lib
 
 GETTEXT_RUNTIME_LIBS =	\
