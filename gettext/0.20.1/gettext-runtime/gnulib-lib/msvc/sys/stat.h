@@ -891,8 +891,8 @@ _GL_WARN_ON_USE (fchmodat, "fchmodat is not portable - "
 #endif
 
 
-#if 0
-# if 0
+#if 1
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef fstat
 #   define fstat rpl_fstat

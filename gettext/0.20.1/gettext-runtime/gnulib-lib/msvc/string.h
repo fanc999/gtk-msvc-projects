@@ -32,7 +32,7 @@
 #  include "../include/string.h"
 # else
 #  include "../ucrt/string.h"
-#endif
+# endif
 
 #else
 /* Normal invocation convention.  */
@@ -57,7 +57,7 @@
 #include <stddef.h>
 
 /* MirBSD defines mbslen as a macro.  */
-#if 0 && defined __MirBSD__
+#if 1 && defined __MirBSD__
 # include <wchar.h>
 #endif
 
@@ -604,7 +604,7 @@ _GL_WARN_ON_USE (ffsll, "ffsll is not portable - use the ffsll module");
 
 
 /* Return the first instance of C within N bytes of S, or NULL.  */
-#if 0
+#if 1
 # if 0
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define memchr rpl_memchr
@@ -937,7 +937,7 @@ _GL_WARN_ON_USE (strndup, "strndup is unportable - "
 /* Find the length (number of bytes) of STRING, but scan at most
    MAXLEN bytes.  If no '\0' terminator is found in that many bytes,
    return MAXLEN.  */
-#if 0
+#if 1
 # if 0
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef strnlen
@@ -1229,7 +1229,7 @@ _GL_WARN_ON_USE (strtok_r, "strtok_r is unportable - "
 /* The following functions are not specified by POSIX.  They are gnulib
    extensions.  */
 
-#if 0
+#if 1
 /* Return the number of multibyte characters in the character string STRING.
    This considers multibyte characters, unlike strlen, which counts bytes.  */
 # ifdef __MirBSD__  /* MirBSD defines mbslen as a macro.  Override it.  */
@@ -1304,7 +1304,7 @@ _GL_CXXALIAS_SYS (mbsrchr, char *, (const char *string, int c));
 _GL_CXXALIASWARN (mbsrchr);
 #endif
 
-#if 0
+#if 1
 /* Find the first occurrence of the character string NEEDLE in the character
    string HAYSTACK.  Return NULL if NEEDLE is not found in HAYSTACK.
    Unlike strstr(), this function works correctly in multibyte locales with
