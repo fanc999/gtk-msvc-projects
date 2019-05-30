@@ -23,10 +23,10 @@ GETTEXT_RUNTIME_BASE_DEFINES =	\
 	/DNO_XMALLOC
 
 GETTEXT_BASE_PATH_DEFINES =	\
-	/DINSTALLDIR=""	\
-	/DLIBDIR=""	\
-	/DLOCALEDIR=\"\"	\
-	/DLOCALE_ALIAS_PATH=\"\"
+	/DINSTALLDIR=\"c:/vs$(VSVER).0/$(PLAT)\"	\
+	/DLIBDIR=\"c:/vs$(VSVER).0/$(PLAT)/lib\"	\
+	/DLOCALEDIR=\"c:/vs$(VSVER).0/$(PLAT)/share/locale\"	\
+	/DLOCALE_ALIAS_PATH=\"c:/vs$(VSVER).0/$(PLAT)/share/locale\"
 
 EXTRA_INSTALL_PATHS_DEFINES =	\
 	/DLIBPATHVAR=\"PATH\"	\
@@ -154,11 +154,29 @@ LIBGETTEXTPO_DEFINES =	\
 	/DIN_LIBGETTEXTPO=1	\
 	$(GETTEXT_RUNTIME_GNULIB_CFLAGS)
 
+LIBGETTEXTSRC_INCLUDES =	\
+	/I..\gettext-tools\src\msvc	\
+	/I..\gettext-tools\src	\
+	/I..\gettext-tools\gnulib-lib\msvc	\
+	/I..\gettext-tools\gnulib-lib	\
+	/I..\gettext-tools\msvc	\
+	/I..\gettext-runtime\intl	\
+	$(BASE_GETTEXT_TOOLS_INCLUDES)
+
+LIBGETTEXTSRC_CFLAGS =	\
+	$(GETTEXT_TOOLS_GNULIB_CFLAGS)	\
+	/DBISON_LOCALEDIR=\"c:/vs$(VSVER).0/$(PLAT)/share/locale\"	\
+	/DUSE_JAVA=0	\
+	/DGETTEXTJAR=\"c:/vs$(VSVER).0/$(PLAT)/share/gettext/gettext.jar\"	\
+	/DGETTEXTDATADIR=\"c:/vs$(VSVER).0/$(PLAT)/share/gettext\"	\
+	/DPROJECTSDIR=\"c:/vs$(VSVER).0/$(PLAT)/share/gettext/projects\"
+
 # We build the libintl DLL/LIB at least
 INTL_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\intl.lib
 ASPRINTF_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\asprintf.lib
 GETTEXTLIB_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib-$(GETTEXT_VERSION).lib
 GETTEXTPO_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo.lib
+GETTEXTSRC_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc-$(GETTEXT_VERSION).lib
 GRT_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\grt.lib
 INTL_CS_DLL = vs$(VSVER)\$(CFG)\$(PLAT)\GNU.Gettext.dll
 LIBGREP_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\grep.lib
@@ -168,16 +186,3 @@ GETTEXT_RUNTIME_LIBS =	\
 	$(ASPRINTF_LIB)	\
 	$(INTL_LIB)	\
 	$(INTL_CS_DLL)
-
-ICONV_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\iconv.lib
-ICONV_GNULIB_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\iconv-gnulib.lib
-
-GETTEXT_LIBS = $(CHARSET_LIB) $(ICONV_LIB)
-ICONV_TOOLS = vs$(VSVER)\$(CFG)\$(PLAT)\iconv.exe
-
-!ifdef USE_I18N
-ICONV_DEP_LIBS = intl.lib
-ICONV_CFLAGS = $(ICONV_CFLAGS) /DUSE_GETTEXT
-!else
-ICONV_DEP_LIBS =
-!endif

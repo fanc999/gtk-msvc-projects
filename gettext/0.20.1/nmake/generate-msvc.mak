@@ -8,7 +8,9 @@ vs$(VSVER)\$(CFG)\$(PLAT)\asprintf	\
 vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib	\
 vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib\libxml	\
 vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo	\
+vs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc	\
 vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools	\
+vs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools	\
 vs$(VSVER)\$(CFG)\$(PLAT)\gnu	\
 vs$(VSVER)\$(CFG)\$(PLAT)\grt	\
 vs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime	\

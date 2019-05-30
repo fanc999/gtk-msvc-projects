@@ -20,7 +20,7 @@ $<
 <<
 
 {..\gettext-runtime\libasprintf\}.cc{vs$(VSVER)\$(CFG)\$(PLAT)\asprintf\}.obj::
-	$(CC) $(CXXFLAGS) $(ASPRINTF_INCLUDES) $(ASPRINTF_DEFINES) /Fovs$(VSVER)\$(CFG)\$(PLAT)\asprintf\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\asprintf\ /c @<<
+	$(CXX) $(CXXFLAGS) $(ASPRINTF_INCLUDES) $(ASPRINTF_DEFINES) /Fovs$(VSVER)\$(CFG)\$(PLAT)\asprintf\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\asprintf\ /c @<<
 $<
 <<
 
@@ -191,22 +191,57 @@ $<
 $<
 <<
 
-# Use ..\woe32dll\c++format.cc
-vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo\format.obj: ..\gettext-tools\woe32dll\c++format.cc
-	@if not exist $(@D) $(MAKE) /f Makefile.vc CFG=$(CFG) $(@D)
-	$(CC) $(GETTEXTPO_GNULIB_INCLUDES) $(LIBGETTEXTPO_DEFINES) /Fo$@ /Fd$(@D)\ /c @<<
-$**
+{..\gettext-tools\woe32dll\}.cc{vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo\}.obj::
+	@if not exist vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo\ $(MAKE) /f Makefile.vc CFG=$(CFG) vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo
+	$(CXX) $(GETTEXTPO_GNULIB_INCLUDES) $(LIBGETTEXTPO_DEFINES) /Fovs$(VSVER)\$(CFG)\$(PLAT)\gettextpo\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\gettextpo\ /c @<<
+$<
 <<
+
+{..\gettext-tools\src\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc\}.obj::
+	@if not exist vs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc\ $(MAKE) /f Makefile.vc CFG=$(CFG) vs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc
+	$(CC) $(LIBGETTEXTSRC_INCLUDES) $(LIBGETTEXTSRC_CFLAGS) /Fovs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc\ /c @<<
+$<
+<<
+
+{..\gettext-tools\woe32dll\}.cc{vs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc\}.obj::
+	@if not exist vs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc\ $(MAKE) /f Makefile.vc CFG=$(CFG) vs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc
+	$(CXX) $(LIBGETTEXTSRC_INCLUDES) $(LIBGETTEXTSRC_CFLAGS) /Fovs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc\ /c @<<
+$<
+<<
+
+{..\gettext-tools\src\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\}.obj::
+	@if not exist vs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\ $(MAKE) /f Makefile.vc CFG=$(CFG) vs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools
+	$(CC) $(LIBGETTEXTSRC_INCLUDES) $(LIBGETTEXTSRC_CFLAGS) /Fovs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\ /c @<<
+$<
+<<
+
+{..\gettext-tools\woe32dll\}.cc{vs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\}.obj::
+	@if not exist vs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\ $(MAKE) /f Makefile.vc CFG=$(CFG) vs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools
+	$(CXX) $(LIBGETTEXTSRC_INCLUDES) $(LIBGETTEXTSRC_CFLAGS) /Fovs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\ /c @<<
+$<
+<<
+
+{..\gettext-runtime\intl\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\}.obj::
+	@if not exist vs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\ $(MAKE) /f Makefile.vc CFG=$(CFG) vs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools
+	$(CC) $(LIBGETTEXTSRC_INCLUDES) $(LIBGETTEXTSRC_CFLAGS) /Fovs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\ /c @<<
+$<
+<<
+
+vs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\msggrep.obj: ..\gettext-tools\src\msggrep.c
+	@if not exist $(@D)\ $(MAKE) /f Makefile.vc CFG=$(CFG) $(@D)
+	$(CC) $(LIBGETTEXTSRC_INCLUDES) $(LIBGREP_INCLUDES) $(LIBGETTEXTSRC_CFLAGS) /Fo$@ /Fd$(@D)\ /c $**
 
 # Rules for building .rc files
 vs$(VSVER)\$(CFG)\$(PLAT)\asprintf\libasprintf.res: ..\gettext-runtime\libasprintf\libasprintf.rc
 vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\gettext.res: ..\windows\gettext.rc
+vs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\gettext.res: ..\windows\gettext.rc
 vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo\libgettextpo.res: ..\gettext-tools\libgettextpo\libgettextpo.rc
 vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\libtextstyle.res: ..\libtextstyle\lib\libtextstyle.rc
 vs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime\libintl.res: ..\gettext-runtime\intl\libintl.rc
 
 vs$(VSVER)\$(CFG)\$(PLAT)\asprintf\libasprintf.res	\
 vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\gettext.res	\
+vs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\gettext.res	\
 vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo\libgettextpo.res	\
 vs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime\libintl.res	\
 vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\libtextstyle.res:
@@ -224,8 +259,9 @@ vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\libtextstyle.res:
 # Rules for building .lib files
 $(INTL_LIB): vs$(VSVER)\$(CFG)\$(PLAT)\intl.dll
 $(ASPRINTF_LIB): vs$(VSVER)\$(CFG)\$(PLAT)\asprintf.dll
-$(GETTEXTLIB_LIB):  vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib-$(GETTEXT_VERSION).dll
-$(GETTEXTPO_LIB):  vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo.dll
+$(GETTEXTLIB_LIB): vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib-$(GETTEXT_VERSION).dll
+$(GETTEXTPO_LIB): vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo.dll
+$(GETTEXTSRC_LIB): vs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc-$(GETTEXT_VERSION).dll
 $(LIBTEXTSTYLE_LIB): vs$(VSVER)\$(CFG)\$(PLAT)\textstyle.dll
 
 $(GRT_LIB): $(grt_OBJS)
@@ -249,11 +285,15 @@ vs$(VSVER)\$(CFG)\$(PLAT)\GNU.Gettext.dll: ..\gettext-runtime\intl-csharp\intl.c
 	csc $(CSCFLAGS) /target:library /out:$@ ..\gettext-runtime\intl-csharp\intl.cs
 
 vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib-$(GETTEXT_VERSION).dll: ..\gettext-tools\gnulib-lib\msvc\libgettextlib.def vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib\libxml $(gettextlib_OBJS) $(INTL_LIB)
-	link /DLL $(LDFLAGS) -out:$@ $(gettextlib_OBJS) $(INTL_LIB) $(GETTEXT_RUNTIME_DEP_LIBS)
+	link /DLL $(LDFLAGS) -out:$@ $(gettextlib_OBJS) $(INTL_LIB) $(GETTEXT_RUNTIME_DEP_LIBS) /def:..\gettext-tools\gnulib-lib\msvc\libgettextlib.def
 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;2
 
 vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo.dll: vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo $(gettextpo_OBJS) $(gettextpo_gnulib_OBJS) $(INTL_LIB)
 	link /DLL $(LDFLAGS) -out:$@ $(gettextpo_OBJS) $(gettextpo_gnulib_OBJS) $(INTL_LIB) $(GETTEXT_RUNTIME_DEP_LIBS)
+	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;2
+
+vs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc-$(GETTEXT_VERSION).dll: ..\gettext-tools\src\msvc\libgettextsrc.def vs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc $(gettextsrc_OBJS) $(LIBTEXTSTYLE_LIB) $(GETTEXTLIB_LIB)
+	link /DLL $(LDFLAGS) -out:$@ $(gettextsrc_OBJS) $(LIBTEXTSTYLE_LIB) $(GETTEXTLIB_LIB) $(INTL_LIB) $(GETTEXT_RUNTIME_DEP_LIBS) /def:..\gettext-tools\src\msvc\libgettextsrc.def
 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;2
 
 vs$(VSVER)\$(CFG)\$(PLAT)\intl.dll: vs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime $(intl_runtime_OBJS)
@@ -273,12 +313,47 @@ vs$(VSVER)\$(CFG)\$(PLAT)\textstyle.dll: vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle 
 # 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;1
 vs$(VSVER)\$(CFG)\$(PLAT)\envsubst.exe: $(INTL_LIB) $(GRT_LIB) vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\envsubst.obj vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\gettext.res
 vs$(VSVER)\$(CFG)\$(PLAT)\gettext.exe: $(INTL_LIB) $(GRT_LIB) vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\gettext.obj vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\gettext.res
+vs$(VSVER)\$(CFG)\$(PLAT)\msgattrib.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(msgattrib_OBJS)
+vs$(VSVER)\$(CFG)\$(PLAT)\msgcat.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(msgcat_OBJS)
+vs$(VSVER)\$(CFG)\$(PLAT)\msgcmp.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(INTL_LIB) $(msgcmp_OBJS)
+vs$(VSVER)\$(CFG)\$(PLAT)\msgcomm.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(msgcomm_OBJS)
+vs$(VSVER)\$(CFG)\$(PLAT)\msgconv.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(msgconv_OBJS)
+vs$(VSVER)\$(CFG)\$(PLAT)\msgen.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(msgen_OBJS)
+vs$(VSVER)\$(CFG)\$(PLAT)\msgexec.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(INTL_LIB) $(msgexec_OBJS)
+vs$(VSVER)\$(CFG)\$(PLAT)\msgfilter.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(msgfilter_OBJS)
+vs$(VSVER)\$(CFG)\$(PLAT)\msgfmt.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(INTL_LIB) $(msgfmt_OBJS)
+vs$(VSVER)\$(CFG)\$(PLAT)\msggrep.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBGREP_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(msggrep_OBJS)
+vs$(VSVER)\$(CFG)\$(PLAT)\msgmerge.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(msgmerge_OBJS)
+vs$(VSVER)\$(CFG)\$(PLAT)\msgunfmt.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(msgunfmt_OBJS)
+vs$(VSVER)\$(CFG)\$(PLAT)\msguniq.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(msguniq_OBJS)
 vs$(VSVER)\$(CFG)\$(PLAT)\ngettext.exe: $(INTL_LIB) $(GRT_LIB) vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\ngettext.obj vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\gettext.res
+vs$(VSVER)\$(CFG)\$(PLAT)\recode-sr-latin.exe: $(GETTEXTLIB_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(recode_sr_latin_OBJS)
+vs$(VSVER)\$(CFG)\$(PLAT)\xgettext.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(xgettext_OBJS)
+
+
 
 vs$(VSVER)\$(CFG)\$(PLAT)\envsubst.exe	\
 vs$(VSVER)\$(CFG)\$(PLAT)\gettext.exe	\
-vs$(VSVER)\$(CFG)\$(PLAT)\ngettext.exe:
-	link $(LDFLAGS) $(INTL_LIB) $(GRT_LIB) $(GETTEXT_RUNTIME_DEP_LIBS) -out:$@ vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\$(@B).obj vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\gettext.res /implib:$(@D)\unwanted.lib
+vs$(VSVER)\$(CFG)\$(PLAT)\msgattrib.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\msgcat.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\msgcmp.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\msgcomm.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\msgconv.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\msgen.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\msgexec.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\msgfilter.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\msgfmt.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\msgmerge.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\msgunfmt.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\msguniq.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\ngettext.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\recode-sr-latin.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\xgettext.exe:
+	link $(LDFLAGS) $** $(GETTEXT_RUNTIME_DEP_LIBS) -out:$@ /implib:$(@D)\unwanted.lib
+	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;1
+
+vs$(VSVER)\$(CFG)\$(PLAT)\msggrep.exe:
+	link $(LDFLAGS) $** $(GETTEXT_RUNTIME_DEP_LIBS) msvcprt.lib -out:$@ /implib:$(@D)\unwanted.lib
 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;1
 
 # Other .obj files requiring individual attention, that could not be covered by the inference rules.
@@ -297,25 +372,35 @@ clean:
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\*.dll
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\*.ilk
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\asprintf\*.obj
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\asprintf\*.res
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\asprintf\*.pdb
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib\*.obj
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib\*.pdb
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib\libxml\*.obj
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib\libxml\*.pdb
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo\*.obj
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo\*.res
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettextpo\*.pdb
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc\*.obj
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettextsrc\*.pdb
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\*.obj
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\*.res
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettext-runtime-tools\*.pdb
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\*.obj
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\*.res
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gettext-tools-tools\*.pdb
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gnu\*.obj
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\gnu\*.pdb
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\grt\*.obj
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\grt\*.pdb
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime\*.obj
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime\*.res
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\intl-runtime\*.pdb
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\libgrep\*.obj
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\libgrep\*.pdb
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\libxml\*.obj
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\libxml\*.pdb
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\*.obj
+	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\*.res
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\libtextstyle\*.pdb
 	@-rmdir /s /q vs$(VSVER)\$(CFG)\$(PLAT)
