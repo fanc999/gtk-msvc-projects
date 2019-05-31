@@ -15,7 +15,7 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, see <https://www.gnu.org/licenses/>.  */
 
-#if _MSC_VER < 1800
+#if _MSC_VER < 1800 && (_MSC_VER < 1600 || !defined (__cplusplus))
 
 #ifndef _GL_STDBOOL_H
 #define _GL_STDBOOL_H
@@ -133,7 +133,7 @@ typedef enum { _Bool_must_promote_to_int = -1, false = 0, true = 1 } _Bool;
 #define __bool_true_false_are_defined 1
 
 #endif /* _GL_STDBOOL_H */
-#else /* _MSC_VER < 1800 */
+#elif (_MSC_VER >= 1800) /* _MSC_VER < 1800 && (_MSC_VER < 1600 || defined (__cplusplus)) */
 /* The stock stdbool.h on Visual Studio 2013 or later is sufficient */
 # include <../include/stdbool.h>
 #endif
