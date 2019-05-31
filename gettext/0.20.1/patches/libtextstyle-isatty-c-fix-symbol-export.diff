@@ -1,0 +1,13 @@
+--- a/libtextstyle/lib/isatty.c	2019-04-02 06:07:42.000000000 +0800
++++ b/libtextstyle/lib/isatty.c	2019-05-29 16:46:24.511256100 +0800
+@@ -17,6 +17,10 @@
+ #include <config.h>
+ 
+ /* Specification.  */
++#if !defined __CYGWIN__ && defined (IN_LIBTEXTSTYLE)
++# undef isatty
++# define isatty libtextstyle_isatty
++#endif
+ #include <unistd.h>
+ 
+ /* This replacement is enabled on native Windows.  */

@@ -1,0 +1,24 @@
+--- a/gettext-runtime/intl/relocatable.h	2018-10-28 21:37:06.000000000 +0800
++++ b/gettext-runtime/intl/relocatable.h	2019-05-17 10:13:57.078253600 +0800
+@@ -29,7 +29,9 @@
+ /* When building a DLL, we must export some functions.  Note that because
+    this is a private .h file, we don't need to use __declspec(dllimport)
+    in any case.  */
+-#if HAVE_VISIBILITY && BUILDING_DLL
++#ifdef LIBINTL_DLL_EXPORTED
++# define RELOCATABLE_DLL_EXPORTED LIBINTL_DLL_EXPORTED
++#elif HAVE_VISIBILITY && BUILDING_DLL
+ # define RELOCATABLE_DLL_EXPORTED __attribute__((__visibility__("default")))
+ #elif defined _MSC_VER && BUILDING_DLL
+ # define RELOCATABLE_DLL_EXPORTED __declspec(dllexport)
+--- a/gettext-runtime/intl/setlocale.c	2019-02-05 10:10:21.000000000 +0800
++++ b/gettext-runtime/intl/setlocale.c	2019-05-17 10:16:46.301740600 +0800
+@@ -832,7 +832,7 @@
+ #  define setlocale_single setlocale_unixlike
+ # endif
+ 
+-DLL_EXPORTED
++LIBINTL_DLL_EXPORTED
+ char *
+ libintl_setlocale (int category, const char *locale)
+ {

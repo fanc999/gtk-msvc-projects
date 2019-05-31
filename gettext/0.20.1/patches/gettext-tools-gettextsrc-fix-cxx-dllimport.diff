@@ -1,0 +1,54 @@
+--- a/gettext-tools/src/read-po.h	2019-02-05 10:10:21.000000000 +0800
++++ b/gettext-tools/src/read-po.h	2019-05-30 16:02:02.466987100 +0800
+@@ -20,7 +20,15 @@
+ 
+ #include "read-catalog-abstract.h"
+ 
++#ifdef __cplusplus
++extern "C" {
++#endif
++
+ /* Describes a .po / .pot file parser.  */
+ extern DLL_VARIABLE const struct catalog_input_format input_format_po;
+ 
++#ifdef __cplusplus
++}
++#endif
++
+ #endif /* _READ_PO_H */
+--- a/gettext-tools/src/write-properties.h	2019-02-05 10:10:21.000000000 +0800
++++ b/gettext-tools/src/write-properties.h	2019-05-30 16:02:53.737230700 +0800
+@@ -20,7 +20,15 @@
+ 
+ #include "write-catalog.h"
+ 
++#ifdef __cplusplus
++extern "C" {
++#endif
++
+ /* Describes a PO file in Java .properties syntax.  */
+ extern DLL_VARIABLE const struct catalog_output_format output_format_properties;
+ 
++#ifdef __cplusplus
++}
++#endif
++
+ #endif /* _WRITE_PROPERTIES_H */
+--- a/gettext-tools/src/write-stringtable.h	2019-02-05 10:10:21.000000000 +0800
++++ b/gettext-tools/src/write-stringtable.h	2019-05-30 16:02:22.513043900 +0800
+@@ -20,7 +20,15 @@
+ 
+ #include "write-catalog.h"
+ 
++#ifdef __cplusplus
++extern "C" {
++#endif
++
+ /* Describes a PO file in .strings syntax.  */
+ extern DLL_VARIABLE const struct catalog_output_format output_format_stringtable;
+ 
++#ifdef __cplusplus
++}
++#endif
++
+ #endif /* _WRITE_STRINGTABLE_H */

@@ -1,0 +1,12 @@
+--- a/gettext-runtime/intl/version.c	2019-02-05 10:10:21.000000000 +0800
++++ b/gettext-runtime/intl/version.c	2019-05-16 20:36:04.403524600 +0800
+@@ -20,5 +20,9 @@
+ 
+ #include "libgnuintl.h"
+ 
++#ifndef LIBINTL_VERSION
++#define LIBINTL_VERSION 0x001400
++#endif
++
+ /* Version number: (major<<16) + (minor<<8) + subminor */
+ int libintl_version = LIBINTL_VERSION;

@@ -1,0 +1,19 @@
+--- a/gettext-tools/libgrep/regexec.c	2019-03-21 05:00:48.000000000 +0800
++++ b/gettext-tools/libgrep/regexec.c	2019-05-17 11:14:00.367144400 +0800
+@@ -3298,6 +3298,7 @@
+   re_node_set follows, *dests_node;
+   bitset_t *dests_ch;
+   bitset_t acceptable;
++  size_t ndests_max;
+ 
+   struct dests_alloc
+   {
+@@ -3348,7 +3349,7 @@
+     goto out_free;
+ 
+   /* Avoid arithmetic overflow in size calculation.  */
+-  size_t ndests_max
++  ndests_max
+     = ((SIZE_MAX - (sizeof (re_node_set) + sizeof (bitset_t)) * SBC_MAX)
+        / (3 * sizeof (re_dfastate_t *)));
+   if (__glibc_unlikely (ndests_max < ndests))

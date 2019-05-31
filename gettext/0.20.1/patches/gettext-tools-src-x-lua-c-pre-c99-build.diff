@@ -1,0 +1,49 @@
+--- a/gettext-tools/src/x-lua.c	2018-11-05 07:25:34.000000000 +0800
++++ b/gettext-tools/src/x-lua.c	2019-05-30 15:56:45.071195000 +0800
+@@ -281,9 +281,10 @@
+ 
+           if (c == '[')
+             {
++              int esigns = 0;
++
+               c = phase1_getc ();
+ 
+-              int esigns = 0;
+               while (c == '=')
+                 {
+                   esigns++;
+@@ -711,10 +712,12 @@
+           break;
+ 
+         case '[':
++        {
++          int esigns = 0;
++
+           c = phase1_getc ();
+ 
+           /* Count the number of equal signs.  */
+-          int esigns = 0;
+           while (c == '=')
+             {
+               esigns++;
+@@ -746,10 +749,11 @@
+ 
+               if (c == ']')
+                 {
++                  int esigns2 = 0;
++
+                   c = phase1_getc ();
+ 
+                   /* Count the number of equal signs.  */
+-                  int esigns2 = 0;
+                   while (c == '=')
+                     {
+                       esigns2++;
+@@ -799,6 +803,7 @@
+                 }
+             }
+           break;
++        }
+ 
+         case ']':
+           tp->type = token_type_rbracket;
