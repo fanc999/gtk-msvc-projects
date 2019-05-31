@@ -1542,7 +1542,7 @@ _GL_CXXALIASWARN (scanf);
 #endif
 
 #if 1
-# if 0
+# if _MSC_VER >= 1900
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define snprintf rpl_snprintf
 #  endif
