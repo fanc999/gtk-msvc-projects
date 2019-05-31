@@ -353,7 +353,7 @@ vs$(VSVER)\$(CFG)\$(PLAT)\xgettext.exe:
 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;1
 
 vs$(VSVER)\$(CFG)\$(PLAT)\msggrep.exe:
-	link $(LDFLAGS) $** $(GETTEXT_RUNTIME_DEP_LIBS) msvcprt.lib -out:$@ /implib:$(@D)\unwanted.lib
+	link $(LDFLAGS) $** $(GETTEXT_RUNTIME_DEP_LIBS) $(MSVCPRT_LIB) -out:$@ /implib:$(@D)\unwanted.lib
 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;1
 
 # Other .obj files requiring individual attention, that could not be covered by the inference rules.
