@@ -15,28 +15,43 @@
 # <<
 
 {..\src\}.c{$(CFG)\$(PLAT)\cairo\}.obj::
-	$(CC) $(CAIRO_INCLUDES) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo\ /c @<<
+	$(CC) $(CAIRO_INCLUDES) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo\ /Fd$(CFG)\$(PLAT)\cairo\ /c @<<
 $<
 <<
 
 # For QT, for now
 {..\src\}.cpp{$(CFG)\$(PLAT)\cairo\}.obj::
-	$(CC) $(CAIRO_QT_INCLUDES) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo\ /c @<<
+	$(CXX) $(CAIRO_QT_INCLUDES) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo\ /Fd$(CFG)\$(PLAT)\cairo\ /c @<<
 $<
 <<
 
 {..\src\win32\}.c{$(CFG)\$(PLAT)\cairo\}.obj::
-	$(CC) $(CAIRO_INCLUDES) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo\ /c @<<
+	$(CC) $(CAIRO_INCLUDES) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo\ /Fd$(CFG)\$(PLAT)\cairo\ /c @<<
 $<
 <<
 
 {..\util\cairo-script\}.c{$(CFG)\$(PLAT)\cairo-script\}.obj::
-	$(CC) $(CAIRO_SCRIPT_CFLAGS) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo-script\ /c @<<
+	$(CC) $(CAIRO_SCRIPT_CFLAGS) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo-script\ /Fd$(CFG)\$(PLAT)\cairo-script\ /c @<<
 $<
 <<
 
 {..\util\cairo-gobject\}.c{$(CFG)\$(PLAT)\cairo-gobject\}.obj::
-	$(CC) $(CAIRO_GOBJECT_INCLUDES) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo-gobject\ /c @<<
+	$(CC) $(CAIRO_GOBJECT_INCLUDES) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo-gobject\ /Fd$(CFG)\$(PLAT)\cairo-gobject\ /c @<<
+$<
+<<
+
+{..\boilerplate\}.c{$(CFG)\$(PLAT)\cairo-boilerplate\}.obj::
+	$(CC) $(CAIRO_BOILERPLATE_INCLUDES) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo-boilerplate\ /Fd$(CFG)\$(PLAT)\cairo-boilerplate\ /c @<<
+$<
+<<
+
+{$(CFG)\$(PLAT)\cairo-boilerplate\}.c{$(CFG)\$(PLAT)\cairo-boilerplate\}.obj::
+	$(CC) $(CAIRO_BOILERPLATE_INCLUDES) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo-boilerplate\ /Fd$(CFG)\$(PLAT)\cairo-boilerplate\ /c @<<
+$<
+<<
+
+{..\boilerplate\}.cpp{$(CFG)\$(PLAT)\cairo-boilerplate\}.obj::
+	$(CXX) $(CAIRO_BOILERPLATE_INCLUDES) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo-boilerplate\ /Fd$(CFG)\$(PLAT)\cairo-boilerplate\ /c @<<
 $<
 <<
 
@@ -49,12 +64,16 @@ $<
 # 	$(CC)|$(CXX) $(cflags) $< /Fo$*.obj  /Fe$@ [/link $(linker_flags) $(dep_libs)]
 {..\util\cairo-script\}.c{$(CFG)\$(PLAT)\}.exe:
 	@if not exist $(CAIRO_SCRIPT_INTERPRETER_LIB) $(MAKE) /f Makefile.vc $(CAIRO_MAKE_OPTIONS) $(CAIRO_SCRIPT_INTERPRETER_LIB)
-	$(CC) $(CAIRO_SCRIPT_CFLAGS) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo-script\ /Fe$@ $< /link $(LDFLAGS) $(CAIRO_SCRIPT_INTERPRETER_LIB) $(CAIRO_LIB) $(CAIRO_DEP_LIBS)
+	$(CC) $(CAIRO_SCRIPT_CFLAGS) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo-script\ /Fd$(CFG)\$(PLAT)\cairo-script\ /Fe$@ $< /link $(LDFLAGS) $(CAIRO_SCRIPT_INTERPRETER_LIB) $(CAIRO_LIB) $(CAIRO_DEP_LIBS)
+	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;1
 
 # Rules for building .lib files
 $(CAIRO_LIB): $(CFG)\$(PLAT)\$(CAIRO_DLL_PREFIX)cairo$(CAIRO_DLL_SUFFIX).dll
 $(CAIRO_GOBJECT_LIB): $(CFG)\$(PLAT)\$(CAIRO_DLL_PREFIX)cairo-gobject$(CAIRO_DLL_SUFFIX).dll
 $(CAIRO_SCRIPT_INTERPRETER_LIB): $(CFG)\$(PLAT)\$(CAIRO_DLL_PREFIX)cairo-script-interpreter$(CAIRO_DLL_SUFFIX).dll
+
+$(CFG)\$(PLAT)\cairo-boilerplate.lib: $(CAIRO_LIB) $(CFG)\$(PLAT)\cairo-boilerplate\cairo-boilerplate-constructors.c $(cairo_boilerplate_OBJS)
+	lib $(ARFLAGS) $(cairo_boilerplate_OBJS) /out:$@
 
 # Rules for linking DLLs
 # Format is as follows (the mt command is needed for MSVC 2005/2008 builds):
@@ -105,10 +124,15 @@ clean:
 	@-del /f /q $(CFG)\$(PLAT)\*.dll.manifest
 	@-del /f /q $(CFG)\$(PLAT)\*.dll
 	@-del /f /q $(CFG)\$(PLAT)\*.ilk
+	@-del /f /q $(CFG)\$(PLAT)\cairo-boilerplate\*.pdb
+	@-del /f /q $(CFG)\$(PLAT)\cairo-boilerplate\*.obj
+	@-del /f /q $(CFG)\$(PLAT)\cairo-boilerplate\cairo-boilerplate-constructors.c
+	@-del /f /q $(CFG)\$(PLAT)\cairo-script\*.pdb
 	@-del /f /q $(CFG)\$(PLAT)\cairo-script\*.obj
 	@-del /f /q $(CFG)\$(PLAT)\cairo-script\config.h
+	@-del /f /q $(CFG)\$(PLAT)\cairo-gobject\*.pdb
 	@-del /f /q $(CFG)\$(PLAT)\cairo-gobject\*.obj
+	@-del /f /q $(CFG)\$(PLAT)\cairo\*.pdb
 	@-del /f /q $(CFG)\$(PLAT)\cairo\*.obj
 	@-del /f /q $(CFG)\$(PLAT)\cairo\cairo-features.h
-	@-del /f /q vc$(PDBVER)0.pdb
 	@-rmdir /s /q $(CFG)\$(PLAT)

@@ -34,8 +34,15 @@
 NULL=
 
 # Include cairo source files
+!ifdef USE_COMMON_SRC_MAKEFILE_SOURCES
+!include ..\src\Makefile.sources
+!else
 !include cairo-srcs.mak
+!endif
 !include ..\util\cairo-script\Makefile.sources
+!include ..\boilerplate\Makefile.sources
+
+# Create the lists of actual source file paths
 
 # Create the list of .obj files
 !if [call create-lists.bat header cairo-msvc.mak cairo_dll_OBJS]
@@ -53,7 +60,7 @@ NULL=
 !if [call create-lists.bat header cairo-msvc.mak cairo_gobject_dll_OBJS]
 !endif
 
-!if [for /f %c in ('dir /b ..\util\cairo-gobject\*.c') do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-gobject\%~nc.obj]
+!if [for %c in (..\util\cairo-gobject\*.c) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-gobject\%~nc.obj]
 !endif
 
 !if [call create-lists.bat footer cairo-msvc.mak]
@@ -63,6 +70,15 @@ NULL=
 !endif
 
 !if [for %c in ($(libcairo_script_interpreter_sources)) do @if "%~xc" == ".c" @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-script\%~nc.obj]
+!endif
+
+!if [call create-lists.bat footer cairo-msvc.mak]
+!endif
+
+!if [call create-lists.bat header cairo-msvc.mak cairo_boilerplate_OBJS]
+!endif
+
+!if [for %c in ($(CAIRO_BOILERPLATE_SRCS) cairo-boilerplate-constructors.c) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-boilerplate\%~nc.obj]
 !endif
 
 !if [call create-lists.bat footer cairo-msvc.mak]
