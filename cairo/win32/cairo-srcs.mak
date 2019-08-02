@@ -116,8 +116,18 @@ _cairo_font_subset_sources = \
         cairo-type3-glyph-surface.c \
 	$(NULL)
 
-_cairo_pdf_operators_private = cairo-pdf-operators-private.h cairo-pdf-shading-private.h
-_cairo_pdf_operators_sources = cairo-pdf-operators.c cairo-pdf-shading.c
+_cairo_pdf_operators_private =	\
+	cairo-pdf-operators-private.h	\
+	cairo-pdf-shading-private.h	\
+	cairo-tag-attributes-private.h	\
+	cairo-tag-stack-private.h
+
+_cairo_pdf_operators_sources =	\
+	cairo-pdf-interchange.c	\
+	cairo-pdf-operators.c	\
+	cairo-pdf-shading.c	\
+	cairo-tag-attributes.c	\
+	cairo-tag-stack.c
 
 cairo_png_sources = cairo-png.c
 
