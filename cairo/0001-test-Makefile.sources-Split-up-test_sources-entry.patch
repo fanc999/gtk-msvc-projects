@@ -1,0 +1,92 @@
+From 323c1cb94a628e83f397af54c7c10b8cd5876269 Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Tue, 6 Aug 2019 18:35:46 +0800
+Subject: [PATCH 1/2] test/Makefile.sources: Split up test_sources entry
+
+This is so that when NMake Makefiles consume this file, we can avoid the
+dreaded U1095 command line too long error.
+---
+ test/Makefile.sources | 28 +++++++++++++++++++++++-----
+ 1 file changed, 23 insertions(+), 5 deletions(-)
+
+diff --git a/test/Makefile.sources b/test/Makefile.sources
+index ce5971cfb..2ae487888 100644
+--- a/test/Makefile.sources
++++ b/test/Makefile.sources
+@@ -1,4 +1,4 @@
+-test_sources = \
++test_sources_1 = \
+ 	a1-bug.c					\
+ 	a1-clip.c					\
+ 	a1-fill.c					\
+@@ -92,7 +92,9 @@ test_sources = \
+ 	create-from-png.c				\
+ 	create-from-png-stream.c			\
+ 	culled-glyphs.c					\
+-	curve-to-as-line-to.c				\
++	curve-to-as-line-to.c
++
++test_sources_2 =			\
+ 	dash-caps-joins.c				\
+ 	dash-curve.c					\
+ 	dash-infinite-loop.c				\
+@@ -158,7 +160,9 @@ test_sources = \
+ 	group-clip.c					\
+ 	group-paint.c					\
+ 	group-state.c					\
+-	group-unaligned.c				\
++	group-unaligned.c
++
++test_sources_3 =			\
+ 	half-coverage.c					\
+ 	halo.c						\
+ 	hatchings.c					\
+@@ -224,7 +228,9 @@ test_sources = \
+ 	move-to-show-surface.c				\
+ 	negative-stride-image.c				\
+ 	new-sub-path.c					\
+-	nil-surface.c					\
++	nil-surface.c
++
++test_sources_4 =			\
+ 	operator.c					\
+ 	operator-alpha.c				\
+ 	operator-alpha-alpha.c				\
+@@ -259,7 +265,9 @@ test_sources = \
+ 	png.c						\
+ 	push-group.c					\
+ 	push-group-color.c				\
+-	push-group-path-offset.c			\
++	push-group-path-offset.c
++
++test_sources_5 =		\
+ 	radial-gradient.c				\
+ 	radial-gradient-extend.c			\
+ 	radial-outer-focus.c				\
+@@ -351,6 +359,8 @@ test_sources = \
+ 	surface-pattern-scale-down.c			\
+ 	surface-pattern-scale-down-extend.c		\
+ 	surface-pattern-scale-up.c			\
++
++test_sources_6 =	\
+ 	text-antialias.c				\
+ 	text-antialias-subpixel.c			\
+ 	text-cache-crash.c				\
+@@ -393,6 +403,14 @@ test_sources = \
+ 	zero-alpha.c					\
+ 	zero-mask.c
+ 
++test_sources =	\
++	$(test_sources_1)	\
++	$(test_sources_2)	\
++	$(test_sources_3)	\
++	$(test_sources_4)	\
++	$(test_sources_5)	\
++	$(test_sources_6)
++
+ pthread_test_sources =					\
+ 	pthread-same-source.c				\
+ 	pthread-show-text.c				\
+-- 
+2.17.1.windows.2
+

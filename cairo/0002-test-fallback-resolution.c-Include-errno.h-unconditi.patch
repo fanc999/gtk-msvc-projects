@@ -1,0 +1,34 @@
+From f43528d348dceb8da007a4c6651909521d70973d Mon Sep 17 00:00:00 2001
+From: Chun-wei Fan <fanchunwei@src.gnome.org>
+Date: Tue, 6 Aug 2019 18:37:12 +0800
+Subject: [PATCH 2/2] test/fallback-resolution.c: Include errno.h
+ unconditionally
+
+This is to ensure that we have ENOENT defined even if we don't have
+unistd.h.
+---
+ test/fallback-resolution.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/test/fallback-resolution.c b/test/fallback-resolution.c
+index 306a57013..ad5707224 100644
+--- a/test/fallback-resolution.c
++++ b/test/fallback-resolution.c
+@@ -39,12 +39,13 @@
+ 
+ #ifdef HAVE_UNISTD_H
+ #include <unistd.h>
+-#include <errno.h>
+ #endif
+ #if HAVE_SYS_STAT_H
+ #include <sys/stat.h>
+ #endif
+ 
++#include <errno.h>
++
+ #include "cairo-test.h"
+ #include "buffer-diff.h"
+ 
+-- 
+2.17.1.windows.2
+
