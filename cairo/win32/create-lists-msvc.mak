@@ -33,15 +33,6 @@
 
 NULL=
 
-# Include cairo source files
-!ifdef USE_COMMON_SRC_MAKEFILE_SOURCES
-!include ..\src\Makefile.sources
-!else
-!include cairo-srcs.mak
-!endif
-!include ..\util\cairo-script\Makefile.sources
-!include ..\boilerplate\Makefile.sources
-
 # Create the lists of actual source file paths
 
 # Create the list of .obj files
@@ -78,7 +69,53 @@ NULL=
 !if [call create-lists.bat header cairo-msvc.mak cairo_boilerplate_OBJS]
 !endif
 
-!if [for %c in ($(CAIRO_BOILERPLATE_SRCS) cairo-boilerplate-constructors.c) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-boilerplate\%~nc.obj]
+!if [for %c in (cairo-boilerplate-constructors.c $(CAIRO_BOILERPLATE_SRCS)) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-boilerplate\%~nc.obj]
+!endif
+
+!if [call create-lists.bat footer cairo-msvc.mak]
+!endif
+
+!if [call create-lists.bat header cairo-msvc.mak libpdiff_OBJS]
+!endif
+
+!if [for %c in (lpyramid.c pdiff.c) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!endif
+
+!if [call create-lists.bat footer cairo-msvc.mak]
+!endif
+
+# I hate U1095...
+!if [call create-lists.bat header cairo-msvc.mak cairo_test_OBJS]
+!endif
+
+!if [for %c in (cairo-test-constructors.c $(test_sources_1)) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!endif
+
+!if [for %c in ($(test_sources_2)) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!endif
+
+!if [for %c in ($(test_sources_3)) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!endif
+
+!if [for %c in ($(test_sources_4)) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!endif
+
+!if [for %c in ($(test_sources_5)) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!endif
+
+!if [for %c in ($(test_sources_6)) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!endif
+
+!if [for %c in ($(CAIRO_TEST_EXTRA_SOURCES) $(cairo_test_suite_sources)) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!endif
+
+!if [call create-lists.bat footer cairo-msvc.mak]
+!endif
+
+!if [call create-lists.bat header cairo-msvc.mak pdiff_OBJS]
+!endif
+
+!if [for %c in (args.c perceptualdiff.c) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
 !endif
 
 !if [call create-lists.bat footer cairo-msvc.mak]

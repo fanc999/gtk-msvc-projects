@@ -9,6 +9,16 @@
 
 !include detectenv-msvc.mak
 
+# Include cairo source files
+!ifdef USE_COMMON_SRC_MAKEFILE_SOURCES
+!include ..\src\Makefile.sources
+!else
+!include cairo-srcs.mak
+!endif
+!include ..\util\cairo-script\Makefile.sources
+!include ..\boilerplate\Makefile.sources
+!include ..\test\Makefile.sources
+
 # Include the Makefile portion that enables features based on user input
 !include config-msvc.mak
 

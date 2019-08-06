@@ -45,14 +45,29 @@ $<
 $<
 <<
 
-{$(CFG)\$(PLAT)\cairo-boilerplate\}.c{$(CFG)\$(PLAT)\cairo-boilerplate\}.obj::
-	$(CC) $(CAIRO_BOILERPLATE_INCLUDES) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo-boilerplate\ /Fd$(CFG)\$(PLAT)\cairo-boilerplate\ /c @<<
-$<
-<<
-
 {..\boilerplate\}.cpp{$(CFG)\$(PLAT)\cairo-boilerplate\}.obj::
 	$(CXX) $(CAIRO_BOILERPLATE_INCLUDES) $(BASE_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo-boilerplate\ /Fd$(CFG)\$(PLAT)\cairo-boilerplate\ /c @<<
 $<
+<<
+
+$(CFG)\$(PLAT)\cairo-boilerplate\cairo-boilerplate-constructors.obj: $(CFG)\$(PLAT)\cairo-boilerplate\cairo-boilerplate-constructors.c
+	$(CC) $(CAIRO_BOILERPLATE_INCLUDES) $(BASE_CFLAGS) /Fo$(@D)\ /Fd$(@D)\ /c @<<
+$**
+<<
+
+{..\test\}.c{$(CFG)\$(PLAT)\cairo-tests\}.obj::
+	$(CC) $(CAIRO_TEST_INCLUDES) $(CAIRO_TEST_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo-tests\ /Fd$(CFG)\$(PLAT)\cairo-tests\ /c @<<
+$<
+<<
+
+{..\test\pdiff\}.c{$(CFG)\$(PLAT)\cairo-tests\}.obj::
+	$(CC) $(CAIRO_TEST_INCLUDES) $(CAIRO_TEST_CFLAGS) /Fo$(CFG)\$(PLAT)\cairo-tests\ /Fd$(CFG)\$(PLAT)\cairo-tests\ /c @<<
+$<
+<<
+
+$(CFG)\$(PLAT)\cairo-tests\cairo-test-constructors.obj: $(CFG)\$(PLAT)\cairo-tests\cairo-test-constructors.c
+	$(CC) $(CAIRO_TEST_INCLUDES) $(CAIRO_TEST_CFLAGS) /Fo$(@D)\ /Fd$(@D)\ /c @<<
+$**
 <<
 
 # Inference rules for building the test programs
@@ -100,6 +115,19 @@ $(cairo_script_dll_OBJS)
 <<
 	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;2
 
+$(CFG)\$(PLAT)\cairo-test-suite.exe: $(CFG)\$(PLAT)\cairo-boilerplate.lib $(CAIRO_LIB) $(cairo_test_OBJS) $(libpdiff_OBJS)
+	link $(LDFLAGS) $(CAIRO_DEP_LIBS) -out:$@ @<<
+$**
+<<
+	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;1
+
+$(CFG)\$(PLAT)\perceptualdiff.exe: $(CAIRO_LIB) $(pdiff_OBJS) $(libpdiff_OBJS)
+	link $(LDFLAGS) $(CAIRO_DEP_LIBS) -out:$@ @<<
+$**
+<<
+	@-if exist $@.manifest mt /manifest $@.manifest /outputresource:$@;1
+
+
 # Rules for linking Executables
 # Format is as follows (the mt command is needed for MSVC 2005/2008 builds):
 # $(dll_name_with_path): $(dependent_libs_files_objects_and_items)
@@ -124,6 +152,9 @@ clean:
 	@-del /f /q $(CFG)\$(PLAT)\*.dll.manifest
 	@-del /f /q $(CFG)\$(PLAT)\*.dll
 	@-del /f /q $(CFG)\$(PLAT)\*.ilk
+	@-del /f /q $(CFG)\$(PLAT)\cairo-tests\*.pdb
+	@-del /f /q $(CFG)\$(PLAT)\cairo-tests\*.obj
+	@-del /f /q $(CFG)\$(PLAT)\cairo-tests\cairo-test-constructors.c
 	@-del /f /q $(CFG)\$(PLAT)\cairo-boilerplate\*.pdb
 	@-del /f /q $(CFG)\$(PLAT)\cairo-boilerplate\*.obj
 	@-del /f /q $(CFG)\$(PLAT)\cairo-boilerplate\cairo-boilerplate-constructors.c
