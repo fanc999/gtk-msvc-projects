@@ -35,7 +35,7 @@ CAIRO_BOILERPLATE_SRCS =	\
 CAIRO_TEST_SRCS = $(test_sources:	=)
 CAIRO_TEST_EXTRA_SOURCES =
 
-CAIRO_INCLUDES = /I.. /I..\src /I$(CFG)\$(PLAT)\cairo
+CAIRO_INCLUDES = /I.. /I..\src /Ivs$(VSVER)\$(CFG)\$(PLAT)\cairo
 CAIRO_BOILERPLATE_INCLUDES = /I..\boilerplate $(CAIRO_INCLUDES)
 CAIRO_EXTRA_TARGETS =
 
@@ -47,9 +47,9 @@ CAIRO_TEST_CFLAGS = /D__func__=__FUNCTION__ $(CAIRO_TEST_CFLAGS)
 !endif
 
 # We build the cairo.dll at least
-CAIRO_LIB = $(CFG)\$(PLAT)\cairo.lib
-CAIRO_GOBJECT_LIB = $(CFG)\$(PLAT)\cairo-gobject.lib
-CAIRO_SCRIPT_INTERPRETER_LIB = $(CFG)\$(PLAT)\cairo-script-interpreter.lib
+CAIRO_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\cairo.lib
+CAIRO_GOBJECT_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\cairo-gobject.lib
+CAIRO_SCRIPT_INTERPRETER_LIB = vs$(VSVER)\$(CFG)\$(PLAT)\cairo-script-interpreter.lib
 CAIRO_MAKE_OPTIONS = CFG^=$(CFG)
 
 !ifdef USE_LIBTOOL_DLLNAME
@@ -235,12 +235,12 @@ CAIRO_LIBS = $(CAIRO_LIBS) $(CAIRO_GOBJECT_LIB)
 CAIRO_MAKE_OPTIONS = $(CAIRO_MAKE_OPTIONS) INTERPRETER^=$(INTERPRETER)
 CAIRO_ADDITIONAL_FEATURES = $(CAIRO_ADDITIONAL_FEATURES) CAIRO_HAS_INTERPRETER
 CAIRO_LIBS = $(CAIRO_LIBS) $(CAIRO_SCRIPT_INTERPRETER_LIB)
-CAIRO_SCRIPT_CFLAGS = /I$(CFG)\$(PLAT)\cairo-script $(CAIRO_INCLUDES) /wd4273
+CAIRO_SCRIPT_CFLAGS = /Ivs$(VSVER)\$(CFG)\$(PLAT)\cairo-script $(CAIRO_INCLUDES) /wd4273
 
 CAIRO_UTILS =	\
-	$(CFG)\$(PLAT)\csi-replay.exe	\
-	$(CFG)\$(PLAT)\csi-exec.exe	\
-	$(CFG)\$(PLAT)\csi-bind.exe
+	vs$(VSVER)\$(CFG)\$(PLAT)\csi-replay.exe	\
+	vs$(VSVER)\$(CFG)\$(PLAT)\csi-exec.exe	\
+	vs$(VSVER)\$(CFG)\$(PLAT)\csi-bind.exe
 !endif
 
 !if "$(CAIRO_USE_ZLIB)" == "1"

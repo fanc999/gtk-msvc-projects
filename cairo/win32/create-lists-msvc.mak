@@ -39,10 +39,10 @@ NULL=
 !if [call create-lists.bat header cairo-msvc.mak cairo_dll_OBJS]
 !endif
 
-!if [for %c in ($(CAIRO_LIB_SRCS)) do @if "%~xc" == ".c" @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo\%~nc.obj]
+!if [for %c in ($(CAIRO_LIB_SRCS)) do @if "%~xc" == ".c" @call create-lists.bat file cairo-msvc.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\cairo\%~nc.obj]
 !endif
 
-!if [for %c in ($(CAIRO_LIB_SRCS)) do @if "%~xc" == ".cpp" @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo\%~nc.obj]
+!if [for %c in ($(CAIRO_LIB_SRCS)) do @if "%~xc" == ".cpp" @call create-lists.bat file cairo-msvc.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\cairo\%~nc.obj]
 !endif
 
 !if [call create-lists.bat footer cairo-msvc.mak]
@@ -51,7 +51,7 @@ NULL=
 !if [call create-lists.bat header cairo-msvc.mak cairo_gobject_dll_OBJS]
 !endif
 
-!if [for %c in (..\util\cairo-gobject\*.c) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-gobject\%~nc.obj]
+!if [for %c in (..\util\cairo-gobject\*.c) do @call create-lists.bat file cairo-msvc.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\cairo-gobject\%~nc.obj]
 !endif
 
 !if [call create-lists.bat footer cairo-msvc.mak]
@@ -60,7 +60,7 @@ NULL=
 !if [call create-lists.bat header cairo-msvc.mak cairo_script_dll_OBJS]
 !endif
 
-!if [for %c in ($(libcairo_script_interpreter_sources)) do @if "%~xc" == ".c" @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-script\%~nc.obj]
+!if [for %c in ($(libcairo_script_interpreter_sources)) do @if "%~xc" == ".c" @call create-lists.bat file cairo-msvc.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\cairo-script\%~nc.obj]
 !endif
 
 !if [call create-lists.bat footer cairo-msvc.mak]
@@ -69,7 +69,7 @@ NULL=
 !if [call create-lists.bat header cairo-msvc.mak cairo_boilerplate_OBJS]
 !endif
 
-!if [for %c in (cairo-boilerplate-constructors.c $(CAIRO_BOILERPLATE_SRCS)) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-boilerplate\%~nc.obj]
+!if [for %c in (cairo-boilerplate-constructors.c $(CAIRO_BOILERPLATE_SRCS)) do @call create-lists.bat file cairo-msvc.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\cairo-boilerplate\%~nc.obj]
 !endif
 
 !if [call create-lists.bat footer cairo-msvc.mak]
@@ -78,7 +78,7 @@ NULL=
 !if [call create-lists.bat header cairo-msvc.mak libpdiff_OBJS]
 !endif
 
-!if [for %c in (lpyramid.c pdiff.c) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!if [for %c in (lpyramid.c pdiff.c) do @call create-lists.bat file cairo-msvc.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
 !endif
 
 !if [call create-lists.bat footer cairo-msvc.mak]
@@ -88,25 +88,25 @@ NULL=
 !if [call create-lists.bat header cairo-msvc.mak cairo_test_OBJS]
 !endif
 
-!if [for %c in (cairo-test-constructors.c $(test_sources_1)) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!if [for %c in (cairo-test-constructors.c $(test_sources_1)) do @call create-lists.bat file cairo-msvc.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
 !endif
 
-!if [for %c in ($(test_sources_2)) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!if [for %c in ($(test_sources_2)) do @call create-lists.bat file cairo-msvc.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
 !endif
 
-!if [for %c in ($(test_sources_3)) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!if [for %c in ($(test_sources_3)) do @call create-lists.bat file cairo-msvc.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
 !endif
 
-!if [for %c in ($(test_sources_4)) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!if [for %c in ($(test_sources_4)) do @call create-lists.bat file cairo-msvc.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
 !endif
 
-!if [for %c in ($(test_sources_5)) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!if [for %c in ($(test_sources_5)) do @call create-lists.bat file cairo-msvc.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
 !endif
 
-!if [for %c in ($(test_sources_6)) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!if [for %c in ($(test_sources_6)) do @call create-lists.bat file cairo-msvc.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
 !endif
 
-!if [for %c in ($(CAIRO_TEST_EXTRA_SOURCES) $(cairo_test_suite_sources)) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!if [for %c in ($(CAIRO_TEST_EXTRA_SOURCES) $(cairo_test_suite_sources)) do @call create-lists.bat file cairo-msvc.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
 !endif
 
 !if [call create-lists.bat footer cairo-msvc.mak]
@@ -115,7 +115,7 @@ NULL=
 !if [call create-lists.bat header cairo-msvc.mak pdiff_OBJS]
 !endif
 
-!if [for %c in (args.c perceptualdiff.c) do @call create-lists.bat file cairo-msvc.mak ^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
+!if [for %c in (args.c perceptualdiff.c) do @call create-lists.bat file cairo-msvc.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\cairo-tests\%~nc.obj]
 !endif
 
 !if [call create-lists.bat footer cairo-msvc.mak]
