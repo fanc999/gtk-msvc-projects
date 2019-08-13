@@ -110,13 +110,13 @@ PDBVER = 14
 !endif
 
 VALID_CFGSET = FALSE
-!if "$(CFG)" == "release" || "$(CFG)" == "debug"
+!if "$(CFG)" == "Release" || "$(CFG)" == "release" || "$(CFG)" == "Debug" || "$(CFG)" == "debug"
 VALID_CFGSET = TRUE
 !endif
 
 # One may change these items, but be sure to test
 # the resulting binaries
-!if "$(CFG)" == "release"
+!if "$(CFG)" == "Release" || "$(CFG)" == "release"
 CFLAGS_ADD = /MD /O2 /MP /GL
 !if $(VSVER) > 9 && $(VSVER) < 14
 # Undocumented "enhance optimized debugging" switch. Became documented
@@ -144,7 +144,7 @@ ADDITIONAL_LIB_ARG = /libpath:$(ADDITIONAL_LIB_DIR)
 !endif
 LDFLAGS_BASE = $(LDFLAGS_ARCH) /libpath:$(PREFIX)\lib $(ADDITIONAL_LIB_ARG) /DEBUG
 
-!if "$(CFG)" == "debug"
+!if "$(CFG)" == "Debug" || "$(CFG)" == "debug"
 LDFLAGS = $(LDFLAGS_BASE)
 ARFLAGS = $(LDFLAGS_ARCH)
 !else
