@@ -30,7 +30,7 @@
 
 all: $(CAIRO_LIBS) $(CAIRO_UTILS)
 
-tests: all 
+tests: all vs$(VSVER)\$(CFG)\$(PLAT)\cairo-test-suite.exe
 
 # Include the build rules for sources, DLLs and executables
 !include build-rules-msvc.mak
