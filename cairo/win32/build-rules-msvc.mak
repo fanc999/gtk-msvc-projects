@@ -144,6 +144,27 @@ $**
 # $(srcfile)
 # <<
 
+print-build-config:
+	@echo.
+	@echo ====================================
+	@echo Build configuration for Cairo:
+	@echo.
+	@echo Build type:
+	@echo $(CFG)
+	@echo.
+	@echo Built Tools:
+	@if not "$(CAIRO_UTILS)" == "" for %t in ($(CAIRO_UTILS)) do @echo %~nt
+	@echo.
+	@echo Enabled Surface Backends:
+	@echo $(ENABLED_SURFACE_BACKENDS)
+	@echo.
+	@echo Enabled Font Backends:
+	@echo $(ENABLED_FONT_BACKENDS)
+	@echo.
+	@echo Enabled Options:
+	@echo $(ENABLED_OPTIONS)
+	@echo ====================================
+
 clean:
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\*.lib
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\*.pdb

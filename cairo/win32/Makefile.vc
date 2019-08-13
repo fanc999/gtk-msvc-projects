@@ -30,9 +30,9 @@
 # into the lists we need for compilation and introspection
 !include create-lists-msvc.mak
 
-all: $(CAIRO_LIBS) $(CAIRO_UTILS)
+all: $(CAIRO_LIBS) $(CAIRO_UTILS) print-build-config
 
-tests: all vs$(VSVER)\$(CFG)\$(PLAT)\cairo-test-suite.exe
+tests: all vs$(VSVER)\$(CFG)\$(PLAT)\cairo-test-suite.exe print-build-config
 
 # Include the build rules for sources, DLLs and executables
 !include build-rules-msvc.mak
