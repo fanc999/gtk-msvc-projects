@@ -1,4 +1,4 @@
-# NMake Makefile for building sqlite3 as a DLL on Windows
+# NMake Makefile for building Cairo as DLL(s) on Windows, with the tools as needed.
 
 # The items below this line should not be changed, unless one is maintaining
 # the NMake Makefiles.  Customizations can be done in the following NMake Makefile
@@ -10,6 +10,8 @@
 !include detectenv-msvc.mak
 
 # Include cairo source files
+# Remove once the ..\src\Makefile.sources changes are accepted upstream,
+# with cairo-srcs.mak
 !ifdef USE_COMMON_SRC_MAKEFILE_SOURCES
 !include ..\src\Makefile.sources
 !else
