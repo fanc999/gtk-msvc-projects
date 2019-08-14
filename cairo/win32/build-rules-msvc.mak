@@ -165,6 +165,8 @@ print-build-config:
 	@echo $(ENABLED_OPTIONS)
 	@echo ====================================
 
+help: print-help
+
 clean:
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\*.lib
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\*.pdb

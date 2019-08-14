@@ -40,4 +40,104 @@ tests: all vs$(VSVER)\$(CFG)\$(PLAT)\cairo-test-suite.exe print-build-config
 # Include the rules for build directory creation and code generation
 !include generate-msvc.mak
 !else
+all: print-help
 !endif
+
+print-help:
+	@if not "$(VALID_CFGSET)" == "TRUE" echo Invalid NMake Makefile invocation.  Please see the following for
+	@if not "$(VALID_CFGSET)" == "TRUE" echo instructions on building Cairo with NMake
+	@echo ==========================
+	@echo Building Cairo using NMake
+	@echo ==========================
+	@echo.
+	@echo The following options are used for building Cairo on Windows using
+	@echo Visual Studio via NMake.  Note that Visual Studio 2008 (vs9) and later
+	@echo are supported.  Use nmake /f Makefile.vc CFG^=[CFG] OPTIONS... to perform
+	@echo the build
+	@echo.
+	@echo CFG=[release^|debug]:
+	@echo Required, to build Cairo as a release DLL (/MD) or a debug DLL (/MDd)
+	@echo.
+	@echo PREFIX=[PATH]:
+	@echo Optional, prefix where the dependent headers and lib's may be found,
+	@echo in ^$(PREFIX)\include and ^$(PREFIX)\lib.  Default is
+	@echo ^$(srcroot)\..\vs^$(VSVER), where ^$(VSVER) is 9 for Visual Studio 2008,
+	@echo 10 for 2010, 11 for 2012, 12 for 2013, 14 for 2015, 15 for 2017 and 16
+	@echo for 2019.
+	@echo.
+	@echo PYTHON=[PATH]:
+	@echo Executable name or full path to your Python interpreter.  Required if
+	@echo building the tests and if python.exe is not in your PATH. Python 2.7.x
+	@echo or later is supported, used for generating the sources needed for the
+	@echo test programs.
+	@echo ========================================================
+	@echo Options for enabling features, activate using [OPTION]=1
+	@echo ========================================================
+	@echo Note that the following features are always enabled by default:
+	@echo -Win32 Font/Surface backends
+	@echo -Image, Mime, Recording and Observer surface backends
+	@echo -User Font backends
+	@echo.
+	@echo SCRIPT:
+	@echo Enable script surface backend support.
+	@echo.
+	@echo TEE:
+	@echo Enable tee surface backend support.
+	@echo.
+	@echo TEST_SURFACES:
+	@echo Enable test surface backend support.
+	@echo.
+	@echo XML:
+	@echo Enable XML surface backend support.
+	@echo.
+	@echo SVG:
+	@echo Enable SVG surface backend support.  Requires the ZLib headers and
+	@echo libraries.
+	@echo.
+	@echo PNG:
+	@echo Enable PNG surface backend support.  Requires the ZLib headers and
+	@echo libraries.
+	@echo.
+	@echo PS, PDF:
+	@echo Enable PS/PDF surface backend support.  Requires the ZLib headers and
+	@echo libraries.  Activating one of those will imply activating both of PS
+	@echo and PDF surface backends.
+	@echo.
+	@echo FREETYPE:
+	@echo Enable FreeType font backend support, requires the FreeType 2.x
+	@echo headers and libraries.
+	@echo.
+	@echo FONTCONFIG:
+	@echo Enable FontConfig font backend support.  Requires a functioning
+	@echo FontConfig installation to function properly, in addition to the
+	@echo FontConfig headers and libraries.  This also implies activating
+	@echo FreeType support.
+	@echo.
+	@echo GOBJECT:
+	@echo Enable GLib/GObject function binding support, needed for GTK-3.x and
+	@echo later, Clutter and librsvg.  Requires GLib/GObject headers and libraries
+	@echo to build.  This is built as a DLL of its own.
+	@echo.
+	@echo INTERPRETER:
+	@echo Enable script interpreter support.  This is built as a DLL of its own,
+	@echo and builds the utilities csi-bind, csi-exec and csi-replay.
+	@echo.
+	@echo COGL:
+	@echo Enable Cogl surface backend support.  Requires the Cogl headers
+	@echo and libraries.  May not build in the current state.
+	@echo.
+	@echo GL:
+	@echo Enable GL surface backend support and WGL functions.  Will likely not
+	@echo build in the current state and will require wglext.h and glext.h from
+	@echo Khronos to build.
+	@echo.
+	@echo QT:
+	@echo Enable QT4 surface backend support.  Will likely not build in the
+	@echo current state and will require the QT4 headers and libraries to build.
+	@echo QT 5.x is currently not supported, and implies activating FreeType
+	@echo support.
+	@echo.
+	@echo ========================================================
+	@echo A 'clean' target is provided to remove all the built files and generated
+	@echo sources and headers, and a 'tests' target builds the Cairo test suite
+	@echo according to the options provided to NMake.
