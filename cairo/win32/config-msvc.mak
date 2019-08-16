@@ -287,4 +287,15 @@ CAIRO_SCRIPT_CFLAGS = $(CAIRO_SCRIPT_CFLAGS) /DHAVE_ZLIB=1
 !endif
 !endif
 
+!if defined (DIRECT2D) || defined (DIRECTWRITE)
+BASE_CFLAGS = $(BASE_CFLAGS) /DCAIRO_WIN32_DIRECT2D /D_WIN32_WINNT=0x0601
+CAIRO_ADDITIONAL_LIBS = $(CAIRO_ADDITIONAL_LIBS) d2d1.lib dwrite.lib dxgi.lib ole32.lib
+
+# We need the headers from at least the Windows 8 SDK...
+!if $(VSVER) < 11
+CAIRO_INCLUDES = $(CAIRO_INCLUDES) /I"$(WIN8_SDK_DIR)\include\um" /I"$(WIN8_SDK_DIR)\include\shared"
+!endif
+
+!endif
+
 CAIRO_DEP_LIBS = $(CAIRO_ADDITIONAL_LIBS) $(CAIRO_DEP_LIBS)

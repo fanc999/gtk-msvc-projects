@@ -109,9 +109,33 @@ PDBVER = $(VSVER)
 PDBVER = 14
 !endif
 
+# Look in the registry for the Windows 8 SDK if using Visual Studio 2008/2010
+!if $(VSVER) < 11
+!if [call $(ERRNUL) get-win8sdk-path.bat]
+!endif
+
+!include win8sdk.vc
+!if [del $(ERRNUL) /f /q win8sdk.vc]
+!endif
+
+!endif
+
 VALID_CFGSET = FALSE
 !if "$(CFG)" == "Release" || "$(CFG)" == "release" || "$(CFG)" == "Debug" || "$(CFG)" == "debug"
 VALID_CFGSET = TRUE
+!endif
+
+!if $(VSVER) < 11
+!if "$(WIN8_SDK_DIR)" == "xxxxx"
+!if defined (DIRECT2D) || defined (DIRECTWRITE)
+VALID_CFGSET = FALSE
+MSG = ^
+The Windows 8 SDK (or later) is required for building^
+the Direct2D/DirectWrite Windows Surface/Font backends.
+
+!error $(MSG)
+!endif
+!endif
 !endif
 
 # One may change these items, but be sure to test

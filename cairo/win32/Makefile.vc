@@ -137,6 +137,11 @@ print-help:
 	@echo QT 5.x is currently not supported, and implies activating FreeType
 	@echo support.
 	@echo.
+	@echo DIRECT2D/DIRECTWRITE:
+	@echo Enable Direct2D surface backend support and DirectWrite font backend
+	@echo support.  Enabling one of those will imply both will be enabled.  For
+	@echo Visual Studio 2008 and 2010 builds, the Windows 8 SDK is requied as
+	@echo Direct2D 1.1 will be used for the build and the build will fail otherwise.
 	@echo ========================================================
 	@echo A 'clean' target is provided to remove all the built files and generated
 	@echo sources and headers, and a 'tests' target builds the Cairo test suite
