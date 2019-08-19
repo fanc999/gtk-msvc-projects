@@ -152,13 +152,13 @@ CFLAGS_ADD = /MDd /Od
 !endif
 
 !if "$(PLAT)" == "x64"
-LDFLAGS_ARCH = /machine:x64
+MACHINE_ID_STRING=x64
 !elseif "$(PLAT)" == "arm"
-LDFLAGS_ARCH = /machine:arm
-CFLAGS_ADD = $(CFLAGS_ADD) /DWINAPI_FAMILY=3
+MACHINE_ID_STRING=arm
 !else
-LDFLAGS_ARCH = /machine:x86
+MACHINE_ID_STRING=x86
 !endif
+LDFLAGS_ARCH = /machine:$(MACHINE_ID_STRING)
 
 !if "$(VALID_CFGSET)" == "TRUE"
 CFLAGS = $(CFLAGS_ADD) /W3 /Zi /I.. /I..\src /I. /I$(PREFIX)\include
