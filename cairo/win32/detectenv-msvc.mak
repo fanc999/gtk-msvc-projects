@@ -142,14 +142,10 @@ the Direct2D/DirectWrite Windows Surface/Font backends.
 # the resulting binaries
 !if "$(CFG)" == "Release" || "$(CFG)" == "release"
 CFLAGS_ADD = /MD /O2 /MP /GL
-!if $(VSVER) > 9
-!if $(VSVER) < 14
+!if $(VSVER) > 9 && $(VSVER) < 14
 # Undocumented "enhance optimized debugging" switch. Became documented
 # as "/Zo" in VS 2013 Update 3, and is turned on by default in VS 2015.
 CFLAGS_ADD = $(CFLAGS_ADD) /d2Zi+
-!endif
-# Visual Studio 2010 and later comes with stdint.h
-CFLAGS_ADD = $(CFLAGS_ADD) /DHAVE_STDINT_H
 !endif
 !else
 CFLAGS_ADD = /MDd /Od
