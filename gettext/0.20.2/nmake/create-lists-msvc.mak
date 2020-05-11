@@ -401,6 +401,18 @@ NULL=
 !if [call create-lists.bat footer gettext-tools-objs.mak]
 !endif
 
+!if [call create-lists.bat header gettext-tools-objs.mak msginit_OBJS]
+!endif
+
+!if [for %s in ($(MSGINIT_SOURCES)) do @call create-lists.bat file gettext-tools-objs.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\gettext-tools-tools\%~ns.obj ]
+!endif
+
+!if [@call create-lists.bat file gettext-tools-objs.mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\gettext-tools-tools\gettext.res]
+!endif
+
+!if [call create-lists.bat footer gettext-tools-objs.mak]
+!endif
+
 !include gettext-tools-objs.mak
 
 !if [del /f /q gettext-tools-objs.mak]

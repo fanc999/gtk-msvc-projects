@@ -323,6 +323,7 @@ vs$(VSVER)\$(CFG)\$(PLAT)\msgexec.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(INT
 vs$(VSVER)\$(CFG)\$(PLAT)\msgfilter.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(msgfilter_OBJS)
 vs$(VSVER)\$(CFG)\$(PLAT)\msgfmt.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(INTL_LIB) $(msgfmt_OBJS)
 vs$(VSVER)\$(CFG)\$(PLAT)\msggrep.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBGREP_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(msggrep_OBJS)
+vs$(VSVER)\$(CFG)\$(PLAT)\msginit.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(msginit_OBJS)
 vs$(VSVER)\$(CFG)\$(PLAT)\msgmerge.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(msgmerge_OBJS)
 vs$(VSVER)\$(CFG)\$(PLAT)\msgunfmt.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(msgunfmt_OBJS)
 vs$(VSVER)\$(CFG)\$(PLAT)\msguniq.exe: $(GETTEXTSRC_LIB) $(GETTEXTLIB_LIB) $(LIBTEXTSTYLE_LIB) $(INTL_LIB) $(msguniq_OBJS)
@@ -343,6 +344,7 @@ vs$(VSVER)\$(CFG)\$(PLAT)\msgen.exe	\
 vs$(VSVER)\$(CFG)\$(PLAT)\msgexec.exe	\
 vs$(VSVER)\$(CFG)\$(PLAT)\msgfilter.exe	\
 vs$(VSVER)\$(CFG)\$(PLAT)\msgfmt.exe	\
+vs$(VSVER)\$(CFG)\$(PLAT)\msginit.exe	\
 vs$(VSVER)\$(CFG)\$(PLAT)\msgmerge.exe	\
 vs$(VSVER)\$(CFG)\$(PLAT)\msgunfmt.exe	\
 vs$(VSVER)\$(CFG)\$(PLAT)\msguniq.exe	\

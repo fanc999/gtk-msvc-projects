@@ -28,6 +28,7 @@ gcd
 glwthread_mutex_unlock
 glwthread_mutex_init
 glwthread_mutex_lock
+gl_locale_name
 gnu_basename
 hash_destroy
 hash_find_entry
@@ -49,6 +50,8 @@ proper_name_utf8
 register_temp_file
 register_temp_subdir
 relocate
+relocate2
+rpl_access
 rpl_close
 rpl_fopen
 rpl_fprintf

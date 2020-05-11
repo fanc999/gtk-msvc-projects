@@ -1,4 +1,5 @@
 GETTEXT_LIB_BASE_SRCS =	\
+	access.c			\
 	acl-errno-valid.c	\
 	acl-internal.c	\
 	addext.c	\
@@ -460,6 +461,11 @@ XGETTEXT_SOURCES =	\
 	x-vala.c	\
 	x-ycp.c
 
+MSGINIT_SOURCES =	\
+	msginit.c	\
+	lang-table.c	\
+	plural-count.c	\
+	..\gettext-runtime\intl\localealias.c
 
 GETTEXT_TOOLS_TOOLS =	\
 	vs$(VSVER)\$(CFG)\$(PLAT)\msgattrib.exe	\
@@ -472,6 +478,7 @@ GETTEXT_TOOLS_TOOLS =	\
 	vs$(VSVER)\$(CFG)\$(PLAT)\msgfilter.exe	\
 	vs$(VSVER)\$(CFG)\$(PLAT)\msgfmt.exe	\
 	vs$(VSVER)\$(CFG)\$(PLAT)\msggrep.exe	\
+	vs$(VSVER)\$(CFG)\$(PLAT)\msginit.exe	\
 	vs$(VSVER)\$(CFG)\$(PLAT)\msgmerge.exe	\
 	vs$(VSVER)\$(CFG)\$(PLAT)\msgunfmt.exe	\
 	vs$(VSVER)\$(CFG)\$(PLAT)\msguniq.exe	\
