@@ -217,6 +217,12 @@ LIBGREP_SOURCES =	\
 	nl_langinfo.c	\
 	regex.c
 
+!if $(VSVER) > 12
+LIBGREP_SOURCES =	\
+	$(LIBGREP_SOURCES)	\
+	wcrtomb.c
+!endif
+
 LIBGETTEXTPO_GNULIB_SRCS =	\
 	asnprintf.c	\
 	asprintf.c	\
