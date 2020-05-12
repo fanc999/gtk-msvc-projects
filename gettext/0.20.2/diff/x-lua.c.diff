@@ -1,0 +1,49 @@
+--- a/gettext-tools/src/x-lua.c	2020-04-13 19:09:24.000000000 +0800
++++ b/gettext-tools/src/x-lua.c	2020-05-11 16:25:08.704627200 +0800
+@@ -282,9 +282,9 @@
+ 
+           if (c == '[')
+             {
+-              c = phase1_getc ();
+-
+               int esigns = 0;
++
++              c = phase1_getc ();
+               while (c == '=')
+                 {
+                   esigns++;
+@@ -496,6 +496,7 @@
+ 
+   for (;;)
+     {
++      int esigns;
+       tp->line_number = line_number;
+       c = phase2_getc ();
+ 
+@@ -713,10 +714,11 @@
+           break;
+ 
+         case '[':
+-          c = phase1_getc ();
++          /* int esigns = 0; */
+ 
++          c = phase1_getc ();
+           /* Count the number of equal signs.  */
+-          int esigns = 0;
++          esigns = 0;
+           while (c == '=')
+             {
+               esigns++;
+@@ -762,10 +764,10 @@
+                 }
+               if (c == ']')
+                 {
+-                  c = phase1_getc ();
++                  int esigns2 = 0;
+ 
++                  c = phase1_getc ();
+                   /* Count the number of equal signs.  */
+-                  int esigns2 = 0;
+                   while (c == '=')
+                     {
+                       esigns2++;

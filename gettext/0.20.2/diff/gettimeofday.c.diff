@@ -1,0 +1,30 @@
+--- a/gettext-tools/gnulib-lib/gettimeofday.c	2020-04-13 21:45:27.000000000 +0800
++++ b/gettext-tools/gnulib-lib/gettimeofday.c	2020-05-11 15:48:06.119614200 +0800
+@@ -83,6 +83,9 @@
+      More discussion on this topic:
+      <http://www.windowstimestamp.com/description>.  */
+   FILETIME current_time;
++  ULONGLONG since_1601;
++  ULONGLONG since_1970;
++  ULONGLONG microseconds_since_1970;
+ 
+   if (!initialized)
+     initialize ();
+@@ -93,14 +96,14 @@
+ 
+   /* Convert from FILETIME to 'struct timeval'.  */
+   /* FILETIME: <https://docs.microsoft.com/en-us/windows/desktop/api/minwinbase/ns-minwinbase-filetime> */
+-  ULONGLONG since_1601 =
++  since_1601 =
+     ((ULONGLONG) current_time.dwHighDateTime << 32)
+     | (ULONGLONG) current_time.dwLowDateTime;
+   /* Between 1601-01-01 and 1970-01-01 there were 280 normal years and 89 leap
+      years, in total 134774 days.  */
+-  ULONGLONG since_1970 =
++  since_1970 =
+     since_1601 - (ULONGLONG) 134774 * (ULONGLONG) 86400 * (ULONGLONG) 10000000;
+-  ULONGLONG microseconds_since_1970 = since_1970 / (ULONGLONG) 10;
++  microseconds_since_1970 = since_1970 / (ULONGLONG) 10;
+   tv->tv_sec = microseconds_since_1970 / (ULONGLONG) 1000000;
+   tv->tv_usec = microseconds_since_1970 % (ULONGLONG) 1000000;
+ 

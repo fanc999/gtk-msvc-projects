@@ -1,0 +1,13 @@
+--- a/gettext-tools/src/format.h	2020-05-11 16:13:18.706958000 +0800
++++ b/gettext-tools/src/format.h	2020-05-11 16:16:41.465792100 +0800
+@@ -18,7 +18,9 @@
+ #ifndef _FORMAT_H
+ #define _FORMAT_H
+ 
+-#include <stdbool.h>
++#if !defined (__cplusplus) && defined (_MSC_VER) && (_MSC_VER < 1800)
++# include <stdbool.h>
++#endif
+ 
+ #include "pos.h"        /* Get lex_pos_ty.  */
+ #include "message.h"    /* Get NFORMATS.  */

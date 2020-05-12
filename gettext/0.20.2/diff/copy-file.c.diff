@@ -1,0 +1,36 @@
+--- a/gettext-tools/gnulib-lib/copy-file.c	2020-05-11 15:38:11.603853200 +0800
++++ b/gettext-tools/gnulib-lib/copy-file.c	2020-05-11 15:39:05.072073100 +0800
+@@ -51,6 +51,8 @@
+   struct stat statbuf;
+   int mode;
+   int dest_fd;
++  off_t inbytes;
++  bool empty_regular_file;
+ 
+   src_fd = open (src_filename, O_RDONLY | O_BINARY);
+   if (src_fd < 0)
+@@ -62,8 +64,8 @@
+     }
+ 
+   mode = statbuf.st_mode & 07777;
+-  off_t inbytes = S_ISREG (statbuf.st_mode) ? statbuf.st_size : -1;
+-  bool empty_regular_file = inbytes == 0;
++  inbytes = S_ISREG (statbuf.st_mode) ? statbuf.st_size : -1;
++  empty_regular_file = inbytes == 0;
+ 
+   dest_fd = open (dest_filename, O_WRONLY | O_CREAT | O_TRUNC | O_BINARY, 0600);
+   if (dest_fd < 0)
+@@ -76,9 +78,11 @@
+   while (0 < inbytes)
+     {
+       size_t copy_max = -1;
++      size_t len;
++      ssize_t copied;
+       copy_max -= copy_max % IO_SIZE;
+-      size_t len = inbytes < copy_max ? inbytes : copy_max;
+-      ssize_t copied = copy_file_range (src_fd, NULL, dest_fd, NULL, len, 0);
++      len = inbytes < copy_max ? inbytes : copy_max;
++      copied = copy_file_range (src_fd, NULL, dest_fd, NULL, len, 0);
+       if (copied <= 0)
+         break;
+       inbytes -= copied;

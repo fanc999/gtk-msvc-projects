@@ -1,0 +1,14 @@
+--- a/gettext-tools/src/xgettext.h	2019-05-11 19:29:32.000000000 +0800
++++ b/gettext-tools/src/xgettext.h	2020-05-11 16:22:47.492483100 +0800
+@@ -19,7 +19,10 @@
+ #ifndef _XGETTEXT_H
+ #define _XGETTEXT_H
+ 
+-#include <stdbool.h>
++#if !defined (__cplusplus) && defined (_MSC_VER) && (_MSC_VER < 1800)
++# include <stdbool.h>
++#endif
++
+ #include <stddef.h>
+ 
+ #include "message.h"

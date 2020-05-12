@@ -1,0 +1,30 @@
+--- a/gettext-tools/libgrep/regcomp.c	2020-05-11 15:55:08.195015400 +0800
++++ b/gettext-tools/libgrep/regcomp.c	2020-05-11 15:58:40.479342700 +0800
+@@ -3657,6 +3657,7 @@
+ #endif /* not RE_ENABLE_I18N */
+   reg_errcode_t ret;
+   bin_tree_t *tree;
++  re_token_t br_token = {0,};
+ 
+   sbcset = (re_bitset_ptr_t) calloc (sizeof (bitset_t), 1);
+   if (__glibc_unlikely (sbcset == NULL))
+@@ -3706,7 +3707,8 @@
+ #endif
+ 
+   /* Build a tree for simple bracket.  */
+-  re_token_t br_token = { .type = SIMPLE_BRACKET, .opr.sbcset = sbcset };
++  br_token.type = SIMPLE_BRACKET;
++  br_token.opr.sbcset = sbcset;
+   tree = create_token_tree (dfa, NULL, NULL, &br_token);
+   if (__glibc_unlikely (tree == NULL))
+     goto build_word_op_espace;
+@@ -3797,7 +3799,8 @@
+ create_tree (re_dfa_t *dfa, bin_tree_t *left, bin_tree_t *right,
+ 	     re_token_type_t type)
+ {
+-  re_token_t t = { .type = type };
++  re_token_t t = {0,};
++  t.type = type;
+   return create_token_tree (dfa, left, right, &t);
+ }
+ 

@@ -1,0 +1,41 @@
+--- a/libtextstyle/lib/html-ostream.c	2020-04-13 21:53:25.000000000 +0800
++++ b/libtextstyle/lib/html-ostream.c	2020-05-11 15:27:07.510259100 +0800
+@@ -159,12 +159,13 @@
+ 
+                 if (uc == '\n')
+                   {
++                    size_t prev_class_stack_size;
+                     verify_invariants (stream);
+                     /* Emit </span> tags to follow the decrease of the class stack
+                        from last_class_stack_size to 0.  Then emit the newline.
+                        Then prepare for emitting <span> tags to go back from 0
+                        to curr_class_stack_size.  */
+-                    size_t prev_class_stack_size = stream->curr_class_stack_size;
++                    prev_class_stack_size = stream->curr_class_stack_size;
+                     stream->curr_class_stack_size = 0;
+                     emit_pending_spans (stream, false);
+                     stream->curr_class_stack_size = prev_class_stack_size;
+@@ -241,12 +242,13 @@
+ static void
+ html_ostream__flush (html_ostream_t stream, ostream_flush_scope_t scope)
+ {
++  size_t prev_class_stack_size;
+   verify_invariants (stream);
+   /* stream->buf[] contains only a few bytes that don't correspond to a
+      character.  Can't flush it.  */
+   /* Close the open <span> tags, and prepare for reopening the same <span>
+      tags.  */
+-  size_t prev_class_stack_size = stream->curr_class_stack_size;
++  prev_class_stack_size = stream->curr_class_stack_size;
+   stream->curr_class_stack_size = 0;
+   emit_pending_spans (stream, false);
+   stream->curr_class_stack_size = prev_class_stack_size;
+@@ -342,7 +344,7 @@
+   return stream;
+ }
+ 
+-#line 346 "html-ostream.c"
++#line 348 "html-ostream.c"
+ 
+ const struct html_ostream_implementation html_ostream_vtable =
+ {

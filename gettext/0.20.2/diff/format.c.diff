@@ -1,0 +1,14 @@
+--- a/gettext-tools/src/format.c	2020-04-13 15:51:19.000000000 +0800
++++ b/gettext-tools/src/format.c	2020-05-11 16:16:36.907536500 +0800
+@@ -22,7 +22,10 @@
+ /* Specification.  */
+ #include "format.h"
+ 
+-#include <stdbool.h>
++#if !defined (__cplusplus) && defined (_MSC_VER) && (_MSC_VER < 1800)
++# include <stdbool.h>
++#endif
++
+ #include <stdio.h>
+ #include <stdlib.h>
+ 

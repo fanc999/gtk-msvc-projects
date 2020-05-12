@@ -1,0 +1,44 @@
+--- a/gettext-tools/libgettextpo/diffseq.h	2020-05-11 16:30:20.014293700 +0800
++++ b/gettext-tools/libgettextpo/diffseq.h	2020-05-11 16:30:24.430974900 +0800
+@@ -208,6 +208,7 @@
+     {
+       OFFSET d;                 /* Active diagonal. */
+       bool big_snake _GL_UNUSED = false;
++      bool heuristic;
+ 
+       /* Extend the top-down search by an edit step in each diagonal. */
+       if (fmin > dmin)
+@@ -279,9 +280,9 @@
+         continue;
+ 
+ #ifdef USE_HEURISTIC
+-      bool heuristic = ctxt->heuristic;
++      heuristic = ctxt->heuristic;
+ #else
+-      bool heuristic = false;
++      heuristic = false;
+ #endif
+ 
+       /* Heuristic: check occasionally for a diagonal that has made lots
+--- a/gettext-tools/gnulib-lib/diffseq.h	2020-05-11 16:30:20.014293700 +0800
++++ b/gettext-tools/gnulib-lib/diffseq.h	2020-05-11 16:30:24.430974900 +0800
+@@ -208,6 +208,7 @@
+     {
+       OFFSET d;                 /* Active diagonal. */
+       bool big_snake _GL_UNUSED = false;
++      bool heuristic;
+ 
+       /* Extend the top-down search by an edit step in each diagonal. */
+       if (fmin > dmin)
+@@ -279,9 +280,9 @@
+         continue;
+ 
+ #ifdef USE_HEURISTIC
+-      bool heuristic = ctxt->heuristic;
++      heuristic = ctxt->heuristic;
+ #else
+-      bool heuristic = false;
++      heuristic = false;
+ #endif
+ 
+       /* Heuristic: check occasionally for a diagonal that has made lots

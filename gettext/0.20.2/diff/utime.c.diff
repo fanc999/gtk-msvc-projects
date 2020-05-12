@@ -1,0 +1,59 @@
+--- a/gettext-tools/gnulib-lib/utime.c	2020-04-13 21:45:34.000000000 +0800
++++ b/gettext-tools/gnulib-lib/utime.c	2020-05-11 15:52:40.598071500 +0800
+@@ -32,6 +32,15 @@
+ int
+ _gl_utimens_windows (const char *name, struct timespec ts[2])
+ {
++  size_t len;
++  size_t drive_prefix_len;
++  size_t rlen;
++  bool check_dir;
++  const char *rname;
++  char *malloca_rname;
++  DWORD error;
++  HANDLE handle;
++
+   /* POSIX <https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_13>
+      specifies: "More than two leading <slash> characters shall be treated as
+      a single <slash> character."  */
+@@ -42,13 +51,12 @@
+         name++;
+     }
+ 
+-  size_t len = strlen (name);
+-  size_t drive_prefix_len = (HAS_DEVICE (name) ? 2 : 0);
++  len = strlen (name);
++  drive_prefix_len = (HAS_DEVICE (name) ? 2 : 0);
+ 
+   /* Remove trailing slashes (except the very first one, at position
+      drive_prefix_len), but remember their presence.  */
+-  size_t rlen;
+-  bool check_dir = false;
++  check_dir = false;
+ 
+   rlen = len;
+   while (rlen > drive_prefix_len && ISSLASH (name[rlen-1]))
+@@ -59,8 +67,6 @@
+       rlen--;
+     }
+ 
+-  const char *rname;
+-  char *malloca_rname;
+   if (rlen == len)
+     {
+       rname = name;
+@@ -79,13 +85,11 @@
+       rname = malloca_rname;
+     }
+ 
+-  DWORD error;
+-
+   /* Open a handle to the file.
+      CreateFile
+      <https://docs.microsoft.com/en-us/windows/desktop/api/fileapi/nf-fileapi-createfilea>
+      <https://docs.microsoft.com/en-us/windows/desktop/FileIO/creating-and-opening-files>  */
+-  HANDLE handle =
++  handle =
+     CreateFile (rname,
+                 FILE_READ_ATTRIBUTES | FILE_WRITE_ATTRIBUTES,
+                 FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,

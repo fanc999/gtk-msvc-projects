@@ -1,0 +1,28 @@
+--- a/gettext-tools/libgrep/regexec.c	2020-05-11 16:04:51.083929600 +0800
++++ b/gettext-tools/libgrep/regexec.c	2020-05-11 16:05:09.174241500 +0800
+@@ -597,7 +597,7 @@
+   Idx extra_nmatch;
+   bool sb;
+   int ch;
+-  re_match_context_t mctx = { .dfa = dfa };
++  re_match_context_t mctx = {0, dfa, };
+   char *fastmap = ((preg->fastmap != NULL && preg->fastmap_accurate
+ 		    && start != last_start && !preg->can_be_null)
+ 		   ? preg->fastmap : NULL);
+@@ -3267,6 +3267,7 @@
+   re_node_set follows, *dests_node;
+   bitset_t *dests_ch;
+   bitset_t acceptable;
++  size_t ndests_max;
+ 
+   struct dests_alloc
+   {
+@@ -3317,7 +3318,7 @@
+     goto out_free;
+ 
+   /* Avoid arithmetic overflow in size calculation.  */
+-  size_t ndests_max
++  ndests_max
+     = ((SIZE_MAX - (sizeof (re_node_set) + sizeof (bitset_t)) * SBC_MAX)
+        / (3 * sizeof (re_dfastate_t *)));
+   if (__glibc_unlikely (ndests_max < ndests))
