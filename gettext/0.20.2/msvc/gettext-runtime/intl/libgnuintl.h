@@ -415,7 +415,7 @@ extern LIBINTL_DLL_EXPORTED int vasprintf (char **, const char *, va_list);
 
 #endif
 
-#if 1
+#if (_MSC_VER < 1900)
 
 #undef fwprintf
 #define fwprintf libintl_fwprintf
