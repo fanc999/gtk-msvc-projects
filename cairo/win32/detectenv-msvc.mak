@@ -66,8 +66,12 @@ _HASH=^#
 !if ![echo VCVERSION=_MSC_VER > vercl.x] \
     && ![echo $(_HASH)if defined(_M_IX86) >> vercl.x] \
     && ![echo PLAT=Win32 >> vercl.x] \
+    && ![echo $(_HASH)elif defined(_M_ARM) >> vercl.x] \
+    && ![echo PLAT=arm >> vercl.x] \
     && ![echo $(_HASH)elif defined(_M_AMD64) >> vercl.x] \
     && ![echo PLAT=x64 >> vercl.x] \
+    && ![echo $(_HASH)elif defined(_M_ARM64) >> vercl.x] \
+    && ![echo PLAT=arm64 >> vercl.x] \
     && ![echo $(_HASH)endif >> vercl.x] \
     && ![cl -nologo -TC -P vercl.x $(ERRNUL)]
 !include vercl.i
@@ -153,6 +157,8 @@ CFLAGS_ADD = /MDd /Od
 
 !if "$(PLAT)" == "x64"
 MACHINE_ID_STRING=x64
+!elseif "$(PLAT)" == "arm64"
+MACHINE_ID_STRING=arm64
 !elseif "$(PLAT)" == "arm"
 MACHINE_ID_STRING=arm
 !else
@@ -161,7 +167,7 @@ MACHINE_ID_STRING=x86
 LDFLAGS_ARCH = /machine:$(MACHINE_ID_STRING)
 
 !if "$(VALID_CFGSET)" == "TRUE"
-CFLAGS = $(CFLAGS_ADD) /W3 /Zi /I.. /I..\src /I. /I$(PREFIX)\include
+CFLAGS = $(CFLAGS_ADD) /W3 /Zi
 
 !if "$(ADDITIONAL_LIB_DIR)" != ""
 ADDITIONAL_LIB_ARG = /libpath:$(ADDITIONAL_LIB_DIR)

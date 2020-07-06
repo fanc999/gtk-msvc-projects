@@ -39,7 +39,7 @@ CAIRO_BOILERPLATE_SRCS =	\
 CAIRO_TEST_SRCS = $(test_sources:	=)
 CAIRO_TEST_EXTRA_SOURCES =
 
-CAIRO_INCLUDES = /I.. /I..\src /Ivs$(VSVER)\$(CFG)\$(PLAT)\cairo
+CAIRO_INCLUDES = /I.. /I..\src /Ivs$(VSVER)\$(CFG)\$(PLAT)\cairo /I. /I$(PREFIX)\include\pixman-1 /I$(PREFIX)\include
 CAIRO_BOILERPLATE_INCLUDES = /I..\boilerplate $(CAIRO_INCLUDES)
 CAIRO_EXTRA_TARGETS =
 
