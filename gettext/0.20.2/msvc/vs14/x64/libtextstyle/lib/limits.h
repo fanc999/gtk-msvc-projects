@@ -24,7 +24,7 @@
 
 
 /* The include_next requires a split double-inclusion guard.  */
-#include "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE\limits.h"
+#include "..\INCLUDE\limits.h"
 
 #ifndef _GL_LTS_LIMITS_H
 #define _GL_LTS_LIMITS_H

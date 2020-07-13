@@ -24,7 +24,7 @@
 #ifndef _GL_OMP_H
 
 /* The include_next requires a split double-inclusion guard.  */
-#include "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE\omp.h"
+#include "..\INCLUDE\omp.h"
 
 #ifndef _GL_OMP_H
 #define _GL_OMP_H
