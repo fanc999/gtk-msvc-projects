@@ -39,40 +39,40 @@ ICU_UC_CFLAGS = $(ICU_UC_CFLAGS) /DRBBI_DEBUG
 ICU_SYSTEM_LIBS = advapi32.lib
 
 ICU_DLLS =	\
-	$(CFG)\$(PLAT)\icudt$(ICU_VER).dll	\
-	$(CFG)\$(PLAT)\icuuc$(ICU_VER)$(ICU_DEBUG_SUFFIX).dll	\
-	$(CFG)\$(PLAT)\icuin$(ICU_VER)$(ICU_DEBUG_SUFFIX).dll	\
-	$(CFG)\$(PLAT)\icuio$(ICU_VER)$(ICU_DEBUG_SUFFIX).dll	\
-	$(CFG)\$(PLAT)\icutu$(ICU_VER)$(ICU_DEBUG_SUFFIX).dll	\
-	$(CFG)\$(PLAT)\icutest$(ICU_VER)$(ICU_DEBUG_SUFFIX).dll	\
-	$(CFG)\$(PLAT)\testplug$(ICU_VER)$(ICU_DEBUG_SUFFIX).dll
+	$(CFG)\$(PLAT)\bin\icudt$(ICU_VER).dll	\
+	$(CFG)\$(PLAT)\bin\icuuc$(ICU_VER)$(ICU_DEBUG_SUFFIX).dll	\
+	$(CFG)\$(PLAT)\bin\icuin$(ICU_VER)$(ICU_DEBUG_SUFFIX).dll	\
+	$(CFG)\$(PLAT)\bin\icuio$(ICU_VER)$(ICU_DEBUG_SUFFIX).dll	\
+	$(CFG)\$(PLAT)\bin\icutu$(ICU_VER)$(ICU_DEBUG_SUFFIX).dll	\
+	$(CFG)\$(PLAT)\bin\icutest$(ICU_VER)$(ICU_DEBUG_SUFFIX).dll	\
+	$(CFG)\$(PLAT)\bin\testplug$(ICU_VER)$(ICU_DEBUG_SUFFIX).dll
 
 ICU_DATA = ..\source\data\out\icudt$(ICU_VER)l.dat
 
 ICU_BUILD_TOOLS =	\
-	$(CFG)\$(PLAT)\derb.exe		\
-	$(CFG)\$(PLAT)\genbrk.exe	\
-	$(CFG)\$(PLAT)\gencfu.exe	\
-	$(CFG)\$(PLAT)\genccode.exe	\
-	$(CFG)\$(PLAT)\gencmn.exe	\
-	$(CFG)\$(PLAT)\gencnval.exe	\
-	$(CFG)\$(PLAT)\gendict.exe	\
-	$(CFG)\$(PLAT)\gennorm2.exe	\
-	$(CFG)\$(PLAT)\gensprep.exe	\
-	$(CFG)\$(PLAT)\genrb.exe	\
-	$(CFG)\$(PLAT)\gentest.exe	\
-	$(CFG)\$(PLAT)\icupkg.exe	\
-	$(CFG)\$(PLAT)\makeconv.exe	\
-	$(CFG)\$(PLAT)\uconv.exe
+	$(CFG)\$(PLAT)\bin\derb.exe		\
+	$(CFG)\$(PLAT)\bin\genbrk.exe	\
+	$(CFG)\$(PLAT)\bin\gencfu.exe	\
+	$(CFG)\$(PLAT)\bin\genccode.exe	\
+	$(CFG)\$(PLAT)\bin\gencmn.exe	\
+	$(CFG)\$(PLAT)\bin\gencnval.exe	\
+	$(CFG)\$(PLAT)\bin\gendict.exe	\
+	$(CFG)\$(PLAT)\bin\gennorm2.exe	\
+	$(CFG)\$(PLAT)\bin\gensprep.exe	\
+	$(CFG)\$(PLAT)\bin\genrb.exe	\
+	$(CFG)\$(PLAT)\bin\gentest.exe	\
+	$(CFG)\$(PLAT)\bin\icupkg.exe	\
+	$(CFG)\$(PLAT)\bin\makeconv.exe	\
+	$(CFG)\$(PLAT)\bin\uconv.exe
 
 ICU_TOOLS =	\
-	$(CFG)\$(PLAT)\icuinfo.exe
+	$(CFG)\$(PLAT)\bin\icuinfo.exe
 
 ICU_SAMPLES =	\
-	$(CFG)\$(PLAT)\icu-sample-cal.exe	\
-	$(CFG)\$(PLAT)\icu-sample-date.exe
+	$(CFG)\$(PLAT)\bin\icu-sample-cal.exe	\
+	$(CFG)\$(PLAT)\bin\icu-sample-date.exe
 
 ICU_TESTS =	\
-	$(CFG)\$(PLAT)\iotest.exe	\
-	$(CFG)\$(PLAT)\intltest.exe	\
-	$(CFG)\$(PLAT)\cintltst.exe
+	$(CFG)\$(PLAT)\bin\iotest.exe	\
+	$(CFG)\$(PLAT)\bin\intltest.exe	\
+	$(CFG)\$(PLAT)\bin\cintltst.exe
