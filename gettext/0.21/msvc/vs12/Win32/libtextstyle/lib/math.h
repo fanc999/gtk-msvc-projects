@@ -16,7 +16,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
-#ifndef _GL_MATH_H
+#ifndef _GL_LTS_MATH_H
 
 #if __GNUC__ >= 3
 
@@ -24,10 +24,10 @@
 
 
 /* The include_next requires a split double-inclusion guard.  */
-#include "../ucrt/math.h"
+#include "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\INCLUDE\math.h"
 
-#ifndef _GL_MATH_H
-#define _GL_MATH_H
+#ifndef _GL_LTS_MATH_H
+#define _GL_LTS_MATH_H
 
 /* On OpenVMS, NAN, INFINITY, and HUGEVAL macros are defined in <fp.h>.  */
 #if defined __VMS && ! defined NAN
@@ -1574,8 +1574,8 @@ _GL_WARN_ON_USE (frexpf, "frexpf is unportable - "
      If x is zero: mantissa = x, exp = 0.
      If x is infinite or NaN: mantissa = x, exp unspecified.
    Store exp in *EXPPTR and return mantissa.  */
-#if 0
-# if 0
+#if 1
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef frexp
 #   define frexp rpl_frexp
@@ -1602,7 +1602,7 @@ _GL_WARN_ON_USE (frexp, "frexp is unportable - "
      If x is zero: mantissa = x, exp = 0.
      If x is infinite or NaN: mantissa = x, exp unspecified.
    Store exp in *EXPPTR and return mantissa.  */
-#if 0 && 0
+#if 1 && 1
 # if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #  undef frexpl
 #  define frexpl rpl_frexpl
@@ -1615,14 +1615,14 @@ _GL_CXXALIAS_RPL (frexpl, long double, (long double x, int *expptr));
 _GL_FUNCDECL_SYS (frexpl, long double,
                   (long double x, int *expptr) _GL_ARG_NONNULL ((2)));
 # endif
-# if 0
+# if 1
 _GL_CXXALIAS_SYS (frexpl, long double, (long double x, int *expptr));
 # endif
 #endif
-#if 0 && !(0 && !1)
+#if 1 && !(1 && !1)
 _GL_CXXALIASWARN (frexpl);
 #endif
-#if !0 && defined GNULIB_POSIXCHECK
+#if !1 && defined GNULIB_POSIXCHECK
 # undef frexpl
 # if HAVE_RAW_DECL_FREXPL
 _GL_WARN_ON_USE (frexpl, "frexpl is unportable - "
@@ -3004,5 +3004,5 @@ _GL_WARN_REAL_FLOATING_DECL (signbit);
 
 _GL_INLINE_HEADER_END
 
-#endif /* _GL_MATH_H */
-#endif /* _GL_MATH_H */
+#endif /* _GL_LTS_MATH_H */
+#endif /* _GL_LTS_MATH_H */

@@ -16,7 +16,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
-#ifndef _GL_MATH_H
+#ifndef _GL_LTS_MATH_H
 
 #if __GNUC__ >= 3
 
@@ -24,10 +24,10 @@
 
 
 /* The include_next requires a split double-inclusion guard.  */
-#include "../ucrt/math.h"
+#include "c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\INCLUDE\math.h"
 
-#ifndef _GL_MATH_H
-#define _GL_MATH_H
+#ifndef _GL_LTS_MATH_H
+#define _GL_LTS_MATH_H
 
 /* On OpenVMS, NAN, INFINITY, and HUGEVAL macros are defined in <fp.h>.  */
 #if defined __VMS && ! defined NAN
@@ -1574,8 +1574,8 @@ _GL_WARN_ON_USE (frexpf, "frexpf is unportable - "
      If x is zero: mantissa = x, exp = 0.
      If x is infinite or NaN: mantissa = x, exp unspecified.
    Store exp in *EXPPTR and return mantissa.  */
-#if 0
-# if 0
+#if 1
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef frexp
 #   define frexp rpl_frexp
@@ -1602,7 +1602,7 @@ _GL_WARN_ON_USE (frexp, "frexp is unportable - "
      If x is zero: mantissa = x, exp = 0.
      If x is infinite or NaN: mantissa = x, exp unspecified.
    Store exp in *EXPPTR and return mantissa.  */
-#if 0 && 0
+#if 1 && 1
 # if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #  undef frexpl
 #  define frexpl rpl_frexpl
@@ -1615,14 +1615,14 @@ _GL_CXXALIAS_RPL (frexpl, long double, (long double x, int *expptr));
 _GL_FUNCDECL_SYS (frexpl, long double,
                   (long double x, int *expptr) _GL_ARG_NONNULL ((2)));
 # endif
-# if 0
+# if 1
 _GL_CXXALIAS_SYS (frexpl, long double, (long double x, int *expptr));
 # endif
 #endif
-#if 0 && !(0 && !1)
+#if 1 && !(1 && !1)
 _GL_CXXALIASWARN (frexpl);
 #endif
-#if !0 && defined GNULIB_POSIXCHECK
+#if !1 && defined GNULIB_POSIXCHECK
 # undef frexpl
 # if HAVE_RAW_DECL_FREXPL
 _GL_WARN_ON_USE (frexpl, "frexpl is unportable - "
@@ -2820,7 +2820,7 @@ _GL_EXTERN_C int isnanf (float x);
 /* Test for NaN for 'double' numbers.
    This function is a gnulib extension, unlike isnan() which applied only
    to 'double' numbers earlier but now is a type-generic macro.  */
-# if 1
+# if 0
 /* The original <math.h> included above provides a declaration of isnan
    macro.  */
 #  if __GNUC__ >= 4
@@ -2873,7 +2873,7 @@ _GL_EXTERN_C int isnanl (long double x) _GL_ATTRIBUTE_CONST;
 _GL_EXTERN_C int rpl_isnanf (float x);
 #   define gl_isnan_f(x) rpl_isnanf (x)
 #  endif
-#  if 1 && __GNUC__ >= 4
+#  if 0 && __GNUC__ >= 4
 #   define gl_isnan_d(x) __builtin_isnan ((double)(x))
 #  else
 _GL_EXTERN_C int rpl_isnand (double x);
@@ -2935,7 +2935,7 @@ _GL_WARN_REAL_FLOATING_DECL (isnan);
     sizeof (x) == sizeof (double) ? __builtin_signbit (x) : \
     __builtin_signbitf (x))
 # endif
-# if 0 && !GNULIB_defined_signbit
+# if 1 && !GNULIB_defined_signbit
 #  undef signbit
 _GL_EXTERN_C int gl_signbitf (float arg);
 _GL_EXTERN_C int gl_signbitd (double arg);
@@ -3004,5 +3004,5 @@ _GL_WARN_REAL_FLOATING_DECL (signbit);
 
 _GL_INLINE_HEADER_END
 
-#endif /* _GL_MATH_H */
-#endif /* _GL_MATH_H */
+#endif /* _GL_LTS_MATH_H */
+#endif /* _GL_LTS_MATH_H */

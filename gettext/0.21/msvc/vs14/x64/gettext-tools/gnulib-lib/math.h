@@ -24,7 +24,7 @@
 
 
 /* The include_next requires a split double-inclusion guard.  */
-#include "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\math.h"
+#include "../ucrt/math.h"
 
 #ifndef _GL_MATH_H
 #define _GL_MATH_H

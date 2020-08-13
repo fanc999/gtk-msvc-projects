@@ -30,7 +30,7 @@
      In this situation, the functions are not yet declared, therefore we cannot
      provide the C++ aliases.  */
 
-#include "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\stdio.h"
+#include "../ucrt/stdio.h"
 
 #else
 /* Normal invocation convention.  */
@@ -40,7 +40,7 @@
 #define _GL_ALREADY_INCLUDING_STDIO_H
 
 /* The include_next requires a split double-inclusion guard.  */
-#include "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\stdio.h"
+#include "../ucrt/stdio.h"
 
 #undef _GL_ALREADY_INCLUDING_STDIO_H
 

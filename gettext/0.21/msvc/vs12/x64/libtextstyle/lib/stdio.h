@@ -30,22 +30,22 @@
      In this situation, the functions are not yet declared, therefore we cannot
      provide the C++ aliases.  */
 
-#include "../ucrt/stdio.h"
+#include "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\INCLUDE\stdio.h"
 
 #else
 /* Normal invocation convention.  */
 
-#ifndef _GL_STDIO_H
+#ifndef _GL_LTS_STDIO_H
 
 #define _GL_ALREADY_INCLUDING_STDIO_H
 
 /* The include_next requires a split double-inclusion guard.  */
-#include "../ucrt/stdio.h"
+#include "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\INCLUDE\stdio.h"
 
 #undef _GL_ALREADY_INCLUDING_STDIO_H
 
-#ifndef _GL_STDIO_H
-#define _GL_STDIO_H
+#ifndef _GL_LTS_STDIO_H
+#define _GL_LTS_STDIO_H
 
 /* Get va_list.  Needed on many systems, including glibc 2.8.  */
 #include <stdarg.h>
@@ -800,7 +800,7 @@ _GL_WARN_ON_USE (fopen, "fopen on native Windows platforms is not POSIX complian
 
 #if 0 || 1
 # if (0 && 0) \
-     || (1 && 1 && (0 || 1))
+     || (1 && 0 && (0 || 0))
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define fprintf rpl_fprintf
 #  endif
@@ -865,7 +865,7 @@ _GL_WARN_ON_USE (fpurge, "fpurge is not always present - "
 #endif
 
 #if 1
-# if 1 && (0 || 1)
+# if 0 && (0 || 0)
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef fputc
 #   define fputc rpl_fputc
@@ -881,7 +881,7 @@ _GL_CXXALIASWARN (fputc);
 #endif
 
 #if 1
-# if 1 && (0 || 1)
+# if 0 && (0 || 0)
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef fputs
 #   define fputs rpl_fputs
@@ -1131,7 +1131,7 @@ _GL_WARN_ON_USE (ftell, "ftell cannot handle files larger than 4 GB "
 
 
 #if 1
-# if 1 && (0 || 1)
+# if 0 && (0 || 0)
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef fwrite
 #   define fwrite rpl_fwrite
@@ -1415,7 +1415,7 @@ _GL_WARN_ON_USE (popen, "popen is buggy on some platforms - "
 
 #if 0 || 1
 # if (0 && 0) \
-     || (1 && 1 && (0 || 1))
+     || (1 && 0 && (0 || 0))
 #  if defined __GNUC__
 #   if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 /* Don't break __attribute__((format(printf,M,N))).  */
@@ -1424,14 +1424,14 @@ _GL_WARN_ON_USE (popen, "popen is buggy on some platforms - "
 #   if 0 || 0
 _GL_FUNCDECL_RPL_1 (__printf__, int,
                     (const char *restrict format, ...)
-                    __asm__ ("_"
+                    __asm__ (
                              _GL_STDIO_MACROEXPAND_AND_STRINGIZE(rpl_printf))
                     _GL_ATTRIBUTE_FORMAT_PRINTF (1, 2)
                     _GL_ARG_NONNULL ((1)));
 #   else
 _GL_FUNCDECL_RPL_1 (__printf__, int,
                     (const char *restrict format, ...)
-                    __asm__ ("_"
+                    __asm__ (
                              _GL_STDIO_MACROEXPAND_AND_STRINGIZE(rpl_printf))
                     _GL_ATTRIBUTE_FORMAT_PRINTF_SYSTEM (1, 2)
                     _GL_ARG_NONNULL ((1)));
@@ -1466,7 +1466,7 @@ _GL_WARN_ON_USE (printf, "printf is not always POSIX compliant - "
 #endif
 
 #if 1
-# if 1 && (0 || 1)
+# if 0 && (0 || 0)
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef putc
 #   define putc rpl_fputc
@@ -1482,7 +1482,7 @@ _GL_CXXALIASWARN (putc);
 #endif
 
 #if 1
-# if 1 && (0 || 1)
+# if 0 && (0 || 0)
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef putchar
 #   define putchar rpl_putchar
@@ -1498,7 +1498,7 @@ _GL_CXXALIASWARN (putchar);
 #endif
 
 #if 1
-# if 1 && (0 || 1)
+# if 0 && (0 || 0)
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef puts
 #   define puts rpl_puts
@@ -1598,7 +1598,7 @@ _GL_WARN_ON_USE (renameat, "renameat is not portable - "
 #   endif
 _GL_FUNCDECL_RPL_1 (__scanf__, int,
                     (const char *restrict format, ...)
-                    __asm__ ("_"
+                    __asm__ (
                              _GL_STDIO_MACROEXPAND_AND_STRINGIZE(rpl_scanf))
                     _GL_ATTRIBUTE_FORMAT_SCANF_SYSTEM (1, 2)
                     _GL_ARG_NONNULL ((1)));
@@ -1621,7 +1621,7 @@ _GL_CXXALIASWARN (scanf);
 # endif
 #endif
 
-#if 0
+#if 1
 # if 0
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define snprintf rpl_snprintf
@@ -1635,7 +1635,7 @@ _GL_CXXALIAS_RPL (snprintf, int,
                   (char *restrict str, size_t size,
                    const char *restrict format, ...));
 # else
-#  if !1
+#  if !0
 _GL_FUNCDECL_SYS (snprintf, int,
                   (char *restrict str, size_t size,
                    const char *restrict format, ...)
@@ -1711,7 +1711,7 @@ _GL_WARN_ON_USE (tmpfile, "tmpfile is not usable on mingw - "
 # endif
 #endif
 
-#if 0
+#if 1
 /* Write formatted output to a string dynamically allocated with malloc().
    If the memory allocation succeeds, store the address of the string in
    *RESULT and return the number of resulting bytes, excluding the trailing
@@ -1727,7 +1727,7 @@ _GL_FUNCDECL_RPL (asprintf, int,
 _GL_CXXALIAS_RPL (asprintf, int,
                   (char **result, const char *format, ...));
 # else
-#  if !1
+#  if !0
 _GL_FUNCDECL_SYS (asprintf, int,
                   (char **result, const char *format, ...)
                   _GL_ATTRIBUTE_FORMAT_PRINTF (2, 3)
@@ -1748,7 +1748,7 @@ _GL_FUNCDECL_RPL (vasprintf, int,
 _GL_CXXALIAS_RPL (vasprintf, int,
                   (char **result, const char *format, va_list args));
 # else
-#  if !1
+#  if !0
 _GL_FUNCDECL_SYS (vasprintf, int,
                   (char **result, const char *format, va_list args)
                   _GL_ATTRIBUTE_FORMAT_PRINTF (2, 0)
@@ -1796,7 +1796,7 @@ _GL_WARN_ON_USE (vdprintf, "vdprintf is unportable - "
 
 #if 0 || 1
 # if (0 && 0) \
-     || (1 && 1 && (0 || 1))
+     || (1 && 0 && (0 || 0))
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define vfprintf rpl_vfprintf
 #  endif
@@ -1863,7 +1863,7 @@ _GL_CXXALIASWARN (vfscanf);
 
 #if 0 || 1
 # if (0 && 0) \
-     || (1 && 1 && (0 || 1))
+     || (1 && 0 && (0 || 0))
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define vprintf rpl_vprintf
 #  endif
@@ -1915,8 +1915,8 @@ _GL_CXXALIAS_SYS (vscanf, int, (const char *restrict format, va_list args));
 _GL_CXXALIASWARN (vscanf);
 #endif
 
-#if 0
-# if 0
+#if 1
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define vsnprintf rpl_vsnprintf
 #  endif
@@ -1981,6 +1981,6 @@ _GL_WARN_ON_USE (vsprintf, "vsprintf is not always POSIX compliant - "
                       "POSIX compliance");
 #endif
 
-#endif /* _GL_STDIO_H */
-#endif /* _GL_STDIO_H */
+#endif /* _GL_LTS_STDIO_H */
+#endif /* _GL_LTS_STDIO_H */
 #endif
