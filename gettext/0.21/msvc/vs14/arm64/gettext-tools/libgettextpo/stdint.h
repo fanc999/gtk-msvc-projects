@@ -40,7 +40,7 @@
    Ideally we should test __BIONIC__ here, but it is only defined after
    <sys/cdefs.h> has been included; hence test __ANDROID__ instead.  */
 #if defined __ANDROID__ && defined _GL_INCLUDING_SYS_TYPES_H
-# include "../ucrt/stdint.h"
+# include "../include/stdint.h"
 #else
 
 /* Get those types that are already defined in other system include
@@ -74,7 +74,7 @@
      in <inttypes.h> would reinclude us, skipping our contents because
      _GL_GTPO_STDINT_H is defined.
      The include_next requires a split double-inclusion guard.  */
-# include "../ucrt/stdint.h"
+# include "../include/stdint.h"
 #endif
 
 #if ! defined _GL_GTPO_STDINT_H && ! defined _GL_JUST_INCLUDE_SYSTEM_STDINT_H
@@ -100,7 +100,7 @@
    AIX 5.2 <sys/types.h> isn't needed and causes troubles.
    Mac OS X 10.4.6 <sys/types.h> includes <stdint.h> (which is us), but
    relies on the system <stdint.h> definitions, so include
-   <sys/types.h> after "../ucrt/stdint.h".  */
+   <sys/types.h> after "../include/stdint.h".  */
 # if 1 && ! defined _AIX
 #  include <sys/types.h>
 # endif
