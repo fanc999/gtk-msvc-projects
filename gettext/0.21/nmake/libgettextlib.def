@@ -118,7 +118,7 @@ xmlFreeDoc
 xmlGetLastError
 xmlGetLineNo
 xmlReadFd
-xmlFree
+xmlFree DATA
 xmlFreeNs
 xmlFreeTextWriter
 xmlAddNextSibling

@@ -1854,7 +1854,8 @@
 /* #undef LDBL_SIGNBIT_WORD */
 
 /* Define if libxml is being used as a static library. */
-/* #undef LIBXML_STATIC */
+
+#define LIBXML_STATIC 1
 
 /* Define to 1 if lseek does not detect pipes. */
 #define LSEEK_PIPE_BROKEN 1
