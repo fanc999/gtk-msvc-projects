@@ -25,7 +25,11 @@
 /* Special invocation conventions inside some gnulib header files,
    and inside some glibc header files, respectively.  */
 
-#include "../ucrt/stdlib.h"
+#if _MSC_VER >= 1900
+# include "../ucrt/stdlib.h"
+#else
+# include "../include/stdlib.h"
+#endif
 
 #else
 /* Normal invocation convention.  */
@@ -33,7 +37,11 @@
 #ifndef _GL_STDLIB_H
 
 /* The include_next requires a split double-inclusion guard.  */
-#include "../ucrt/stdlib.h"
+#if _MSC_VER >= 1900
+# include "../ucrt/stdlib.h"
+#else
+# include "../include/stdlib.h"
+#endif
 
 #ifndef _GL_STDLIB_H
 #define _GL_STDLIB_H

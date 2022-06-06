@@ -28,7 +28,11 @@
      In this situation system _chk variants due to -D_FORTIFY_SOURCE
      might be used after any replacements defined here.  */
 
-#include "../ucrt/string.h"
+#if _MSC_VER >= 1900
+# include "../ucrt/string.h"
+#else
+# include "../include/string.h"
+#endif
 
 #else
 /* Normal invocation convention.  */
@@ -38,7 +42,11 @@
 #define _GL_ALREADY_INCLUDING_STRING_H
 
 /* The include_next requires a split double-inclusion guard.  */
-#include "../ucrt/string.h"
+#if _MSC_VER >= 1900
+# include "../ucrt/string.h"
+#else
+# include "../include/string.h"
+#endif
 
 #undef _GL_ALREADY_INCLUDING_STRING_H
 

@@ -42,7 +42,11 @@
 #  ifdef __need_wint_t
 #   define _GL_STDDEF_WINT_T
 #  endif
-#  include "../ucrt/stddef.h"
+#  if _MSC_VER >= 1900
+#   include "../ucrt/stddef.h"
+#  else
+#   include "../include/stddef.h"
+#  endif
    /* On TinyCC, make sure that the macros that indicate the special invocation
       convention get undefined.  */
 #  undef __need_wchar_t
@@ -76,7 +80,11 @@ typedef long max_align_t;
 
 /* The include_next requires a split double-inclusion guard.  */
 
-#  include "../ucrt/stddef.h"
+#  if _MSC_VER >= 1900
+#   include "../ucrt/stddef.h"
+#  else
+#   include "../include/stddef.h"
+#  endif
 
 /* On NetBSD 5.0, the definition of NULL lacks proper parentheses.  */
 #  if (0 \

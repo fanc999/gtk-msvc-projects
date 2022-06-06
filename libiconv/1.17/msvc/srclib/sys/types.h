@@ -27,7 +27,11 @@
 
 /* Special invocation convention inside mingw header files.  */
 
-#include "../ucrt/sys/types.h"
+#if _MSC_VER >= 1900
+# include "../ucrt/sys/types.h"
+#else
+# include "../include/sys/types.h"
+#endif
 
 #else
 /* Normal invocation convention.  */
@@ -36,7 +40,11 @@
 
 /* The include_next requires a split double-inclusion guard.  */
 # define _GL_INCLUDING_SYS_TYPES_H
-#include "../ucrt/sys/types.h"
+# if _MSC_VER >= 1900
+#  include "../ucrt/sys/types.h"
+# else
+#  include "../include/sys/types.h"
+# endif
 # undef _GL_INCLUDING_SYS_TYPES_H
 
 #ifndef _GL_SYS_TYPES_H

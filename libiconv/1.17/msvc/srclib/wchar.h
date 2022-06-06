@@ -53,7 +53,12 @@
      the latter includes <wchar.h>.  But here, we have no way to detect whether
      <wctype.h> is completely included or is still being included.  */
 
-#include "../ucrt/wchar.h"
+
+#if _MSC_VER >= 1900
+# include "../ucrt/wchar.h"
+#else
+# include "../include/wchar.h"
+#endif
 
 #else
 /* Normal invocation convention.  */
@@ -77,7 +82,12 @@
    Some builds of uClibc lack it.  */
 /* The include_next requires a split double-inclusion guard.  */
 #if 1
-# include "../ucrt/wchar.h"
+
+# if _MSC_VER >= 1900
+#  include "../ucrt/wchar.h"
+# else
+#  include "../include/wchar.h"
+# endif
 #endif
 
 #undef _GL_ALREADY_INCLUDING_WCHAR_H

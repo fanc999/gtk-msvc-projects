@@ -32,7 +32,11 @@
       && !defined __MINGW32__)                         \
      || defined _GL_TIME_H)
 
-# include "../ucrt/time.h"
+# if _MSC_VER >= 1900
+#  include "../ucrt/time.h"
+# else
+#  include "../include/time.h"
+# endif
 
 #else
 
@@ -44,7 +48,11 @@
 #  include <unistd.h>
 # endif
 
-# include "../ucrt/time.h"
+# if _MSC_VER >= 1900
+#  include "../ucrt/time.h"
+# else
+#  include "../include/time.h"
+# endif
 
 /* NetBSD 5.0 mis-defines NULL.  */
 # include <stddef.h>
@@ -565,7 +573,7 @@ _GL_WARN_EXTERN_C int _gl_warn_on_use
    Or they define it with the wrong member names or define it in <sys/time.h>
    (e.g., FreeBSD circa 1997).  Stock Mingw prior to 3.0 does not define it,
    but the pthreads-win32 library defines it in <pthread.h>.  */
-# if ! 1
+# if _MSC_VER < 1900
 #  if 0
 #   include <sys/time.h>
 #  elif 0
@@ -609,7 +617,7 @@ struct __time_t_must_be_integral {
 # endif
 
 /* Define TIME_UTC, a positive integer constant used for timespec_get().  */
-# if ! 1
+# if _MSC_VER < 1900
 #  if !GNULIB_defined_TIME_UTC
 #   define TIME_UTC 1
 #   define GNULIB_defined_TIME_UTC 1

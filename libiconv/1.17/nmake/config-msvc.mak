@@ -49,6 +49,10 @@ ICONV_CFLAGS =	\
 	/DDEPENDS_ON_LIBICONV	\
 	/DEXEEXT=\".exe\"
 
+!if $(PDBVER) < 14
+ICONV_CFLAGS = $(ICONV_CFLAGS) /Dinline=__inline
+!endif
+
 BASE_LIBICONV_INCLUDES =	\
 	/I..\msvc\vs$(PDBVER)\srclib	\
 	/I..\msvc\srclib	\
@@ -60,7 +64,7 @@ BASE_LIBICONV_INCLUDES =	\
 
 LIBCHARSET_INCLUDES =	\
 	/I..\libcharset\lib	\
-	/I..\msvc\vs$(PDBVER)\libcharset	\
+	/I..\msvc\libcharset	\
 	/I..\libcharset	\
 	/I..\msvc\libcharset\include
 

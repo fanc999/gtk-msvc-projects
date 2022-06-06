@@ -1,7 +1,7 @@
 /* DO NOT EDIT! GENERATED AUTOMATICALLY! */
-/* Copyright (C) 2006-2022 Free Software Foundation, Inc.
-   Written by Paul Eggert, Bruno Haible, Derek Price.
-   This file is part of gnulib.
+/* Like <fcntl.h>, but with non-working flags defined to 0.
+
+   Copyright (C) 2006-2022 Free Software Foundation, Inc.
 
    This file is free software: you can redistribute it and/or modify
    it under the terms of the GNU Lesser General Public License as
@@ -16,52 +16,77 @@
    You should have received a copy of the GNU Lesser General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
-/*
- * ISO C 99 <inttypes.h> for platforms that lack it.
- * <https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/inttypes.h.html>
- */
+/* written by Paul Eggert */
 
 #if __GNUC__ >= 3
 
 #endif
 
 
-/* Include the original <inttypes.h> if it exists, and if this file
-   has not been included yet or if this file includes gnulib stdint.h
-   which in turn includes this file.
-   The include_next requires a split double-inclusion guard.  */
-#if ! defined INTTYPES_H || defined _GL_JUST_INCLUDE_SYSTEM_INTTYPES_H
-# if 1
+#if defined __need_system_fcntl_h
+/* Special invocation convention.  */
 
-   /* Some pre-C++11 <stdint.h> implementations need this.  */
-#  if defined __cplusplus && ! defined __STDC_FORMAT_MACROS
-#   define __STDC_FORMAT_MACROS 1
-#  endif
-
-#  include "../ucrt/inttypes.h"
-
-#  define _GL_FINISHED_INCLUDING_SYSTEM_INTTYPES_H
-# endif
+/* Needed before <sys/stat.h>.
+   May also define off_t to a 64-bit type on native Windows.  */
+#include <sys/types.h>
+/* On some systems other than glibc, <sys/stat.h> is a prerequisite of
+   <fcntl.h>.  On glibc systems, we would like to avoid namespace pollution.
+   But on glibc systems, <fcntl.h> includes <sys/stat.h> inside an
+   extern "C" { ... } block, which leads to errors in C++ mode with the
+   overridden <sys/stat.h> from gnulib.  These errors are known to be gone
+   with g++ version >= 4.3.  */
+#if !(defined __GLIBC__ || defined __UCLIBC__) || (defined __cplusplus && defined GNULIB_NAMESPACE && (defined __ICC || !(__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 3))))
+# include <sys/stat.h>
+#endif
+#if _MSC_VER >= 1900
+# include "../ucrt/fcntl.h"
+#else
+# include "../include/fcntl.h"
 #endif
 
-#if ! defined INTTYPES_H && ! defined _GL_JUST_INCLUDE_SYSTEM_INTTYPES_H
-#define INTTYPES_H
-
-/* Include <stdint.h> or the gnulib replacement.
-   But avoid namespace pollution on glibc systems.  */
-#ifndef __GLIBC__
-# include <stdint.h>
-#endif
-/* Get CHAR_BIT, INT_MAX, LONG_MAX, etc.  */
-#include <limits.h>
-/* On mingw, __USE_MINGW_ANSI_STDIO only works if <stdio.h> is also included */
-#if defined _WIN32 && ! defined __CYGWIN__
-# include <stdio.h>
+/* Native Windows platforms declare open(), creat() in <io.h>.  */
+#if (0 || 1 || defined GNULIB_POSIXCHECK) \
+    && (defined _WIN32 && ! defined __CYGWIN__)
+# include <io.h>
 #endif
 
-#if !(INT_MAX == 0x7fffffff && INT_MIN + INT_MAX == -1)
-# error "This file assumes that 'int' is 32-bit two's complement. Please report your platform and compiler to <bug-gnulib@gnu.org>."
+#else
+/* Normal invocation convention.  */
+
+#ifndef _GL_FCNTL_H
+
+/* Needed before <sys/stat.h>.
+   May also define off_t to a 64-bit type on native Windows.  */
+#include <sys/types.h>
+/* On some systems other than glibc, <sys/stat.h> is a prerequisite of
+   <fcntl.h>.  On glibc systems, we would like to avoid namespace pollution.
+   But on glibc systems, <fcntl.h> includes <sys/stat.h> inside an
+   extern "C" { ... } block, which leads to errors in C++ mode with the
+   overridden <sys/stat.h> from gnulib.  These errors are known to be gone
+   with g++ version >= 4.3.  */
+#if !(defined __GLIBC__ || defined __UCLIBC__) || (defined __cplusplus && defined GNULIB_NAMESPACE && (defined __ICC || !(__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 3))))
+# include <sys/stat.h>
 #endif
+/* The include_next requires a split double-inclusion guard.  */
+#if _MSC_VER >= 1900
+# include "../ucrt/fcntl.h"
+#else
+# include "../include/fcntl.h"
+#endif
+
+/* Native Windows platforms declare open(), creat() in <io.h>.  */
+#if (0 || 1 || defined GNULIB_POSIXCHECK) \
+    && (defined _WIN32 && ! defined __CYGWIN__)
+# include <io.h>
+#endif
+
+#ifndef _GL_FCNTL_H
+#define _GL_FCNTL_H
+
+#ifndef __GLIBC__ /* Avoid namespace pollution on glibc systems.  */
+# include <unistd.h>
+#endif
+
 
 /* The definitions of _GL_FUNCDECL_RPL etc. are copied here.  */
 /* C++ compatible function declaration macros.
@@ -575,935 +600,361 @@ _GL_WARN_EXTERN_C int _gl_warn_on_use
 # endif
 #endif
 
-/* 7.8.1 Macros for format specifiers */
 
-#if defined _TNS_R_TARGET
-   /* Tandem NonStop R series and compatible platforms released before
-      July 2005 support %Ld but not %lld.  */
-# define _LONG_LONG_FORMAT_PREFIX "L"
+/* Declare overridden functions.  */
+
+#if 0
+# if 0
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef creat
+#   define creat rpl_creat
+#  endif
+_GL_FUNCDECL_RPL (creat, int, (const char *filename, mode_t mode)
+                             _GL_ARG_NONNULL ((1)));
+_GL_CXXALIAS_RPL (creat, int, (const char *filename, mode_t mode));
+# elif defined _WIN32 && !defined __CYGWIN__
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef creat
+#   define creat _creat
+#  endif
+_GL_CXXALIAS_MDA (creat, int, (const char *filename, mode_t mode));
+# else
+_GL_CXXALIAS_SYS (creat, int, (const char *filename, mode_t mode));
+# endif
+_GL_CXXALIASWARN (creat);
+#elif defined GNULIB_POSIXCHECK
+# undef creat
+/* Assume creat is always declared.  */
+_GL_WARN_ON_USE (creat, "creat is not always POSIX compliant - "
+                 "use gnulib module creat for portability");
+#elif 1
+/* On native Windows, map 'creat' to '_creat', so that -loldnames is not
+   required.  In C++ with GNULIB_NAMESPACE, avoid differences between
+   platforms by defining GNULIB_NAMESPACE::creat always.  */
+# if defined _WIN32 && !defined __CYGWIN__
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef creat
+#   define creat _creat
+#  endif
+/* Need to cast, because in mingw the last argument is 'int mode'.  */
+_GL_CXXALIAS_MDA_CAST (creat, int, (const char *filename, mode_t mode));
+# else
+_GL_CXXALIAS_SYS (creat, int, (const char *filename, mode_t mode));
+# endif
+_GL_CXXALIASWARN (creat);
+#endif
+
+#if 1
+# if 0
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef fcntl
+#   define fcntl rpl_fcntl
+#  endif
+_GL_FUNCDECL_RPL (fcntl, int, (int fd, int action, ...));
+_GL_CXXALIAS_RPL (fcntl, int, (int fd, int action, ...));
+#  if !GNULIB_defined_rpl_fcntl
+#   define GNULIB_defined_rpl_fcntl 1
+#  endif
+# else
+#  if !0
+_GL_FUNCDECL_SYS (fcntl, int, (int fd, int action, ...));
+#   if !GNULIB_defined_fcntl
+#    define GNULIB_defined_fcntl 1
+#   endif
+#  endif
+_GL_CXXALIAS_SYS (fcntl, int, (int fd, int action, ...));
+# endif
+_GL_CXXALIASWARN (fcntl);
+#elif defined GNULIB_POSIXCHECK
+# undef fcntl
+# if HAVE_RAW_DECL_FCNTL
+_GL_WARN_ON_USE (fcntl, "fcntl is not always POSIX compliant - "
+                 "use gnulib module fcntl for portability");
+# endif
+#endif
+
+#if 1
+# if 1
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef open
+#   define open rpl_open
+#  endif
+_GL_FUNCDECL_RPL (open, int, (const char *filename, int flags, ...)
+                             _GL_ARG_NONNULL ((1)));
+_GL_CXXALIAS_RPL (open, int, (const char *filename, int flags, ...));
+# elif defined _WIN32 && !defined __CYGWIN__
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef open
+#   define open _open
+#  endif
+_GL_CXXALIAS_MDA (open, int, (const char *filename, int flags, ...));
+# else
+_GL_CXXALIAS_SYS (open, int, (const char *filename, int flags, ...));
+# endif
+/* On HP-UX 11, in C++ mode, open() is defined as an inline function with a
+   default argument.  _GL_CXXALIASWARN does not work in this case.  */
+# if !defined __hpux
+_GL_CXXALIASWARN (open);
+# endif
+#elif defined GNULIB_POSIXCHECK
+# undef open
+/* Assume open is always declared.  */
+_GL_WARN_ON_USE (open, "open is not always POSIX compliant - "
+                 "use gnulib module open for portability");
+#elif 1
+/* On native Windows, map 'open' to '_open', so that -loldnames is not
+   required.  In C++ with GNULIB_NAMESPACE, avoid differences between
+   platforms by defining GNULIB_NAMESPACE::open always.  */
+# if defined _WIN32 && !defined __CYGWIN__
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef open
+#   define open _open
+#  endif
+_GL_CXXALIAS_MDA (open, int, (const char *filename, int flags, ...));
+# else
+_GL_CXXALIAS_SYS (open, int, (const char *filename, int flags, ...));
+# endif
+# if !defined __hpux
+_GL_CXXALIASWARN (open);
+# endif
+#endif
+
+#if 0
+# if 0
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef openat
+#   define openat rpl_openat
+#  endif
+_GL_FUNCDECL_RPL (openat, int,
+                  (int fd, char const *file, int flags, /* mode_t mode */ ...)
+                  _GL_ARG_NONNULL ((2)));
+_GL_CXXALIAS_RPL (openat, int,
+                  (int fd, char const *file, int flags, /* mode_t mode */ ...));
+# else
+#  if !1
+_GL_FUNCDECL_SYS (openat, int,
+                  (int fd, char const *file, int flags, /* mode_t mode */ ...)
+                  _GL_ARG_NONNULL ((2)));
+#  endif
+_GL_CXXALIAS_SYS (openat, int,
+                  (int fd, char const *file, int flags, /* mode_t mode */ ...));
+# endif
+_GL_CXXALIASWARN (openat);
+#elif defined GNULIB_POSIXCHECK
+# undef openat
+# if HAVE_RAW_DECL_OPENAT
+_GL_WARN_ON_USE (openat, "openat is not portable - "
+                 "use gnulib module openat for portability");
+# endif
+#endif
+
+
+/* Fix up the FD_* macros, only known to be missing on mingw.  */
+
+#ifndef FD_CLOEXEC
+# define FD_CLOEXEC 1
+#endif
+
+/* Fix up the supported F_* macros.  Intentionally leave other F_*
+   macros undefined.  Only known to be missing on mingw.  */
+
+#ifndef F_DUPFD_CLOEXEC
+# define F_DUPFD_CLOEXEC 0x40000000
+/* Witness variable: 1 if gnulib defined F_DUPFD_CLOEXEC, 0 otherwise.  */
+# define GNULIB_defined_F_DUPFD_CLOEXEC 1
 #else
-# define _LONG_LONG_FORMAT_PREFIX "ll"
+# define GNULIB_defined_F_DUPFD_CLOEXEC 0
 #endif
 
-#if !defined PRId8
-# ifdef INT8_MAX
-#  define PRId8 "d"
-# endif
+#ifndef F_DUPFD
+# define F_DUPFD 1
 #endif
-#if !defined PRIi8
-# ifdef INT8_MAX
-#  define PRIi8 "i"
-# endif
+
+#ifndef F_GETFD
+# define F_GETFD 2
 #endif
-#if !defined PRIo8
-# ifdef UINT8_MAX
-#  define PRIo8 "o"
+
+/* Fix up the O_* macros.  */
+
+/* AIX 7.1 with XL C 12.1 defines O_CLOEXEC, O_NOFOLLOW, and O_TTY_INIT
+   to values outside 'int' range, so omit these misdefinitions.
+   But avoid namespace pollution on non-AIX systems.  */
+#ifdef _AIX
+# include <limits.h>
+# if defined O_CLOEXEC && ! (INT_MIN <= O_CLOEXEC && O_CLOEXEC <= INT_MAX)
+#  undef O_CLOEXEC
 # endif
-#endif
-#if !defined PRIu8
-# ifdef UINT8_MAX
-#  define PRIu8 "u"
+# if defined O_NOFOLLOW && ! (INT_MIN <= O_NOFOLLOW && O_NOFOLLOW <= INT_MAX)
+#  undef O_NOFOLLOW
 # endif
-#endif
-#if !defined PRIx8
-# ifdef UINT8_MAX
-#  define PRIx8 "x"
-# endif
-#endif
-#if !defined PRIX8
-# ifdef UINT8_MAX
-#  define PRIX8 "X"
-# endif
-#endif
-#if !defined PRId16
-# ifdef INT16_MAX
-#  define PRId16 "d"
-# endif
-#endif
-#if !defined PRIi16
-# ifdef INT16_MAX
-#  define PRIi16 "i"
-# endif
-#endif
-#if !defined PRIo16
-# ifdef UINT16_MAX
-#  define PRIo16 "o"
-# endif
-#endif
-#if !defined PRIu16
-# ifdef UINT16_MAX
-#  define PRIu16 "u"
-# endif
-#endif
-#if !defined PRIx16
-# ifdef UINT16_MAX
-#  define PRIx16 "x"
-# endif
-#endif
-#if !defined PRIX16
-# ifdef UINT16_MAX
-#  define PRIX16 "X"
-# endif
-#endif
-#if !defined PRId32
-# ifdef INT32_MAX
-#  define PRId32 "d"
-# endif
-#endif
-#if !defined PRIi32
-# ifdef INT32_MAX
-#  define PRIi32 "i"
-# endif
-#endif
-#if !defined PRIo32
-# ifdef UINT32_MAX
-#  define PRIo32 "o"
-# endif
-#endif
-#if !defined PRIu32
-# ifdef UINT32_MAX
-#  define PRIu32 "u"
-# endif
-#endif
-#if !defined PRIx32
-# ifdef UINT32_MAX
-#  define PRIx32 "x"
-# endif
-#endif
-#if !defined PRIX32
-# ifdef UINT32_MAX
-#  define PRIX32 "X"
-# endif
-#endif
-#ifdef INT64_MAX
-# if (0 ? defined _LP64 : defined _LP64)
-#  define _PRI64_PREFIX "l"
-# elif defined _MSC_VER || defined __MINGW32__
-#  define _PRI64_PREFIX "I64"
-# elif LONG_MAX >> 30 == 1
-#  define _PRI64_PREFIX _LONG_LONG_FORMAT_PREFIX
-# endif
-# if !defined PRId64
-#  define PRId64 _PRI64_PREFIX "d"
-# endif
-# if !defined PRIi64
-#  define PRIi64 _PRI64_PREFIX "i"
-# endif
-#endif
-#ifdef UINT64_MAX
-# if (0 ? defined _LP64 : defined _LP64)
-#  define _PRIu64_PREFIX "l"
-# elif defined _MSC_VER || defined __MINGW32__
-#  define _PRIu64_PREFIX "I64"
-# elif ULONG_MAX >> 31 == 1
-#  define _PRIu64_PREFIX _LONG_LONG_FORMAT_PREFIX
-# endif
-# if !defined PRIo64
-#  define PRIo64 _PRIu64_PREFIX "o"
-# endif
-# if !defined PRIu64
-#  define PRIu64 _PRIu64_PREFIX "u"
-# endif
-# if !defined PRIx64
-#  define PRIx64 _PRIu64_PREFIX "x"
-# endif
-# if !defined PRIX64
-#  define PRIX64 _PRIu64_PREFIX "X"
+# if defined O_TTY_INIT && ! (INT_MIN <= O_TTY_INIT && O_TTY_INIT <= INT_MAX)
+#  undef O_TTY_INIT
 # endif
 #endif
 
-#if !defined PRIdLEAST8
-# define PRIdLEAST8 "d"
-#endif
-#if !defined PRIiLEAST8
-# define PRIiLEAST8 "i"
-#endif
-#if !defined PRIoLEAST8
-# define PRIoLEAST8 "o"
-#endif
-#if !defined PRIuLEAST8
-# define PRIuLEAST8 "u"
-#endif
-#if !defined PRIxLEAST8
-# define PRIxLEAST8 "x"
-#endif
-#if !defined PRIXLEAST8
-# define PRIXLEAST8 "X"
-#endif
-#if !defined PRIdLEAST16
-# define PRIdLEAST16 "d"
-#endif
-#if !defined PRIiLEAST16
-# define PRIiLEAST16 "i"
-#endif
-#if !defined PRIoLEAST16
-# define PRIoLEAST16 "o"
-#endif
-#if !defined PRIuLEAST16
-# define PRIuLEAST16 "u"
-#endif
-#if !defined PRIxLEAST16
-# define PRIxLEAST16 "x"
-#endif
-#if !defined PRIXLEAST16
-# define PRIXLEAST16 "X"
-#endif
-#if !defined PRIdLEAST32
-# define PRIdLEAST32 "d"
-#endif
-#if !defined PRIiLEAST32
-# define PRIiLEAST32 "i"
-#endif
-#if !defined PRIoLEAST32
-# define PRIoLEAST32 "o"
-#endif
-#if !defined PRIuLEAST32
-# define PRIuLEAST32 "u"
-#endif
-#if !defined PRIxLEAST32
-# define PRIxLEAST32 "x"
-#endif
-#if !defined PRIXLEAST32
-# define PRIXLEAST32 "X"
-#endif
-#ifdef INT64_MAX
-# if !defined PRIdLEAST64
-#  define PRIdLEAST64 PRId64
-# endif
-# if !defined PRIiLEAST64
-#  define PRIiLEAST64 PRIi64
-# endif
-#endif
-#ifdef UINT64_MAX
-# if !defined PRIoLEAST64
-#  define PRIoLEAST64 PRIo64
-# endif
-# if !defined PRIuLEAST64
-#  define PRIuLEAST64 PRIu64
-# endif
-# if !defined PRIxLEAST64
-#  define PRIxLEAST64 PRIx64
-# endif
-# if !defined PRIXLEAST64
-#  define PRIXLEAST64 PRIX64
-# endif
+#if !defined O_DIRECT && defined O_DIRECTIO
+/* Tru64 spells it 'O_DIRECTIO'.  */
+# define O_DIRECT O_DIRECTIO
 #endif
 
-#if !defined PRIdFAST8
-# if INT_FAST8_MAX > INT32_MAX
-#  define PRIdFAST8 PRId64
-# else
-#  define PRIdFAST8 "d"
-# endif
-#endif
-#if !defined PRIiFAST8
-# if INT_FAST8_MAX > INT32_MAX
-#  define PRIiFAST8 PRIi64
-# else
-#  define PRIiFAST8 "i"
-# endif
-#endif
-#if !defined PRIoFAST8
-# if UINT_FAST8_MAX > UINT32_MAX
-#  define PRIoFAST8 PRIo64
-# else
-#  define PRIoFAST8 "o"
-# endif
-#endif
-#if !defined PRIuFAST8
-# if UINT_FAST8_MAX > UINT32_MAX
-#  define PRIuFAST8 PRIu64
-# else
-#  define PRIuFAST8 "u"
-# endif
-#endif
-#if !defined PRIxFAST8
-# if UINT_FAST8_MAX > UINT32_MAX
-#  define PRIxFAST8 PRIx64
-# else
-#  define PRIxFAST8 "x"
-# endif
-#endif
-#if !defined PRIXFAST8
-# if UINT_FAST8_MAX > UINT32_MAX
-#  define PRIXFAST8 PRIX64
-# else
-#  define PRIXFAST8 "X"
-# endif
-#endif
-#if !defined PRIdFAST16
-# if INT_FAST16_MAX > INT32_MAX
-#  define PRIdFAST16 PRId64
-# else
-#  define PRIdFAST16 "d"
-# endif
-#endif
-#if !defined PRIiFAST16
-# if INT_FAST16_MAX > INT32_MAX
-#  define PRIiFAST16 PRIi64
-# else
-#  define PRIiFAST16 "i"
-# endif
-#endif
-#if !defined PRIoFAST16
-# if UINT_FAST16_MAX > UINT32_MAX
-#  define PRIoFAST16 PRIo64
-# else
-#  define PRIoFAST16 "o"
-# endif
-#endif
-#if !defined PRIuFAST16
-# if UINT_FAST16_MAX > UINT32_MAX
-#  define PRIuFAST16 PRIu64
-# else
-#  define PRIuFAST16 "u"
-# endif
-#endif
-#if !defined PRIxFAST16
-# if UINT_FAST16_MAX > UINT32_MAX
-#  define PRIxFAST16 PRIx64
-# else
-#  define PRIxFAST16 "x"
-# endif
-#endif
-#if !defined PRIXFAST16
-# if UINT_FAST16_MAX > UINT32_MAX
-#  define PRIXFAST16 PRIX64
-# else
-#  define PRIXFAST16 "X"
-# endif
-#endif
-#if !defined PRIdFAST32
-# if INT_FAST32_MAX > INT32_MAX
-#  define PRIdFAST32 PRId64
-# else
-#  define PRIdFAST32 "d"
-# endif
-#endif
-#if !defined PRIiFAST32
-# if INT_FAST32_MAX > INT32_MAX
-#  define PRIiFAST32 PRIi64
-# else
-#  define PRIiFAST32 "i"
-# endif
-#endif
-#if !defined PRIoFAST32
-# if UINT_FAST32_MAX > UINT32_MAX
-#  define PRIoFAST32 PRIo64
-# else
-#  define PRIoFAST32 "o"
-# endif
-#endif
-#if !defined PRIuFAST32
-# if UINT_FAST32_MAX > UINT32_MAX
-#  define PRIuFAST32 PRIu64
-# else
-#  define PRIuFAST32 "u"
-# endif
-#endif
-#if !defined PRIxFAST32
-# if UINT_FAST32_MAX > UINT32_MAX
-#  define PRIxFAST32 PRIx64
-# else
-#  define PRIxFAST32 "x"
-# endif
-#endif
-#if !defined PRIXFAST32
-# if UINT_FAST32_MAX > UINT32_MAX
-#  define PRIXFAST32 PRIX64
-# else
-#  define PRIXFAST32 "X"
-# endif
-#endif
-#ifdef INT64_MAX
-# if !defined PRIdFAST64
-#  define PRIdFAST64 PRId64
-# endif
-# if !defined PRIiFAST64
-#  define PRIiFAST64 PRIi64
-# endif
-#endif
-#ifdef UINT64_MAX
-# if !defined PRIoFAST64
-#  define PRIoFAST64 PRIo64
-# endif
-# if !defined PRIuFAST64
-#  define PRIuFAST64 PRIu64
-# endif
-# if !defined PRIxFAST64
-#  define PRIxFAST64 PRIx64
-# endif
-# if !defined PRIXFAST64
-#  define PRIXFAST64 PRIX64
-# endif
+#if !defined O_CLOEXEC && defined O_NOINHERIT
+/* Mingw spells it 'O_NOINHERIT'.  */
+# define O_CLOEXEC O_NOINHERIT
 #endif
 
-#if !defined PRIdMAX
-# if 1
-#  define PRIdMAX PRId64
-# else
-#  define PRIdMAX "ld"
-# endif
-#endif
-#if !defined PRIiMAX
-# if 1
-#  define PRIiMAX PRIi64
-# else
-#  define PRIiMAX "li"
-# endif
-#endif
-#if !defined PRIoMAX
-# if 1
-#  define PRIoMAX PRIo64
-# else
-#  define PRIoMAX "lo"
-# endif
-#endif
-#if !defined PRIuMAX
-# if 1
-#  define PRIuMAX PRIu64
-# else
-#  define PRIuMAX "lu"
-# endif
-#endif
-#if !defined PRIxMAX
-# if 1
-#  define PRIxMAX PRIx64
-# else
-#  define PRIxMAX "lx"
-# endif
-#endif
-#if !defined PRIXMAX
-# if 1
-#  define PRIXMAX PRIX64
-# else
-#  define PRIXMAX "lX"
-# endif
+#ifndef O_CLOEXEC
+# define O_CLOEXEC 0x40000000 /* Try to not collide with system O_* flags.  */
+# define GNULIB_defined_O_CLOEXEC 1
+#else
+# define GNULIB_defined_O_CLOEXEC 0
 #endif
 
-#if !defined PRIdPTR
-# ifdef INTPTR_MAX
-#  define PRIdPTR __PRIPTR_PREFIX "d"
-# endif
-#endif
-#if !defined PRIiPTR
-# ifdef INTPTR_MAX
-#  define PRIiPTR __PRIPTR_PREFIX "i"
-# endif
-#endif
-#if !defined PRIoPTR
-# ifdef UINTPTR_MAX
-#  define PRIoPTR __PRIPTR_PREFIX "o"
-# endif
-#endif
-#if !defined PRIuPTR
-# ifdef UINTPTR_MAX
-#  define PRIuPTR __PRIPTR_PREFIX "u"
-# endif
-#endif
-#if !defined PRIxPTR
-# ifdef UINTPTR_MAX
-#  define PRIxPTR __PRIPTR_PREFIX "x"
-# endif
-#endif
-#if !defined PRIXPTR
-# ifdef UINTPTR_MAX
-#  define PRIXPTR __PRIPTR_PREFIX "X"
-# endif
+#ifndef O_DIRECT
+# define O_DIRECT 0
 #endif
 
-#if !defined SCNd8
-# ifdef INT8_MAX
-#  define SCNd8 "hhd"
-# endif
-#endif
-#if !defined SCNi8
-# ifdef INT8_MAX
-#  define SCNi8 "hhi"
-# endif
-#endif
-#if !defined SCNo8
-# ifdef UINT8_MAX
-#  define SCNo8 "hho"
-# endif
-#endif
-#if !defined SCNu8
-# ifdef UINT8_MAX
-#  define SCNu8 "hhu"
-# endif
-#endif
-#if !defined SCNx8
-# ifdef UINT8_MAX
-#  define SCNx8 "hhx"
-# endif
-#endif
-#if !defined SCNd16
-# ifdef INT16_MAX
-#  define SCNd16 "hd"
-# endif
-#endif
-#if !defined SCNi16
-# ifdef INT16_MAX
-#  define SCNi16 "hi"
-# endif
-#endif
-#if !defined SCNo16
-# ifdef UINT16_MAX
-#  define SCNo16 "ho"
-# endif
-#endif
-#if !defined SCNu16
-# ifdef UINT16_MAX
-#  define SCNu16 "hu"
-# endif
-#endif
-#if !defined SCNx16
-# ifdef UINT16_MAX
-#  define SCNx16 "hx"
-# endif
-#endif
-#if !defined SCNd32
-# ifdef INT32_MAX
-#  define SCNd32 "d"
-# endif
-#endif
-#if !defined SCNi32
-# ifdef INT32_MAX
-#  define SCNi32 "i"
-# endif
-#endif
-#if !defined SCNo32
-# ifdef UINT32_MAX
-#  define SCNo32 "o"
-# endif
-#endif
-#if !defined SCNu32
-# ifdef UINT32_MAX
-#  define SCNu32 "u"
-# endif
-#endif
-#if !defined SCNx32
-# ifdef UINT32_MAX
-#  define SCNx32 "x"
-# endif
-#endif
-#ifdef INT64_MAX
-# if (0 ? defined _LP64 : defined _LP64)
-#  define _SCN64_PREFIX "l"
-# elif defined _MSC_VER || defined __MINGW32__
-#  define _SCN64_PREFIX "I64"
-# elif LONG_MAX >> 30 == 1
-#  define _SCN64_PREFIX _LONG_LONG_FORMAT_PREFIX
-# endif
-# if !defined SCNd64
-#  define SCNd64 _SCN64_PREFIX "d"
-# endif
-# if !defined SCNi64
-#  define SCNi64 _SCN64_PREFIX "i"
-# endif
-#endif
-#ifdef UINT64_MAX
-# if (0 ? defined _LP64 : defined _LP64)
-#  define _SCNu64_PREFIX "l"
-# elif defined _MSC_VER || defined __MINGW32__
-#  define _SCNu64_PREFIX "I64"
-# elif ULONG_MAX >> 31 == 1
-#  define _SCNu64_PREFIX _LONG_LONG_FORMAT_PREFIX
-# endif
-# if !defined SCNo64
-#  define SCNo64 _SCNu64_PREFIX "o"
-# endif
-# if !defined SCNu64
-#  define SCNu64 _SCNu64_PREFIX "u"
-# endif
-# if !defined SCNx64
-#  define SCNx64 _SCNu64_PREFIX "x"
-# endif
+#ifndef O_DIRECTORY
+# define O_DIRECTORY 0
 #endif
 
-#if !defined SCNdLEAST8
-# define SCNdLEAST8 "hhd"
-#endif
-#if !defined SCNiLEAST8
-# define SCNiLEAST8 "hhi"
-#endif
-#if !defined SCNoLEAST8
-# define SCNoLEAST8 "hho"
-#endif
-#if !defined SCNuLEAST8
-# define SCNuLEAST8 "hhu"
-#endif
-#if !defined SCNxLEAST8
-# define SCNxLEAST8 "hhx"
-#endif
-#if !defined SCNdLEAST16
-# define SCNdLEAST16 "hd"
-#endif
-#if !defined SCNiLEAST16
-# define SCNiLEAST16 "hi"
-#endif
-#if !defined SCNoLEAST16
-# define SCNoLEAST16 "ho"
-#endif
-#if !defined SCNuLEAST16
-# define SCNuLEAST16 "hu"
-#endif
-#if !defined SCNxLEAST16
-# define SCNxLEAST16 "hx"
-#endif
-#if !defined SCNdLEAST32
-# define SCNdLEAST32 "d"
-#endif
-#if !defined SCNiLEAST32
-# define SCNiLEAST32 "i"
-#endif
-#if !defined SCNoLEAST32
-# define SCNoLEAST32 "o"
-#endif
-#if !defined SCNuLEAST32
-# define SCNuLEAST32 "u"
-#endif
-#if !defined SCNxLEAST32
-# define SCNxLEAST32 "x"
-#endif
-#ifdef INT64_MAX
-# if !defined SCNdLEAST64
-#  define SCNdLEAST64 SCNd64
-# endif
-# if !defined SCNiLEAST64
-#  define SCNiLEAST64 SCNi64
-# endif
-#endif
-#ifdef UINT64_MAX
-# if !defined SCNoLEAST64
-#  define SCNoLEAST64 SCNo64
-# endif
-# if !defined SCNuLEAST64
-#  define SCNuLEAST64 SCNu64
-# endif
-# if !defined SCNxLEAST64
-#  define SCNxLEAST64 SCNx64
-# endif
+#ifndef O_DSYNC
+# define O_DSYNC 0
 #endif
 
-#if !defined SCNdFAST8
-# if INT_FAST8_MAX > INT32_MAX
-#  define SCNdFAST8 SCNd64
-# elif INT_FAST8_MAX == 0x7fff
-#  define SCNdFAST8 "hd"
-# elif INT_FAST8_MAX == 0x7f
-#  define SCNdFAST8 "hhd"
-# else
-#  define SCNdFAST8 "d"
-# endif
-#endif
-#if !defined SCNiFAST8
-# if INT_FAST8_MAX > INT32_MAX
-#  define SCNiFAST8 SCNi64
-# elif INT_FAST8_MAX == 0x7fff
-#  define SCNiFAST8 "hi"
-# elif INT_FAST8_MAX == 0x7f
-#  define SCNiFAST8 "hhi"
-# else
-#  define SCNiFAST8 "i"
-# endif
-#endif
-#if !defined SCNoFAST8
-# if UINT_FAST8_MAX > UINT32_MAX
-#  define SCNoFAST8 SCNo64
-# elif UINT_FAST8_MAX == 0xffff
-#  define SCNoFAST8 "ho"
-# elif UINT_FAST8_MAX == 0xff
-#  define SCNoFAST8 "hho"
-# else
-#  define SCNoFAST8 "o"
-# endif
-#endif
-#if !defined SCNuFAST8
-# if UINT_FAST8_MAX > UINT32_MAX
-#  define SCNuFAST8 SCNu64
-# elif UINT_FAST8_MAX == 0xffff
-#  define SCNuFAST8 "hu"
-# elif UINT_FAST8_MAX == 0xff
-#  define SCNuFAST8 "hhu"
-# else
-#  define SCNuFAST8 "u"
-# endif
-#endif
-#if !defined SCNxFAST8
-# if UINT_FAST8_MAX > UINT32_MAX
-#  define SCNxFAST8 SCNx64
-# elif UINT_FAST8_MAX == 0xffff
-#  define SCNxFAST8 "hx"
-# elif UINT_FAST8_MAX == 0xff
-#  define SCNxFAST8 "hhx"
-# else
-#  define SCNxFAST8 "x"
-# endif
-#endif
-#if !defined SCNdFAST16
-# if INT_FAST16_MAX > INT32_MAX
-#  define SCNdFAST16 SCNd64
-# elif INT_FAST16_MAX == 0x7fff
-#  define SCNdFAST16 "hd"
-# else
-#  define SCNdFAST16 "d"
-# endif
-#endif
-#if !defined SCNiFAST16
-# if INT_FAST16_MAX > INT32_MAX
-#  define SCNiFAST16 SCNi64
-# elif INT_FAST16_MAX == 0x7fff
-#  define SCNiFAST16 "hi"
-# else
-#  define SCNiFAST16 "i"
-# endif
-#endif
-#if !defined SCNoFAST16
-# if UINT_FAST16_MAX > UINT32_MAX
-#  define SCNoFAST16 SCNo64
-# elif UINT_FAST16_MAX == 0xffff
-#  define SCNoFAST16 "ho"
-# else
-#  define SCNoFAST16 "o"
-# endif
-#endif
-#if !defined SCNuFAST16
-# if UINT_FAST16_MAX > UINT32_MAX
-#  define SCNuFAST16 SCNu64
-# elif UINT_FAST16_MAX == 0xffff
-#  define SCNuFAST16 "hu"
-# else
-#  define SCNuFAST16 "u"
-# endif
-#endif
-#if !defined SCNxFAST16
-# if UINT_FAST16_MAX > UINT32_MAX
-#  define SCNxFAST16 SCNx64
-# elif UINT_FAST16_MAX == 0xffff
-#  define SCNxFAST16 "hx"
-# else
-#  define SCNxFAST16 "x"
-# endif
-#endif
-#if !defined SCNdFAST32
-# if INT_FAST32_MAX > INT32_MAX
-#  define SCNdFAST32 SCNd64
-# else
-#  define SCNdFAST32 "d"
-# endif
-#endif
-#if !defined SCNiFAST32
-# if INT_FAST32_MAX > INT32_MAX
-#  define SCNiFAST32 SCNi64
-# else
-#  define SCNiFAST32 "i"
-# endif
-#endif
-#if !defined SCNoFAST32
-# if UINT_FAST32_MAX > UINT32_MAX
-#  define SCNoFAST32 SCNo64
-# else
-#  define SCNoFAST32 "o"
-# endif
-#endif
-#if !defined SCNuFAST32
-# if UINT_FAST32_MAX > UINT32_MAX
-#  define SCNuFAST32 SCNu64
-# else
-#  define SCNuFAST32 "u"
-# endif
-#endif
-#if !defined SCNxFAST32
-# if UINT_FAST32_MAX > UINT32_MAX
-#  define SCNxFAST32 SCNx64
-# else
-#  define SCNxFAST32 "x"
-# endif
-#endif
-#ifdef INT64_MAX
-# if !defined SCNdFAST64
-#  define SCNdFAST64 SCNd64
-# endif
-# if !defined SCNiFAST64
-#  define SCNiFAST64 SCNi64
-# endif
-#endif
-#ifdef UINT64_MAX
-# if !defined SCNoFAST64
-#  define SCNoFAST64 SCNo64
-# endif
-# if !defined SCNuFAST64
-#  define SCNuFAST64 SCNu64
-# endif
-# if !defined SCNxFAST64
-#  define SCNxFAST64 SCNx64
-# endif
+#ifndef O_EXEC
+# define O_EXEC O_RDONLY /* This is often close enough in older systems.  */
 #endif
 
-#if !defined SCNdMAX
-# if 1
-#  define SCNdMAX SCNd64
-# else
-#  define SCNdMAX "ld"
-# endif
-#endif
-#if !defined SCNiMAX
-# if 1
-#  define SCNiMAX SCNi64
-# else
-#  define SCNiMAX "li"
-# endif
-#endif
-#if !defined SCNoMAX
-# if 1
-#  define SCNoMAX SCNo64
-# else
-#  define SCNoMAX "lo"
-# endif
-#endif
-#if !defined SCNuMAX
-# if 1
-#  define SCNuMAX SCNu64
-# else
-#  define SCNuMAX "lu"
-# endif
-#endif
-#if !defined SCNxMAX
-# if 1
-#  define SCNxMAX SCNx64
-# else
-#  define SCNxMAX "lx"
-# endif
+#ifndef O_IGNORE_CTTY
+# define O_IGNORE_CTTY 0
 #endif
 
-#if !defined SCNdPTR
-# ifdef INTPTR_MAX
-#  define SCNdPTR __PRIPTR_PREFIX "d"
-# endif
-#endif
-#if !defined SCNiPTR
-# ifdef INTPTR_MAX
-#  define SCNiPTR __PRIPTR_PREFIX "i"
-# endif
-#endif
-#if !defined SCNoPTR
-# ifdef UINTPTR_MAX
-#  define SCNoPTR __PRIPTR_PREFIX "o"
-# endif
-#endif
-#if !defined SCNuPTR
-# ifdef UINTPTR_MAX
-#  define SCNuPTR __PRIPTR_PREFIX "u"
-# endif
-#endif
-#if !defined SCNxPTR
-# ifdef UINTPTR_MAX
-#  define SCNxPTR __PRIPTR_PREFIX "x"
-# endif
+#ifndef O_NDELAY
+# define O_NDELAY 0
 #endif
 
-/* 7.8.2 Functions for greatest-width integer types */
-
-#ifdef __cplusplus
-extern "C" {
+#ifndef O_NOATIME
+# define O_NOATIME 0
 #endif
 
+#ifndef O_NONBLOCK
+# define O_NONBLOCK O_NDELAY
+#endif
+
+/* If the gnulib module 'nonblocking' is in use, guarantee a working non-zero
+   value of O_NONBLOCK.  Otherwise, O_NONBLOCK is defined (above) to O_NDELAY
+   or to 0 as fallback.  */
 #if 0
-# if !1
-extern intmax_t imaxabs (intmax_t);
-# endif
-#elif defined GNULIB_POSIXCHECK
-# undef imaxabs
-# if HAVE_RAW_DECL_IMAXABS
-_GL_WARN_ON_USE (imaxabs, "imaxabs is unportable - "
-                 "use gnulib module imaxabs for portability");
-# endif
-#endif
-
-#if 0
-# if !1
-#  if !GNULIB_defined_imaxdiv_t
-typedef struct { intmax_t quot; intmax_t rem; } imaxdiv_t;
-#   define GNULIB_defined_imaxdiv_t 1
-#  endif
-# endif
-# if !1
-extern imaxdiv_t imaxdiv (intmax_t, intmax_t);
-# endif
-#elif defined GNULIB_POSIXCHECK
-# undef imaxdiv
-# if HAVE_RAW_DECL_IMAXDIV
-_GL_WARN_ON_USE (imaxdiv, "imaxdiv is unportable - "
-                 "use gnulib module imaxdiv for portability");
-# endif
-#endif
-
-#if 0
-# if 0
-#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
-#   undef strtoimax
-#   define strtoimax rpl_strtoimax
-#  endif
-_GL_FUNCDECL_RPL (strtoimax, intmax_t,
-                  (const char *restrict, char **restrict, int)
-                  _GL_ARG_NONNULL ((1)));
-_GL_CXXALIAS_RPL (strtoimax, intmax_t,
-                  (const char *restrict, char **restrict, int));
+# if O_NONBLOCK
+#  define GNULIB_defined_O_NONBLOCK 0
 # else
-#  if !1
-#   undef strtoimax
-_GL_FUNCDECL_SYS (strtoimax, intmax_t,
-                  (const char *restrict, char **restrict, int)
-                  _GL_ARG_NONNULL ((1)));
-#  endif
-_GL_CXXALIAS_SYS (strtoimax, intmax_t,
-                  (const char *restrict, char **restrict, int));
-# endif
-_GL_CXXALIASWARN (strtoimax);
-#elif defined GNULIB_POSIXCHECK
-# undef strtoimax
-# if HAVE_RAW_DECL_STRTOIMAX
-_GL_WARN_ON_USE (strtoimax, "strtoimax is unportable - "
-                 "use gnulib module strtoimax for portability");
+#  define GNULIB_defined_O_NONBLOCK 1
+#  undef O_NONBLOCK
+#  define O_NONBLOCK 0x40000000
 # endif
 #endif
 
-#if 0
-# if 0
-#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
-#   undef strtoumax
-#   define strtoumax rpl_strtoumax
-#  endif
-_GL_FUNCDECL_RPL (strtoumax, uintmax_t,
-                  (const char *restrict, char **restrict, int)
-                  _GL_ARG_NONNULL ((1)));
-_GL_CXXALIAS_RPL (strtoumax, uintmax_t,
-                  (const char *restrict, char **restrict, int));
-# else
-#  if !1
-#   undef strtoumax
-_GL_FUNCDECL_SYS (strtoumax, uintmax_t,
-                  (const char *restrict, char **restrict, int)
-                  _GL_ARG_NONNULL ((1)));
-#  endif
-_GL_CXXALIAS_SYS (strtoumax, uintmax_t,
-                  (const char *restrict, char **restrict, int));
-# endif
-_GL_CXXALIASWARN (strtoumax);
-#elif defined GNULIB_POSIXCHECK
-# undef strtoumax
-# if HAVE_RAW_DECL_STRTOUMAX
-_GL_WARN_ON_USE (strtoumax, "strtoumax is unportable - "
-                 "use gnulib module strtoumax for portability");
-# endif
+#ifndef O_NOCTTY
+# define O_NOCTTY 0
 #endif
 
-/* Don't bother defining or declaring wcstoimax and wcstoumax, since
-   wide-character functions like this are hardly ever useful.  */
-
-#ifdef __cplusplus
-}
+#ifndef O_NOFOLLOW
+# define O_NOFOLLOW 0
 #endif
 
-#endif /* !defined INTTYPES_H && !defined _GL_JUST_INCLUDE_SYSTEM_INTTYPES_H */
+#ifndef O_NOLINK
+# define O_NOLINK 0
+#endif
+
+#ifndef O_NOLINKS
+# define O_NOLINKS 0
+#endif
+
+#ifndef O_NOTRANS
+# define O_NOTRANS 0
+#endif
+
+#ifndef O_RSYNC
+# define O_RSYNC 0
+#endif
+
+#ifndef O_SEARCH
+# define O_SEARCH O_RDONLY /* This is often close enough in older systems.  */
+#endif
+
+#ifndef O_SYNC
+# define O_SYNC 0
+#endif
+
+#ifndef O_TTY_INIT
+# define O_TTY_INIT 0
+#endif
+
+#if ~O_ACCMODE & (O_RDONLY | O_WRONLY | O_RDWR | O_EXEC | O_SEARCH)
+# undef O_ACCMODE
+# define O_ACCMODE (O_RDONLY | O_WRONLY | O_RDWR | O_EXEC | O_SEARCH)
+#endif
+
+/* For systems that distinguish between text and binary I/O.
+   O_BINARY is usually declared in fcntl.h  */
+#if !defined O_BINARY && defined _O_BINARY
+  /* For MSC-compatible compilers.  */
+# define O_BINARY _O_BINARY
+# define O_TEXT _O_TEXT
+#endif
+
+#if defined __BEOS__ || defined __HAIKU__
+  /* BeOS 5 and Haiku have O_BINARY and O_TEXT, but they have no effect.  */
+# undef O_BINARY
+# undef O_TEXT
+#endif
+
+#ifndef O_BINARY
+# define O_BINARY 0
+# define O_TEXT 0
+#endif
+
+/* Fix up the AT_* macros.  */
+
+/* Work around a bug in Solaris 9 and 10: AT_FDCWD is positive.  Its
+   value exceeds INT_MAX, so its use as an int doesn't conform to the
+   C standard, and GCC and Sun C complain in some cases.  If the bug
+   is present, undef AT_FDCWD here, so it can be redefined below.  */
+#if 0 < AT_FDCWD && AT_FDCWD == 0xffd19553
+# undef AT_FDCWD
+#endif
+
+/* Use the same bit pattern as Solaris 9, but with the proper
+   signedness.  The bit pattern is important, in case this actually is
+   Solaris with the above workaround.  */
+#ifndef AT_FDCWD
+# define AT_FDCWD (-3041965)
+#endif
+
+/* Use the same values as Solaris 9.  This shouldn't matter, but
+   there's no real reason to differ.  */
+#ifndef AT_SYMLINK_NOFOLLOW
+# define AT_SYMLINK_NOFOLLOW 4096
+#endif
+
+#ifndef AT_REMOVEDIR
+# define AT_REMOVEDIR 1
+#endif
+
+/* Solaris 9 lacks these two, so just pick unique values.  */
+#ifndef AT_SYMLINK_FOLLOW
+# define AT_SYMLINK_FOLLOW 2
+#endif
+
+#ifndef AT_EACCESS
+# define AT_EACCESS 4
+#endif
+
+/* Ignore this flag if not supported.  */
+#ifndef AT_NO_AUTOMOUNT
+# define AT_NO_AUTOMOUNT 0
+#endif
+
+#endif /* _GL_FCNTL_H */
+#endif /* _GL_FCNTL_H */
+#endif

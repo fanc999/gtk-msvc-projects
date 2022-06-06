@@ -24,7 +24,11 @@
 
 
 /* The include_next requires a split double-inclusion guard.  */
-#include "../ucrt/errno.h"
+#if _MSC_VER >= 1900
+# include "../ucrt/errno.h"
+#else
+# include "../include/errno.h"
+#endif
 
 #ifndef _GL_ERRNO_H
 #define _GL_ERRNO_H

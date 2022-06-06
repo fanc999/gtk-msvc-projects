@@ -1,7 +1,6 @@
 /* DO NOT EDIT! GENERATED AUTOMATICALLY! */
-/* A GNU-like <signal.h>.
-
-   Copyright (C) 2006-2022 Free Software Foundation, Inc.
+/* Provide a more complete sys/stat.h header file.
+   Copyright (C) 2005-2022 Free Software Foundation, Inc.
 
    This file is free software: you can redistribute it and/or modify
    it under the terms of the GNU Lesser General Public License as
@@ -16,56 +15,48 @@
    You should have received a copy of the GNU Lesser General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
+/* Written by Eric Blake, Paul Eggert, and Jim Meyering.  */
+
+/* This file is supposed to be used on platforms where <sys/stat.h> is
+   incomplete.  It is intended to provide definitions and prototypes
+   needed by an application.  Start with what the system provides.  */
+
 #if __GNUC__ >= 3
 
 #endif
 
 
-#if defined __need_sig_atomic_t || defined __need_sigset_t || defined _GL_ALREADY_INCLUDING_SIGNAL_H || (defined _SIGNAL_H && !defined __SIZEOF_PTHREAD_MUTEX_T)
-/* Special invocation convention:
-   - Inside glibc header files.
-   - On glibc systems we have a sequence of nested includes
-     <signal.h> -> <ucontext.h> -> <signal.h>.
-     In this situation, the functions are not yet declared, therefore we cannot
-     provide the C++ aliases.
-   - On glibc systems with GCC 4.3 we have a sequence of nested includes
-     <csignal> -> </usr/include/signal.h> -> <sys/ucontext.h> -> <signal.h>.
-     In this situation, some of the functions are not yet declared, therefore
-     we cannot provide the C++ aliases.  */
+#if defined __need_system_sys_stat_h
+/* Special invocation convention.  */
 
-# include "../ucrt/signal.h"
+#if _MSC_VER >= 1900
+# include "../ucrt/sys/stat.h"
+#else
+# include "../include/sys/stat.h"
+#endif
 
 #else
 /* Normal invocation convention.  */
 
-#ifndef _GL_SIGNAL_H
+#ifndef _GL_SYS_STAT_H
 
-#define _GL_ALREADY_INCLUDING_SIGNAL_H
-
-/* Define pid_t, uid_t.
-   Also, mingw defines sigset_t not in <signal.h>, but in <sys/types.h>.
-   On Solaris 10, <signal.h> includes <sys/types.h>, which eventually includes
-   us; so include <sys/types.h> now, before the second inclusion guard.  */
+/* Get nlink_t.
+   May also define off_t to a 64-bit type on native Windows.  */
 #include <sys/types.h>
 
+/* Get struct timespec.  */
+#include <time.h>
+
 /* The include_next requires a split double-inclusion guard.  */
-#include "../ucrt/signal.h"
 
-#undef _GL_ALREADY_INCLUDING_SIGNAL_H
-
-#ifndef _GL_SIGNAL_H
-#define _GL_SIGNAL_H
-
-/* Mac OS X 10.3, FreeBSD 6.4, OpenBSD 3.8, OSF/1 4.0, Solaris 2.6, Android,
-   OS/2 kLIBC declare pthread_sigmask in <pthread.h>, not in <signal.h>.
-   But avoid namespace pollution on glibc systems.*/
-#if (0 || defined GNULIB_POSIXCHECK) \
-    && ((defined __APPLE__ && defined __MACH__) \
-        || defined __FreeBSD__ || defined __OpenBSD__ || defined __osf__ \
-        || defined __sun || defined __ANDROID__ || defined __KLIBC__) \
-    && ! defined __GLIBC__
-# include <pthread.h>
+#if _MSC_VER >= 1900
+# include "../ucrt/sys/stat.h"
+#else
+# include "../include/sys/stat.h"
 #endif
+
+#ifndef _GL_SYS_STAT_H
+#define _GL_SYS_STAT_H
 
 /* The definitions of _GL_FUNCDECL_RPL etc. are copied here.  */
 /* C++ compatible function declaration macros.
@@ -579,94 +570,387 @@ _GL_WARN_EXTERN_C int _gl_warn_on_use
 # endif
 #endif
 
-/* On AIX, sig_atomic_t already includes volatile.  C99 requires that
-   'volatile sig_atomic_t' ignore the extra modifier, but C89 did not.
-   Hence, redefine this to a non-volatile type as needed.  */
-#if ! 1
-# if !GNULIB_defined_sig_atomic_t
-typedef int rpl_sig_atomic_t;
-#  undef sig_atomic_t
-#  define sig_atomic_t rpl_sig_atomic_t
-#  define GNULIB_defined_sig_atomic_t 1
+/* Before doing "#define mknod rpl_mknod" below, we need to include all
+   headers that may declare mknod().  OS/2 kLIBC declares mknod() in
+   <unistd.h>, not in <sys/stat.h>.  */
+#ifdef __KLIBC__
+# include <unistd.h>
+#endif
+
+/* Before doing "#define mkdir rpl_mkdir" below, we need to include all
+   headers that may declare mkdir().  Native Windows platforms declare mkdir
+   in <io.h> and/or <direct.h>, not in <sys/stat.h>.  */
+#if defined _WIN32 && ! defined __CYGWIN__
+# include <io.h>     /* mingw32, mingw64 */
+# include <direct.h> /* mingw64, MSVC 9 */
+#endif
+
+/* Native Windows platforms declare umask() in <io.h>.  */
+#if 0 && (defined _WIN32 && ! defined __CYGWIN__)
+# include <io.h>
+#endif
+
+/* Large File Support on native Windows.  */
+#if 1
+# define stat _stati64
+#endif
+
+/* Optionally, override 'struct stat' on native Windows.  */
+#if 0
+
+# undef stat
+# if 1
+#  define stat rpl_stat
+# else
+   /* Provoke a clear link error if stat() is used as a function and
+      module 'stat' is not in use.  */
+#  define stat stat_used_without_requesting_gnulib_module_stat
+# endif
+
+# if !GNULIB_defined_struct_stat
+struct stat
+{
+  dev_t st_dev;
+  ino_t st_ino;
+  mode_t st_mode;
+  nlink_t st_nlink;
+#  if 0
+  uid_t st_uid;
+#  else /* uid_t is not defined by default on native Windows.  */
+  short st_uid;
+#  endif
+#  if 0
+  gid_t st_gid;
+#  else /* gid_t is not defined by default on native Windows.  */
+  short st_gid;
+#  endif
+  dev_t st_rdev;
+  off_t st_size;
+#  if 0
+  blksize_t st_blksize;
+  blkcnt_t st_blocks;
+#  endif
+
+#  if 0
+  struct timespec st_atim;
+  struct timespec st_mtim;
+  struct timespec st_ctim;
+#  else
+  time_t st_atime;
+  time_t st_mtime;
+  time_t st_ctime;
+#  endif
+};
+#  if 0
+#   define st_atime st_atim.tv_sec
+#   define st_mtime st_mtim.tv_sec
+#   define st_ctime st_ctim.tv_sec
+    /* Indicator, for gnulib internal purposes.  */
+#   define _GL_WINDOWS_STAT_TIMESPEC 1
+#  endif
+#  define GNULIB_defined_struct_stat 1
+# endif
+
+/* Other possible values of st_mode.  */
+# if 0
+#  define _S_IFBLK  0x6000
+# endif
+# if 0
+#  define _S_IFLNK  0xA000
+# endif
+# if 0
+#  define _S_IFSOCK 0xC000
+# endif
+
+#endif
+
+#ifndef S_IFIFO
+# ifdef _S_IFIFO
+#  define S_IFIFO _S_IFIFO
 # endif
 #endif
 
-/* A set or mask of signals.  */
-#if !0
-# if !GNULIB_defined_sigset_t
-typedef unsigned int sigset_t;
-#  define GNULIB_defined_sigset_t 1
+#ifndef S_IFMT
+# define S_IFMT 0170000
+#endif
+
+#if STAT_MACROS_BROKEN
+# undef S_ISBLK
+# undef S_ISCHR
+# undef S_ISDIR
+# undef S_ISFIFO
+# undef S_ISLNK
+# undef S_ISNAM
+# undef S_ISMPB
+# undef S_ISMPC
+# undef S_ISNWK
+# undef S_ISREG
+# undef S_ISSOCK
+#endif
+
+#ifndef S_ISBLK
+# ifdef S_IFBLK
+#  define S_ISBLK(m) (((m) & S_IFMT) == S_IFBLK)
+# else
+#  define S_ISBLK(m) 0
 # endif
 #endif
 
-/* Define sighandler_t, the type of signal handlers.  A GNU extension.  */
-#if !0
-# ifdef __cplusplus
-extern "C" {
+#ifndef S_ISCHR
+# ifdef S_IFCHR
+#  define S_ISCHR(m) (((m) & S_IFMT) == S_IFCHR)
+# else
+#  define S_ISCHR(m) 0
 # endif
-# if !GNULIB_defined_sighandler_t
-typedef void (*sighandler_t) (int);
-#  define GNULIB_defined_sighandler_t 1
+#endif
+
+#ifndef S_ISDIR
+# ifdef S_IFDIR
+#  define S_ISDIR(m) (((m) & S_IFMT) == S_IFDIR)
+# else
+#  define S_ISDIR(m) 0
 # endif
-# ifdef __cplusplus
-}
+#endif
+
+#ifndef S_ISDOOR /* Solaris 2.5 and up */
+# define S_ISDOOR(m) 0
+#endif
+
+#ifndef S_ISFIFO
+# ifdef S_IFIFO
+#  define S_ISFIFO(m) (((m) & S_IFMT) == S_IFIFO)
+# else
+#  define S_ISFIFO(m) 0
 # endif
+#endif
+
+#ifndef S_ISLNK
+# ifdef S_IFLNK
+#  define S_ISLNK(m) (((m) & S_IFMT) == S_IFLNK)
+# else
+#  define S_ISLNK(m) 0
+# endif
+#endif
+
+#ifndef S_ISMPB /* V7 */
+# ifdef S_IFMPB
+#  define S_ISMPB(m) (((m) & S_IFMT) == S_IFMPB)
+#  define S_ISMPC(m) (((m) & S_IFMT) == S_IFMPC)
+# else
+#  define S_ISMPB(m) 0
+#  define S_ISMPC(m) 0
+# endif
+#endif
+
+#ifndef S_ISMPX /* AIX */
+# define S_ISMPX(m) 0
+#endif
+
+#ifndef S_ISNAM /* Xenix */
+# ifdef S_IFNAM
+#  define S_ISNAM(m) (((m) & S_IFMT) == S_IFNAM)
+# else
+#  define S_ISNAM(m) 0
+# endif
+#endif
+
+#ifndef S_ISNWK /* HP/UX */
+# ifdef S_IFNWK
+#  define S_ISNWK(m) (((m) & S_IFMT) == S_IFNWK)
+# else
+#  define S_ISNWK(m) 0
+# endif
+#endif
+
+#ifndef S_ISPORT /* Solaris 10 and up */
+# define S_ISPORT(m) 0
+#endif
+
+#ifndef S_ISREG
+# ifdef S_IFREG
+#  define S_ISREG(m) (((m) & S_IFMT) == S_IFREG)
+# else
+#  define S_ISREG(m) 0
+# endif
+#endif
+
+#ifndef S_ISSOCK
+# ifdef S_IFSOCK
+#  define S_ISSOCK(m) (((m) & S_IFMT) == S_IFSOCK)
+# else
+#  define S_ISSOCK(m) 0
+# endif
+#endif
+
+
+#ifndef S_TYPEISMQ
+# define S_TYPEISMQ(p) 0
+#endif
+
+#ifndef S_TYPEISTMO
+# define S_TYPEISTMO(p) 0
+#endif
+
+
+#ifndef S_TYPEISSEM
+# ifdef S_INSEM
+#  define S_TYPEISSEM(p) (S_ISNAM ((p)->st_mode) && (p)->st_rdev == S_INSEM)
+# else
+#  define S_TYPEISSEM(p) 0
+# endif
+#endif
+
+#ifndef S_TYPEISSHM
+# ifdef S_INSHD
+#  define S_TYPEISSHM(p) (S_ISNAM ((p)->st_mode) && (p)->st_rdev == S_INSHD)
+# else
+#  define S_TYPEISSHM(p) 0
+# endif
+#endif
+
+/* high performance ("contiguous data") */
+#ifndef S_ISCTG
+# define S_ISCTG(p) 0
+#endif
+
+/* Cray DMF (data migration facility): off line, with data  */
+#ifndef S_ISOFD
+# define S_ISOFD(p) 0
+#endif
+
+/* Cray DMF (data migration facility): off line, with no data  */
+#ifndef S_ISOFL
+# define S_ISOFL(p) 0
+#endif
+
+/* 4.4BSD whiteout */
+#ifndef S_ISWHT
+# define S_ISWHT(m) 0
+#endif
+
+/* If any of the following are undefined,
+   define them to their de facto standard values.  */
+#if !S_ISUID
+# define S_ISUID 04000
+#endif
+#if !S_ISGID
+# define S_ISGID 02000
+#endif
+
+/* S_ISVTX is a common extension to POSIX.  */
+#ifndef S_ISVTX
+# define S_ISVTX 01000
+#endif
+
+#if !S_IRUSR && S_IREAD
+# define S_IRUSR S_IREAD
+#endif
+#if !S_IRUSR
+# define S_IRUSR 00400
+#endif
+#if !S_IRGRP
+# define S_IRGRP (S_IRUSR >> 3)
+#endif
+#if !S_IROTH
+# define S_IROTH (S_IRUSR >> 6)
+#endif
+
+#if !S_IWUSR && S_IWRITE
+# define S_IWUSR S_IWRITE
+#endif
+#if !S_IWUSR
+# define S_IWUSR 00200
+#endif
+#if !S_IWGRP
+# define S_IWGRP (S_IWUSR >> 3)
+#endif
+#if !S_IWOTH
+# define S_IWOTH (S_IWUSR >> 6)
+#endif
+
+#if !S_IXUSR && S_IEXEC
+# define S_IXUSR S_IEXEC
+#endif
+#if !S_IXUSR
+# define S_IXUSR 00100
+#endif
+#if !S_IXGRP
+# define S_IXGRP (S_IXUSR >> 3)
+#endif
+#if !S_IXOTH
+# define S_IXOTH (S_IXUSR >> 6)
+#endif
+
+#if !S_IRWXU
+# define S_IRWXU (S_IRUSR | S_IWUSR | S_IXUSR)
+#endif
+#if !S_IRWXG
+# define S_IRWXG (S_IRGRP | S_IWGRP | S_IXGRP)
+#endif
+#if !S_IRWXO
+# define S_IRWXO (S_IROTH | S_IWOTH | S_IXOTH)
+#endif
+
+/* Although S_IXUGO and S_IRWXUGO are not specified by POSIX and are
+   not implemented in GNU/Linux, some Gnulib-using apps use the macros.  */
+#if !S_IXUGO
+# define S_IXUGO (S_IXUSR | S_IXGRP | S_IXOTH)
+#endif
+#ifndef S_IRWXUGO
+# define S_IRWXUGO (S_IRWXU | S_IRWXG | S_IRWXO)
+#endif
+
+/* Macros for futimens and utimensat.  */
+#ifndef UTIME_NOW
+# define UTIME_NOW (-1)
+# define UTIME_OMIT (-2)
 #endif
 
 
 #if 1
-# ifndef SIGPIPE
-/* Define SIGPIPE to a value that does not overlap with other signals.  */
-#  define SIGPIPE 13
-#  define GNULIB_defined_SIGPIPE 1
-/* To actually use SIGPIPE, you also need the gnulib modules 'sigprocmask',
-   'write', 'stdio'.  */
+/* On native Windows, map 'chmod' to '_chmod', so that -loldnames is not
+   required.  In C++ with GNULIB_NAMESPACE, avoid differences between
+   platforms by defining GNULIB_NAMESPACE::chmod always.  */
+# if defined _WIN32 && !defined __CYGWIN__
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef chmod
+#   define chmod _chmod
+#  endif
+/* Need to cast, because in mingw the last argument is 'int mode'.  */
+_GL_CXXALIAS_MDA_CAST (chmod, int, (const char *filename, mode_t mode));
+# else
+_GL_CXXALIAS_SYS (chmod, int, (const char *filename, mode_t mode));
 # endif
-#endif
-
-
-/* Maximum signal number + 1.  */
-#ifndef NSIG
-# if defined __TANDEM
-#  define NSIG 32
-# endif
+_GL_CXXALIASWARN (chmod);
 #endif
 
 
 #if 0
 # if 0
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
-#   undef pthread_sigmask
-#   define pthread_sigmask rpl_pthread_sigmask
+#   undef fchmodat
+#   define fchmodat rpl_fchmodat
 #  endif
-_GL_FUNCDECL_RPL (pthread_sigmask, int,
-                  (int how,
-                   const sigset_t *restrict new_mask,
-                   sigset_t *restrict old_mask));
-_GL_CXXALIAS_RPL (pthread_sigmask, int,
-                  (int how,
-                   const sigset_t *restrict new_mask,
-                   sigset_t *restrict old_mask));
+_GL_FUNCDECL_RPL (fchmodat, int,
+                  (int fd, char const *file, mode_t mode, int flag)
+                  _GL_ARG_NONNULL ((2)));
+_GL_CXXALIAS_RPL (fchmodat, int,
+                  (int fd, char const *file, mode_t mode, int flag));
 # else
-#  if !(1 || defined pthread_sigmask)
-_GL_FUNCDECL_SYS (pthread_sigmask, int,
-                  (int how,
-                   const sigset_t *restrict new_mask,
-                   sigset_t *restrict old_mask));
+#  if !1
+_GL_FUNCDECL_SYS (fchmodat, int,
+                  (int fd, char const *file, mode_t mode, int flag)
+                  _GL_ARG_NONNULL ((2)));
 #  endif
-_GL_CXXALIAS_SYS (pthread_sigmask, int,
-                  (int how,
-                   const sigset_t *restrict new_mask,
-                   sigset_t *restrict old_mask));
+_GL_CXXALIAS_SYS (fchmodat, int,
+                  (int fd, char const *file, mode_t mode, int flag));
 # endif
-# if __GLIBC__ >= 2
-_GL_CXXALIASWARN (pthread_sigmask);
-# endif
+_GL_CXXALIASWARN (fchmodat);
 #elif defined GNULIB_POSIXCHECK
-# undef pthread_sigmask
-# if HAVE_RAW_DECL_PTHREAD_SIGMASK
-_GL_WARN_ON_USE (pthread_sigmask, "pthread_sigmask is not portable - "
-                 "use gnulib module pthread_sigmask for portability");
+# undef fchmodat
+# if HAVE_RAW_DECL_FCHMODAT
+_GL_WARN_ON_USE (fchmodat, "fchmodat is not portable - "
+                 "use gnulib module openat for portability");
 # endif
 #endif
 
@@ -674,321 +958,487 @@ _GL_WARN_ON_USE (pthread_sigmask, "pthread_sigmask is not portable - "
 #if 1
 # if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
-#   undef raise
-#   define raise rpl_raise
+#   undef fstat
+#   define fstat rpl_fstat
 #  endif
-_GL_FUNCDECL_RPL (raise, int, (int sig));
-_GL_CXXALIAS_RPL (raise, int, (int sig));
+_GL_FUNCDECL_RPL (fstat, int, (int fd, struct stat *buf) _GL_ARG_NONNULL ((2)));
+_GL_CXXALIAS_RPL (fstat, int, (int fd, struct stat *buf));
+# else
+_GL_CXXALIAS_SYS (fstat, int, (int fd, struct stat *buf));
+# endif
+# if __GLIBC__ >= 2
+_GL_CXXALIASWARN (fstat);
+# endif
+#elif 0
+# undef fstat
+# define fstat fstat_used_without_requesting_gnulib_module_fstat
+#elif 1
+/* Above, we define stat to _stati64.  */
+# define fstat _fstati64
+#elif defined GNULIB_POSIXCHECK
+# undef fstat
+# if HAVE_RAW_DECL_FSTAT
+_GL_WARN_ON_USE (fstat, "fstat has portability problems - "
+                 "use gnulib module fstat for portability");
+# endif
+#endif
+
+
+#if 0
+# if 0
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef fstatat
+#   define fstatat rpl_fstatat
+#  endif
+_GL_FUNCDECL_RPL (fstatat, int,
+                  (int fd, char const *restrict name, struct stat *restrict st,
+                   int flags)
+                  _GL_ARG_NONNULL ((2, 3)));
+_GL_CXXALIAS_RPL (fstatat, int,
+                  (int fd, char const *restrict name, struct stat *restrict st,
+                   int flags));
 # else
 #  if !1
-_GL_FUNCDECL_SYS (raise, int, (int sig));
+_GL_FUNCDECL_SYS (fstatat, int,
+                  (int fd, char const *restrict name, struct stat *restrict st,
+                   int flags)
+                  _GL_ARG_NONNULL ((2, 3)));
 #  endif
-_GL_CXXALIAS_SYS (raise, int, (int sig));
+_GL_CXXALIAS_SYS (fstatat, int,
+                  (int fd, char const *restrict name, struct stat *restrict st,
+                   int flags));
 # endif
-# if __GLIBC__ >= 2
-_GL_CXXALIASWARN (raise);
-# endif
+_GL_CXXALIASWARN (fstatat);
+#elif 0
+# undef fstatat
+# define fstatat fstatat_used_without_requesting_gnulib_module_fstatat
 #elif defined GNULIB_POSIXCHECK
-# undef raise
-/* Assume raise is always declared.  */
-_GL_WARN_ON_USE (raise, "raise can crash on native Windows - "
-                 "use gnulib module raise for portability");
+# undef fstatat
+# if HAVE_RAW_DECL_FSTATAT
+_GL_WARN_ON_USE (fstatat, "fstatat is not portable - "
+                 "use gnulib module openat for portability");
+# endif
 #endif
 
 
-#if 1
-# if !0
-
-#  ifndef GNULIB_defined_signal_blocking
-#   define GNULIB_defined_signal_blocking 1
-#  endif
-
-/* Maximum signal number + 1.  */
-#  ifndef NSIG
-#   define NSIG 32
-#  endif
-
-/* This code supports only 32 signals.  */
-#  if !GNULIB_defined_verify_NSIG_constraint
-typedef int verify_NSIG_constraint[NSIG <= 32 ? 1 : -1];
-#   define GNULIB_defined_verify_NSIG_constraint 1
-#  endif
-
-# endif
-
-/* When also using extern inline, suppress the use of static inline in
-   standard headers of problematic Apple configurations, as Libc at
-   least through Libc-825.26 (2013-04-09) mishandles it; see, e.g.,
-   <https://lists.gnu.org/r/bug-gnulib/2012-12/msg00023.html>.
-   Perhaps Apple will fix this some day.  */
-#if (defined _GL_EXTERN_INLINE_IN_USE && defined __APPLE__ \
-     && (defined __i386__ || defined __x86_64__))
-# undef sigaddset
-# undef sigdelset
-# undef sigemptyset
-# undef sigfillset
-# undef sigismember
-#endif
-
-/* Test whether a given signal is contained in a signal set.  */
-# if 0
-/* This function is defined as a macro on Mac OS X.  */
-#  if defined __cplusplus && defined GNULIB_NAMESPACE
-#   undef sigismember
-#  endif
-# else
-_GL_FUNCDECL_SYS (sigismember, int, (const sigset_t *set, int sig)
-                                    _GL_ARG_NONNULL ((1)));
-# endif
-_GL_CXXALIAS_SYS (sigismember, int, (const sigset_t *set, int sig));
-_GL_CXXALIASWARN (sigismember);
-
-/* Initialize a signal set to the empty set.  */
-# if 0
-/* This function is defined as a macro on Mac OS X.  */
-#  if defined __cplusplus && defined GNULIB_NAMESPACE
-#   undef sigemptyset
-#  endif
-# else
-_GL_FUNCDECL_SYS (sigemptyset, int, (sigset_t *set) _GL_ARG_NONNULL ((1)));
-# endif
-_GL_CXXALIAS_SYS (sigemptyset, int, (sigset_t *set));
-_GL_CXXALIASWARN (sigemptyset);
-
-/* Add a signal to a signal set.  */
-# if 0
-/* This function is defined as a macro on Mac OS X.  */
-#  if defined __cplusplus && defined GNULIB_NAMESPACE
-#   undef sigaddset
-#  endif
-# else
-_GL_FUNCDECL_SYS (sigaddset, int, (sigset_t *set, int sig)
-                                  _GL_ARG_NONNULL ((1)));
-# endif
-_GL_CXXALIAS_SYS (sigaddset, int, (sigset_t *set, int sig));
-_GL_CXXALIASWARN (sigaddset);
-
-/* Remove a signal from a signal set.  */
-# if 0
-/* This function is defined as a macro on Mac OS X.  */
-#  if defined __cplusplus && defined GNULIB_NAMESPACE
-#   undef sigdelset
-#  endif
-# else
-_GL_FUNCDECL_SYS (sigdelset, int, (sigset_t *set, int sig)
-                                  _GL_ARG_NONNULL ((1)));
-# endif
-_GL_CXXALIAS_SYS (sigdelset, int, (sigset_t *set, int sig));
-_GL_CXXALIASWARN (sigdelset);
-
-/* Fill a signal set with all possible signals.  */
-# if 0
-/* This function is defined as a macro on Mac OS X.  */
-#  if defined __cplusplus && defined GNULIB_NAMESPACE
-#   undef sigfillset
-#  endif
-# else
-_GL_FUNCDECL_SYS (sigfillset, int, (sigset_t *set) _GL_ARG_NONNULL ((1)));
-# endif
-_GL_CXXALIAS_SYS (sigfillset, int, (sigset_t *set));
-_GL_CXXALIASWARN (sigfillset);
-
-/* Return the set of those blocked signals that are pending.  */
-# if !0
-_GL_FUNCDECL_SYS (sigpending, int, (sigset_t *set) _GL_ARG_NONNULL ((1)));
-# endif
-_GL_CXXALIAS_SYS (sigpending, int, (sigset_t *set));
-_GL_CXXALIASWARN (sigpending);
-
-/* If OLD_SET is not NULL, put the current set of blocked signals in *OLD_SET.
-   Then, if SET is not NULL, affect the current set of blocked signals by
-   combining it with *SET as indicated in OPERATION.
-   In this implementation, you are not allowed to change a signal handler
-   while the signal is blocked.  */
-# if !0
-#  define SIG_BLOCK   0  /* blocked_set = blocked_set | *set; */
-#  define SIG_SETMASK 1  /* blocked_set = *set; */
-#  define SIG_UNBLOCK 2  /* blocked_set = blocked_set & ~*set; */
-_GL_FUNCDECL_SYS (sigprocmask, int,
-                  (int operation,
-                   const sigset_t *restrict set,
-                   sigset_t *restrict old_set));
-# endif
-_GL_CXXALIAS_SYS (sigprocmask, int,
-                  (int operation,
-                   const sigset_t *restrict set,
-                   sigset_t *restrict old_set));
-_GL_CXXALIASWARN (sigprocmask);
-
-/* Install the handler FUNC for signal SIG, and return the previous
-   handler.  */
-# ifdef __cplusplus
-extern "C" {
-# endif
-# if !GNULIB_defined_function_taking_int_returning_void_t
-typedef void (*_gl_function_taking_int_returning_void_t) (int);
-#  define GNULIB_defined_function_taking_int_returning_void_t 1
-# endif
-# ifdef __cplusplus
-}
-# endif
-# if !0
+#if 0
+/* Use the rpl_ prefix also on Solaris <= 9, because on Solaris 9 our futimens
+   implementation relies on futimesat, which on Solaris 10 makes an invocation
+   to futimens that is meant to invoke the libc's futimens(), not gnulib's
+   futimens().  */
+# if 0 || (!1 && defined __sun)
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
-#   define signal rpl_signal
+#   undef futimens
+#   define futimens rpl_futimens
 #  endif
-_GL_FUNCDECL_RPL (signal, _gl_function_taking_int_returning_void_t,
-                  (int sig, _gl_function_taking_int_returning_void_t func));
-_GL_CXXALIAS_RPL (signal, _gl_function_taking_int_returning_void_t,
-                  (int sig, _gl_function_taking_int_returning_void_t func));
+_GL_FUNCDECL_RPL (futimens, int, (int fd, struct timespec const times[2]));
+_GL_CXXALIAS_RPL (futimens, int, (int fd, struct timespec const times[2]));
 # else
-/* On OpenBSD, the declaration of 'signal' may not be present at this point,
-   because it occurs in <sys/signal.h>, not <signal.h> directly.  */
-#  if defined __OpenBSD__
-_GL_FUNCDECL_SYS (signal, _gl_function_taking_int_returning_void_t,
-                  (int sig, _gl_function_taking_int_returning_void_t func));
+#  if !1
+_GL_FUNCDECL_SYS (futimens, int, (int fd, struct timespec const times[2]));
 #  endif
-_GL_CXXALIAS_SYS (signal, _gl_function_taking_int_returning_void_t,
-                  (int sig, _gl_function_taking_int_returning_void_t func));
+_GL_CXXALIAS_SYS (futimens, int, (int fd, struct timespec const times[2]));
 # endif
-# if __GLIBC__ >= 2
-_GL_CXXALIASWARN (signal);
+# if 1
+_GL_CXXALIASWARN (futimens);
 # endif
-
-# if !0 && GNULIB_defined_SIGPIPE
-/* Raise signal SIGPIPE.  */
-_GL_EXTERN_C int _gl_raise_SIGPIPE (void);
-# endif
-
 #elif defined GNULIB_POSIXCHECK
-# undef sigaddset
-# if HAVE_RAW_DECL_SIGADDSET
-_GL_WARN_ON_USE (sigaddset, "sigaddset is unportable - "
-                 "use the gnulib module sigprocmask for portability");
+# undef futimens
+# if HAVE_RAW_DECL_FUTIMENS
+_GL_WARN_ON_USE (futimens, "futimens is not portable - "
+                 "use gnulib module futimens for portability");
 # endif
-# undef sigdelset
-# if HAVE_RAW_DECL_SIGDELSET
-_GL_WARN_ON_USE (sigdelset, "sigdelset is unportable - "
-                 "use the gnulib module sigprocmask for portability");
-# endif
-# undef sigemptyset
-# if HAVE_RAW_DECL_SIGEMPTYSET
-_GL_WARN_ON_USE (sigemptyset, "sigemptyset is unportable - "
-                 "use the gnulib module sigprocmask for portability");
-# endif
-# undef sigfillset
-# if HAVE_RAW_DECL_SIGFILLSET
-_GL_WARN_ON_USE (sigfillset, "sigfillset is unportable - "
-                 "use the gnulib module sigprocmask for portability");
-# endif
-# undef sigismember
-# if HAVE_RAW_DECL_SIGISMEMBER
-_GL_WARN_ON_USE (sigismember, "sigismember is unportable - "
-                 "use the gnulib module sigprocmask for portability");
-# endif
-# undef sigpending
-# if HAVE_RAW_DECL_SIGPENDING
-_GL_WARN_ON_USE (sigpending, "sigpending is unportable - "
-                 "use the gnulib module sigprocmask for portability");
-# endif
-# undef sigprocmask
-# if HAVE_RAW_DECL_SIGPROCMASK
-_GL_WARN_ON_USE (sigprocmask, "sigprocmask is unportable - "
-                 "use the gnulib module sigprocmask for portability");
-# endif
-#endif /* 1 */
+#endif
 
 
 #if 0
 # if !1
-
-#  if !1
-
-#   if !GNULIB_defined_siginfo_types
-
-/* Present to allow compilation, but unsupported by gnulib.  */
-union sigval
-{
-  int sival_int;
-  void *sival_ptr;
-};
-
-/* Present to allow compilation, but unsupported by gnulib.  */
-struct siginfo_t
-{
-  int si_signo;
-  int si_code;
-  int si_errno;
-  pid_t si_pid;
-  uid_t si_uid;
-  void *si_addr;
-  int si_status;
-  long si_band;
-  union sigval si_value;
-};
-typedef struct siginfo_t siginfo_t;
-
-#    define GNULIB_defined_siginfo_types 1
-#   endif
-
-#  endif /* !1 */
-
-/* We assume that platforms which lack the sigaction() function also lack
-   the 'struct sigaction' type, and vice versa.  */
-
-#  if !GNULIB_defined_struct_sigaction
-
-struct sigaction
-{
-  union
-  {
-    void (*_sa_handler) (int);
-    /* Present to allow compilation, but unsupported by gnulib.  POSIX
-       says that implementations may, but not must, make sa_sigaction
-       overlap with sa_handler, but we know of no implementation where
-       they do not overlap.  */
-    void (*_sa_sigaction) (int, siginfo_t *, void *);
-  } _sa_func;
-  sigset_t sa_mask;
-  /* Not all POSIX flags are supported.  */
-  int sa_flags;
-};
-#   define sa_handler _sa_func._sa_handler
-#   define sa_sigaction _sa_func._sa_sigaction
-/* Unsupported flags are not present.  */
-#   define SA_RESETHAND 1
-#   define SA_NODEFER 2
-#   define SA_RESTART 4
-
-#   define GNULIB_defined_struct_sigaction 1
-#  endif
-
-_GL_FUNCDECL_SYS (sigaction, int, (int, const struct sigaction *restrict,
-                                   struct sigaction *restrict));
-
-# elif !1
-
-#  define sa_sigaction sa_handler
-
-# endif /* !1, !1 */
-
-_GL_CXXALIAS_SYS (sigaction, int, (int, const struct sigaction *restrict,
-                                   struct sigaction *restrict));
-_GL_CXXALIASWARN (sigaction);
-
+_GL_FUNCDECL_SYS (getumask, mode_t, (void));
+# endif
+_GL_CXXALIAS_SYS (getumask, mode_t, (void));
+# if 1
+_GL_CXXALIASWARN (getumask);
+# endif
 #elif defined GNULIB_POSIXCHECK
-# undef sigaction
-# if HAVE_RAW_DECL_SIGACTION
-_GL_WARN_ON_USE (sigaction, "sigaction is unportable - "
-                 "use the gnulib module sigaction for portability");
+# undef getumask
+# if HAVE_RAW_DECL_GETUMASK
+_GL_WARN_ON_USE (getumask, "getumask is not portable - "
+                 "use gnulib module getumask for portability");
 # endif
 #endif
 
-/* Some systems don't have SA_NODEFER.  */
-#ifndef SA_NODEFER
-# define SA_NODEFER 0
+
+#if 0
+/* Change the mode of FILENAME to MODE, without dereferencing it if FILENAME
+   denotes a symbolic link.  */
+# if !1 || defined __hpux
+_GL_FUNCDECL_SYS (lchmod, int, (const char *filename, mode_t mode)
+                               _GL_ARG_NONNULL ((1)));
+# endif
+_GL_CXXALIAS_SYS (lchmod, int, (const char *filename, mode_t mode));
+_GL_CXXALIASWARN (lchmod);
+#elif defined GNULIB_POSIXCHECK
+# undef lchmod
+# if HAVE_RAW_DECL_LCHMOD
+_GL_WARN_ON_USE (lchmod, "lchmod is unportable - "
+                 "use gnulib module lchmod for portability");
+# endif
 #endif
 
 
-#endif /* _GL_SIGNAL_H */
-#endif /* _GL_SIGNAL_H */
+#if 0
+# if ! 1
+/* mingw does not support symlinks, therefore it does not have lstat.  But
+   without links, stat does just fine.  */
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   define lstat stat
+#  endif
+_GL_CXXALIAS_RPL_1 (lstat, stat, int,
+                    (const char *restrict name, struct stat *restrict buf));
+# elif 0
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef lstat
+#   define lstat rpl_lstat
+#  endif
+_GL_FUNCDECL_RPL (lstat, int,
+                  (const char *restrict name, struct stat *restrict buf)
+                  _GL_ARG_NONNULL ((1, 2)));
+_GL_CXXALIAS_RPL (lstat, int,
+                  (const char *restrict name, struct stat *restrict buf));
+# else
+_GL_CXXALIAS_SYS (lstat, int,
+                  (const char *restrict name, struct stat *restrict buf));
+# endif
+# if 1
+_GL_CXXALIASWARN (lstat);
+# endif
+#elif 0
+# undef lstat
+# define lstat lstat_used_without_requesting_gnulib_module_lstat
+#elif defined GNULIB_POSIXCHECK
+# undef lstat
+# if HAVE_RAW_DECL_LSTAT
+_GL_WARN_ON_USE (lstat, "lstat is unportable - "
+                 "use gnulib module lstat for portability");
+# endif
+#endif
+
+
+#if 0
+# if 0
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef mkdir
+#   define mkdir rpl_mkdir
+#  endif
+_GL_FUNCDECL_RPL (mkdir, int, (char const *name, mode_t mode)
+                               _GL_ARG_NONNULL ((1)));
+_GL_CXXALIAS_RPL (mkdir, int, (char const *name, mode_t mode));
+# elif defined _WIN32 && !defined __CYGWIN__
+/* mingw's _mkdir() function has 1 argument, but we pass 2 arguments.
+   Additionally, it declares _mkdir (and depending on compile flags, an
+   alias mkdir), only in the nonstandard includes <direct.h> and <io.h>,
+   which are included above.  */
+#  if !GNULIB_defined_rpl_mkdir
+static int
+rpl_mkdir (char const *name, mode_t mode)
+{
+  return _mkdir (name);
+}
+#   define GNULIB_defined_rpl_mkdir 1
+#  endif
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef mkdir
+#   define mkdir rpl_mkdir
+#  endif
+_GL_CXXALIAS_RPL (mkdir, int, (char const *name, mode_t mode));
+# else
+_GL_CXXALIAS_SYS (mkdir, int, (char const *name, mode_t mode));
+# endif
+_GL_CXXALIASWARN (mkdir);
+#elif defined GNULIB_POSIXCHECK
+# undef mkdir
+# if HAVE_RAW_DECL_MKDIR
+_GL_WARN_ON_USE (mkdir, "mkdir does not always support two parameters - "
+                 "use gnulib module mkdir for portability");
+# endif
+#elif 1
+/* On native Windows, map 'mkdir' to '_mkdir', so that -loldnames is not
+   required.  In C++ with GNULIB_NAMESPACE, avoid differences between
+   platforms by defining GNULIB_NAMESPACE::mkdir always.  */
+# if defined _WIN32 && !defined __CYGWIN__
+#  if !GNULIB_defined_rpl_mkdir
+static int
+rpl_mkdir (char const *name, mode_t mode)
+{
+  return _mkdir (name);
+}
+#   define GNULIB_defined_rpl_mkdir 1
+#  endif
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef mkdir
+#   define mkdir rpl_mkdir
+#  endif
+_GL_CXXALIAS_RPL (mkdir, int, (char const *name, mode_t mode));
+# else
+_GL_CXXALIAS_SYS (mkdir, int, (char const *name, mode_t mode));
+# endif
+_GL_CXXALIASWARN (mkdir);
+#endif
+
+
+#if 0
+# if !1
+_GL_FUNCDECL_SYS (mkdirat, int, (int fd, char const *file, mode_t mode)
+                                _GL_ARG_NONNULL ((2)));
+# endif
+_GL_CXXALIAS_SYS (mkdirat, int, (int fd, char const *file, mode_t mode));
+_GL_CXXALIASWARN (mkdirat);
+#elif defined GNULIB_POSIXCHECK
+# undef mkdirat
+# if HAVE_RAW_DECL_MKDIRAT
+_GL_WARN_ON_USE (mkdirat, "mkdirat is not portable - "
+                 "use gnulib module openat for portability");
+# endif
+#endif
+
+
+#if 0
+# if 0
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef mkfifo
+#   define mkfifo rpl_mkfifo
+#  endif
+_GL_FUNCDECL_RPL (mkfifo, int, (char const *file, mode_t mode)
+                               _GL_ARG_NONNULL ((1)));
+_GL_CXXALIAS_RPL (mkfifo, int, (char const *file, mode_t mode));
+# else
+#  if !1
+_GL_FUNCDECL_SYS (mkfifo, int, (char const *file, mode_t mode)
+                               _GL_ARG_NONNULL ((1)));
+#  endif
+_GL_CXXALIAS_SYS (mkfifo, int, (char const *file, mode_t mode));
+# endif
+_GL_CXXALIASWARN (mkfifo);
+#elif defined GNULIB_POSIXCHECK
+# undef mkfifo
+# if HAVE_RAW_DECL_MKFIFO
+_GL_WARN_ON_USE (mkfifo, "mkfifo is not portable - "
+                 "use gnulib module mkfifo for portability");
+# endif
+#endif
+
+
+#if 0
+# if 0
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef mkfifoat
+#   define mkfifoat rpl_mkfifoat
+#  endif
+_GL_FUNCDECL_RPL (mkfifoat, int, (int fd, char const *file, mode_t mode)
+                                 _GL_ARG_NONNULL ((2)));
+_GL_CXXALIAS_RPL (mkfifoat, int, (int fd, char const *file, mode_t mode));
+# else
+#  if !1
+_GL_FUNCDECL_SYS (mkfifoat, int, (int fd, char const *file, mode_t mode)
+                                 _GL_ARG_NONNULL ((2)));
+#  endif
+_GL_CXXALIAS_SYS (mkfifoat, int, (int fd, char const *file, mode_t mode));
+# endif
+_GL_CXXALIASWARN (mkfifoat);
+#elif defined GNULIB_POSIXCHECK
+# undef mkfifoat
+# if HAVE_RAW_DECL_MKFIFOAT
+_GL_WARN_ON_USE (mkfifoat, "mkfifoat is not portable - "
+                 "use gnulib module mkfifoat for portability");
+# endif
+#endif
+
+
+#if 0
+# if 0
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef mknod
+#   define mknod rpl_mknod
+#  endif
+_GL_FUNCDECL_RPL (mknod, int, (char const *file, mode_t mode, dev_t dev)
+                              _GL_ARG_NONNULL ((1)));
+_GL_CXXALIAS_RPL (mknod, int, (char const *file, mode_t mode, dev_t dev));
+# else
+#  if !1
+_GL_FUNCDECL_SYS (mknod, int, (char const *file, mode_t mode, dev_t dev)
+                              _GL_ARG_NONNULL ((1)));
+#  endif
+/* Need to cast, because on OSF/1 5.1, the third parameter is '...'.  */
+_GL_CXXALIAS_SYS_CAST (mknod, int, (char const *file, mode_t mode, dev_t dev));
+# endif
+_GL_CXXALIASWARN (mknod);
+#elif defined GNULIB_POSIXCHECK
+# undef mknod
+# if HAVE_RAW_DECL_MKNOD
+_GL_WARN_ON_USE (mknod, "mknod is not portable - "
+                 "use gnulib module mknod for portability");
+# endif
+#endif
+
+
+#if 0
+# if 0
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef mknodat
+#   define mknodat rpl_mknodat
+#  endif
+_GL_FUNCDECL_RPL (mknodat, int,
+                  (int fd, char const *file, mode_t mode, dev_t dev)
+                  _GL_ARG_NONNULL ((2)));
+_GL_CXXALIAS_RPL (mknodat, int,
+                  (int fd, char const *file, mode_t mode, dev_t dev));
+# else
+#  if !1
+_GL_FUNCDECL_SYS (mknodat, int,
+                  (int fd, char const *file, mode_t mode, dev_t dev)
+                  _GL_ARG_NONNULL ((2)));
+#  endif
+_GL_CXXALIAS_SYS (mknodat, int,
+                  (int fd, char const *file, mode_t mode, dev_t dev));
+# endif
+_GL_CXXALIASWARN (mknodat);
+#elif defined GNULIB_POSIXCHECK
+# undef mknodat
+# if HAVE_RAW_DECL_MKNODAT
+_GL_WARN_ON_USE (mknodat, "mknodat is not portable - "
+                 "use gnulib module mkfifoat for portability");
+# endif
+#endif
+
+
+#if 1
+# if 1
+#  if !0
+    /* We can't use the object-like #define stat rpl_stat, because of
+       struct stat.  This means that rpl_stat will not be used if the user
+       does (stat)(a,b).  Oh well.  */
+#   if defined _AIX && defined stat && defined _LARGE_FILES
+     /* With _LARGE_FILES defined, AIX (only) defines stat to stat64,
+        so we have to replace stat64() instead of stat(). */
+#    undef stat64
+#    define stat64(name, st) rpl_stat (name, st)
+#   elif 1
+     /* Above, we define stat to _stati64.  */
+#    if defined __MINGW32__ && defined _stati64
+#     ifndef _USE_32BIT_TIME_T
+       /* The system headers define _stati64 to _stat64.  */
+#      undef _stat64
+#      define _stat64(name, st) rpl_stat (name, st)
+#     endif
+#    elif defined _MSC_VER && defined _stati64
+#     ifdef _USE_32BIT_TIME_T
+       /* The system headers define _stati64 to _stat32i64.  */
+#      undef _stat32i64
+#      define _stat32i64(name, st) rpl_stat (name, st)
+#     else
+       /* The system headers define _stati64 to _stat64.  */
+#      undef _stat64
+#      define _stat64(name, st) rpl_stat (name, st)
+#     endif
+#    else
+#     undef _stati64
+#     define _stati64(name, st) rpl_stat (name, st)
+#    endif
+#   elif defined __MINGW32__ && defined stat
+#    ifdef _USE_32BIT_TIME_T
+      /* The system headers define stat to _stat32i64.  */
+#     undef _stat32i64
+#     define _stat32i64(name, st) rpl_stat (name, st)
+#    else
+      /* The system headers define stat to _stat64.  */
+#     undef _stat64
+#     define _stat64(name, st) rpl_stat (name, st)
+#    endif
+#   elif defined _MSC_VER && defined stat
+#    ifdef _USE_32BIT_TIME_T
+      /* The system headers define stat to _stat32.  */
+#     undef _stat32
+#     define _stat32(name, st) rpl_stat (name, st)
+#    else
+      /* The system headers define stat to _stat64i32.  */
+#     undef _stat64i32
+#     define _stat64i32(name, st) rpl_stat (name, st)
+#    endif
+#   else /* !(_AIX || __MINGW32__ || _MSC_VER) */
+#    undef stat
+#    define stat(name, st) rpl_stat (name, st)
+#   endif /* !_LARGE_FILES */
+#  endif /* !0 */
+_GL_EXTERN_C int stat (const char *restrict name, struct stat *restrict buf)
+                      _GL_ARG_NONNULL ((1, 2));
+# endif
+#elif 0
+/* see above:
+  #define stat stat_used_without_requesting_gnulib_module_stat
+ */
+#elif defined GNULIB_POSIXCHECK
+# undef stat
+# if HAVE_RAW_DECL_STAT
+_GL_WARN_ON_USE (stat, "stat is unportable - "
+                 "use gnulib module stat for portability");
+# endif
+#endif
+
+
+#if 1
+/* On native Windows, map 'umask' to '_umask', so that -loldnames is not
+   required.  In C++ with GNULIB_NAMESPACE, avoid differences between
+   platforms by defining GNULIB_NAMESPACE::umask always.  */
+# if defined _WIN32 && !defined __CYGWIN__
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef umask
+#   define umask _umask
+#  endif
+/* Need to cast, because in mingw the last argument is 'int mode'.  */
+_GL_CXXALIAS_MDA_CAST (umask, mode_t, (mode_t mask));
+# else
+_GL_CXXALIAS_SYS (umask, mode_t, (mode_t mask));
+# endif
+_GL_CXXALIASWARN (umask);
+#endif
+
+
+#if 0
+/* Use the rpl_ prefix also on Solaris <= 9, because on Solaris 9 our utimensat
+   implementation relies on futimesat, which on Solaris 10 makes an invocation
+   to utimensat that is meant to invoke the libc's utimensat(), not gnulib's
+   utimensat().  */
+# if 0 || (!1 && defined __sun)
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef utimensat
+#   define utimensat rpl_utimensat
+#  endif
+_GL_FUNCDECL_RPL (utimensat, int, (int fd, char const *name,
+                                   struct timespec const times[2], int flag)
+                                  _GL_ARG_NONNULL ((2)));
+_GL_CXXALIAS_RPL (utimensat, int, (int fd, char const *name,
+                                   struct timespec const times[2], int flag));
+# else
+#  if !1
+_GL_FUNCDECL_SYS (utimensat, int, (int fd, char const *name,
+                                   struct timespec const times[2], int flag)
+                                  _GL_ARG_NONNULL ((2)));
+#  endif
+_GL_CXXALIAS_SYS (utimensat, int, (int fd, char const *name,
+                                   struct timespec const times[2], int flag));
+# endif
+# if 1
+_GL_CXXALIASWARN (utimensat);
+# endif
+#elif defined GNULIB_POSIXCHECK
+# undef utimensat
+# if HAVE_RAW_DECL_UTIMENSAT
+_GL_WARN_ON_USE (utimensat, "utimensat is not portable - "
+                 "use gnulib module utimensat for portability");
+# endif
+#endif
+
+
+#endif /* _GL_SYS_STAT_H */
+#endif /* _GL_SYS_STAT_H */
 #endif

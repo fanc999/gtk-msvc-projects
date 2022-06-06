@@ -1,5 +1,5 @@
 /* DO NOT EDIT! GENERATED AUTOMATICALLY! */
-/* Like <fcntl.h>, but with non-working flags defined to 0.
+/* A GNU-like <signal.h>.
 
    Copyright (C) 2006-2022 Free Software Foundation, Inc.
 
@@ -16,69 +16,64 @@
    You should have received a copy of the GNU Lesser General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
-/* written by Paul Eggert */
-
 #if __GNUC__ >= 3
 
 #endif
 
 
-#if defined __need_system_fcntl_h
-/* Special invocation convention.  */
+#if defined __need_sig_atomic_t || defined __need_sigset_t || defined _GL_ALREADY_INCLUDING_SIGNAL_H || (defined _SIGNAL_H && !defined __SIZEOF_PTHREAD_MUTEX_T)
+/* Special invocation convention:
+   - Inside glibc header files.
+   - On glibc systems we have a sequence of nested includes
+     <signal.h> -> <ucontext.h> -> <signal.h>.
+     In this situation, the functions are not yet declared, therefore we cannot
+     provide the C++ aliases.
+   - On glibc systems with GCC 4.3 we have a sequence of nested includes
+     <csignal> -> </usr/include/signal.h> -> <sys/ucontext.h> -> <signal.h>.
+     In this situation, some of the functions are not yet declared, therefore
+     we cannot provide the C++ aliases.  */
 
-/* Needed before <sys/stat.h>.
-   May also define off_t to a 64-bit type on native Windows.  */
-#include <sys/types.h>
-/* On some systems other than glibc, <sys/stat.h> is a prerequisite of
-   <fcntl.h>.  On glibc systems, we would like to avoid namespace pollution.
-   But on glibc systems, <fcntl.h> includes <sys/stat.h> inside an
-   extern "C" { ... } block, which leads to errors in C++ mode with the
-   overridden <sys/stat.h> from gnulib.  These errors are known to be gone
-   with g++ version >= 4.3.  */
-#if !(defined __GLIBC__ || defined __UCLIBC__) || (defined __cplusplus && defined GNULIB_NAMESPACE && (defined __ICC || !(__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 3))))
-# include <sys/stat.h>
-#endif
-#include "../ucrt/fcntl.h"
-
-/* Native Windows platforms declare open(), creat() in <io.h>.  */
-#if (0 || 1 || defined GNULIB_POSIXCHECK) \
-    && (defined _WIN32 && ! defined __CYGWIN__)
-# include <io.h>
-#endif
+# if _MSC_VER >= 1900
+#  include "../ucrt/signal.h"
+# else
+#  include "../include/signal.h"
+# endif
 
 #else
 /* Normal invocation convention.  */
 
-#ifndef _GL_FCNTL_H
+#ifndef _GL_SIGNAL_H
 
-/* Needed before <sys/stat.h>.
-   May also define off_t to a 64-bit type on native Windows.  */
+#define _GL_ALREADY_INCLUDING_SIGNAL_H
+
+/* Define pid_t, uid_t.
+   Also, mingw defines sigset_t not in <signal.h>, but in <sys/types.h>.
+   On Solaris 10, <signal.h> includes <sys/types.h>, which eventually includes
+   us; so include <sys/types.h> now, before the second inclusion guard.  */
 #include <sys/types.h>
-/* On some systems other than glibc, <sys/stat.h> is a prerequisite of
-   <fcntl.h>.  On glibc systems, we would like to avoid namespace pollution.
-   But on glibc systems, <fcntl.h> includes <sys/stat.h> inside an
-   extern "C" { ... } block, which leads to errors in C++ mode with the
-   overridden <sys/stat.h> from gnulib.  These errors are known to be gone
-   with g++ version >= 4.3.  */
-#if !(defined __GLIBC__ || defined __UCLIBC__) || (defined __cplusplus && defined GNULIB_NAMESPACE && (defined __ICC || !(__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 3))))
-# include <sys/stat.h>
-#endif
+
 /* The include_next requires a split double-inclusion guard.  */
-#include "../ucrt/fcntl.h"
-
-/* Native Windows platforms declare open(), creat() in <io.h>.  */
-#if (0 || 1 || defined GNULIB_POSIXCHECK) \
-    && (defined _WIN32 && ! defined __CYGWIN__)
-# include <io.h>
+#if _MSC_VER >= 1900
+# include "../ucrt/signal.h"
+#else
+# include "../include/signal.h"
 #endif
 
-#ifndef _GL_FCNTL_H
-#define _GL_FCNTL_H
+#undef _GL_ALREADY_INCLUDING_SIGNAL_H
 
-#ifndef __GLIBC__ /* Avoid namespace pollution on glibc systems.  */
-# include <unistd.h>
+#ifndef _GL_SIGNAL_H
+#define _GL_SIGNAL_H
+
+/* Mac OS X 10.3, FreeBSD 6.4, OpenBSD 3.8, OSF/1 4.0, Solaris 2.6, Android,
+   OS/2 kLIBC declare pthread_sigmask in <pthread.h>, not in <signal.h>.
+   But avoid namespace pollution on glibc systems.*/
+#if (0 || defined GNULIB_POSIXCHECK) \
+    && ((defined __APPLE__ && defined __MACH__) \
+        || defined __FreeBSD__ || defined __OpenBSD__ || defined __osf__ \
+        || defined __sun || defined __ANDROID__ || defined __KLIBC__) \
+    && ! defined __GLIBC__
+# include <pthread.h>
 #endif
-
 
 /* The definitions of _GL_FUNCDECL_RPL etc. are copied here.  */
 /* C++ compatible function declaration macros.
@@ -592,361 +587,416 @@ _GL_WARN_EXTERN_C int _gl_warn_on_use
 # endif
 #endif
 
+/* On AIX, sig_atomic_t already includes volatile.  C99 requires that
+   'volatile sig_atomic_t' ignore the extra modifier, but C89 did not.
+   Hence, redefine this to a non-volatile type as needed.  */
+#if ! 1
+# if !GNULIB_defined_sig_atomic_t
+typedef int rpl_sig_atomic_t;
+#  undef sig_atomic_t
+#  define sig_atomic_t rpl_sig_atomic_t
+#  define GNULIB_defined_sig_atomic_t 1
+# endif
+#endif
 
-/* Declare overridden functions.  */
+/* A set or mask of signals.  */
+#if !0
+# if !GNULIB_defined_sigset_t
+typedef unsigned int sigset_t;
+#  define GNULIB_defined_sigset_t 1
+# endif
+#endif
+
+/* Define sighandler_t, the type of signal handlers.  A GNU extension.  */
+#if !0
+# ifdef __cplusplus
+extern "C" {
+# endif
+# if !GNULIB_defined_sighandler_t
+typedef void (*sighandler_t) (int);
+#  define GNULIB_defined_sighandler_t 1
+# endif
+# ifdef __cplusplus
+}
+# endif
+#endif
+
+
+#if 1
+# ifndef SIGPIPE
+/* Define SIGPIPE to a value that does not overlap with other signals.  */
+#  define SIGPIPE 13
+#  define GNULIB_defined_SIGPIPE 1
+/* To actually use SIGPIPE, you also need the gnulib modules 'sigprocmask',
+   'write', 'stdio'.  */
+# endif
+#endif
+
+
+/* Maximum signal number + 1.  */
+#ifndef NSIG
+# if defined __TANDEM
+#  define NSIG 32
+# endif
+#endif
+
 
 #if 0
 # if 0
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
-#   undef creat
-#   define creat rpl_creat
+#   undef pthread_sigmask
+#   define pthread_sigmask rpl_pthread_sigmask
 #  endif
-_GL_FUNCDECL_RPL (creat, int, (const char *filename, mode_t mode)
-                             _GL_ARG_NONNULL ((1)));
-_GL_CXXALIAS_RPL (creat, int, (const char *filename, mode_t mode));
-# elif defined _WIN32 && !defined __CYGWIN__
-#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
-#   undef creat
-#   define creat _creat
-#  endif
-_GL_CXXALIAS_MDA (creat, int, (const char *filename, mode_t mode));
+_GL_FUNCDECL_RPL (pthread_sigmask, int,
+                  (int how,
+                   const sigset_t *restrict new_mask,
+                   sigset_t *restrict old_mask));
+_GL_CXXALIAS_RPL (pthread_sigmask, int,
+                  (int how,
+                   const sigset_t *restrict new_mask,
+                   sigset_t *restrict old_mask));
 # else
-_GL_CXXALIAS_SYS (creat, int, (const char *filename, mode_t mode));
+#  if !(1 || defined pthread_sigmask)
+_GL_FUNCDECL_SYS (pthread_sigmask, int,
+                  (int how,
+                   const sigset_t *restrict new_mask,
+                   sigset_t *restrict old_mask));
+#  endif
+_GL_CXXALIAS_SYS (pthread_sigmask, int,
+                  (int how,
+                   const sigset_t *restrict new_mask,
+                   sigset_t *restrict old_mask));
 # endif
-_GL_CXXALIASWARN (creat);
+# if __GLIBC__ >= 2
+_GL_CXXALIASWARN (pthread_sigmask);
+# endif
 #elif defined GNULIB_POSIXCHECK
-# undef creat
-/* Assume creat is always declared.  */
-_GL_WARN_ON_USE (creat, "creat is not always POSIX compliant - "
-                 "use gnulib module creat for portability");
-#elif 1
-/* On native Windows, map 'creat' to '_creat', so that -loldnames is not
-   required.  In C++ with GNULIB_NAMESPACE, avoid differences between
-   platforms by defining GNULIB_NAMESPACE::creat always.  */
-# if defined _WIN32 && !defined __CYGWIN__
-#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
-#   undef creat
-#   define creat _creat
-#  endif
-/* Need to cast, because in mingw the last argument is 'int mode'.  */
-_GL_CXXALIAS_MDA_CAST (creat, int, (const char *filename, mode_t mode));
-# else
-_GL_CXXALIAS_SYS (creat, int, (const char *filename, mode_t mode));
+# undef pthread_sigmask
+# if HAVE_RAW_DECL_PTHREAD_SIGMASK
+_GL_WARN_ON_USE (pthread_sigmask, "pthread_sigmask is not portable - "
+                 "use gnulib module pthread_sigmask for portability");
 # endif
-_GL_CXXALIASWARN (creat);
 #endif
 
-#if 1
-# if 0
-#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
-#   undef fcntl
-#   define fcntl rpl_fcntl
-#  endif
-_GL_FUNCDECL_RPL (fcntl, int, (int fd, int action, ...));
-_GL_CXXALIAS_RPL (fcntl, int, (int fd, int action, ...));
-#  if !GNULIB_defined_rpl_fcntl
-#   define GNULIB_defined_rpl_fcntl 1
-#  endif
-# else
-#  if !0
-_GL_FUNCDECL_SYS (fcntl, int, (int fd, int action, ...));
-#   if !GNULIB_defined_fcntl
-#    define GNULIB_defined_fcntl 1
-#   endif
-#  endif
-_GL_CXXALIAS_SYS (fcntl, int, (int fd, int action, ...));
-# endif
-_GL_CXXALIASWARN (fcntl);
-#elif defined GNULIB_POSIXCHECK
-# undef fcntl
-# if HAVE_RAW_DECL_FCNTL
-_GL_WARN_ON_USE (fcntl, "fcntl is not always POSIX compliant - "
-                 "use gnulib module fcntl for portability");
-# endif
-#endif
 
 #if 1
 # if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
-#   undef open
-#   define open rpl_open
+#   undef raise
+#   define raise rpl_raise
 #  endif
-_GL_FUNCDECL_RPL (open, int, (const char *filename, int flags, ...)
-                             _GL_ARG_NONNULL ((1)));
-_GL_CXXALIAS_RPL (open, int, (const char *filename, int flags, ...));
-# elif defined _WIN32 && !defined __CYGWIN__
-#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
-#   undef open
-#   define open _open
-#  endif
-_GL_CXXALIAS_MDA (open, int, (const char *filename, int flags, ...));
-# else
-_GL_CXXALIAS_SYS (open, int, (const char *filename, int flags, ...));
-# endif
-/* On HP-UX 11, in C++ mode, open() is defined as an inline function with a
-   default argument.  _GL_CXXALIASWARN does not work in this case.  */
-# if !defined __hpux
-_GL_CXXALIASWARN (open);
-# endif
-#elif defined GNULIB_POSIXCHECK
-# undef open
-/* Assume open is always declared.  */
-_GL_WARN_ON_USE (open, "open is not always POSIX compliant - "
-                 "use gnulib module open for portability");
-#elif 1
-/* On native Windows, map 'open' to '_open', so that -loldnames is not
-   required.  In C++ with GNULIB_NAMESPACE, avoid differences between
-   platforms by defining GNULIB_NAMESPACE::open always.  */
-# if defined _WIN32 && !defined __CYGWIN__
-#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
-#   undef open
-#   define open _open
-#  endif
-_GL_CXXALIAS_MDA (open, int, (const char *filename, int flags, ...));
-# else
-_GL_CXXALIAS_SYS (open, int, (const char *filename, int flags, ...));
-# endif
-# if !defined __hpux
-_GL_CXXALIASWARN (open);
-# endif
-#endif
-
-#if 0
-# if 0
-#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
-#   undef openat
-#   define openat rpl_openat
-#  endif
-_GL_FUNCDECL_RPL (openat, int,
-                  (int fd, char const *file, int flags, /* mode_t mode */ ...)
-                  _GL_ARG_NONNULL ((2)));
-_GL_CXXALIAS_RPL (openat, int,
-                  (int fd, char const *file, int flags, /* mode_t mode */ ...));
+_GL_FUNCDECL_RPL (raise, int, (int sig));
+_GL_CXXALIAS_RPL (raise, int, (int sig));
 # else
 #  if !1
-_GL_FUNCDECL_SYS (openat, int,
-                  (int fd, char const *file, int flags, /* mode_t mode */ ...)
-                  _GL_ARG_NONNULL ((2)));
+_GL_FUNCDECL_SYS (raise, int, (int sig));
 #  endif
-_GL_CXXALIAS_SYS (openat, int,
-                  (int fd, char const *file, int flags, /* mode_t mode */ ...));
+_GL_CXXALIAS_SYS (raise, int, (int sig));
 # endif
-_GL_CXXALIASWARN (openat);
+# if __GLIBC__ >= 2
+_GL_CXXALIASWARN (raise);
+# endif
 #elif defined GNULIB_POSIXCHECK
-# undef openat
-# if HAVE_RAW_DECL_OPENAT
-_GL_WARN_ON_USE (openat, "openat is not portable - "
-                 "use gnulib module openat for portability");
+# undef raise
+/* Assume raise is always declared.  */
+_GL_WARN_ON_USE (raise, "raise can crash on native Windows - "
+                 "use gnulib module raise for portability");
+#endif
+
+
+#if 1
+# if !0
+
+#  ifndef GNULIB_defined_signal_blocking
+#   define GNULIB_defined_signal_blocking 1
+#  endif
+
+/* Maximum signal number + 1.  */
+#  ifndef NSIG
+#   define NSIG 32
+#  endif
+
+/* This code supports only 32 signals.  */
+#  if !GNULIB_defined_verify_NSIG_constraint
+typedef int verify_NSIG_constraint[NSIG <= 32 ? 1 : -1];
+#   define GNULIB_defined_verify_NSIG_constraint 1
+#  endif
+
 # endif
+
+/* When also using extern inline, suppress the use of static inline in
+   standard headers of problematic Apple configurations, as Libc at
+   least through Libc-825.26 (2013-04-09) mishandles it; see, e.g.,
+   <https://lists.gnu.org/r/bug-gnulib/2012-12/msg00023.html>.
+   Perhaps Apple will fix this some day.  */
+#if (defined _GL_EXTERN_INLINE_IN_USE && defined __APPLE__ \
+     && (defined __i386__ || defined __x86_64__))
+# undef sigaddset
+# undef sigdelset
+# undef sigemptyset
+# undef sigfillset
+# undef sigismember
 #endif
 
-
-/* Fix up the FD_* macros, only known to be missing on mingw.  */
-
-#ifndef FD_CLOEXEC
-# define FD_CLOEXEC 1
-#endif
-
-/* Fix up the supported F_* macros.  Intentionally leave other F_*
-   macros undefined.  Only known to be missing on mingw.  */
-
-#ifndef F_DUPFD_CLOEXEC
-# define F_DUPFD_CLOEXEC 0x40000000
-/* Witness variable: 1 if gnulib defined F_DUPFD_CLOEXEC, 0 otherwise.  */
-# define GNULIB_defined_F_DUPFD_CLOEXEC 1
-#else
-# define GNULIB_defined_F_DUPFD_CLOEXEC 0
-#endif
-
-#ifndef F_DUPFD
-# define F_DUPFD 1
-#endif
-
-#ifndef F_GETFD
-# define F_GETFD 2
-#endif
-
-/* Fix up the O_* macros.  */
-
-/* AIX 7.1 with XL C 12.1 defines O_CLOEXEC, O_NOFOLLOW, and O_TTY_INIT
-   to values outside 'int' range, so omit these misdefinitions.
-   But avoid namespace pollution on non-AIX systems.  */
-#ifdef _AIX
-# include <limits.h>
-# if defined O_CLOEXEC && ! (INT_MIN <= O_CLOEXEC && O_CLOEXEC <= INT_MAX)
-#  undef O_CLOEXEC
-# endif
-# if defined O_NOFOLLOW && ! (INT_MIN <= O_NOFOLLOW && O_NOFOLLOW <= INT_MAX)
-#  undef O_NOFOLLOW
-# endif
-# if defined O_TTY_INIT && ! (INT_MIN <= O_TTY_INIT && O_TTY_INIT <= INT_MAX)
-#  undef O_TTY_INIT
-# endif
-#endif
-
-#if !defined O_DIRECT && defined O_DIRECTIO
-/* Tru64 spells it 'O_DIRECTIO'.  */
-# define O_DIRECT O_DIRECTIO
-#endif
-
-#if !defined O_CLOEXEC && defined O_NOINHERIT
-/* Mingw spells it 'O_NOINHERIT'.  */
-# define O_CLOEXEC O_NOINHERIT
-#endif
-
-#ifndef O_CLOEXEC
-# define O_CLOEXEC 0x40000000 /* Try to not collide with system O_* flags.  */
-# define GNULIB_defined_O_CLOEXEC 1
-#else
-# define GNULIB_defined_O_CLOEXEC 0
-#endif
-
-#ifndef O_DIRECT
-# define O_DIRECT 0
-#endif
-
-#ifndef O_DIRECTORY
-# define O_DIRECTORY 0
-#endif
-
-#ifndef O_DSYNC
-# define O_DSYNC 0
-#endif
-
-#ifndef O_EXEC
-# define O_EXEC O_RDONLY /* This is often close enough in older systems.  */
-#endif
-
-#ifndef O_IGNORE_CTTY
-# define O_IGNORE_CTTY 0
-#endif
-
-#ifndef O_NDELAY
-# define O_NDELAY 0
-#endif
-
-#ifndef O_NOATIME
-# define O_NOATIME 0
-#endif
-
-#ifndef O_NONBLOCK
-# define O_NONBLOCK O_NDELAY
-#endif
-
-/* If the gnulib module 'nonblocking' is in use, guarantee a working non-zero
-   value of O_NONBLOCK.  Otherwise, O_NONBLOCK is defined (above) to O_NDELAY
-   or to 0 as fallback.  */
-#if 0
-# if O_NONBLOCK
-#  define GNULIB_defined_O_NONBLOCK 0
+/* Test whether a given signal is contained in a signal set.  */
+# if 0
+/* This function is defined as a macro on Mac OS X.  */
+#  if defined __cplusplus && defined GNULIB_NAMESPACE
+#   undef sigismember
+#  endif
 # else
-#  define GNULIB_defined_O_NONBLOCK 1
-#  undef O_NONBLOCK
-#  define O_NONBLOCK 0x40000000
+_GL_FUNCDECL_SYS (sigismember, int, (const sigset_t *set, int sig)
+                                    _GL_ARG_NONNULL ((1)));
+# endif
+_GL_CXXALIAS_SYS (sigismember, int, (const sigset_t *set, int sig));
+_GL_CXXALIASWARN (sigismember);
+
+/* Initialize a signal set to the empty set.  */
+# if 0
+/* This function is defined as a macro on Mac OS X.  */
+#  if defined __cplusplus && defined GNULIB_NAMESPACE
+#   undef sigemptyset
+#  endif
+# else
+_GL_FUNCDECL_SYS (sigemptyset, int, (sigset_t *set) _GL_ARG_NONNULL ((1)));
+# endif
+_GL_CXXALIAS_SYS (sigemptyset, int, (sigset_t *set));
+_GL_CXXALIASWARN (sigemptyset);
+
+/* Add a signal to a signal set.  */
+# if 0
+/* This function is defined as a macro on Mac OS X.  */
+#  if defined __cplusplus && defined GNULIB_NAMESPACE
+#   undef sigaddset
+#  endif
+# else
+_GL_FUNCDECL_SYS (sigaddset, int, (sigset_t *set, int sig)
+                                  _GL_ARG_NONNULL ((1)));
+# endif
+_GL_CXXALIAS_SYS (sigaddset, int, (sigset_t *set, int sig));
+_GL_CXXALIASWARN (sigaddset);
+
+/* Remove a signal from a signal set.  */
+# if 0
+/* This function is defined as a macro on Mac OS X.  */
+#  if defined __cplusplus && defined GNULIB_NAMESPACE
+#   undef sigdelset
+#  endif
+# else
+_GL_FUNCDECL_SYS (sigdelset, int, (sigset_t *set, int sig)
+                                  _GL_ARG_NONNULL ((1)));
+# endif
+_GL_CXXALIAS_SYS (sigdelset, int, (sigset_t *set, int sig));
+_GL_CXXALIASWARN (sigdelset);
+
+/* Fill a signal set with all possible signals.  */
+# if 0
+/* This function is defined as a macro on Mac OS X.  */
+#  if defined __cplusplus && defined GNULIB_NAMESPACE
+#   undef sigfillset
+#  endif
+# else
+_GL_FUNCDECL_SYS (sigfillset, int, (sigset_t *set) _GL_ARG_NONNULL ((1)));
+# endif
+_GL_CXXALIAS_SYS (sigfillset, int, (sigset_t *set));
+_GL_CXXALIASWARN (sigfillset);
+
+/* Return the set of those blocked signals that are pending.  */
+# if !0
+_GL_FUNCDECL_SYS (sigpending, int, (sigset_t *set) _GL_ARG_NONNULL ((1)));
+# endif
+_GL_CXXALIAS_SYS (sigpending, int, (sigset_t *set));
+_GL_CXXALIASWARN (sigpending);
+
+/* If OLD_SET is not NULL, put the current set of blocked signals in *OLD_SET.
+   Then, if SET is not NULL, affect the current set of blocked signals by
+   combining it with *SET as indicated in OPERATION.
+   In this implementation, you are not allowed to change a signal handler
+   while the signal is blocked.  */
+# if !0
+#  define SIG_BLOCK   0  /* blocked_set = blocked_set | *set; */
+#  define SIG_SETMASK 1  /* blocked_set = *set; */
+#  define SIG_UNBLOCK 2  /* blocked_set = blocked_set & ~*set; */
+_GL_FUNCDECL_SYS (sigprocmask, int,
+                  (int operation,
+                   const sigset_t *restrict set,
+                   sigset_t *restrict old_set));
+# endif
+_GL_CXXALIAS_SYS (sigprocmask, int,
+                  (int operation,
+                   const sigset_t *restrict set,
+                   sigset_t *restrict old_set));
+_GL_CXXALIASWARN (sigprocmask);
+
+/* Install the handler FUNC for signal SIG, and return the previous
+   handler.  */
+# ifdef __cplusplus
+extern "C" {
+# endif
+# if !GNULIB_defined_function_taking_int_returning_void_t
+typedef void (*_gl_function_taking_int_returning_void_t) (int);
+#  define GNULIB_defined_function_taking_int_returning_void_t 1
+# endif
+# ifdef __cplusplus
+}
+# endif
+# if !0
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   define signal rpl_signal
+#  endif
+_GL_FUNCDECL_RPL (signal, _gl_function_taking_int_returning_void_t,
+                  (int sig, _gl_function_taking_int_returning_void_t func));
+_GL_CXXALIAS_RPL (signal, _gl_function_taking_int_returning_void_t,
+                  (int sig, _gl_function_taking_int_returning_void_t func));
+# else
+/* On OpenBSD, the declaration of 'signal' may not be present at this point,
+   because it occurs in <sys/signal.h>, not <signal.h> directly.  */
+#  if defined __OpenBSD__
+_GL_FUNCDECL_SYS (signal, _gl_function_taking_int_returning_void_t,
+                  (int sig, _gl_function_taking_int_returning_void_t func));
+#  endif
+_GL_CXXALIAS_SYS (signal, _gl_function_taking_int_returning_void_t,
+                  (int sig, _gl_function_taking_int_returning_void_t func));
+# endif
+# if __GLIBC__ >= 2
+_GL_CXXALIASWARN (signal);
+# endif
+
+# if !0 && GNULIB_defined_SIGPIPE
+/* Raise signal SIGPIPE.  */
+_GL_EXTERN_C int _gl_raise_SIGPIPE (void);
+# endif
+
+#elif defined GNULIB_POSIXCHECK
+# undef sigaddset
+# if HAVE_RAW_DECL_SIGADDSET
+_GL_WARN_ON_USE (sigaddset, "sigaddset is unportable - "
+                 "use the gnulib module sigprocmask for portability");
+# endif
+# undef sigdelset
+# if HAVE_RAW_DECL_SIGDELSET
+_GL_WARN_ON_USE (sigdelset, "sigdelset is unportable - "
+                 "use the gnulib module sigprocmask for portability");
+# endif
+# undef sigemptyset
+# if HAVE_RAW_DECL_SIGEMPTYSET
+_GL_WARN_ON_USE (sigemptyset, "sigemptyset is unportable - "
+                 "use the gnulib module sigprocmask for portability");
+# endif
+# undef sigfillset
+# if HAVE_RAW_DECL_SIGFILLSET
+_GL_WARN_ON_USE (sigfillset, "sigfillset is unportable - "
+                 "use the gnulib module sigprocmask for portability");
+# endif
+# undef sigismember
+# if HAVE_RAW_DECL_SIGISMEMBER
+_GL_WARN_ON_USE (sigismember, "sigismember is unportable - "
+                 "use the gnulib module sigprocmask for portability");
+# endif
+# undef sigpending
+# if HAVE_RAW_DECL_SIGPENDING
+_GL_WARN_ON_USE (sigpending, "sigpending is unportable - "
+                 "use the gnulib module sigprocmask for portability");
+# endif
+# undef sigprocmask
+# if HAVE_RAW_DECL_SIGPROCMASK
+_GL_WARN_ON_USE (sigprocmask, "sigprocmask is unportable - "
+                 "use the gnulib module sigprocmask for portability");
+# endif
+#endif /* 1 */
+
+
+#if 0
+# if !1
+
+#  if !1
+
+#   if !GNULIB_defined_siginfo_types
+
+/* Present to allow compilation, but unsupported by gnulib.  */
+union sigval
+{
+  int sival_int;
+  void *sival_ptr;
+};
+
+/* Present to allow compilation, but unsupported by gnulib.  */
+struct siginfo_t
+{
+  int si_signo;
+  int si_code;
+  int si_errno;
+  pid_t si_pid;
+  uid_t si_uid;
+  void *si_addr;
+  int si_status;
+  long si_band;
+  union sigval si_value;
+};
+typedef struct siginfo_t siginfo_t;
+
+#    define GNULIB_defined_siginfo_types 1
+#   endif
+
+#  endif /* !1 */
+
+/* We assume that platforms which lack the sigaction() function also lack
+   the 'struct sigaction' type, and vice versa.  */
+
+#  if !GNULIB_defined_struct_sigaction
+
+struct sigaction
+{
+  union
+  {
+    void (*_sa_handler) (int);
+    /* Present to allow compilation, but unsupported by gnulib.  POSIX
+       says that implementations may, but not must, make sa_sigaction
+       overlap with sa_handler, but we know of no implementation where
+       they do not overlap.  */
+    void (*_sa_sigaction) (int, siginfo_t *, void *);
+  } _sa_func;
+  sigset_t sa_mask;
+  /* Not all POSIX flags are supported.  */
+  int sa_flags;
+};
+#   define sa_handler _sa_func._sa_handler
+#   define sa_sigaction _sa_func._sa_sigaction
+/* Unsupported flags are not present.  */
+#   define SA_RESETHAND 1
+#   define SA_NODEFER 2
+#   define SA_RESTART 4
+
+#   define GNULIB_defined_struct_sigaction 1
+#  endif
+
+_GL_FUNCDECL_SYS (sigaction, int, (int, const struct sigaction *restrict,
+                                   struct sigaction *restrict));
+
+# elif !1
+
+#  define sa_sigaction sa_handler
+
+# endif /* !1, !1 */
+
+_GL_CXXALIAS_SYS (sigaction, int, (int, const struct sigaction *restrict,
+                                   struct sigaction *restrict));
+_GL_CXXALIASWARN (sigaction);
+
+#elif defined GNULIB_POSIXCHECK
+# undef sigaction
+# if HAVE_RAW_DECL_SIGACTION
+_GL_WARN_ON_USE (sigaction, "sigaction is unportable - "
+                 "use the gnulib module sigaction for portability");
 # endif
 #endif
 
-#ifndef O_NOCTTY
-# define O_NOCTTY 0
+/* Some systems don't have SA_NODEFER.  */
+#ifndef SA_NODEFER
+# define SA_NODEFER 0
 #endif
 
-#ifndef O_NOFOLLOW
-# define O_NOFOLLOW 0
-#endif
 
-#ifndef O_NOLINK
-# define O_NOLINK 0
-#endif
-
-#ifndef O_NOLINKS
-# define O_NOLINKS 0
-#endif
-
-#ifndef O_NOTRANS
-# define O_NOTRANS 0
-#endif
-
-#ifndef O_RSYNC
-# define O_RSYNC 0
-#endif
-
-#ifndef O_SEARCH
-# define O_SEARCH O_RDONLY /* This is often close enough in older systems.  */
-#endif
-
-#ifndef O_SYNC
-# define O_SYNC 0
-#endif
-
-#ifndef O_TTY_INIT
-# define O_TTY_INIT 0
-#endif
-
-#if ~O_ACCMODE & (O_RDONLY | O_WRONLY | O_RDWR | O_EXEC | O_SEARCH)
-# undef O_ACCMODE
-# define O_ACCMODE (O_RDONLY | O_WRONLY | O_RDWR | O_EXEC | O_SEARCH)
-#endif
-
-/* For systems that distinguish between text and binary I/O.
-   O_BINARY is usually declared in fcntl.h  */
-#if !defined O_BINARY && defined _O_BINARY
-  /* For MSC-compatible compilers.  */
-# define O_BINARY _O_BINARY
-# define O_TEXT _O_TEXT
-#endif
-
-#if defined __BEOS__ || defined __HAIKU__
-  /* BeOS 5 and Haiku have O_BINARY and O_TEXT, but they have no effect.  */
-# undef O_BINARY
-# undef O_TEXT
-#endif
-
-#ifndef O_BINARY
-# define O_BINARY 0
-# define O_TEXT 0
-#endif
-
-/* Fix up the AT_* macros.  */
-
-/* Work around a bug in Solaris 9 and 10: AT_FDCWD is positive.  Its
-   value exceeds INT_MAX, so its use as an int doesn't conform to the
-   C standard, and GCC and Sun C complain in some cases.  If the bug
-   is present, undef AT_FDCWD here, so it can be redefined below.  */
-#if 0 < AT_FDCWD && AT_FDCWD == 0xffd19553
-# undef AT_FDCWD
-#endif
-
-/* Use the same bit pattern as Solaris 9, but with the proper
-   signedness.  The bit pattern is important, in case this actually is
-   Solaris with the above workaround.  */
-#ifndef AT_FDCWD
-# define AT_FDCWD (-3041965)
-#endif
-
-/* Use the same values as Solaris 9.  This shouldn't matter, but
-   there's no real reason to differ.  */
-#ifndef AT_SYMLINK_NOFOLLOW
-# define AT_SYMLINK_NOFOLLOW 4096
-#endif
-
-#ifndef AT_REMOVEDIR
-# define AT_REMOVEDIR 1
-#endif
-
-/* Solaris 9 lacks these two, so just pick unique values.  */
-#ifndef AT_SYMLINK_FOLLOW
-# define AT_SYMLINK_FOLLOW 2
-#endif
-
-#ifndef AT_EACCESS
-# define AT_EACCESS 4
-#endif
-
-/* Ignore this flag if not supported.  */
-#ifndef AT_NO_AUTOMOUNT
-# define AT_NO_AUTOMOUNT 0
-#endif
-
-#endif /* _GL_FCNTL_H */
-#endif /* _GL_FCNTL_H */
+#endif /* _GL_SIGNAL_H */
+#endif /* _GL_SIGNAL_H */
 #endif
