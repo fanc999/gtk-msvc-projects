@@ -1,0 +1,367 @@
+--- a/srclib/canonicalize-lgpl.c	2022-01-04 16:33:29.000000000 +0800
++++ b/srclib/canonicalize-lgpl.c	2022-06-08 16:05:17.118259600 +0800
+@@ -206,6 +206,12 @@
+   char const *start;
+   char const *end;
+   int num_links = 0;
++  struct scratch_buffer extra_buffer, link_buffer;
++  char *rname_on_stack;
++  char *rname;
++  bool end_in_extra_buffer = false;
++  bool failed = true;
++  idx_t prefix_len;
+ 
+   if (name == NULL)
+     {
+@@ -225,18 +231,15 @@
+       return NULL;
+     }
+ 
+-  struct scratch_buffer extra_buffer, link_buffer;
+   scratch_buffer_init (&extra_buffer);
+   scratch_buffer_init (&link_buffer);
+   scratch_buffer_init (rname_buf);
+-  char *rname_on_stack = rname_buf->data;
+-  char *rname = rname_on_stack;
+-  bool end_in_extra_buffer = false;
+-  bool failed = true;
++  rname_on_stack = rname_buf->data;
++  rname = rname_on_stack;
+ 
+   /* This is always zero for Posix hosts, but can be 2 for MS-Windows
+      and MS-DOS X:/foo/bar file names.  */
+-  idx_t prefix_len = FILE_SYSTEM_PREFIX_LEN (name);
++  prefix_len = FILE_SYSTEM_PREFIX_LEN (name);
+ 
+   if (!IS_ABSOLUTE_FILE_NAME (name))
+     {
+@@ -271,6 +274,8 @@
+ 
+   for ( ; *start; start = end)
+     {
++      idx_t startlen;
++
+       /* Skip sequence of multiple file name separators.  */
+       while (ISSLASH (*start))
+         ++start;
+@@ -281,7 +286,7 @@
+ 
+       /* Length of this file name component; it can be zero if a file
+          name ends in '/'.  */
+-      idx_t startlen = end - start;
++      startlen = end - start;
+ 
+       if (startlen == 0)
+         break;
+@@ -300,6 +305,9 @@
+         }
+       else
+         {
++          char *buf;
++          ssize_t n;
++
+           if (!ISSLASH (dest[-1]))
+             *dest++ = '/';
+ 
+@@ -316,12 +324,12 @@
+           dest = __mempcpy (dest, start, startlen);
+           *dest = '\0';
+ 
+-          char *buf;
+-          ssize_t n;
+           while (true)
+             {
++              idx_t bufsize;
++
+               buf = link_buffer.data;
+-              idx_t bufsize = link_buffer.length;
++              bufsize = link_buffer.length;
+               n = __readlink (rname, buf, bufsize - 1);
+               if (n < bufsize - 1)
+                 break;
+@@ -330,6 +338,10 @@
+             }
+           if (0 <= n)
+             {
++              char *extra_buf;
++              idx_t end_idx;
++              size_t len;
++
+               if (++num_links > __eloop_threshold ())
+                 {
+                   __set_errno (ELOOP);
+@@ -338,11 +350,11 @@
+ 
+               buf[n] = '\0';
+ 
+-              char *extra_buf = extra_buffer.data;
+-              idx_t end_idx IF_LINT (= 0);
++              extra_buf = extra_buffer.data;
++              end_idx IF_LINT (= 0);
+               if (end_in_extra_buffer)
+                 end_idx = end - extra_buf;
+-              size_t len = strlen (end);
++              len = strlen (end);
+               if (INT_ADD_OVERFLOW (len, n))
+                 {
+                   __set_errno (ENOMEM);
+--- a/srclib/careadlinkat.c	2022-01-04 16:33:29.000000000 +0800
++++ b/srclib/careadlinkat.c	2022-06-08 16:06:50.700273800 +0800
+@@ -68,6 +68,10 @@
+               ssize_t (*preadlinkat) (int, char const *, char *, size_t),
+               char stack_buf[STACK_BUF_SIZE])
+ {
++  char *buf;
++  idx_t buf_size_max;
++  idx_t buf_size;
++
+   if (! alloc)
+     alloc = &stdlib_allocator;
+ 
+@@ -77,12 +81,14 @@
+       buffer_size = STACK_BUF_SIZE;
+     }
+ 
+-  char *buf = buffer;
+-  idx_t buf_size_max = MIN (IDX_MAX, MIN (SSIZE_MAX, SIZE_MAX));
+-  idx_t buf_size = MIN (buffer_size, buf_size_max);
++  buf = buffer;
++  buf_size_max = MIN (IDX_MAX, MIN (SSIZE_MAX, SIZE_MAX));
++  buf_size = MIN (buffer_size, buf_size_max);
+ 
+   while (buf)
+     {
++      idx_t link_size;
++
+       /* Attempt to read the link into the current buffer.  */
+       idx_t link_length = preadlinkat (fd, filename, buf, buf_size);
+       if (link_length < 0)
+@@ -96,7 +102,7 @@
+           return NULL;
+         }
+ 
+-      idx_t link_size = link_length;
++      link_size = link_length;
+ 
+       if (link_size < buf_size)
+         {
+--- a/srclib/malloc.c	2022-01-04 16:33:30.000000000 +0800
++++ b/srclib/malloc.c	2022-06-08 16:15:32.117537500 +0800
+@@ -31,6 +31,8 @@
+ void *
+ rpl_malloc (size_t n)
+ {
++  void *result;
++
+   if (n == 0)
+     n = 1;
+ 
+@@ -40,7 +42,7 @@
+       return NULL;
+     }
+ 
+-  void *result = malloc (n);
++  result = malloc (n);
+ 
+ #if !HAVE_MALLOC_POSIX
+   if (result == NULL)
+--- a/srclib/malloca.c	2022-06-08 16:07:19.200682000 +0800
++++ b/srclib/malloca.c	2022-06-08 16:07:50.726520000 +0800
+@@ -56,15 +56,19 @@
+ 
+       if (mem != NULL)
+         {
++          idx_t offset;
++          void *vp;
++          small_t *p;
++
+           uintptr_t umem = (uintptr_t)mem, umemplus;
+           /* The INT_ADD_WRAPV avoids signed integer overflow on
+              theoretical platforms where UINTPTR_MAX <= INT_MAX.  */
+           INT_ADD_WRAPV (umem, sizeof (small_t) + sa_alignment_max - 1,
+                          &umemplus);
+-          idx_t offset = ((umemplus & ~alignment2_mask)
++          offset = ((umemplus & ~alignment2_mask)
+                           + sa_alignment_max - umem);
+-          void *vp = mem + offset;
+-          small_t *p = vp;
++          vp = mem + offset;
++          p = vp;
+           /* Here p >= mem + sizeof (small_t),
+              and p <= mem + sizeof (small_t) + 2 * sa_alignment_max - 1
+              hence p + n <= mem + nplus.
+--- a/srclib/rawmemchr.c	2022-01-04 16:33:30.000000000 +0800
++++ b/srclib/rawmemchr.c	2022-06-08 16:09:38.848135800 +0800
+@@ -40,6 +40,10 @@
+ 
+   const unsigned char *char_ptr;
+   unsigned char c = c_in;
++  longword const *longword_ptr;
++  longword repeated_one;
++  longword repeated_c;
++  longword repeated_hibit;
+ 
+   /* Handle the first few bytes by reading one byte at a time.
+      Do this until CHAR_PTR is aligned on a longword boundary.  */
+@@ -49,14 +53,14 @@
+     if (*char_ptr == c)
+       return (void *) char_ptr;
+ 
+-  longword const *longword_ptr = s = char_ptr;
++  longword_ptr = s = char_ptr;
+ 
+   /* Compute auxiliary longword values:
+      repeated_one is a value which has a 1 in every byte.
+      repeated_c has c in every byte.  */
+-  longword repeated_one = (longword) -1 / UCHAR_MAX;
+-  longword repeated_c = repeated_one * c;
+-  longword repeated_hibit = repeated_one * (UCHAR_MAX / 2 + 1);
++  repeated_one = (longword) -1 / UCHAR_MAX;
++  repeated_c = repeated_one * c;
++  repeated_hibit = repeated_one * (UCHAR_MAX / 2 + 1);
+ 
+   /* Instead of the traditional loop which tests each byte, we will
+      test a longword at a time.  The tricky part is testing if any of
+--- a/srclib/realloc.c	2022-01-04 16:33:30.000000000 +0800
++++ b/srclib/realloc.c	2022-06-08 16:16:18.313004300 +0800
+@@ -37,6 +37,8 @@
+ void *
+ rpl_realloc (void *p, size_t n)
+ {
++  void *result;
++
+   if (p == NULL)
+     return malloc (n);
+ 
+@@ -52,7 +54,7 @@
+       return NULL;
+     }
+ 
+-  void *result = realloc (p, n);
++  result = realloc (p, n);
+ 
+ #if !HAVE_MALLOC_POSIX
+   if (result == NULL)
+--- a/srclib/stat-w32.c	2022-01-04 16:33:30.000000000 +0800
++++ b/srclib/stat-w32.c	2022-06-08 16:17:12.741207500 +0800
+@@ -166,6 +166,8 @@
+   DWORD type = GetFileType (h);
+   if (type == FILE_TYPE_DISK)
+     {
++      unsigned int mode;
++
+ #if !WIN32_ASSUME_VISTA
+       if (!initialized)
+         initialize ();
+@@ -262,7 +264,7 @@
+ #endif
+ 
+       /* st_mode.  */
+-      unsigned int mode =
++      mode =
+         /* XXX How to handle FILE_ATTRIBUTE_REPARSE_POINT ?  */
+         ((info.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) ? _S_IFDIR | S_IEXEC_UGO : _S_IFREG)
+         | S_IREAD_UGO
+--- a/srclib/stat.c	2022-01-04 16:33:30.000000000 +0800
++++ b/srclib/stat.c	2022-06-08 16:14:17.538515300 +0800
+@@ -89,9 +89,10 @@
+         q++;
+       if (q > p && *q != '\0')
+         {
++          const char *r;
+           /* Found the next slash at q.  */
+           q++;
+-          const char *r = q;
++          r = q;
+           while (*r != '\0' && !ISSLASH (*r))
+             r++;
+           if (r > q && *r == '\0')
+@@ -112,6 +113,13 @@
+ rpl_stat (char const *name, struct stat *buf)
+ {
+ #ifdef WINDOWS_NATIVE
++  size_t len;
++  size_t drive_prefix_len;
++  size_t rlen;
++  bool check_dir;
++
++  const char *rname;
++  char *malloca_rname;
+   /* Fill the fields ourselves, because the original stat function returns
+      values for st_atime, st_mtime, st_ctime that depend on the current time
+      zone.  See
+@@ -130,13 +138,12 @@
+         name++;
+     }
+ 
+-  size_t len = strlen (name);
+-  size_t drive_prefix_len = (HAS_DEVICE (name) ? 2 : 0);
++  len = strlen (name);
++  drive_prefix_len = (HAS_DEVICE (name) ? 2 : 0);
+ 
+   /* Remove trailing slashes (except the very first one, at position
+      drive_prefix_len), but remember their presence.  */
+-  size_t rlen;
+-  bool check_dir = false;
++  check_dir = false;
+ 
+   rlen = len;
+   while (rlen > drive_prefix_len && ISSLASH (name[rlen-1]))
+@@ -161,8 +168,6 @@
+       return -1;
+     }
+ 
+-  const char *rname;
+-  char *malloca_rname;
+   if (rlen == len)
+     {
+       rname = name;
+@@ -229,6 +234,10 @@
+ 
+     /* Fallback.  */
+     {
++      WIN32_FIND_DATA info;
++      HANDLE h;
++      unsigned int mode;
++
+       /* Approach based on the directory entry.  */
+ 
+       if (strchr (rname, '?') != NULL || strchr (rname, '*') != NULL)
+@@ -250,8 +259,7 @@
+          <https://docs.microsoft.com/en-us/windows/desktop/api/fileapi/nf-fileapi-findfirstfileexa>
+          <https://docs.microsoft.com/en-us/windows/desktop/api/minwinbase/ne-minwinbase-findex_info_levels>
+          <https://docs.microsoft.com/en-us/windows/desktop/api/minwinbase/ns-minwinbase-_win32_find_dataa>  */
+-      WIN32_FIND_DATA info;
+-      HANDLE h = FindFirstFile (rname, &info);
++      h = FindFirstFile (rname, &info);
+       if (h == INVALID_HANDLE_VALUE)
+         goto failed;
+ 
+@@ -280,7 +288,7 @@
+ # endif
+ 
+       /* st_mode.  */
+-      unsigned int mode =
++      mode =
+         /* XXX How to handle FILE_ATTRIBUTE_REPARSE_POINT ?  */
+         ((info.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) ? _S_IFDIR | S_IEXEC_UGO : _S_IFREG)
+         | S_IREAD_UGO
+--- a/srclib/malloc/scratch_buffer_set_array_size.c	2022-01-04 16:33:30.000000000 +0800
++++ b/srclib/malloc/scratch_buffer_set_array_size.c	2022-06-08 16:10:55.770226600 +0800
+@@ -29,6 +29,7 @@
+ 				      size_t nelem, size_t size)
+ {
+   size_t new_length = nelem * size;
++  char *new_ptr;
+ 
+   /* Avoid overflow check if both values are small. */
+   if ((nelem | size) >> (sizeof (size_t) * CHAR_BIT / 2) != 0
+@@ -48,7 +49,7 @@
+   /* Discard old buffer.  */
+   scratch_buffer_free (buffer);
+ 
+-  char *new_ptr = malloc (new_length);
++  new_ptr = malloc (new_length);
+   if (new_ptr == NULL)
+     {
+       /* Buffer must remain valid to free.  */
