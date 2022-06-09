@@ -31,7 +31,7 @@
    which in turn includes this file.
    The include_next requires a split double-inclusion guard.  */
 #if ! defined INTTYPES_H || defined _GL_JUST_INCLUDE_SYSTEM_INTTYPES_H
-# if 1
+# if _MSC_VER >= 1800
 
    /* Some pre-C++11 <stdint.h> implementations need this.  */
 #  if defined __cplusplus && ! defined __STDC_FORMAT_MACROS

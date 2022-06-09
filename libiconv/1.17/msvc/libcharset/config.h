@@ -11,7 +11,9 @@
 /* #undef HAVE_DLFCN_H */
 
 /* Define to 1 if you have the <inttypes.h> header file. */
-#define HAVE_INTTYPES_H 1
+#ifdef _MSC_VER >= 1800
+# define HAVE_INTTYPES_H 1
+#endif
 
 /* Define if you have <langinfo.h> and nl_langinfo(CODESET). */
 /* #undef HAVE_LANGINFO_CODESET */
@@ -26,7 +28,9 @@
 #define HAVE_SETLOCALE 1
 
 /* Define to 1 if you have the <stdint.h> header file. */
-#define HAVE_STDINT_H 1
+#ifdef _MSC_VER >= 1600
+# define HAVE_STDINT_H 1
+#endif
 
 /* Define to 1 if you have the <stdio.h> header file. */
 #define HAVE_STDIO_H 1

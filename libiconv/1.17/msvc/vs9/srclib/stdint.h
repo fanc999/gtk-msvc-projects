@@ -21,14 +21,6 @@
  * <https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/stdint.h.html>
  */
 
-#if _MSC_VER < 1600
-/* include the massaged stdint.h for vs9 */
-# include "../vs9/srclib/stdint.h"
-#elif _MSC_VER < 1700
-/* include the massaged stdint.h for vs10 */
-# include "../vs10/srclib/stdint.h"
-#else
-
 #ifndef _GL_STDINT_H
 
 #if __GNUC__ >= 3
@@ -48,7 +40,7 @@
    Ideally we should test __BIONIC__ here, but it is only defined after
    <sys/cdefs.h> has been included; hence test __ANDROID__ instead.  */
 #if defined __ANDROID__ && defined _GL_INCLUDING_SYS_TYPES_H
-# include "../include/stdint.h"
+# include <stdint.h>
 #else
 
 /* Get those types that are already defined in other system include
@@ -59,7 +51,7 @@
    for the "fast" types and macros, which we recommend against using
    in public interfaces due to compiler differences.  */
 
-#if 1
+#if 0
 # if defined __sgi && ! defined __c99
    /* Bypass IRIX's <stdint.h> if in C89 mode, since it merely annoys users
       with "This header file is to be used only for c99 mode compilations"
@@ -82,7 +74,7 @@
      in <inttypes.h> would reinclude us, skipping our contents because
      _GL_STDINT_H is defined.
      The include_next requires a split double-inclusion guard.  */
-# include "../include/stdint.h"
+# include <stdint.h>
 #endif
 
 #if ! defined _GL_STDINT_H && ! defined _GL_JUST_INCLUDE_SYSTEM_STDINT_H
@@ -101,19 +93,19 @@
 # define WINT_MAX 0xffffffffU
 #endif
 
-#if ! 1
+#if ! 0
 
 /* <sys/types.h> defines some of the stdint.h types as well, on glibc,
    IRIX 6.5, and OpenBSD 3.8 (via <machine/types.h>).
    AIX 5.2 <sys/types.h> isn't needed and causes troubles.
    Mac OS X 10.4.6 <sys/types.h> includes <stdint.h> (which is us), but
    relies on the system <stdint.h> definitions, so include
-   <sys/types.h> after "../include/stdint.h".  */
+   <sys/types.h> after <stdint.h>.  */
 # if 1 && ! defined _AIX
 #  include <sys/types.h>
 # endif
 
-# if _MSC_VER >= 1800
+# if 0
   /* In OpenBSD 3.8, <inttypes.h> includes <machine/types.h>, which defines
      int{8,16,32,64}_t, uint{8,16,32,64}_t and __BIT_TYPES_DEFINED__.
      <inttypes.h> also defines intptr_t and uintptr_t.  */
@@ -548,24 +540,31 @@ typedef int _verify_intmax_size[sizeof (intmax_t) == sizeof (uintmax_t)
 #   define PTRDIFF_MAX  _STDINT_MAX (1, 32, 0)
 #  endif
 # else
-#  define PTRDIFF_MIN  \
-    _STDINT_SIGNED_MIN (, 0)
-#  define PTRDIFF_MAX  \
-    _STDINT_MAX (1, , 0)
+#  ifdef _WIN64
+#   define PTRDIFF_MIN  \
+     _STDINT_SIGNED_MIN (64, 0LL)
+#   define PTRDIFF_MAX  \
+     _STDINT_MAX (1, 64, 0LL)
+#  else
+#   define PTRDIFF_MIN  \
+     _STDINT_SIGNED_MIN (32, 0)
+#   define PTRDIFF_MAX  \
+     _STDINT_MAX (1, 32, 0)
+#  endif
 # endif
 
 /* sig_atomic_t limits */
 # undef SIG_ATOMIC_MIN
 # undef SIG_ATOMIC_MAX
-# if 
+# if 1
 #  define SIG_ATOMIC_MIN  \
-    _STDINT_SIGNED_MIN (, 0)
+    _STDINT_SIGNED_MIN (32, 0)
 # else
 #  define SIG_ATOMIC_MIN  \
-    _STDINT_UNSIGNED_MIN (, 0)
+    _STDINT_UNSIGNED_MIN (32, 0)
 # endif
 # define SIG_ATOMIC_MAX  \
-   _STDINT_MAX (, , \
+   _STDINT_MAX (1, 32, \
                 0)
 
 
@@ -578,7 +577,11 @@ typedef int _verify_intmax_size[sizeof (intmax_t) == sizeof (uintmax_t)
 #   define SIZE_MAX  _STDINT_MAX (0, 32, 0ul)
 #  endif
 # else
-#  define SIZE_MAX  _STDINT_MAX (0, , 0)
+#  ifdef _WIN64
+#   define SIZE_MAX  _STDINT_MAX (0, 64, 0ull)
+#  else
+#   define SIZE_MAX  _STDINT_MAX (0, 32, 0u)
+#  endif
 # endif
 
 /* wchar_t limits */
@@ -594,15 +597,15 @@ typedef int _verify_intmax_size[sizeof (intmax_t) == sizeof (uintmax_t)
 # endif
 # undef WCHAR_MIN
 # undef WCHAR_MAX
-# if 
+# if 0
 #  define WCHAR_MIN  \
-    _STDINT_SIGNED_MIN (, 0)
+    _STDINT_SIGNED_MIN (16, 0)
 # else
 #  define WCHAR_MIN  \
-    _STDINT_UNSIGNED_MIN (, 0)
+    _STDINT_UNSIGNED_MIN (16, 0)
 # endif
 # define WCHAR_MAX  \
-   _STDINT_MAX (, , 0)
+   _STDINT_MAX (0, 16, 0)
 
 /* wint_t limits */
 /* If gnulib's <wchar.h> or <wctype.h> overrides wint_t,  is not
@@ -610,15 +613,15 @@ typedef int _verify_intmax_size[sizeof (intmax_t) == sizeof (uintmax_t)
 # if !1
 #  undef WINT_MIN
 #  undef WINT_MAX
-#  if 
+#  if 0
 #   define WINT_MIN  \
-     _STDINT_SIGNED_MIN (, 0)
+     _STDINT_SIGNED_MIN (32, 0)
 #  else
 #   define WINT_MIN  \
-     _STDINT_UNSIGNED_MIN (, 0)
+     _STDINT_UNSIGNED_MIN (32, 0)
 #  endif
 #  define WINT_MAX  \
-    _STDINT_MAX (, , 0)
+    _STDINT_MAX (0, 32, 0)
 # endif
 
 /* 7.18.4. Macros for integer constants */
@@ -683,7 +686,7 @@ typedef int _verify_intmax_size[sizeof (intmax_t) == sizeof (uintmax_t)
 #  endif
 # endif
 
-#endif /* !1 */
+#endif /* !0 */
 
 /* Macros specified by ISO/IEC TS 18661-1:2014.  */
 
@@ -747,4 +750,3 @@ typedef int _verify_intmax_size[sizeof (intmax_t) == sizeof (uintmax_t)
 #endif /* _GL_STDINT_H */
 #endif /* !(defined __ANDROID__ && ...) */
 #endif /* !defined _GL_STDINT_H && !defined _GL_JUST_INCLUDE_SYSTEM_STDINT_H */
-#endif
