@@ -1,5 +1,6 @@
 EXPORTS
 cleanup_temp_dir
+closedir
 close_stdout
 compile_csharp_class
 compile_java_class
@@ -45,10 +46,12 @@ locale_charset
 maybe_print_progname
 multiline_error
 multiline_warning
+opendir
 next_prime
 pipe_filter_ii_execute
 proper_name
 proper_name_utf8
+readdir
 register_temp_file
 register_temp_subdir
 relocate
