@@ -1,0 +1,30 @@
+--- a/src/x86/ffi.c	2022-10-03 18:38:50.068091500 +0800
++++ b/src/x86/ffi.c	2022-10-03 23:00:34.830611200 +0800
+@@ -240,6 +240,19 @@
+   int regs[3];
+ };
+ 
++#if defined (_MSC_VER) && (_MSC_VER < 1800)
++
++static const struct abi_params abi_params[FFI_LAST_ABI] = {
++  {0,},
++  { 1, R_ECX, 0 }, /* sysv */
++  { 1, R_ECX, 0 }, /* stdcall */
++  { 1, R_EAX, 1, { R_ECX } }, /* thiscall */
++  { 1, R_EAX, 2, { R_ECX, R_EDX } }, /* fastcall */
++  { 1, R_ECX, 0 }, /* ms_cdecl */
++  { -1, R_ECX, 0 }, /* pascal */
++  { -1, R_ECX, 3, { R_EAX, R_EDX, R_ECX } }, /* register */
++};
++#else
+ static const struct abi_params abi_params[FFI_LAST_ABI] = {
+   [FFI_SYSV] = { 1, R_ECX, 0 },
+   [FFI_THISCALL] = { 1, R_EAX, 1, { R_ECX } },
+@@ -250,6 +263,7 @@
+   [FFI_REGISTER] = { -1, R_ECX, 3, { R_EAX, R_EDX, R_ECX } },
+   [FFI_MS_CDECL] = { 1, R_ECX, 0 }
+ };
++#endif
+ 
+ #ifdef HAVE_FASTCALL
+   #ifdef _MSC_VER

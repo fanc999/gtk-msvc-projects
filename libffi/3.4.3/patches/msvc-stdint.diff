@@ -1,0 +1,43 @@
+--- a/src/x86/ffi64.c	2022-10-03 18:14:08.300606900 +0800
++++ b/src/x86/ffi64.c	2022-10-03 18:14:26.328157200 +0800
+@@ -32,7 +32,10 @@
+ 
+ #include <stdlib.h>
+ #include <stdarg.h>
+-#include <stdint.h>
++
++#if !defined (_MSC_VER) || (_MSC_VER >= 1600)
++# include <stdint.h>
++#endif
+ #include <tramp.h>
+ #include "internal64.h"
+ 
+--- a/src/x86/ffiw64.c	2022-10-03 18:05:19.411709500 +0800
++++ b/src/x86/ffiw64.c	2022-10-03 18:06:40.337958000 +0800
+@@ -29,7 +29,11 @@
+ #include <ffi.h>
+ #include <ffi_common.h>
+ #include <stdlib.h>
++
++#if !defined (_MSC_VER) || (_MSC_VER >= 1600)
+ #include <stdint.h>
++#endif
++
+ #include <tramp.h>
+ 
+ #ifdef X86_WIN64
+--- a/src/x86/ffi.c	2022-10-03 18:38:50.068091500 +0800
++++ b/src/x86/ffi.c	2022-10-03 18:39:10.048677800 +0800
+@@ -32,7 +32,11 @@
+ #if defined(__i386__) || defined(_M_IX86)
+ #include <ffi.h>
+ #include <ffi_common.h>
+-#include <stdint.h>
++
++#if !defined (_MSC_VER) || (_MSC_VER >= 1600)
++# include <stdint.h>
++#endif
++
+ #include <stdlib.h>
+ #include <tramp.h>
+ #include "internal.h"

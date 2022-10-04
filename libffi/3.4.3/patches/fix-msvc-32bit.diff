@@ -1,0 +1,13 @@
+--- a/src/x86/sysv_intel.S	2022-10-03 23:05:03.115568500 +0800
++++ b/src/x86/sysv_intel.S	2022-10-03 23:05:05.586296400 +0800
+@@ -755,8 +755,8 @@
+ /* 	movl	(%esp), %edx */
+ /* 	ret */
+ /* ENDF(C(__x86.get_pc_thunk.dx)) */
+-/* #endif /* DARWIN || HIDDEN */ */
+-/* #endif /* __PIC__ */ */
++/* #endif /* DARWIN || HIDDEN */
++/* #endif /* __PIC__ */
+ 
+ #if 0
+ /* Sadly, OSX cctools-as doesn't understand .cfi directives at all.  */
