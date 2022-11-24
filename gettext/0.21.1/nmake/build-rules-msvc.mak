@@ -116,6 +116,11 @@ $<
 $<
 <<
 
+{..\gettext-tools\gnulib-lib\malloc\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib\}.obj::
+	$(CC) $(GETTEXT_TOOLS_INCLUDES) $(GETTEXT_TOOLS_GNULIB_CFLAGS) /Fovs$(VSVER)\$(CFG)\$(PLAT)\gettextlib\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\gettextlib\ /c @<<
+$<
+<<
+
 {..\gettext-tools\gnulib-lib\uniconv\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\gettextlib\}.obj::
 	$(CC) $(GETTEXT_TOOLS_INCLUDES) $(GETTEXT_TOOLS_GNULIB_CFLAGS) /Fovs$(VSVER)\$(CFG)\$(PLAT)\gettextlib\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\gettextlib\ /c @<<
 $<
@@ -158,6 +163,12 @@ $<
 <<
 
 {..\gettext-tools\libgrep\glthread\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\libgrep\}.obj::
+	@if not exist vs$(VSVER)\$(CFG)\$(PLAT)\libgrep\ md vs$(VSVER)\$(CFG)\$(PLAT)\libgrep
+	$(CC) $(LIBGREP_INCLUDES) $(LIBGREP_CFLAGS) /Fovs$(VSVER)\$(CFG)\$(PLAT)\libgrep\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\libgrep\ /c @<<
+$<
+<<
+
+{..\gettext-tools\libgrep\malloc\}.c{vs$(VSVER)\$(CFG)\$(PLAT)\libgrep\}.obj::
 	@if not exist vs$(VSVER)\$(CFG)\$(PLAT)\libgrep\ md vs$(VSVER)\$(CFG)\$(PLAT)\libgrep
 	$(CC) $(LIBGREP_INCLUDES) $(LIBGREP_CFLAGS) /Fovs$(VSVER)\$(CFG)\$(PLAT)\libgrep\ /Fdvs$(VSVER)\$(CFG)\$(PLAT)\libgrep\ /c @<<
 $<

@@ -4,7 +4,6 @@ GETTEXT_LIB_BASE_SRCS =	\
 	acl-internal.c	\
 	addext.c	\
 	allocator.c	\
-	areadlink-with-size.c	\
 	areadlink.c	\
 	argmatch.c	\
 	asnprintf.c	\
@@ -19,10 +18,13 @@ GETTEXT_LIB_BASE_SRCS =	\
 	c-strcasestr.c	\
 	c-strncasecmp.c	\
 	c-strstr.c	\
+	calloc.c	\
 	canonicalize-lgpl.c	\
 	canonicalize.c	\
 	careadlinkat.c	\
+	chdir-long.c	\
 	classpath.c	\
+	clean-temp-simple.c	\
 	clean-temp.c	\
 	cloexec.c	\
 	close.c	\
@@ -37,6 +39,7 @@ GETTEXT_LIB_BASE_SRCS =	\
 	dirname-lgpl.c	\
 	dup-safer-flag.c	\
 	dup-safer.c	\
+	dup.c	\
 	dup2.c	\
 	error-progname.c	\
 	error.c	\
@@ -44,15 +47,19 @@ GETTEXT_LIB_BASE_SRCS =	\
 	exitfail.c	\
 	explicit_bzero.c	\
 	fatal-signal.c	\
+	fchdir.c	\
 	fcntl.c	\
 	fd-hook.c	\
 	fd-safer-flag.c	\
 	fd-safer.c	\
 	fdopen.c	\
 	file-set.c	\
+	filenamecat-lgpl.c	\
 	findprog.c	\
+	findprog-in.c	\
 	fnmatch.c	\
 	fopen.c	\
+	free.c	\
 	fstat.c	\
 	fstrcmp.c	\
 	ftell.c	\
@@ -61,6 +68,8 @@ GETTEXT_LIB_BASE_SRCS =	\
 	fwriteerror.c	\
 	gcd.c	\
 	get-permissions.c	\
+	getcwd.c	\
+	getcwd-lgpl.c	\
 	getdelim.c	\
 	getdtablesize.c	\
 	getline.c	\
@@ -78,6 +87,7 @@ GETTEXT_LIB_BASE_SRCS =	\
 	hash-pjw.c	\
 	hash-triple-simple.c	\
 	hash.c	\
+	ialloc.c	\
 	isinf.c	\
 	isnand.c	\
 	isnanf.c	\
@@ -103,6 +113,7 @@ GETTEXT_LIB_BASE_SRCS =	\
 	mbuiter.c	\
 	mem-hash-map.c	\
 	mempcpy.c	\
+	memrchr.c	\
 	mkdir.c	\
 	mkdtemp.c	\
 	msvc-inval.c	\
@@ -110,7 +121,11 @@ GETTEXT_LIB_BASE_SRCS =	\
 	obstack.c	\
 	omp-init.c	\
 	open.c	\
+	openat.c	\
+	openat-die.c	\
+	openat-proc.c	\
 	opendir.c	\
+	pipe.c	\
 	pipe-filter-aux.c	\
 	pipe-filter-ii.c	\
 	pipe-safer.c	\
@@ -130,10 +145,13 @@ GETTEXT_LIB_BASE_SRCS =	\
 	readdir.c	\
 	readlink.c	\
 	realloc.c	\
+	reallocarray.c	\
 	relocatable.c	\
+	rewinddir.c	\
 	rmdir.c	\
 	safe-read.c	\
 	safe-write.c	\
+	save-cwd.c	\
 	secure_getenv.c	\
 	set-permissions.c	\
 	setenv.c	\
@@ -144,13 +162,16 @@ GETTEXT_LIB_BASE_SRCS =	\
 	sigaction.c	\
 	sigprocmask.c	\
 	snprintf.c	\
+	spawn.c	\
 	spawn-pipe.c	\
 	spawnattr_destroy.c	\
 	spawnattr_init.c	\
 	spawnattr_setflags.c	\
+	spawnattr_setpgroup.c	\
 	spawnattr_setsigmask.c	\
 	spawni.c	\
 	spawnp.c	\
+	spawn_faction_addchdir.c	\
 	spawn_faction_addclose.c	\
 	spawn_faction_adddup2.c	\
 	spawn_faction_addopen.c	\
@@ -163,6 +184,7 @@ GETTEXT_LIB_BASE_SRCS =	\
 	stpcpy.c	\
 	stpncpy.c	\
 	strchrnul.c	\
+	strdup.c	\
 	strerror-override.c	\
 	strerror.c	\
 	striconv.c	\
@@ -171,6 +193,8 @@ GETTEXT_LIB_BASE_SRCS =	\
 	stripslash.c	\
 	strnlen1.c	\
 	strstr.c	\
+	strtol.c	\
+	strtoul.c	\
 	supersede.c	\
 	tempname.c	\
 	timespec.c	\
@@ -192,35 +216,26 @@ GETTEXT_LIB_BASE_SRCS =	\
 	windows-once.c	\
 	windows-recmutex.c	\
 	windows-rwlock.c	\
+	windows-spawn.c	\
 	windows-spin.c	\
 	windows-tls.c	\
 	wmempcpy.c	\
 	write.c	\
+	xalloc-die.c	\
 	xasprintf.c	\
 	xconcat-filename.c	\
 	xerror.c	\
-	xgetcwd.c	\
 	xmalloc.c	\
 	xmalloca.c	\
 	xmemdup0.c	\
 	xreadlink.c	\
 	xsetenv.c	\
 	xsize.c	\
-	xstrdup.c	\
 	xstriconv.c	\
 	xstriconveh.c	\
 	xvasprintf.c
 
-!if $(VSVER) < 12
-GETTEXT_LIB_BASE_SRCS =	\
-	$(GETTEXT_LIB_BASE_SRCS)	\
-	isblank.c	\
-	signbitd.c	\
-	signbitf.c	\
-	signbitl.c
-!endif
-
-!if "$(PLAT)" == "arm64"
+!if $(VSVER) > 14
 GETTEXT_LIB_BASE_SRCS =	\
 	$(GETTEXT_LIB_BASE_SRCS)	\
 	mbsrtowcs-state.c	\
@@ -233,13 +248,10 @@ LIBGREP_SOURCES =	\
 	m-regex.c	\
 	mbrlen.c	\
 	nl_langinfo.c	\
-	regex.c
-
-!if $(VSVER) > 12
-LIBGREP_SOURCES =	\
-	$(LIBGREP_SOURCES)	\
-	wcrtomb.c
-!endif
+	regex.c	\
+	unistd.c	\
+	wcrtomb.c	\
+	wctype-h.c
 
 LIBGETTEXTPO_GNULIB_SRCS =	\
 	asnprintf.c	\
@@ -249,6 +261,7 @@ LIBGETTEXTPO_GNULIB_SRCS =	\
 	c-strcasecmp.c	\
 	c-strncasecmp.c	\
 	c-strstr.c	\
+	calloc.c	\
 	cloexec.c	\
 	close.c	\
 	concat-filename.c	\
@@ -260,6 +273,7 @@ LIBGETTEXTPO_GNULIB_SRCS =	\
 	fd-hook.c	\
 	fdopen.c	\
 	fopen.c	\
+	free.c	\
 	fstat.c	\
 	fstrcmp.c	\
 	fsync.c	\
@@ -273,6 +287,7 @@ LIBGETTEXTPO_GNULIB_SRCS =	\
 	gl_list.c	\
 	gl_xlist.c	\
 	hard-locale.c	\
+	ialloc.c	\
 	localcharset.c	\
 	malloc.c	\
 	malloca.c	\
@@ -290,13 +305,13 @@ LIBGETTEXTPO_GNULIB_SRCS =	\
 	raise.c	\
 	rawmemchr.c	\
 	realloc.c	\
+	reallocarray.c	\
 	relocatable.c	\
 	setlocale_null.c	\
 	sigprocmask.c	\
 	stat-time.c	\
 	stat-w32.c	\
 	stat.c	\
-	stdio-write.c	\
 	stpcpy.c	\
 	stpncpy.c	\
 	strchrnul.c	\
@@ -316,13 +331,13 @@ LIBGETTEXTPO_GNULIB_SRCS =	\
 	windows-recmutex.c	\
 	windows-rwlock.c	\
 	windows-tls.c	\
+	xalloc-die.c	\
 	xasprintf.c	\
 	xconcat-filename.c	\
 	xerror.c	\
 	xmalloc.c	\
 	xmalloca.c	\
 	xsize.c	\
-	xstrdup.c	\
 	xstriconv.c	\
 	xvasprintf.c
 
@@ -390,7 +405,6 @@ LIBGETTEXTSRC_SRCS =	\
 	msgl-english.c	\
 	msgl-equal.c	\
 	msgl-charset.c	\
-	msgl-check.c	\
 	msgl-header.c	\
 	msgl-iconv.c	\
 	po-time.c	\

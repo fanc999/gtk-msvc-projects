@@ -1,20 +1,20 @@
 /* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* A substitute for ISO C99 <wchar.h>, for platforms that have issues.
 
-   Copyright (C) 2007-2020 Free Software Foundation, Inc.
+   Copyright (C) 2007-2022 Free Software Foundation, Inc.
 
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 3, or (at your option)
-   any later version.
+   This file is free software: you can redistribute it and/or modify
+   it under the terms of the GNU Lesser General Public License as
+   published by the Free Software Foundation; either version 2.1 of the
+   License, or (at your option) any later version.
 
-   This program is distributed in the hope that it will be useful,
+   This file is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+   GNU Lesser General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, see <https://www.gnu.org/licenses/>.  */
+   You should have received a copy of the GNU Lesser General Public License
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 /* Written by Eric Blake.  */
 
@@ -53,11 +53,7 @@
      the latter includes <wchar.h>.  But here, we have no way to detect whether
      <wctype.h> is completely included or is still being included.  */
 
-#if (_MSC_VER < 1900)
-#include "../include/wchar.h"
-#else
 #include "../ucrt/wchar.h"
-#endif
 
 #else
 /* Normal invocation convention.  */
@@ -70,30 +66,18 @@
 # include <features.h> /* for __GLIBC__ */
 #endif
 
-/* Tru64 with Desktop Toolkit C has a bug: <stdio.h> must be included before
-   <wchar.h>.
-   BSD/OS 4.0.1 has a bug: <stddef.h>, <stdio.h> and <time.h> must be
-   included before <wchar.h>.
-   In some builds of uClibc, <wchar.h> is nonexistent and wchar_t is defined
+/* In some builds of uClibc, <wchar.h> is nonexistent and wchar_t is defined
    by <stddef.h>.
    But avoid namespace pollution on glibc systems.  */
 #if !(defined __GLIBC__ && !defined __UCLIBC__)
 # include <stddef.h>
-#endif
-#ifndef __GLIBC__
-# include <stdio.h>
-# include <time.h>
 #endif
 
 /* Include the original <wchar.h> if it exists.
    Some builds of uClibc lack it.  */
 /* The include_next requires a split double-inclusion guard.  */
 #if 1
-#if (_MSC_VER < 1900)
-#include "../include/wchar.h"
-#else
-#include "../ucrt/wchar.h"
-#endif
+# include "../ucrt/wchar.h"
 #endif
 
 #undef _GL_ALREADY_INCLUDING_WCHAR_H
@@ -101,10 +85,39 @@
 #ifndef _GL_GTPO_WCHAR_H
 #define _GL_GTPO_WCHAR_H
 
+/* _GL_ATTRIBUTE_DEALLOC (F, I) declares that the function returns pointers
+   that can be freed by passing them as the Ith argument to the
+   function F.  */
+#ifndef _GL_ATTRIBUTE_DEALLOC
+# if __GNUC__ >= 11
+#  define _GL_ATTRIBUTE_DEALLOC(f, i) __attribute__ ((__malloc__ (f, i)))
+# else
+#  define _GL_ATTRIBUTE_DEALLOC(f, i)
+# endif
+#endif
+
+/* _GL_ATTRIBUTE_DEALLOC_FREE declares that the function returns pointers that
+   can be freed via 'free'; it can be used only after declaring 'free'.  */
+/* Applies to: functions.  Cannot be used on inline functions.  */
+#ifndef _GL_ATTRIBUTE_DEALLOC_FREE
+# define _GL_ATTRIBUTE_DEALLOC_FREE _GL_ATTRIBUTE_DEALLOC (free, 1)
+#endif
+
+/* _GL_ATTRIBUTE_MALLOC declares that the function returns a pointer to freshly
+   allocated memory.  */
+/* Applies to: functions.  */
+#ifndef _GL_ATTRIBUTE_MALLOC
+# if __GNUC__ >= 3 || defined __clang__
+#  define _GL_ATTRIBUTE_MALLOC __attribute__ ((__malloc__))
+# else
+#  define _GL_ATTRIBUTE_MALLOC
+# endif
+#endif
+
 /* The __attribute__ feature is available in gcc versions 2.5 and later.
    The attribute __pure__ was added in gcc 2.96.  */
 #ifndef _GL_ATTRIBUTE_PURE
-# if __GNUC__ > 2 || (__GNUC__ == 2 && __GNUC_MINOR__ >= 96)
+# if __GNUC__ > 2 || (__GNUC__ == 2 && __GNUC_MINOR__ >= 96) || defined __clang__
 #  define _GL_ATTRIBUTE_PURE __attribute__ ((__pure__))
 # else
 #  define _GL_ATTRIBUTE_PURE /* empty */
@@ -113,19 +126,19 @@
 
 /* The definitions of _GL_FUNCDECL_RPL etc. are copied here.  */
 /* C++ compatible function declaration macros.
-   Copyright (C) 2010-2020 Free Software Foundation, Inc.
+   Copyright (C) 2010-2022 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify it
-   under the terms of the GNU General Public License as published
-   by the Free Software Foundation; either version 3 of the License, or
+   under the terms of the GNU Lesser General Public License as published
+   by the Free Software Foundation; either version 2 of the License, or
    (at your option) any later version.
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   General Public License for more details.
+   Lesser General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
+   You should have received a copy of the GNU Lesser General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 #ifndef _GL_CXXDEFS_H
@@ -260,6 +273,16 @@
     _GL_EXTERN_C int _gl_cxxalias_dummy
 #endif
 
+/* _GL_CXXALIAS_MDA (func, rettype, parameters);
+   is to be used when func is a Microsoft deprecated alias, on native Windows.
+   It declares a C++ alias called GNULIB_NAMESPACE::func
+   that redirects to _func, if GNULIB_NAMESPACE is defined.
+   Example:
+     _GL_CXXALIAS_MDA (open, int, (const char *filename, int flags, ...));
+ */
+#define _GL_CXXALIAS_MDA(func,rettype,parameters) \
+  _GL_CXXALIAS_RPL_1 (func, _##func, rettype, parameters)
+
 /* _GL_CXXALIAS_RPL_CAST_1 (func, rpl_func, rettype, parameters);
    is like  _GL_CXXALIAS_RPL_1 (func, rpl_func, rettype, parameters);
    except that the C function rpl_func may have a slightly different
@@ -284,6 +307,14 @@
 # define _GL_CXXALIAS_RPL_CAST_1(func,rpl_func,rettype,parameters) \
     _GL_EXTERN_C int _gl_cxxalias_dummy
 #endif
+
+/* _GL_CXXALIAS_MDA_CAST (func, rettype, parameters);
+   is like  _GL_CXXALIAS_MDA (func, rettype, parameters);
+   except that the C function func may have a slightly different declaration.
+   A cast is used to silence the "invalid conversion" error that would
+   otherwise occur.  */
+#define _GL_CXXALIAS_MDA_CAST(func,rettype,parameters) \
+  _GL_CXXALIAS_RPL_CAST_1 (func, _##func, rettype, parameters)
 
 /* _GL_CXXALIAS_SYS (func, rettype, parameters);
    declares a C++ alias called GNULIB_NAMESPACE::func
@@ -382,7 +413,7 @@
    _GL_CXXALIASWARN_2 (func, namespace)
 /* To work around GCC bug <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=43881>,
    we enable the warning only when not optimizing.  */
-# if !__OPTIMIZE__
+# if !(defined __GNUC__ && !defined __clang__ && __OPTIMIZE__)
 #  define _GL_CXXALIASWARN_2(func,namespace) \
     _GL_WARN_ON_USE (func, \
                      "The symbol ::" #func " refers to the system function. " \
@@ -410,9 +441,9 @@
    _GL_CXXALIASWARN1_2 (func, rettype, parameters_and_attributes, namespace)
 /* To work around GCC bug <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=43881>,
    we enable the warning only when not optimizing.  */
-# if !__OPTIMIZE__
+# if !(defined __GNUC__ && !defined __clang__ && __OPTIMIZE__)
 #  define _GL_CXXALIASWARN1_2(func,rettype,parameters_and_attributes,namespace) \
-    _GL_WARN_ON_USE_CXX (func, rettype, parameters_and_attributes, \
+    _GL_WARN_ON_USE_CXX (func, rettype, rettype, parameters_and_attributes, \
                          "The symbol ::" #func " refers to the system function. " \
                          "Use " #namespace "::" #func " instead.")
 # else
@@ -428,26 +459,26 @@
 
 /* The definition of _GL_ARG_NONNULL is copied here.  */
 /* A C macro for declaring that specific arguments must not be NULL.
-   Copyright (C) 2009-2020 Free Software Foundation, Inc.
+   Copyright (C) 2009-2022 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify it
-   under the terms of the GNU General Public License as published
-   by the Free Software Foundation; either version 3 of the License, or
+   under the terms of the GNU Lesser General Public License as published
+   by the Free Software Foundation; either version 2 of the License, or
    (at your option) any later version.
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   General Public License for more details.
+   Lesser General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
+   You should have received a copy of the GNU Lesser General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 /* _GL_ARG_NONNULL((n,...,m)) tells the compiler and static analyzer tools
    that the values passed as arguments n, ..., m must be non-NULL pointers.
    n = 1 stands for the first argument, n = 2 for the second argument etc.  */
 #ifndef _GL_ARG_NONNULL
-# if (__GNUC__ == 3 && __GNUC_MINOR__ >= 3) || __GNUC__ > 3
+# if __GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 3) || defined __clang__
 #  define _GL_ARG_NONNULL(params) __attribute__ ((__nonnull__ params))
 # else
 #  define _GL_ARG_NONNULL(params)
@@ -456,19 +487,19 @@
 
 /* The definition of _GL_WARN_ON_USE is copied here.  */
 /* A C macro for emitting warnings if a function is used.
-   Copyright (C) 2010-2020 Free Software Foundation, Inc.
+   Copyright (C) 2010-2022 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify it
-   under the terms of the GNU General Public License as published
-   by the Free Software Foundation; either version 3 of the License, or
+   under the terms of the GNU Lesser General Public License as published
+   by the Free Software Foundation; either version 2 of the License, or
    (at your option) any later version.
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   General Public License for more details.
+   Lesser General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
+   You should have received a copy of the GNU Lesser General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 /* _GL_WARN_ON_USE (function, "literal string") issues a declaration
@@ -541,13 +572,20 @@
 # if 4 < __GNUC__ || (__GNUC__ == 4 && 3 <= __GNUC_MINOR__)
 /* A compiler attribute is available in gcc versions 4.3.0 and later.  */
 #  define _GL_WARN_ON_USE(function, message) \
-extern __typeof__ (function) function __attribute__ ((__warning__ (message)))
+_GL_WARN_EXTERN_C __typeof__ (function) function __attribute__ ((__warning__ (message)))
 #  define _GL_WARN_ON_USE_ATTRIBUTE(message) \
   __attribute__ ((__warning__ (message)))
+# elif __clang_major__ >= 4
+/* Another compiler attribute is available in clang.  */
+#  define _GL_WARN_ON_USE(function, message) \
+_GL_WARN_EXTERN_C __typeof__ (function) function \
+  __attribute__ ((__diagnose_if__ (1, message, "warning")))
+#  define _GL_WARN_ON_USE_ATTRIBUTE(message) \
+  __attribute__ ((__diagnose_if__ (1, message, "warning")))
 # elif __GNUC__ >= 3 && GNULIB_STRICT_CHECKING
 /* Verify the existence of the function.  */
 #  define _GL_WARN_ON_USE(function, message) \
-extern __typeof__ (function) function
+_GL_WARN_EXTERN_C __typeof__ (function) function
 #  define _GL_WARN_ON_USE_ATTRIBUTE(message)
 # else /* Unsupported.  */
 #  define _GL_WARN_ON_USE(function, message) \
@@ -556,27 +594,33 @@ _GL_WARN_EXTERN_C int _gl_warn_on_use
 # endif
 #endif
 
-/* _GL_WARN_ON_USE_CXX (function, rettype, parameters_and_attributes, "string")
-   is like _GL_WARN_ON_USE (function, "string"), except that in C++ mode the
+/* _GL_WARN_ON_USE_CXX (function, rettype_gcc, rettype_clang, parameters_and_attributes, "message")
+   is like _GL_WARN_ON_USE (function, "message"), except that in C++ mode the
    function is declared with the given prototype, consisting of return type,
    parameters, and attributes.
    This variant is useful for overloaded functions in C++. _GL_WARN_ON_USE does
    not work in this case.  */
 #ifndef _GL_WARN_ON_USE_CXX
 # if !defined __cplusplus
-#  define _GL_WARN_ON_USE_CXX(function,rettype,parameters_and_attributes,msg) \
+#  define _GL_WARN_ON_USE_CXX(function,rettype_gcc,rettype_clang,parameters_and_attributes,msg) \
      _GL_WARN_ON_USE (function, msg)
 # else
 #  if 4 < __GNUC__ || (__GNUC__ == 4 && 3 <= __GNUC_MINOR__)
-#   define _GL_WARN_ON_USE_CXX(function,rettype,parameters_and_attributes,msg) \
-extern rettype function parameters_and_attributes \
-     __attribute__ ((__warning__ (msg)))
+/* A compiler attribute is available in gcc versions 4.3.0 and later.  */
+#   define _GL_WARN_ON_USE_CXX(function,rettype_gcc,rettype_clang,parameters_and_attributes,msg) \
+extern rettype_gcc function parameters_and_attributes \
+  __attribute__ ((__warning__ (msg)))
+#  elif __clang_major__ >= 4
+/* Another compiler attribute is available in clang.  */
+#   define _GL_WARN_ON_USE_CXX(function,rettype_gcc,rettype_clang,parameters_and_attributes,msg) \
+extern rettype_clang function parameters_and_attributes \
+  __attribute__ ((__diagnose_if__ (1, msg, "warning")))
 #  elif __GNUC__ >= 3 && GNULIB_STRICT_CHECKING
 /* Verify the existence of the function.  */
-#   define _GL_WARN_ON_USE_CXX(function,rettype,parameters_and_attributes,msg) \
-extern rettype function parameters_and_attributes
+#   define _GL_WARN_ON_USE_CXX(function,rettype_gcc,rettype_clang,parameters_and_attributes,msg) \
+extern rettype_gcc function parameters_and_attributes
 #  else /* Unsupported.  */
-#   define _GL_WARN_ON_USE_CXX(function,rettype,parameters_and_attributes,msg) \
+#   define _GL_WARN_ON_USE_CXX(function,rettype_gcc,rettype_clang,parameters_and_attributes,msg) \
 _GL_WARN_EXTERN_C int _gl_warn_on_use
 #  endif
 # endif
@@ -638,9 +682,48 @@ typedef int rpl_mbstate_t;
 # endif
 #endif
 
+/* Make _GL_ATTRIBUTE_DEALLOC_FREE work, even though <stdlib.h> may not have
+   been included yet.  */
+#if 1
+# if (1 && !defined free \
+      && !(defined __cplusplus && defined GNULIB_NAMESPACE))
+/* We can't do '#define free rpl_free' here.  */
+_GL_EXTERN_C void rpl_free (void *);
+#  undef _GL_ATTRIBUTE_DEALLOC_FREE
+#  define _GL_ATTRIBUTE_DEALLOC_FREE _GL_ATTRIBUTE_DEALLOC (rpl_free, 1)
+# else
+#  if defined _MSC_VER && !defined free
+_GL_EXTERN_C
+#   if defined _DLL
+     __declspec (dllimport)
+#   endif
+     void __cdecl free (void *);
+#  else
+#   if defined __cplusplus && (__GLIBC__ + (__GLIBC_MINOR__ >= 14) > 2)
+_GL_EXTERN_C void free (void *) throw ();
+#   else
+_GL_EXTERN_C void free (void *);
+#   endif
+#  endif
+# endif
+#else
+# if defined _MSC_VER && !defined free
+_GL_EXTERN_C
+#   if defined _DLL
+     __declspec (dllimport)
+#   endif
+     void __cdecl free (void *);
+# else
+#  if defined __cplusplus && (__GLIBC__ + (__GLIBC_MINOR__ >= 14) > 2)
+_GL_EXTERN_C void free (void *) throw ();
+#  else
+_GL_EXTERN_C void free (void *);
+#  endif
+# endif
+#endif
 
 /* Convert a single-byte character to a wide character.  */
-#if 1
+#if 0
 # if 0
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef btowc
@@ -668,7 +751,7 @@ _GL_WARN_ON_USE (btowc, "btowc is unportable - "
 
 
 /* Convert a wide character to a single-byte character.  */
-#if IN_GETTEXT_TOOLS_GNULIB_TESTS
+#if 0
 # if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef wctob
@@ -758,7 +841,7 @@ _GL_WARN_ON_USE (mbrtowc, "mbrtowc is unportable - "
 
 
 /* Recognize a multibyte character.  */
-#if IN_GETTEXT_TOOLS_LIBGREP
+#if 0
 # if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef mbrlen
@@ -789,8 +872,8 @@ _GL_WARN_ON_USE (mbrlen, "mbrlen is unportable - "
 
 
 /* Convert a string to a wide string.  */
-#if 1
-# if (_MSC_VER >= 1900) && defined (_M_ARM64)
+#if 0
+# if (_MSC_VER >= 1910)
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef mbsrtowcs
 #   define mbsrtowcs rpl_mbsrtowcs
@@ -869,8 +952,8 @@ _GL_WARN_ON_USE (mbsnrtowcs, "mbsnrtowcs is unportable - "
 
 
 /* Convert a wide character to a multibyte character.  */
-#if (IN_GETTEXT_TOOLS_GNULIB_TESTS || IN_GETTEXT_TOOLS_LIBGREP)
-# if (_MSC_VER >= 1900)
+#if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef wcrtomb
 #   define wcrtomb rpl_wcrtomb
@@ -1014,7 +1097,7 @@ _GL_WARN_ON_USE (wcwidth, "wcwidth is unportable - "
 
 
 /* Search N wide characters of S for C.  */
-#if 1
+#if 0
 # if !1
 _GL_FUNCDECL_SYS (wmemchr, wchar_t *, (const wchar_t *s, wchar_t c, size_t n)
                                       _GL_ATTRIBUTE_PURE);
@@ -1110,7 +1193,7 @@ _GL_WARN_ON_USE (wmemmove, "wmemmove is unportable - "
 
 /* Copy N wide characters of SRC to DEST.
    Return pointer to wide characters after the last written wide character.  */
-#if 1
+#if 0
 # if !0
 _GL_FUNCDECL_SYS (wmempcpy, wchar_t *,
                   (wchar_t *restrict dest,
@@ -1169,7 +1252,10 @@ _GL_WARN_ON_USE (wcslen, "wcslen is unportable - "
 
 /* Return the number of wide characters in S, but at most MAXLEN.  */
 #if 0
-# if !1
+/* On Solaris 11.3, the header files declare the function in the std::
+   namespace, not in the global namespace.  So, force a declaration in
+   the global namespace.  */
+# if !1 || (defined __sun && defined __cplusplus)
 _GL_FUNCDECL_SYS (wcsnlen, size_t, (const wchar_t *s, size_t maxlen)
                                    _GL_ATTRIBUTE_PURE);
 # endif
@@ -1206,7 +1292,10 @@ _GL_WARN_ON_USE (wcscpy, "wcscpy is unportable - "
 
 /* Copy SRC to DEST, returning the address of the terminating L'\0' in DEST.  */
 #if 0
-# if !1
+/* On Solaris 11.3, the header files declare the function in the std::
+   namespace, not in the global namespace.  So, force a declaration in
+   the global namespace.  */
+# if !1 || (defined __sun && defined __cplusplus)
 _GL_FUNCDECL_SYS (wcpcpy, wchar_t *,
                   (wchar_t *restrict dest, const wchar_t *restrict src));
 # endif
@@ -1247,7 +1336,10 @@ _GL_WARN_ON_USE (wcsncpy, "wcsncpy is unportable - "
 /* Copy no more than N characters of SRC to DEST, returning the address of
    the last character written into DEST.  */
 #if 0
-# if !1
+/* On Solaris 11.3, the header files declare the function in the std::
+   namespace, not in the global namespace.  So, force a declaration in
+   the global namespace.  */
+# if !1 || (defined __sun && defined __cplusplus)
 _GL_FUNCDECL_SYS (wcpncpy, wchar_t *,
                   (wchar_t *restrict dest,
                    const wchar_t *restrict src, size_t n));
@@ -1349,7 +1441,10 @@ _GL_WARN_ON_USE (wcsncmp, "wcsncmp is unportable - "
 
 /* Compare S1 and S2, ignoring case.  */
 #if 0
-# if !1
+/* On Solaris 11.3, the header files declare the function in the std::
+   namespace, not in the global namespace.  So, force a declaration in
+   the global namespace.  */
+# if !1 || (defined __sun && defined __cplusplus)
 _GL_FUNCDECL_SYS (wcscasecmp, int, (const wchar_t *s1, const wchar_t *s2)
                                    _GL_ATTRIBUTE_PURE);
 # endif
@@ -1366,7 +1461,10 @@ _GL_WARN_ON_USE (wcscasecmp, "wcscasecmp is unportable - "
 
 /* Compare no more than N chars of S1 and S2, ignoring case.  */
 #if 0
-# if !1
+/* On Solaris 11.3, the header files declare the function in the std::
+   namespace, not in the global namespace.  So, force a declaration in
+   the global namespace.  */
+# if !1 || (defined __sun && defined __cplusplus)
 _GL_FUNCDECL_SYS (wcsncasecmp, int,
                   (const wchar_t *s1, const wchar_t *s2, size_t n)
                   _GL_ATTRIBUTE_PURE);
@@ -1426,16 +1524,58 @@ _GL_WARN_ON_USE (wcsxfrm, "wcsxfrm is unportable - "
 
 /* Duplicate S, returning an identical malloc'd string.  */
 #if 0
-# if !1
-_GL_FUNCDECL_SYS (wcsdup, wchar_t *, (const wchar_t *s));
-# endif
+# if defined _WIN32 && !defined __CYGWIN__
+#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#   undef wcsdup
+#   define wcsdup _wcsdup
+#  endif
+_GL_CXXALIAS_MDA (wcsdup, wchar_t *, (const wchar_t *s));
+# else
+/* On Solaris 11.3, the header files declare the function in the std::
+   namespace, not in the global namespace.  So, force a declaration in
+   the global namespace.  */
+#  if !1 || (defined __sun && defined __cplusplus) || __GNUC__ >= 11
+_GL_FUNCDECL_SYS (wcsdup, wchar_t *,
+                  (const wchar_t *s)
+                  _GL_ATTRIBUTE_MALLOC _GL_ATTRIBUTE_DEALLOC_FREE);
+#  endif
 _GL_CXXALIAS_SYS (wcsdup, wchar_t *, (const wchar_t *s));
+# endif
 _GL_CXXALIASWARN (wcsdup);
-#elif defined GNULIB_POSIXCHECK
-# undef wcsdup
-# if HAVE_RAW_DECL_WCSDUP
+#else
+# if __GNUC__ >= 11 && !defined wcsdup
+/* For -Wmismatched-dealloc: Associate wcsdup with free or rpl_free.  */
+_GL_FUNCDECL_SYS (wcsdup, wchar_t *,
+                  (const wchar_t *s)
+                  _GL_ATTRIBUTE_MALLOC _GL_ATTRIBUTE_DEALLOC_FREE);
+# endif
+# if defined GNULIB_POSIXCHECK
+#  undef wcsdup
+#  if HAVE_RAW_DECL_WCSDUP
 _GL_WARN_ON_USE (wcsdup, "wcsdup is unportable - "
                  "use gnulib module wcsdup for portability");
+#  endif
+# elif 1
+/* On native Windows, map 'wcsdup' to '_wcsdup', so that -loldnames is not
+   required.  In C++ with GNULIB_NAMESPACE, avoid differences between
+   platforms by defining GNULIB_NAMESPACE::wcsdup always.  */
+#  if defined _WIN32 && !defined __CYGWIN__
+#   if !(defined __cplusplus && defined GNULIB_NAMESPACE)
+#    undef wcsdup
+#    define wcsdup _wcsdup
+#   endif
+_GL_CXXALIAS_MDA (wcsdup, wchar_t *, (const wchar_t *s));
+#  else
+_GL_FUNCDECL_SYS (wcsdup, wchar_t *,
+                  (const wchar_t *s)
+                  _GL_ATTRIBUTE_MALLOC _GL_ATTRIBUTE_DEALLOC_FREE);
+#   if 1
+_GL_CXXALIAS_SYS (wcsdup, wchar_t *, (const wchar_t *s));
+#   endif
+#  endif
+#  if (defined _WIN32 && !defined __CYGWIN__) || 1
+_GL_CXXALIASWARN (wcsdup);
+#  endif
 # endif
 #endif
 

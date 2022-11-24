@@ -111,10 +111,12 @@ register_temp_subdir
 string_list_alloc
 string_list_append
 string_list_append_unique
+string_list_append_unique_desc
 string_list_destroy
 string_list_free
 string_list_init
 string_list_join
+string_list_member_desc
 string_list_member
 string_list_remove
 syntax_check_message_list

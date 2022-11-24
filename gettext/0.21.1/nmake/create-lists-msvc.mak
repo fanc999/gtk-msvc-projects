@@ -146,6 +146,9 @@ NULL=
 !if [for %s in (..\gettext-tools\gnulib-lib\glthread\*.c) do @call create-lists.bat file gettext-tools-objs-msvc$(VSVER)-$(PLAT).mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\gettextlib\%~ns.obj ]
 !endif
 
+!if [for %s in (..\gettext-tools\gnulib-lib\malloc\*.c) do @call create-lists.bat file gettext-tools-objs-msvc$(VSVER)-$(PLAT).mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\gettextlib\%~ns.obj ]
+!endif
+
 !if [for %s in (..\gettext-tools\gnulib-lib\uniconv\*.c) do @call create-lists.bat file gettext-tools-objs-msvc$(VSVER)-$(PLAT).mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\gettextlib\%~ns.obj ]
 !endif
 
@@ -174,6 +177,9 @@ NULL=
 !endif
 
 !if [for %s in ($(LIBGREP_SOURCES)) do @call create-lists.bat file gettext-tools-objs-msvc$(VSVER)-$(PLAT).mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\libgrep\%~ns.obj ]
+!endif
+
+!if [for %d in (glthread malloc) do @for %s in (..\gettext-tools\libgrep\%d\*.c) do @if not "%~nxs" == "dynarray-skeleton.c" call create-lists.bat file gettext-tools-objs-msvc$(VSVER)-$(PLAT).mak vs^$(VSVER)\^$(CFG)\^$(PLAT)\libgrep\%~ns.obj ]
 !endif
 
 !if [call create-lists.bat footer gettext-tools-objs-msvc$(VSVER)-$(PLAT).mak]

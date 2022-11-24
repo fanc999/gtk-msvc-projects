@@ -28,6 +28,7 @@ fwriteerror
 fwriteerror_supersede
 fwriteerror_temp
 gcd
+glwthread_mutex_destroy
 glwthread_mutex_unlock
 glwthread_mutex_init
 glwthread_mutex_lock
@@ -63,6 +64,7 @@ rpl_fopen
 rpl_fprintf
 rpl_fputc
 rpl_fputs
+rpl_free
 rpl_ftell
 rpl_fwrite
 rpl_getline
@@ -81,6 +83,8 @@ rpl_signal
 rpl_stat
 rpl_strerror
 rpl_strstr
+rpl_strtol
+rpl_strtoul
 set_program_name_and_installdir
 setlocale_null_r
 shell_quote_argv
@@ -95,6 +99,7 @@ uc_is_java_whitespace
 uc_is_space
 uc_width
 ulc_width_linebreaks
+ulc_width_linebreaks_v2
 unicode_name_character
 unregister_temp_file
 unregister_temp_subdir
@@ -155,9 +160,11 @@ xmlXPathFreeObject
 xmlXPathNewContext
 xmlXPathRegisterNs
 xmlXPathSetContextNode
+xnmalloc
 xrealloc
 xsetenv
 xstrdup
+xzalloc
 _obstack_begin
 _obstack_free
 _obstack_newchunk

@@ -1,6 +1,6 @@
 /* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Dummy replacement for part of the public API of the libtextstyle library.
-   Copyright (C) 2006-2007, 2019-2020 Free Software Foundation, Inc.
+   Copyright (C) 2006-2007, 2019-2022 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -41,6 +41,32 @@
 #include <unistd.h>
 #if HAVE_TCDRAIN
 # include <termios.h>
+#endif
+
+/* An __attribute__ __format__ specifier for a function that takes a format
+   string and arguments, where the format string directives are the ones
+   standardized by ISO C99 and POSIX.
+   _GL_ATTRIBUTE_SPEC_PRINTF_STANDARD  */
+/* __gnu_printf__ is supported in GCC >= 4.4.  */
+#ifndef _GL_ATTRIBUTE_SPEC_PRINTF_STANDARD
+# if __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 4)
+#  define _GL_ATTRIBUTE_SPEC_PRINTF_STANDARD __gnu_printf__
+# else
+#  define _GL_ATTRIBUTE_SPEC_PRINTF_STANDARD __printf__
+# endif
+#endif
+
+/* _GL_ATTRIBUTE_MAYBE_UNUSED declares that it is not a programming mistake if
+   the entity is not used.  The compiler should not warn if the entity is not
+   used.  */
+#ifndef _GL_ATTRIBUTE_MAYBE_UNUSED
+# if 0 /* no GCC or clang version supports this yet */
+#  define _GL_ATTRIBUTE_MAYBE_UNUSED [[__maybe_unused__]]
+# elif defined __GNUC__ || defined __clang__
+#  define _GL_ATTRIBUTE_MAYBE_UNUSED __attribute__ ((__unused__))
+# else
+#  define _GL_ATTRIBUTE_MAYBE_UNUSED
+# endif
 #endif
 
 /* ----------------------------- From ostream.h ----------------------------- */
@@ -116,8 +142,8 @@ ostream_write_str (ostream_t stream, const char *string)
 
 static inline ptrdiff_t ostream_printf (ostream_t stream,
                                         const char *format, ...)
-#if (__GNUC__ == 3 && __GNUC_MINOR__ >= 1) || __GNUC__ > 3
-  __attribute__ ((__format__ (__printf__, 2, 3)))
+#if __GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 1) || defined __clang__
+  __attribute__ ((__format__ (_GL_ATTRIBUTE_SPEC_PRINTF_STANDARD, 2, 3)))
 #endif
   ;
 static inline ptrdiff_t
@@ -141,8 +167,8 @@ ostream_printf (ostream_t stream, const char *format, ...)
 
 static inline ptrdiff_t ostream_vprintf (ostream_t stream,
                                          const char *format, va_list args)
-#if (__GNUC__ == 3 && __GNUC_MINOR__ >= 1) || __GNUC__ > 3
-  __attribute__ ((__format__ (__printf__, 2, 0)))
+#if __GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 1) || defined __clang__
+  __attribute__ ((__format__ (_GL_ATTRIBUTE_SPEC_PRINTF_STANDARD, 2, 0)))
 #endif
   ;
 static inline ptrdiff_t
@@ -168,38 +194,38 @@ typedef ostream_t styled_ostream_t;
 #define styled_ostream_free ostream_free
 
 static inline void
-styled_ostream_begin_use_class (styled_ostream_t stream _GL_UNUSED,
-                                const char *classname _GL_UNUSED)
+styled_ostream_begin_use_class (_GL_ATTRIBUTE_MAYBE_UNUSED styled_ostream_t stream,
+                                _GL_ATTRIBUTE_MAYBE_UNUSED const char *classname)
 {
 }
 
 static inline void
-styled_ostream_end_use_class (styled_ostream_t stream _GL_UNUSED,
-                              const char *classname _GL_UNUSED)
+styled_ostream_end_use_class (_GL_ATTRIBUTE_MAYBE_UNUSED styled_ostream_t stream,
+                              _GL_ATTRIBUTE_MAYBE_UNUSED const char *classname)
 {
 }
 
 static inline const char *
-styled_ostream_get_hyperlink_ref (styled_ostream_t stream _GL_UNUSED)
+styled_ostream_get_hyperlink_ref (_GL_ATTRIBUTE_MAYBE_UNUSED styled_ostream_t stream)
 {
   return NULL;
 }
 
 static inline const char *
-styled_ostream_get_hyperlink_id (styled_ostream_t stream _GL_UNUSED)
+styled_ostream_get_hyperlink_id (_GL_ATTRIBUTE_MAYBE_UNUSED styled_ostream_t stream)
 {
   return NULL;
 }
 
 static inline void
-styled_ostream_set_hyperlink (styled_ostream_t stream _GL_UNUSED,
-                              const char *ref _GL_UNUSED,
-                              const char *id _GL_UNUSED)
+styled_ostream_set_hyperlink (_GL_ATTRIBUTE_MAYBE_UNUSED styled_ostream_t stream,
+                              _GL_ATTRIBUTE_MAYBE_UNUSED const char *ref,
+                              _GL_ATTRIBUTE_MAYBE_UNUSED const char *id)
 {
 }
 
 static inline void
-styled_ostream_flush_to_current_style (styled_ostream_t stream _GL_UNUSED)
+styled_ostream_flush_to_current_style (_GL_ATTRIBUTE_MAYBE_UNUSED styled_ostream_t stream)
 {
 }
 
@@ -226,8 +252,8 @@ typedef ostream_t fd_ostream_t;
 #define fd_ostream_free ostream_free
 
 static inline fd_ostream_t
-fd_ostream_create (int fd, const char *filename _GL_UNUSED,
-                   bool buffered _GL_UNUSED)
+fd_ostream_create (int fd, _GL_ATTRIBUTE_MAYBE_UNUSED const char *filename,
+                   _GL_ATTRIBUTE_MAYBE_UNUSED bool buffered)
 {
   if (fd == 1)
     return stdout;
@@ -273,81 +299,81 @@ typedef ostream_t term_ostream_t;
 #define term_ostream_free ostream_free
 
 static inline term_color_t
-term_ostream_get_color (term_ostream_t stream _GL_UNUSED)
+term_ostream_get_color (_GL_ATTRIBUTE_MAYBE_UNUSED term_ostream_t stream)
 {
   return COLOR_DEFAULT;
 }
 
 static inline void
-term_ostream_set_color (term_ostream_t stream _GL_UNUSED,
-                        term_color_t color _GL_UNUSED)
+term_ostream_set_color (_GL_ATTRIBUTE_MAYBE_UNUSED term_ostream_t stream,
+                        _GL_ATTRIBUTE_MAYBE_UNUSED term_color_t color)
 {
 }
 
 static inline term_color_t
-term_ostream_get_bgcolor (term_ostream_t stream _GL_UNUSED)
+term_ostream_get_bgcolor (_GL_ATTRIBUTE_MAYBE_UNUSED term_ostream_t stream)
 {
   return COLOR_DEFAULT;
 }
 
 static inline void
-term_ostream_set_bgcolor (term_ostream_t stream _GL_UNUSED,
-                          term_color_t color _GL_UNUSED)
+term_ostream_set_bgcolor (_GL_ATTRIBUTE_MAYBE_UNUSED term_ostream_t stream,
+                          _GL_ATTRIBUTE_MAYBE_UNUSED term_color_t color)
 {
 }
 
 static inline term_weight_t
-term_ostream_get_weight (term_ostream_t stream _GL_UNUSED)
+term_ostream_get_weight (_GL_ATTRIBUTE_MAYBE_UNUSED term_ostream_t stream)
 {
   return WEIGHT_DEFAULT;
 }
 
 static inline void
-term_ostream_set_weight (term_ostream_t stream _GL_UNUSED,
-                         term_weight_t weight _GL_UNUSED)
+term_ostream_set_weight (_GL_ATTRIBUTE_MAYBE_UNUSED term_ostream_t stream,
+                         _GL_ATTRIBUTE_MAYBE_UNUSED term_weight_t weight)
 {
 }
 
 static inline term_posture_t
-term_ostream_get_posture (term_ostream_t stream _GL_UNUSED)
+term_ostream_get_posture (_GL_ATTRIBUTE_MAYBE_UNUSED term_ostream_t stream)
 {
   return POSTURE_DEFAULT;
 }
 
 static inline void
-term_ostream_set_posture (term_ostream_t stream _GL_UNUSED,
-                          term_posture_t posture _GL_UNUSED)
+term_ostream_set_posture (_GL_ATTRIBUTE_MAYBE_UNUSED term_ostream_t stream,
+                          _GL_ATTRIBUTE_MAYBE_UNUSED term_posture_t posture)
 {
 }
 
 static inline term_underline_t
-term_ostream_get_underline (term_ostream_t stream _GL_UNUSED)
+term_ostream_get_underline (_GL_ATTRIBUTE_MAYBE_UNUSED term_ostream_t stream)
 {
   return UNDERLINE_DEFAULT;
 }
 
 static inline void
-term_ostream_set_underline (term_ostream_t stream _GL_UNUSED,
-                            term_underline_t underline _GL_UNUSED)
+term_ostream_set_underline (_GL_ATTRIBUTE_MAYBE_UNUSED term_ostream_t stream,
+                            _GL_ATTRIBUTE_MAYBE_UNUSED term_underline_t underline)
 {
 }
 
 static inline const char *
-term_ostream_get_hyperlink_ref (term_ostream_t stream _GL_UNUSED)
+term_ostream_get_hyperlink_ref (_GL_ATTRIBUTE_MAYBE_UNUSED term_ostream_t stream)
 {
   return NULL;
 }
 
 static inline const char *
-term_ostream_get_hyperlink_id (term_ostream_t stream _GL_UNUSED)
+term_ostream_get_hyperlink_id (_GL_ATTRIBUTE_MAYBE_UNUSED term_ostream_t stream)
 {
   return NULL;
 }
 
 static inline void
-term_ostream_set_hyperlink (term_ostream_t stream _GL_UNUSED,
-                            const char *ref _GL_UNUSED,
-                            const char *id _GL_UNUSED)
+term_ostream_set_hyperlink (_GL_ATTRIBUTE_MAYBE_UNUSED term_ostream_t stream,
+                            _GL_ATTRIBUTE_MAYBE_UNUSED const char *ref,
+                            _GL_ATTRIBUTE_MAYBE_UNUSED const char *id)
 {
 }
 
@@ -375,7 +401,7 @@ typedef enum
 
 static inline term_ostream_t
 term_ostream_create (int fd, const char *filename,
-                     ttyctl_t tty_control _GL_UNUSED)
+                     _GL_ATTRIBUTE_MAYBE_UNUSED ttyctl_t tty_control)
 {
   return fd_ostream_create (fd, filename, true);
 }
@@ -396,8 +422,8 @@ typedef styled_ostream_t term_styled_ostream_t;
 
 static inline term_styled_ostream_t
 term_styled_ostream_create (int fd, const char *filename,
-                            ttyctl_t tty_control _GL_UNUSED,
-                            const char *css_filename _GL_UNUSED)
+                            _GL_ATTRIBUTE_MAYBE_UNUSED ttyctl_t tty_control,
+                            _GL_ATTRIBUTE_MAYBE_UNUSED const char *css_filename)
 {
   return fd_ostream_create (fd, filename, true);
 }
@@ -407,8 +433,8 @@ term_styled_ostream_create (int fd, const char *filename,
 typedef styled_ostream_t html_styled_ostream_t;
 
 static inline html_styled_ostream_t
-html_styled_ostream_create (ostream_t destination _GL_UNUSED,
-                            const char *css_filename _GL_UNUSED)
+html_styled_ostream_create (_GL_ATTRIBUTE_MAYBE_UNUSED ostream_t destination,
+                            _GL_ATTRIBUTE_MAYBE_UNUSED const char *css_filename)
 {
   abort ();
   return NULL;
@@ -424,13 +450,13 @@ enum color_option { color_no, color_tty, color_yes, color_html };
 #define style_file_name NULL
 
 static inline bool
-handle_color_option (const char *option _GL_UNUSED)
+handle_color_option (_GL_ATTRIBUTE_MAYBE_UNUSED const char *option)
 {
   return false;
 }
 
 static inline void
-handle_style_option (const char *option _GL_UNUSED)
+handle_style_option (_GL_ATTRIBUTE_MAYBE_UNUSED const char *option)
 {
 }
 
@@ -441,10 +467,10 @@ print_color_test (void)
 }
 
 static inline void
-style_file_prepare (const char *style_file_envvar _GL_UNUSED,
-                    const char *stylesdir_envvar _GL_UNUSED,
-                    const char *stylesdir_after_install _GL_UNUSED,
-                    const char *default_style_file _GL_UNUSED)
+style_file_prepare (_GL_ATTRIBUTE_MAYBE_UNUSED const char *style_file_envvar,
+                    _GL_ATTRIBUTE_MAYBE_UNUSED const char *stylesdir_envvar,
+                    _GL_ATTRIBUTE_MAYBE_UNUSED const char *stylesdir_after_install,
+                    _GL_ATTRIBUTE_MAYBE_UNUSED const char *default_style_file)
 {
 }
 
@@ -452,14 +478,14 @@ style_file_prepare (const char *style_file_envvar _GL_UNUSED,
 
 static inline styled_ostream_t
 styled_ostream_create (int fd, const char *filename,
-                       ttyctl_t tty_control _GL_UNUSED,
-                       const char *css_filename _GL_UNUSED)
+                       _GL_ATTRIBUTE_MAYBE_UNUSED ttyctl_t tty_control,
+                       _GL_ATTRIBUTE_MAYBE_UNUSED const char *css_filename)
 {
   return fd_ostream_create (fd, filename, true);
 }
 
 static inline void
-libtextstyle_set_failure_exit_code (int exit_code _GL_UNUSED)
+libtextstyle_set_failure_exit_code (_GL_ATTRIBUTE_MAYBE_UNUSED int exit_code)
 {
 }
 

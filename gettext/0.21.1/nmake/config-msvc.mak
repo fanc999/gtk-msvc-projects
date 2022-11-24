@@ -119,10 +119,9 @@ BASE_GETTEXT_TOOLS_INCLUDES =	\
 	$(FORCED_INCLUDED_HEADERS)
 
 GETTEXT_TOOLS_INCLUDES =	\
-	/I..\msvc\vs$(PDBVER)\$(PLAT)\gettext-tools\gnulib-lib	\
 	/I..\msvc\gettext-tools\gnulib-lib	\
 	/I..\gettext-tools\gnulib-lib	\
-	/I..\msvc\vs$(PDBVER)\$(PLAT)\gettext-tools	\
+	/I..\msvc\gettext-tools	\
 	/I..\msvc\gettext-runtime\intl	\
 	$(BASE_GETTEXT_TOOLS_INCLUDES)
 
@@ -139,13 +138,11 @@ LIBGREP_CFLAGS =	\
 	/DIN_GETTEXT_TOOLS_LIBGREP=1
 
 GETTEXTPO_GNULIB_INCLUDES =	\
-	/I..\msvc\vs$(PDBVER)\$(PLAT)\gettext-tools\libgettextpo	\
 	/I..\msvc\gettext-tools\libgettextpo	\
 	/I..\gettext-tools\libgettextpo	\
 	/I..\gettext-tools\src	\
-	/I..\msvc\vs$(PDBVER)\$(PLAT)\gettext-tools\gnulib-lib	\
 	/I..\msvc\gettext-tools\gnulib-lib	\
-	/I..\msvc\vs$(PDBVER)\$(PLAT)\gettext-tools	\
+	/I..\msvc\gettext-tools	\
 	/I..\msvc\gettext-runtime\intl	\
 	/I..\gettext-runtime\intl	\
 	$(BASE_GETTEXT_TOOLS_INCLUDES)
@@ -156,13 +153,11 @@ LIBGETTEXTPO_DEFINES =	\
 	$(GETTEXT_RUNTIME_GNULIB_CFLAGS)
 
 LIBGETTEXTSRC_INCLUDES =	\
-	/I..\msvc\vs$(PDBVER)\$(PLAT)\gettext-tools\src	\
 	/I..\msvc\gettext-tools\src	\
 	/I..\gettext-tools\src	\
-	/I..\msvc\vs$(PDBVER)\$(PLAT)\gettext-tools\gnulib-lib	\
 	/I..\msvc\gettext-tools\gnulib-lib	\
 	/I..\gettext-tools\gnulib-lib	\
-	/I..\msvc\vs$(PDBVER)\$(PLAT)\gettext-tools	\
+	/I..\msvc\gettext-tools	\
 	/I..\msvc\libtextstyle\lib	\
 	/I..\msvc\gettext-runtime\intl	\
 	/I..\gettext-runtime\intl	\

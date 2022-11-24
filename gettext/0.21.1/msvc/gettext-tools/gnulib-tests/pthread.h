@@ -1,20 +1,20 @@
 /* DO NOT EDIT! GENERATED AUTOMATICALLY! */
 /* Implement the most essential subset of POSIX 1003.1-2008 pthread.h.
 
-   Copyright (C) 2009-2020 Free Software Foundation, Inc.
+   Copyright (C) 2009-2022 Free Software Foundation, Inc.
 
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 3, or (at your option)
-   any later version.
+   This file is free software: you can redistribute it and/or modify
+   it under the terms of the GNU Lesser General Public License as
+   published by the Free Software Foundation; either version 2.1 of the
+   License, or (at your option) any later version.
 
-   This program is distributed in the hope that it will be useful,
+   This file is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+   GNU Lesser General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, see <https://www.gnu.org/licenses/>.  */
+   You should have received a copy of the GNU Lesser General Public License
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 /* Written by Paul Eggert, Glen Lenker, and Bruno Haible.  */
 
@@ -70,21 +70,31 @@
 #include <sys/types.h>
 #include <time.h>
 
+/* The __attribute__ feature is available in gcc versions 2.5 and later.
+   The attribute __pure__ was added in gcc 2.96.  */
+#ifndef _GL_ATTRIBUTE_PURE
+# if __GNUC__ > 2 || (__GNUC__ == 2 && __GNUC_MINOR__ >= 96) || defined __clang__
+#  define _GL_ATTRIBUTE_PURE __attribute__ ((__pure__))
+# else
+#  define _GL_ATTRIBUTE_PURE /* empty */
+# endif
+#endif
+
 /* The definitions of _GL_FUNCDECL_RPL etc. are copied here.  */
 /* C++ compatible function declaration macros.
-   Copyright (C) 2010-2020 Free Software Foundation, Inc.
+   Copyright (C) 2010-2022 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify it
-   under the terms of the GNU General Public License as published
-   by the Free Software Foundation; either version 3 of the License, or
+   under the terms of the GNU Lesser General Public License as published
+   by the Free Software Foundation; either version 2 of the License, or
    (at your option) any later version.
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   General Public License for more details.
+   Lesser General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
+   You should have received a copy of the GNU Lesser General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 #ifndef _GL_CXXDEFS_H
@@ -219,6 +229,16 @@
     _GL_EXTERN_C int _gl_cxxalias_dummy
 #endif
 
+/* _GL_CXXALIAS_MDA (func, rettype, parameters);
+   is to be used when func is a Microsoft deprecated alias, on native Windows.
+   It declares a C++ alias called GNULIB_NAMESPACE::func
+   that redirects to _func, if GNULIB_NAMESPACE is defined.
+   Example:
+     _GL_CXXALIAS_MDA (open, int, (const char *filename, int flags, ...));
+ */
+#define _GL_CXXALIAS_MDA(func,rettype,parameters) \
+  _GL_CXXALIAS_RPL_1 (func, _##func, rettype, parameters)
+
 /* _GL_CXXALIAS_RPL_CAST_1 (func, rpl_func, rettype, parameters);
    is like  _GL_CXXALIAS_RPL_1 (func, rpl_func, rettype, parameters);
    except that the C function rpl_func may have a slightly different
@@ -243,6 +263,14 @@
 # define _GL_CXXALIAS_RPL_CAST_1(func,rpl_func,rettype,parameters) \
     _GL_EXTERN_C int _gl_cxxalias_dummy
 #endif
+
+/* _GL_CXXALIAS_MDA_CAST (func, rettype, parameters);
+   is like  _GL_CXXALIAS_MDA (func, rettype, parameters);
+   except that the C function func may have a slightly different declaration.
+   A cast is used to silence the "invalid conversion" error that would
+   otherwise occur.  */
+#define _GL_CXXALIAS_MDA_CAST(func,rettype,parameters) \
+  _GL_CXXALIAS_RPL_CAST_1 (func, _##func, rettype, parameters)
 
 /* _GL_CXXALIAS_SYS (func, rettype, parameters);
    declares a C++ alias called GNULIB_NAMESPACE::func
@@ -341,7 +369,7 @@
    _GL_CXXALIASWARN_2 (func, namespace)
 /* To work around GCC bug <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=43881>,
    we enable the warning only when not optimizing.  */
-# if !__OPTIMIZE__
+# if !(defined __GNUC__ && !defined __clang__ && __OPTIMIZE__)
 #  define _GL_CXXALIASWARN_2(func,namespace) \
     _GL_WARN_ON_USE (func, \
                      "The symbol ::" #func " refers to the system function. " \
@@ -369,9 +397,9 @@
    _GL_CXXALIASWARN1_2 (func, rettype, parameters_and_attributes, namespace)
 /* To work around GCC bug <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=43881>,
    we enable the warning only when not optimizing.  */
-# if !__OPTIMIZE__
+# if !(defined __GNUC__ && !defined __clang__ && __OPTIMIZE__)
 #  define _GL_CXXALIASWARN1_2(func,rettype,parameters_and_attributes,namespace) \
-    _GL_WARN_ON_USE_CXX (func, rettype, parameters_and_attributes, \
+    _GL_WARN_ON_USE_CXX (func, rettype, rettype, parameters_and_attributes, \
                          "The symbol ::" #func " refers to the system function. " \
                          "Use " #namespace "::" #func " instead.")
 # else
@@ -387,19 +415,19 @@
 
 /* The definition of _Noreturn is copied here.  */
 /* A C macro for declaring that a function does not return.
-   Copyright (C) 2011-2020 Free Software Foundation, Inc.
+   Copyright (C) 2011-2022 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify it
-   under the terms of the GNU General Public License as published
-   by the Free Software Foundation; either version 3 of the License, or
+   under the terms of the GNU Lesser General Public License as published
+   by the Free Software Foundation; either version 2 of the License, or
    (at your option) any later version.
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   General Public License for more details.
+   Lesser General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
+   You should have received a copy of the GNU Lesser General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 #ifndef _Noreturn
@@ -414,14 +442,16 @@
        AIX system header files and several gnulib header files use precisely
        this syntax with 'extern'.  */
 #  define _Noreturn [[noreturn]]
-# elif ((!defined __cplusplus || defined __clang__)                     \
-        && (201112 <= (defined __STDC_VERSION__ ? __STDC_VERSION__ : 0)  \
-            || 4 < __GNUC__ + (7 <= __GNUC_MINOR__) \
-            || (defined __apple_build_version__ \
-                ? 6000000 <= __apple_build_version__ \
-                : 3 < __clang_major__ + (5 <= __clang_minor__))))
+# elif ((!defined __cplusplus || defined __clang__) \
+        && (201112 <= (defined __STDC_VERSION__ ? __STDC_VERSION__ : 0) \
+            || (!defined __STRICT_ANSI__ \
+                && (4 < __GNUC__ + (7 <= __GNUC_MINOR__) \
+                    || (defined __apple_build_version__ \
+                        ? 6000000 <= __apple_build_version__ \
+                        : 3 < __clang_major__ + (5 <= __clang_minor__))))))
    /* _Noreturn works as-is.  */
-# elif 2 < __GNUC__ + (8 <= __GNUC_MINOR__) || 0x5110 <= __SUNPRO_C
+# elif (2 < __GNUC__ + (8 <= __GNUC_MINOR__) || defined __clang__ \
+        || 0x5110 <= __SUNPRO_C)
 #  define _Noreturn __attribute__ ((__noreturn__))
 # elif 1200 <= (defined _MSC_VER ? _MSC_VER : 0)
 #  define _Noreturn __declspec (noreturn)
@@ -432,26 +462,26 @@
 
 /* The definition of _GL_ARG_NONNULL is copied here.  */
 /* A C macro for declaring that specific arguments must not be NULL.
-   Copyright (C) 2009-2020 Free Software Foundation, Inc.
+   Copyright (C) 2009-2022 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify it
-   under the terms of the GNU General Public License as published
-   by the Free Software Foundation; either version 3 of the License, or
+   under the terms of the GNU Lesser General Public License as published
+   by the Free Software Foundation; either version 2 of the License, or
    (at your option) any later version.
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   General Public License for more details.
+   Lesser General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
+   You should have received a copy of the GNU Lesser General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 /* _GL_ARG_NONNULL((n,...,m)) tells the compiler and static analyzer tools
    that the values passed as arguments n, ..., m must be non-NULL pointers.
    n = 1 stands for the first argument, n = 2 for the second argument etc.  */
 #ifndef _GL_ARG_NONNULL
-# if (__GNUC__ == 3 && __GNUC_MINOR__ >= 3) || __GNUC__ > 3
+# if __GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 3) || defined __clang__
 #  define _GL_ARG_NONNULL(params) __attribute__ ((__nonnull__ params))
 # else
 #  define _GL_ARG_NONNULL(params)
@@ -460,19 +490,19 @@
 
 /* The definition of _GL_WARN_ON_USE is copied here.  */
 /* A C macro for emitting warnings if a function is used.
-   Copyright (C) 2010-2020 Free Software Foundation, Inc.
+   Copyright (C) 2010-2022 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify it
-   under the terms of the GNU General Public License as published
-   by the Free Software Foundation; either version 3 of the License, or
+   under the terms of the GNU Lesser General Public License as published
+   by the Free Software Foundation; either version 2 of the License, or
    (at your option) any later version.
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   General Public License for more details.
+   Lesser General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
+   You should have received a copy of the GNU Lesser General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 /* _GL_WARN_ON_USE (function, "literal string") issues a declaration
@@ -545,13 +575,20 @@
 # if 4 < __GNUC__ || (__GNUC__ == 4 && 3 <= __GNUC_MINOR__)
 /* A compiler attribute is available in gcc versions 4.3.0 and later.  */
 #  define _GL_WARN_ON_USE(function, message) \
-extern __typeof__ (function) function __attribute__ ((__warning__ (message)))
+_GL_WARN_EXTERN_C __typeof__ (function) function __attribute__ ((__warning__ (message)))
 #  define _GL_WARN_ON_USE_ATTRIBUTE(message) \
   __attribute__ ((__warning__ (message)))
+# elif __clang_major__ >= 4
+/* Another compiler attribute is available in clang.  */
+#  define _GL_WARN_ON_USE(function, message) \
+_GL_WARN_EXTERN_C __typeof__ (function) function \
+  __attribute__ ((__diagnose_if__ (1, message, "warning")))
+#  define _GL_WARN_ON_USE_ATTRIBUTE(message) \
+  __attribute__ ((__diagnose_if__ (1, message, "warning")))
 # elif __GNUC__ >= 3 && GNULIB_STRICT_CHECKING
 /* Verify the existence of the function.  */
 #  define _GL_WARN_ON_USE(function, message) \
-extern __typeof__ (function) function
+_GL_WARN_EXTERN_C __typeof__ (function) function
 #  define _GL_WARN_ON_USE_ATTRIBUTE(message)
 # else /* Unsupported.  */
 #  define _GL_WARN_ON_USE(function, message) \
@@ -560,27 +597,33 @@ _GL_WARN_EXTERN_C int _gl_warn_on_use
 # endif
 #endif
 
-/* _GL_WARN_ON_USE_CXX (function, rettype, parameters_and_attributes, "string")
-   is like _GL_WARN_ON_USE (function, "string"), except that in C++ mode the
+/* _GL_WARN_ON_USE_CXX (function, rettype_gcc, rettype_clang, parameters_and_attributes, "message")
+   is like _GL_WARN_ON_USE (function, "message"), except that in C++ mode the
    function is declared with the given prototype, consisting of return type,
    parameters, and attributes.
    This variant is useful for overloaded functions in C++. _GL_WARN_ON_USE does
    not work in this case.  */
 #ifndef _GL_WARN_ON_USE_CXX
 # if !defined __cplusplus
-#  define _GL_WARN_ON_USE_CXX(function,rettype,parameters_and_attributes,msg) \
+#  define _GL_WARN_ON_USE_CXX(function,rettype_gcc,rettype_clang,parameters_and_attributes,msg) \
      _GL_WARN_ON_USE (function, msg)
 # else
 #  if 4 < __GNUC__ || (__GNUC__ == 4 && 3 <= __GNUC_MINOR__)
-#   define _GL_WARN_ON_USE_CXX(function,rettype,parameters_and_attributes,msg) \
-extern rettype function parameters_and_attributes \
-     __attribute__ ((__warning__ (msg)))
+/* A compiler attribute is available in gcc versions 4.3.0 and later.  */
+#   define _GL_WARN_ON_USE_CXX(function,rettype_gcc,rettype_clang,parameters_and_attributes,msg) \
+extern rettype_gcc function parameters_and_attributes \
+  __attribute__ ((__warning__ (msg)))
+#  elif __clang_major__ >= 4
+/* Another compiler attribute is available in clang.  */
+#   define _GL_WARN_ON_USE_CXX(function,rettype_gcc,rettype_clang,parameters_and_attributes,msg) \
+extern rettype_clang function parameters_and_attributes \
+  __attribute__ ((__diagnose_if__ (1, msg, "warning")))
 #  elif __GNUC__ >= 3 && GNULIB_STRICT_CHECKING
 /* Verify the existence of the function.  */
-#   define _GL_WARN_ON_USE_CXX(function,rettype,parameters_and_attributes,msg) \
-extern rettype function parameters_and_attributes
+#   define _GL_WARN_ON_USE_CXX(function,rettype_gcc,rettype_clang,parameters_and_attributes,msg) \
+extern rettype_gcc function parameters_and_attributes
 #  else /* Unsupported.  */
-#   define _GL_WARN_ON_USE_CXX(function,rettype,parameters_and_attributes,msg) \
+#   define _GL_WARN_ON_USE_CXX(function,rettype_gcc,rettype_clang,parameters_and_attributes,msg) \
 _GL_WARN_EXTERN_C int _gl_warn_on_use
 #  endif
 # endif
@@ -997,7 +1040,9 @@ _GL_CXXALIAS_SYS_CAST (pthread_create, int,
                         const pthread_attr_t *restrict attr,
                         void * (*mainfunc) (void *), void *restrict arg));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_create);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_create
 # if HAVE_RAW_DECL_PTHREAD_CREATE
@@ -1022,7 +1067,9 @@ _GL_FUNCDECL_SYS (pthread_attr_init, int, (pthread_attr_t *attr)
 #  endif
 _GL_CXXALIAS_SYS (pthread_attr_init, int, (pthread_attr_t *attr));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_attr_init);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_attr_init
 # if HAVE_RAW_DECL_PTHREAD_ATTR_INIT
@@ -1051,7 +1098,9 @@ _GL_FUNCDECL_SYS (pthread_attr_getdetachstate, int,
 _GL_CXXALIAS_SYS (pthread_attr_getdetachstate, int,
                   (const pthread_attr_t *attr, int *detachstatep));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_attr_getdetachstate);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_attr_getdetachstate
 # if HAVE_RAW_DECL_PTHREAD_ATTR_GETDETACHSTATE
@@ -1080,7 +1129,9 @@ _GL_FUNCDECL_SYS (pthread_attr_setdetachstate, int,
 _GL_CXXALIAS_SYS (pthread_attr_setdetachstate, int,
                   (pthread_attr_t *attr, int detachstate));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_attr_setdetachstate);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_attr_setdetachstate
 # if HAVE_RAW_DECL_PTHREAD_ATTR_SETDETACHSTATE
@@ -1105,7 +1156,9 @@ _GL_FUNCDECL_SYS (pthread_attr_destroy, int, (pthread_attr_t *attr)
 #  endif
 _GL_CXXALIAS_SYS (pthread_attr_destroy, int, (pthread_attr_t *attr));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_attr_destroy);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_attr_destroy
 # if HAVE_RAW_DECL_PTHREAD_ATTR_DESTROY
@@ -1128,7 +1181,9 @@ _GL_FUNCDECL_SYS (pthread_self, pthread_t, (void) _GL_ATTRIBUTE_PURE);
 #  endif
 _GL_CXXALIAS_SYS (pthread_self, pthread_t, (void));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_self);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_self
 # if HAVE_RAW_DECL_PTHREAD_SELF
@@ -1151,7 +1206,9 @@ _GL_FUNCDECL_SYS (pthread_equal, int, (pthread_t thread1, pthread_t thread2));
 #  endif
 _GL_CXXALIAS_SYS (pthread_equal, int, (pthread_t thread1, pthread_t thread2));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_equal);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_equal
 # if HAVE_RAW_DECL_PTHREAD_EQUAL
@@ -1174,7 +1231,9 @@ _GL_FUNCDECL_SYS (pthread_detach, int, (pthread_t thread));
 #  endif
 _GL_CXXALIAS_SYS (pthread_detach, int, (pthread_t thread));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_detach);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_detach
 # if HAVE_RAW_DECL_PTHREAD_DETACH
@@ -1197,7 +1256,9 @@ _GL_FUNCDECL_SYS (pthread_join, int, (pthread_t thread, void **valuep));
 #  endif
 _GL_CXXALIAS_SYS (pthread_join, int, (pthread_t thread, void **valuep));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_join);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_join
 # if HAVE_RAW_DECL_PTHREAD_JOIN
@@ -1221,7 +1282,9 @@ _GL_FUNCDECL_SYS (pthread_exit, _Noreturn void, (void *value));
 /* Need to cast because of AIX with xlclang++.  */
 _GL_CXXALIAS_SYS_CAST (pthread_exit, void, (void *value));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_exit);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_exit
 # if HAVE_RAW_DECL_PTHREAD_EXIT
@@ -1253,7 +1316,9 @@ _GL_CXXALIAS_SYS_CAST (pthread_once, int,
                        (pthread_once_t *once_control,
                         void (*initfunction) (void)));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_once);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_once
 # if HAVE_RAW_DECL_PTHREAD_ONCE
@@ -1288,7 +1353,9 @@ _GL_CXXALIAS_SYS (pthread_mutex_init, int,
                   (pthread_mutex_t *restrict mutex,
                    const pthread_mutexattr_t *restrict attr));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_mutex_init);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_mutex_init
 # if HAVE_RAW_DECL_PTHREAD_MUTEX_INIT
@@ -1313,7 +1380,9 @@ _GL_FUNCDECL_SYS (pthread_mutexattr_init, int, (pthread_mutexattr_t *attr)
 #  endif
 _GL_CXXALIAS_SYS (pthread_mutexattr_init, int, (pthread_mutexattr_t *attr));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_mutexattr_init);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_mutexattr_init
 # if HAVE_RAW_DECL_PTHREAD_MUTEXATTR_INIT
@@ -1348,7 +1417,9 @@ _GL_CXXALIAS_SYS_CAST (pthread_mutexattr_gettype, int,
                        (const pthread_mutexattr_t *restrict attr,
                         int *restrict typep));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_mutexattr_gettype);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_mutexattr_gettype
 # if HAVE_RAW_DECL_PTHREAD_MUTEXATTR_GETTYPE
@@ -1375,7 +1446,9 @@ _GL_FUNCDECL_SYS (pthread_mutexattr_settype, int,
 _GL_CXXALIAS_SYS (pthread_mutexattr_settype, int,
                   (pthread_mutexattr_t *attr, int type));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_mutexattr_settype);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_mutexattr_settype
 # if HAVE_RAW_DECL_PTHREAD_MUTEXATTR_SETTYPE
@@ -1468,7 +1541,9 @@ _GL_FUNCDECL_SYS (pthread_mutexattr_destroy, int, (pthread_mutexattr_t *attr)
 #  endif
 _GL_CXXALIAS_SYS (pthread_mutexattr_destroy, int, (pthread_mutexattr_t *attr));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_mutexattr_destroy);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_mutexattr_destroy
 # if HAVE_RAW_DECL_PTHREAD_MUTEXATTR_DESTROY
@@ -1520,7 +1595,9 @@ _GL_FUNCDECL_SYS (pthread_mutex_trylock, int, (pthread_mutex_t *mutex)
 #  endif
 _GL_CXXALIAS_SYS (pthread_mutex_trylock, int, (pthread_mutex_t *mutex));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_mutex_trylock);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_mutex_trylock
 # if HAVE_RAW_DECL_PTHREAD_MUTEX_TRYLOCK
@@ -1553,7 +1630,9 @@ _GL_CXXALIAS_SYS (pthread_mutex_timedlock, int,
                   (pthread_mutex_t *restrict mutex,
                    const struct timespec *restrict abstime));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_mutex_timedlock);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_mutex_timedlock
 # if HAVE_RAW_DECL_PTHREAD_MUTEX_TIMEDLOCK
@@ -1578,7 +1657,9 @@ _GL_FUNCDECL_SYS (pthread_mutex_unlock, int, (pthread_mutex_t *mutex)
 #  endif
 _GL_CXXALIAS_SYS (pthread_mutex_unlock, int, (pthread_mutex_t *mutex));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_mutex_unlock);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_mutex_unlock
 # if HAVE_RAW_DECL_PTHREAD_MUTEX_UNLOCK
@@ -1603,7 +1684,9 @@ _GL_FUNCDECL_SYS (pthread_mutex_destroy, int, (pthread_mutex_t *mutex)
 #  endif
 _GL_CXXALIAS_SYS (pthread_mutex_destroy, int, (pthread_mutex_t *mutex));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_mutex_destroy);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_mutex_destroy
 # if HAVE_RAW_DECL_PTHREAD_MUTEX_DESTROY
@@ -1638,7 +1721,9 @@ _GL_CXXALIAS_SYS (pthread_rwlock_init, int,
                   (pthread_rwlock_t *restrict lock,
                    const pthread_rwlockattr_t *restrict attr));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_rwlock_init);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_rwlock_init
 # if HAVE_RAW_DECL_PTHREAD_RWLOCK_INIT
@@ -1663,7 +1748,9 @@ _GL_FUNCDECL_SYS (pthread_rwlockattr_init, int, (pthread_rwlockattr_t *attr)
 #  endif
 _GL_CXXALIAS_SYS (pthread_rwlockattr_init, int, (pthread_rwlockattr_t *attr));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_rwlockattr_init);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_rwlockattr_init
 # if HAVE_RAW_DECL_PTHREAD_RWLOCKATTR_INIT
@@ -1690,7 +1777,9 @@ _GL_FUNCDECL_SYS (pthread_rwlockattr_destroy, int,
 _GL_CXXALIAS_SYS (pthread_rwlockattr_destroy, int,
                   (pthread_rwlockattr_t *attr));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_rwlockattr_destroy);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_rwlockattr_destroy
 # if HAVE_RAW_DECL_PTHREAD_RWLOCKATTR_DESTROY
@@ -1715,7 +1804,9 @@ _GL_FUNCDECL_SYS (pthread_rwlock_rdlock, int, (pthread_rwlock_t *lock)
 #  endif
 _GL_CXXALIAS_SYS (pthread_rwlock_rdlock, int, (pthread_rwlock_t *lock));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_rwlock_rdlock);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_rwlock_rdlock
 # if HAVE_RAW_DECL_PTHREAD_RWLOCK_RDLOCK
@@ -1740,7 +1831,9 @@ _GL_FUNCDECL_SYS (pthread_rwlock_wrlock, int, (pthread_rwlock_t *lock)
 #  endif
 _GL_CXXALIAS_SYS (pthread_rwlock_wrlock, int, (pthread_rwlock_t *lock));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_rwlock_wrlock);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_rwlock_wrlock
 # if HAVE_RAW_DECL_PTHREAD_RWLOCK_WRLOCK
@@ -1765,7 +1858,9 @@ _GL_FUNCDECL_SYS (pthread_rwlock_tryrdlock, int, (pthread_rwlock_t *lock)
 #  endif
 _GL_CXXALIAS_SYS (pthread_rwlock_tryrdlock, int, (pthread_rwlock_t *lock));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_rwlock_tryrdlock);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_rwlock_tryrdlock
 # if HAVE_RAW_DECL_PTHREAD_RWLOCK_TRYRDLOCK
@@ -1790,7 +1885,9 @@ _GL_FUNCDECL_SYS (pthread_rwlock_trywrlock, int, (pthread_rwlock_t *lock)
 #  endif
 _GL_CXXALIAS_SYS (pthread_rwlock_trywrlock, int, (pthread_rwlock_t *lock));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_rwlock_trywrlock);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_rwlock_trywrlock
 # if HAVE_RAW_DECL_PTHREAD_RWLOCK_TRYWRLOCK
@@ -1823,7 +1920,9 @@ _GL_CXXALIAS_SYS (pthread_rwlock_timedrdlock, int,
                   (pthread_rwlock_t *restrict lock,
                    const struct timespec *restrict abstime));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_rwlock_timedrdlock);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_rwlock_timedrdlock
 # if HAVE_RAW_DECL_PTHREAD_RWLOCK_TIMEDRDLOCK
@@ -1856,7 +1955,9 @@ _GL_CXXALIAS_SYS (pthread_rwlock_timedwrlock, int,
                   (pthread_rwlock_t *restrict lock,
                    const struct timespec *restrict abstime));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_rwlock_timedwrlock);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_rwlock_timedwrlock
 # if HAVE_RAW_DECL_PTHREAD_RWLOCK_TIMEDWRLOCK
@@ -1881,7 +1982,9 @@ _GL_FUNCDECL_SYS (pthread_rwlock_unlock, int, (pthread_rwlock_t *lock)
 #  endif
 _GL_CXXALIAS_SYS (pthread_rwlock_unlock, int, (pthread_rwlock_t *lock));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_rwlock_unlock);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_rwlock_unlock
 # if HAVE_RAW_DECL_PTHREAD_RWLOCK_UNLOCK
@@ -1906,7 +2009,9 @@ _GL_FUNCDECL_SYS (pthread_rwlock_destroy, int, (pthread_rwlock_t *lock)
 #  endif
 _GL_CXXALIAS_SYS (pthread_rwlock_destroy, int, (pthread_rwlock_t *lock));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_rwlock_destroy);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_rwlock_destroy
 # if HAVE_RAW_DECL_PTHREAD_RWLOCK_DESTROY
@@ -1941,7 +2046,9 @@ _GL_CXXALIAS_SYS (pthread_cond_init, int,
                   (pthread_cond_t *restrict cond,
                    const pthread_condattr_t *restrict attr));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_cond_init);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_cond_init
 # if HAVE_RAW_DECL_PTHREAD_COND_INIT
@@ -1966,7 +2073,9 @@ _GL_FUNCDECL_SYS (pthread_condattr_init, int, (pthread_condattr_t *attr)
 #  endif
 _GL_CXXALIAS_SYS (pthread_condattr_init, int, (pthread_condattr_t *attr));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_condattr_init);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_condattr_init
 # if HAVE_RAW_DECL_PTHREAD_CONDATTR_INIT
@@ -1991,7 +2100,9 @@ _GL_FUNCDECL_SYS (pthread_condattr_destroy, int, (pthread_condattr_t *attr)
 #  endif
 _GL_CXXALIAS_SYS (pthread_condattr_destroy, int, (pthread_condattr_t *attr));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_condattr_destroy);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_condattr_destroy
 # if HAVE_RAW_DECL_PTHREAD_CONDATTR_DESTROY
@@ -2024,7 +2135,9 @@ _GL_CXXALIAS_SYS (pthread_cond_wait, int,
                   (pthread_cond_t *restrict cond,
                    pthread_mutex_t *restrict mutex));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_cond_wait);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_cond_wait
 # if HAVE_RAW_DECL_PTHREAD_COND_WAIT
@@ -2061,7 +2174,9 @@ _GL_CXXALIAS_SYS (pthread_cond_timedwait, int,
                    pthread_mutex_t *restrict mutex,
                    const struct timespec *restrict abstime));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_cond_timedwait);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_cond_timedwait
 # if HAVE_RAW_DECL_PTHREAD_COND_TIMEDWAIT
@@ -2086,7 +2201,9 @@ _GL_FUNCDECL_SYS (pthread_cond_signal, int, (pthread_cond_t *cond)
 #  endif
 _GL_CXXALIAS_SYS (pthread_cond_signal, int, (pthread_cond_t *cond));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_cond_signal);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_cond_signal
 # if HAVE_RAW_DECL_PTHREAD_COND_SIGNAL
@@ -2111,7 +2228,9 @@ _GL_FUNCDECL_SYS (pthread_cond_broadcast, int, (pthread_cond_t *cond)
 #  endif
 _GL_CXXALIAS_SYS (pthread_cond_broadcast, int, (pthread_cond_t *cond));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_cond_broadcast);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_cond_broadcast
 # if HAVE_RAW_DECL_PTHREAD_COND_BROADCAST
@@ -2136,7 +2255,9 @@ _GL_FUNCDECL_SYS (pthread_cond_destroy, int, (pthread_cond_t *cond)
 #  endif
 _GL_CXXALIAS_SYS (pthread_cond_destroy, int, (pthread_cond_t *cond));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_cond_destroy);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_cond_destroy
 # if HAVE_RAW_DECL_PTHREAD_COND_DESTROY
@@ -2167,7 +2288,9 @@ _GL_FUNCDECL_SYS (pthread_key_create, int,
 _GL_CXXALIAS_SYS_CAST (pthread_key_create, int,
                        (pthread_key_t *keyp, void (*destructor) (void *)));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_key_create);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_key_create
 # if HAVE_RAW_DECL_PTHREAD_KEY_CREATE
@@ -2194,7 +2317,9 @@ _GL_FUNCDECL_SYS (pthread_setspecific, int,
 _GL_CXXALIAS_SYS (pthread_setspecific, int,
                   (pthread_key_t key, const void *value));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_setspecific);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_setspecific
 # if HAVE_RAW_DECL_PTHREAD_SETSPECIFIC
@@ -2217,7 +2342,9 @@ _GL_FUNCDECL_SYS (pthread_getspecific, void *, (pthread_key_t key));
 #  endif
 _GL_CXXALIAS_SYS (pthread_getspecific, void *, (pthread_key_t key));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_getspecific);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_getspecific
 # if HAVE_RAW_DECL_PTHREAD_GETSPECIFIC
@@ -2240,7 +2367,9 @@ _GL_FUNCDECL_SYS (pthread_key_delete, int, (pthread_key_t key));
 #  endif
 _GL_CXXALIAS_SYS (pthread_key_delete, int, (pthread_key_t key));
 # endif
+# if __GLIBC__ >= 2
 _GL_CXXALIASWARN (pthread_key_delete);
+# endif
 #elif defined GNULIB_POSIXCHECK
 # undef pthread_key_delete
 # if HAVE_RAW_DECL_PTHREAD_KEY_DELETE
@@ -2388,6 +2517,35 @@ _GL_CXXALIASWARN (pthread_spin_destroy);
 _GL_WARN_ON_USE (pthread_spin_destroy, "pthread_spin_destroy is not portable - "
                  "use gnulib module pthread-spin for portability");
 # endif
+#endif
+
+
+#if defined __cplusplus && defined GNULIB_NAMESPACE && !0 && defined __MINGW32__
+/* Provide the symbols required by mingw's <bits/gthr-default.h>.  */
+using GNULIB_NAMESPACE::pthread_create;
+using GNULIB_NAMESPACE::pthread_self;
+using GNULIB_NAMESPACE::pthread_equal;
+using GNULIB_NAMESPACE::pthread_detach;
+using GNULIB_NAMESPACE::pthread_join;
+using GNULIB_NAMESPACE::pthread_once;
+using GNULIB_NAMESPACE::pthread_mutex_init;
+using GNULIB_NAMESPACE::pthread_mutexattr_init;
+using GNULIB_NAMESPACE::pthread_mutexattr_settype;
+using GNULIB_NAMESPACE::pthread_mutexattr_destroy;
+using GNULIB_NAMESPACE::pthread_mutex_lock;
+using GNULIB_NAMESPACE::pthread_mutex_trylock;
+using GNULIB_NAMESPACE::pthread_mutex_timedlock;
+using GNULIB_NAMESPACE::pthread_mutex_unlock;
+using GNULIB_NAMESPACE::pthread_mutex_destroy;
+using GNULIB_NAMESPACE::pthread_cond_wait;
+using GNULIB_NAMESPACE::pthread_cond_timedwait;
+using GNULIB_NAMESPACE::pthread_cond_signal;
+using GNULIB_NAMESPACE::pthread_cond_broadcast;
+using GNULIB_NAMESPACE::pthread_cond_destroy;
+using GNULIB_NAMESPACE::pthread_key_create;
+using GNULIB_NAMESPACE::pthread_setspecific;
+using GNULIB_NAMESPACE::pthread_getspecific;
+using GNULIB_NAMESPACE::pthread_key_delete;
 #endif
 
 
