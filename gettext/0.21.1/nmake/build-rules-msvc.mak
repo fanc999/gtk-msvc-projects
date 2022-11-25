@@ -397,6 +397,20 @@ vs$(VSVER)\$(CFG)\$(PLAT)\msggrep.exe:
 # $(srcfile)
 # <<
 
+install:
+	@for %d in (bin lib include\textstyle) do @mkdir $(PREFIX)\%d
+	@for %f in ($(GETTEXT_RUNTIME_LIBS:.lib=.dll) $(GETTEXTPO_LIB:.lib=.dll) $(LIBTEXTSTYLE_LIB:.lib=.dll)) do \
+	 @((if exist %~pnf.pdb copy %~pnf.pdb $(PREFIX)\bin) & copy /b %f $(PREFIX)\bin)
+	@for %f in ($(GETTEXTLIB_LIB:.lib=.dll) $(GETTEXTSRC_LIB:.lib=.dll) $(LIBTEXTSTYLE_LIB:.lib=.dll)) do \
+	 @((if exist %~pnf.pdb copy %~pnf.pdb $(PREFIX)\bin) & copy /b %f $(PREFIX)\bin)
+	@for %f in ($(gettext_runtime_tools) $(GETTEXT_TOOLS_TOOLS)) do \
+	 @((if exist %~pnf.pdb copy %~pnf.pdb $(PREFIX)\bin) & copy /b %f $(PREFIX)\bin)
+	@for %f in ($(GETTEXT_RUNTIME_LIBS) $(GETTEXTPO_LIB) $(LIBTEXTSTYLE_LIB)) do @copy /b %f $(PREFIX)\lib
+	@for %f in (intl\libintl.h libasprintf\autosprintf.h) do @copy ..\msvc\gettext-runtime\%f $(PREFIX)\include
+	@for %d in (lib\textstyle) do @copy ..\msvc\libtextstyle\%d\* $(PREFIX)\include\textstyle
+	@for %f in (libtextstyle\lib\textstyle.h msvc\gettext-tools\libgettextpo\gettext-po.h) do	\
+	 @copy ..\%f $(PREFIX)\include
+
 clean:
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\*.lib
 	@-del /f /q vs$(VSVER)\$(CFG)\$(PLAT)\*.exe.manifest
