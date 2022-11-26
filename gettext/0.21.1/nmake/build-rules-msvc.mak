@@ -425,10 +425,10 @@ install: all
 	@for %f in (index team-address) do @copy ..\gettext-tools\projects\%f $(PREFIX)\share\gettext\projects
 	@-mkdir $(PREFIX)\share\gettext\styles
 	@copy ..\gettext-tools\styles\po-*.css $(PREFIX)\share\gettext\styles
-	@-mkdir $(PREFIX)\share\gettext-0.21.1
-	@for %x in (its loc) do @copy ..\gettext-tools\its\*.%x $(PREFIX)\share\gettext-0.21.1
+	@-mkdir $(PREFIX)\share\gettext-$(GETTEXT_VERSION)
+	@for %x in (its loc) do @copy ..\gettext-tools\its\*.%x $(PREFIX)\share\gettext-$(GETTEXT_VERSION)
 	@-mkdir $(PREFIX)\share\emacs\site-lisp
-	@for %x in (el) do @copy ..\gettext-tools\emacs\*.%x $(PREFIX)\share\gettext-0.21.1
+	@for %x in (el) do @copy ..\gettext-tools\emacs\*.%x $(PREFIX)\share\emacs\site-lisp
 	@-for %d in (gettext\csharpdoc libasprintf) do @mkdir $(PREFIX)\share\doc\%d
 	@-for %d in (aclocal) do @mkdir $(PREFIX)\share\gettext\%d
 	@for %f in (gettext iconv intlmacosx nls po progtest) do @copy ..\gettext-runtime\m4\%f.m4 $(PREFIX)\share\gettext\aclocal
