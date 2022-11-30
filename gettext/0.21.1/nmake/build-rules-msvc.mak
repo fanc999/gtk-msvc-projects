@@ -439,7 +439,7 @@ install: all
 	@copy ..\gettext-tools\man\*.1.html $(PREFIX)\share\doc\gettext
 	@copy ..\gettext-runtime\intl-csharp\doc\*.html $(PREFIX)\share\doc\gettext\csharpdoc
 	@copy ..\gettext-tools\doc\*.html $(PREFIX)\share\doc\gettext
-	@copy ..\gettext-runtime\libasprintf\autosprintf_all.html $(PREFIX)\share\doc\gettext\libasprintf
+	@copy ..\gettext-runtime\libasprintf\autosprintf_all.html $(PREFIX)\share\doc\libasprintf
 	@-for %d in (runtime tools) do @for %l in (..\gettext-%d\po\*.po) do @mkdir $(PREFIX)\share\locale\%~nl\LC_MESSAGES
 	@for %d in (runtime tools) do @for %l in (..\gettext-%d\po\*.po) do	\
 	 @vs$(VSVER)\$(CFG)\$(PLAT)\msgfmt.exe -c --statistics --verbose -o $(PREFIX)\share\locale\%~nl\LC_MESSAGES\gettext-%d.mo %l
