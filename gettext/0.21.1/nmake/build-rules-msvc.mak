@@ -410,7 +410,7 @@ install: all
 	@for %d in (lib\textstyle) do @copy ..\msvc\libtextstyle\%d\* $(PREFIX)\include\textstyle
 	@for %f in (libtextstyle\lib\textstyle.h msvc\gettext-tools\libgettextpo\gettext-po.h) do	\
 	 @copy ..\%f $(PREFIX)\include
-	@-mkdir $(PREFIX)\share\gettext
+	@-mkdir $(PREFIX)\share\gettext\po
 	@for %f in (ABOUT-NLS) do @copy ..\gettext-runtime\%f $(PREFIX)\share\gettext
 	@for %f in (config.rpath) do @copy ..\build-aux\%f $(PREFIX)\share\gettext
 	@for %f in (gettext.h) do @copy ..\gnulib-local\lib\%f $(PREFIX)\share\gettext
